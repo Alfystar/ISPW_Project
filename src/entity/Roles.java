@@ -51,4 +51,10 @@ public class Roles {
     public void resetTenant(){
         this.tenant=false;
     }
+
+    @Override
+    public String toString ()
+    {
+        return "isRenter:"+this.isRenter()+", isTenant:"+isTenant()+"\n";
+    }
 }

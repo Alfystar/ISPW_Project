@@ -46,4 +46,17 @@ public class PrivateData {
         return this.phone;
     }
 
+    @Override
+    public String toString()
+    {
+        String out;
+        out="My address" + this.address.get()+"\n";
+        out="My cityOfBirth" + this.cityOfBirth.get()+"\n";
+        out="My Nationality" + this.nat.get()+"\n";
+        out="My PhoneNumber" + this.phone.get()+"\n";
+
+        return out;
+
+    }
+
 }

@@ -90,4 +90,20 @@ public class PublicData {
     public Nickname getNickname(){
         return this.nickname;
     }
+
+    @Override
+    public String toString ()
+    {
+        String out;
+        out="Name:"+this.name.get()+"\n";
+        out+="Surname:"+this.surname.get()+"\n";
+        out+="Birthday:"+this.birthday.toString()+"\n";
+        out+="Gender:"+this.gender.toString()+"\n";
+        out+="TaxCode:"+this.fiscalCode.get()+"\n";
+        out+="SocialStatus:"+this.socialStatus.get()+"\n";
+        out+="ImagePath:"+this.profileImage.get()+"\n";
+        out+="Email:"+this.email.get()+"\n";
+        out+="Nickname:"+this.nickname.get()+"\n";
+        return out;
+    }
 }
