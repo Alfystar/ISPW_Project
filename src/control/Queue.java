@@ -5,13 +5,14 @@ import java.util.GregorianCalendar;
 import java.util.LinkedList;
 
 public class Queue {
-    private LinkedList<NodeQueue> users;
 
+    /*Variabile per il Singleton*/
     private static class LazyCointainer{
         public final static Queue queueSigletonInstance = new Queue();
     }
 
-    static Queue queue = new Queue();
+    /*Attributi della classe*/
+    private LinkedList<NodeQueue> users;
 
     protected Queue()
     {
@@ -86,11 +87,10 @@ public class Queue {
     public static void main(String Argv[])
     {
         /*Crea la coda per il test e i parametri*/
-        Queue list = new Queue();
+        Queue list= Queue.getQueueSingletonInstance();
 
         PublicData pubD = new PublicData(new Name("ema"), new Name("alf"), new TaxCode("lfm"), new Nickname("alfy") ,new Email("ema@gmail.com"), new GregorianCalendar(97,7,31), Gender.MAN);
         PrivateData priD = new PrivateData();
-
 
 
         /*TEST STATEMENT START*/
@@ -130,6 +130,24 @@ public class Queue {
             list.remove(new Nickname(nickRemove[i]));
         }
         System.out.println(list.toString());
+
+
+        System.out.println("\n\tTest di singleton: dati pre esistenti");
+        Queue list2= Queue.getQueueSingletonInstance();
+        System.out.println(list2.toString());
+
+
+        System.out.println("\n\tTest di singleton: dopo un add, lista comune a entrambi");
+        pubD.getNickname().set("giovanni");
+        us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions());
+        list2.add(us);
+        System.out.println("\tLista 1");
+        System.out.println(list.toString());
+        System.out.println("\tLista 2");
+        System.out.println(list2.toString());
+
+
+
 
 
     }
