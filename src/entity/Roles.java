@@ -1,13 +1,18 @@
 package entity;
+
+import javax.management.relation.Role;
+
 public class Roles {
     private Boolean renter;
     private Boolean tenant;
 
+    //Costruttore di default
     public Roles(){
         this.tenant=false;
         this.renter=false;
     }
 
+    //Costruttore con tutti i valori possibili di Roles
     public Roles(Boolean renter, Boolean tenant){
         this.renter=renter;
         this.tenant= tenant;

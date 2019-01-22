@@ -10,6 +10,10 @@ public class SocialStatus extends ModifyDataString {
         this.socialStatus="Non Specificato";
     }
 
+    public SocialStatus(SocialStatus socialStatus){
+        this.socialStatus= socialStatus.get();
+    }
+
     @Override
     public String get(){
         return this.socialStatus;

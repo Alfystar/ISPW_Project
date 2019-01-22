@@ -10,6 +10,10 @@ public class Nickname {
         this.nickname= "";
     }
 
+    public Nickname(Nickname nickname){
+        this.nickname= nickname.get();
+    }
+
     public String get(){
         return this.nickname;
     }

@@ -10,7 +10,9 @@ public class Name {
         this.name="";
     }
 
-
+    public Name(Name name){
+        this.name= name.get();
+    }
     public String get(){
         return this.name;
     }

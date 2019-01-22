@@ -10,6 +10,10 @@ public class TaxCode {
         this.cf= "";
     }
 
+    public TaxCode(TaxCode cf){
+        this.cf= cf.get();
+    }
+
     public String get() {
         return this.cf;
     }

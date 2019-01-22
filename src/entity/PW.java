@@ -7,6 +7,10 @@ public class PW {
         this.pw= pw;
     }
 
+    public PW(PW pw){
+        this.pw= pw.getPw();
+    }
+
     public String getPw(){
         return this.pw= pw;
     }

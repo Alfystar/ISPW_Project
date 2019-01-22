@@ -10,6 +10,10 @@ public class SurfaceAddress extends ModifyDataString {
         this.address= "";
     }
 
+    public SurfaceAddress(SurfaceAddress address){
+        this.address= address.get();
+    }
+
     @Override
     public String get(){
         return this.address;

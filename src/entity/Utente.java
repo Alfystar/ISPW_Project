@@ -5,20 +5,18 @@ public class Utente {
     private PublicData pubD;
     private PrivateData prD;
     private PW pw;
-    private UserStatus userStatus;
+    private UserStatus userStatus= ;
     private Roles roles;
     private Questions questions;
 
     public Utente(PublicData pubD, PrivateData prD, PW pw, UserStatus userStatus, Roles roles, Questions questions){
-        this.pubD= pubD;
-        this.prD= prD;
-        this.pw= pw;
-        this.roles= roles;
-        this.questions= questions;
+        this.pubD= new PublicData(pubD);
+        this.prD= new PublicData(prD);
+        this.pw= new PW(pw);
+        this.roles= new Roles(roles);
+        this.questions= new Questions(questions);
     }
-    public Utente() {
 
-    }
 
     public PublicData getPublic(){
         return this.pubD;
@@ -57,4 +55,11 @@ public class Utente {
     public Boolean comparePw(PW password){
         return password.getPw().equals(this.pw.getPw());
     }
+
+
+    public static void main(String[] args){
+        ;
+    }
+
 }
+

@@ -6,6 +6,12 @@ public class Nationality extends ModifyDataString{
         this.nat= nat;
     }
 
+    public Nationality(){ this.nat= "";}
+
+    public Nationality(Nationality nat){
+        this.nat= nat.get();
+    }
+
     @Override
     public String get(){
         return this.nat;

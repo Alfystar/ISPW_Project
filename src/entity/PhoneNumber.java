@@ -6,6 +6,12 @@ public class PhoneNumber extends ModifyDataString{
         this.phone= phone;
     }
 
+    public PhoneNumber(){ this.phone= "";}
+
+    public PhoneNumber(PhoneNumber phone){
+        this.phone= phone.get();
+    }
+
     @Override
     public String get(){
         return this.phone;

@@ -14,6 +14,10 @@ public class ImagePath extends ModifyDataString {
         this.path="/";
     }
 
+    public ImagePath(ImagePath path){
+        this.path= path.get();
+    }
+
     @Override
     public String get()
     {
