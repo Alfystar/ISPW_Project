@@ -24,10 +24,10 @@ public class PrivateData {
 
     //Costruttore per copiare i dati di un PrivateData in un'altra istanza di PrivateData
     public PrivateData(PrivateData prD){
-        this.address= new SurfaceAddress(address);
-        this.cityOfBirth= new SurfaceAddress(cityOfBirth);
-        this.nat= new Nationality(nat);
-        this.phone= new PhoneNumber(phone);
+        this.address= new SurfaceAddress(prD.getLocalAddress());
+        this.cityOfBirth= new SurfaceAddress(prD.getCityOfBirth());
+        this.nat= new Nationality(prD.getNationality());
+        this.phone= new PhoneNumber(prD.getPhone());
     }
 
     public SurfaceAddress getLocalAddress(){

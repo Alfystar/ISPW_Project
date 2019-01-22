@@ -37,7 +37,7 @@ public class PublicData {
         this.email= new Email(email);
         this.nickname= new Nickname(nickname);
     }
-
+    //Costruttore che prende un PublicData e lo copia in un'altra istanza
     public PublicData(PublicData pubD){
         this.name= new Name(pubD.getName());
         this.surname= new Name(pubD.getName());
