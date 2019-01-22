@@ -17,6 +17,7 @@ public class PublicData {
 
     //Costruttore con i parametri di UserInfoRegister relativi a PublicData
     public PublicData(Name name, Name surname, TaxCode fiscalCode, Nickname nickname, Email email, GregorianCalendar birthday, Gender gender){
+        /*passati*/
         this.name= new Name(name);
         this.surname= new Name(surname);
         this.fiscalCode= new TaxCode(fiscalCode);
@@ -24,6 +25,10 @@ public class PublicData {
         this.email= new Email(email);
         this.birthday.setGregorianChange(birthday.getGregorianChange());
         this.gender= gender;
+
+        /*start a default*/
+        this.socialStatus= new SocialStatus();
+
     }
     //Costruttore con tutti i parametri possibili di PublicData
     public PublicData(Name name, Name surname, GregorianCalendar birthday, Gender gender, TaxCode fiscalCode, SocialStatus socialStatus, ImagePath profileImage, Email email, Nickname nickname){

@@ -15,6 +15,7 @@ public class Utente {
         this.pw= new PW(pw);
         this.roles= new Roles(roles);
         this.questions= new Questions(questions);
+        this.userStatus=UserStatus.ACTIVE;
     }
 
 

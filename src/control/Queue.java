@@ -66,20 +66,61 @@ public class Queue {
         String out;
         out="#Start List, size=" + this.list.size()+"\n";
         for (int i = 0; i < this.list.size(); i++) {
-            node=this.list.get(i).;
-            out+= node.toString() + "\n";
+            node=this.list.get(i);
+            out+= i+") "+node.toString();
         }
-
         out+="#End List#\n";
         return out;
     }
 
-    public static void Main(String Argv[])
+    public static void main(String Argv[])
     {
-        PublicData pubD = new PublicData(new Name("ema"), new Name("alf"), new TaxCode("lfm"), new Nickname("alfy") ,new Email("ema@gmail.com"), new GregorianCalendar(97,7,31), Gender.MAN));
+        /*Crea la coda per il test e i parametri*/
+        Queue list = new Queue();
+
+        PublicData pubD = new PublicData(new Name("ema"), new Name("alf"), new TaxCode("lfm"), new Nickname("alfy") ,new Email("ema@gmail.com"), new GregorianCalendar(97,7,31), Gender.MAN);
         PrivateData priD = new PrivateData();
-        Utente us1 = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions());
+        Utente us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions());
+
+
+
+        /*TEST STATEMENT START*/
+
+        /*Test add list*/
+        list.add(us);
+        pubD.getNickname().set("marta");
+        us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions());
+        list.add(us);
+        pubD.getNickname().set("fil");
+        us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions());
+        list.add(us);
+        System.out.println(list.toString());
+
+        /*Test search*/
+        String nickSearch[] = {"alfy", "marta", "pippo"};
+        Utente usfind;
+        System.out.println("\t##Start Search Test##");
+        for (int i = 0; i < nickSearch.length ; i++) {
+            usfind= list.find(new Nickname(nickSearch[i]));
+            if(usfind!=null)
+            {
+                System.out.println("L'utente "+ nickSearch[i] + " è stato Trovato");
+            }else {
+                System.out.println("L'utente "+ nickSearch[i] + " non è stato Trovato");
+
+            }
+        }
+        System.out.println(list.toString());
+
+        /*Test Remove*/
+        String nickRemove[] = {"alfy", "fil", "pippo"};
+
+        System.out.println("\t**Start Remove Test**");
+        for (int i = 0; i < nickSearch.length ; i++) {
+            list.remove(new Nickname(nickRemove[i]));
+        }
+        System.out.println(list.toString());
+
+
     }
-
-
 }
