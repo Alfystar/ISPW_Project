@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 import java.util.LinkedList;
 
 public class Queue {
-    private LinkedList<NodeQueue> list= new LinkedList<>();
+    private LinkedList<NodeQueue> users = new LinkedList<>();
 
     private static class LazyCointainer{
         public final static Queue queueSigletonInstance = new Queue();
@@ -22,12 +22,18 @@ public class Queue {
         return LazyCointainer.queueSigletonInstance;
     }
 
+    /*
+    Preso un utente, crea un nodo della lista, di cui tiene traccia
+     */
     public void add(Utente us)
     {
         NodeQueue node= new NodeQueue(us);
-        this.list.addLast(node);
+        this.users.addLast(node);
     }
 
+    /*
+    Dato un Nick, lo cerca dentro la lista, se non lo trova ritorna null
+     */
     public Utente find(Nickname nk)
     {
         NodeQueue node = searchInQueue(nk);
@@ -35,13 +41,17 @@ public class Queue {
         else return null;
     }
 
+    /*
+    Dato un nick lo cerca e lo elimina, se non lo trova solleva un eccezione
+     */
+    //todo: aggiungere eccezione di fallimento se il nick non trova
     public void remove(Nickname nk)
     {
         NodeQueue node = searchInQueue(nk);
         if(node!=null)
         {
             node.deleteInfo();
-            this.list.remove(node);
+            this.users.remove(node);
         }
     }
 
@@ -49,8 +59,8 @@ public class Queue {
     {
         String nick = nk.get();
         NodeQueue node;
-        for (int i = 0; i < this.list.size(); i++) {
-            node=this.list.get(i);
+        for (int i = 0; i < this.users.size(); i++) {
+            node=this.users.get(i);
             if(node.getNick().get().equals(nick))  //if true found nickname
             {
                 return node;
@@ -64,9 +74,9 @@ public class Queue {
     {
         NodeQueue node;
         String out;
-        out="#Start List, size=" + this.list.size()+"\n";
-        for (int i = 0; i < this.list.size(); i++) {
-            node=this.list.get(i);
+        out="#Start List, size=" + this.users.size()+"\n";
+        for (int i = 0; i < this.users.size(); i++) {
+            node=this.users.get(i);
             out+= i+") "+node.toString();
         }
         out+="#End List#\n";
@@ -86,7 +96,7 @@ public class Queue {
 
         /*TEST STATEMENT START*/
 
-        /*Test add list*/
+        /*Test add users*/
         list.add(us);
         pubD.getNickname().set("marta");
         us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions());
