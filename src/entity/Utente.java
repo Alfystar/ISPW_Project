@@ -57,14 +57,21 @@ public class Utente {
         return password.getPw().equals(this.pw.getPw());
     }
 
+    public String printUser()
+    {
+        String out;
+        out="Utente nick: "+ this.pubD.getNickname().get()+", Email:"+this.pubD.getEmail().get()+", CF:"+ this.pubD.getFiscalCode().get()+"\n";
+        out+="\t##PublicData##\n"+ this.pubD.toString();
+        out+="\t##PrivateData##\n"+ this.prD.toString();
+        out+="\t##Ruolo##\n"+this.roles;
+        out+="UserStatus:"+this.userStatus.toString()+"PW:"+ this.pw.getPw()+"\n";
+        out+="\t**Answare at Question is:\n"+this.questions.toString();
+        return out;
+    }
     @Override
     public String toString()
     {
-        return "Utente: "+ pubD.getNickname().get()+"\n";
-    }
-
-    public static void main(String[] args){
-        ;
+        return "UserNick: "+ this.pubD.getNickname().get()+", Email:"+this.pubD.getEmail().get()+", CF:"+ this.pubD.getFiscalCode().get()+"\n";
     }
 
 }
