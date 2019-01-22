@@ -15,15 +15,19 @@ public class PrivateData {
 
     //Costruttore senza parametri; non è richiesto nessun PrivateData per la registrazione(UserInfoRegister)
     public PrivateData(){
+        this.address = new SurfaceAddress();
+        this.cityOfBirth = new SurfaceAddress();
+        this.nat= new Nationality();
+        this.phone= new PhoneNumber();
 
     }
 
     //Costruttore per copiare i dati di un PrivateData in un'altra istanza di PrivateData
     public PrivateData(PrivateData prD){
-        this.address= new SurfaceAddress(address);
-        this.cityOfBirth= new SurfaceAddress(cityOfBirth);
-        this.nat= new Nationality(nat);
-        this.phone= new PhoneNumber(phone);
+        this.address= new SurfaceAddress(prD.getLocalAddress());
+        this.cityOfBirth= new SurfaceAddress(prD.getCityOfBirth());
+        this.nat= new Nationality(prD.getNationality());
+        this.phone= new PhoneNumber(prD.getPhone());
     }
 
     public SurfaceAddress getLocalAddress(){

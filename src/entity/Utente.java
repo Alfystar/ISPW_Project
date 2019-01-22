@@ -5,13 +5,13 @@ public class Utente {
     private PublicData pubD;
     private PrivateData prD;
     private PW pw;
-    private UserStatus userStatus= ;
+    private UserStatus userStatus;
     private Roles roles;
     private Questions questions;
 
-    public Utente(PublicData pubD, PrivateData prD, PW pw, UserStatus userStatus, Roles roles, Questions questions){
+    public Utente(PublicData pubD, PrivateData prD, PW pw, Roles roles, Questions questions){
         this.pubD= new PublicData(pubD);
-        this.prD= new PublicData(prD);
+        this.prD= new PrivateData(prD);
         this.pw= new PW(pw);
         this.roles= new Roles(roles);
         this.questions= new Questions(questions);
@@ -56,6 +56,11 @@ public class Utente {
         return password.getPw().equals(this.pw.getPw());
     }
 
+    @Override
+    public String toString()
+    {
+        return "Utente: "+ pubD.getNickname().get()+"\n";
+    }
 
     public static void main(String[] args){
         ;
