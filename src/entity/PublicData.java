@@ -7,11 +7,11 @@ import java.util.GregorianCalendar;
 public class PublicData {
     private Name name;
     private Name surname;
-    private GregorianCalendar birthday;
+    private GregorianCalendar birthday= new GregorianCalendar();
     private Gender gender;
     private TaxCode fiscalCode;
     private SocialStatus socialStatus;
-    private ImagePath profileImage;
+    private ImagePath profileImage= new ImagePath();
     private Email email;
     private Nickname nickname;
 
@@ -22,14 +22,14 @@ public class PublicData {
         this.fiscalCode= new TaxCode(fiscalCode);
         this.nickname= new Nickname(nickname);
         this.email= new Email(email);
-        this.birthday= new GregorianCalendar(birthday);
-        this.gender= new Gender(gender);
+        this.birthday.setGregorianChange(birthday.getGregorianChange());
+        this.gender= gender;
     }
     //Costruttore con tutti i parametri possibili di PublicData
     public PublicData(Name name, Name surname, GregorianCalendar birthday, Gender gender, TaxCode fiscalCode, SocialStatus socialStatus, ImagePath profileImage, Email email, Nickname nickname){
         this.name= new Name(name);
         this.surname= new Name(surname);
-        this.birthday= birthday;
+        this.birthday.setGregorianChange(birthday.getGregorianChange());
         this.gender= gender;
         this.fiscalCode= new TaxCode(fiscalCode);
         this.socialStatus= new SocialStatus(socialStatus);
@@ -39,15 +39,15 @@ public class PublicData {
     }
 
     public PublicData(PublicData pubD){
-        this.name= new Name(name);
-        this.surname= new Name(surname);
+        this.name= new Name(pubD.getName());
+        this.surname= new Name(pubD.getName());
         this.birthday.setGregorianChange(pubD.birthday.getGregorianChange());
         this.gender= pubD.getGender();
-        this.fiscalCode= new TaxCode(fiscalCode);
-        this.socialStatus= new SocialStatus(socialStatus);
-        this.profileImage.set(pubD.getProfileImage().get());
-        this.email.set(pubD.getEmail().get());
-        this.nickname.set(pubD.getNickname().get());
+        this.fiscalCode= new TaxCode(pubD.getFiscalCode());
+        this.socialStatus= new SocialStatus(pubD.getSocialStatus());
+        this.profileImage= new ImagePath(pubD.getProfileImage());
+        this.email= new Email(pubD.getEmail());
+        this.nickname= new Nickname(pubD.getNickname());
     }
 
     public Name getName(){
