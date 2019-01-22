@@ -78,7 +78,7 @@ public class Queue {
     {
         PublicData pubD = new PublicData(new Name("ema"), new Name("alf"), new TaxCode("lfm"), new Nickname("alfy") ,new Email("ema@gmail.com"), new GregorianCalendar(97,7,31), Gender.MAN));
         PrivateData priD = new PrivateData();
-        Utente us1 = new Utente(pubD,)
+        Utente us1 = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions());
     }
 
 
