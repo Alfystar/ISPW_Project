@@ -56,6 +56,11 @@ public class Utente {
         return password.getPw().equals(this.pw.getPw());
     }
 
+    @Override
+    public String toString()
+    {
+        return "Utente: "+ pubD.getNickname().get()+"\n";
+    }
 
     public static void main(String[] args){
         ;
