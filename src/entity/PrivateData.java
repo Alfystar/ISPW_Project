@@ -15,6 +15,10 @@ public class PrivateData {
 
     //Costruttore senza parametri; non è richiesto nessun PrivateData per la registrazione(UserInfoRegister)
     public PrivateData(){
+        this.address = new SurfaceAddress();
+        this.cityOfBirth = new SurfaceAddress();
+        this.nat= new Nationality();
+        this.phone= new PhoneNumber();
 
     }
 

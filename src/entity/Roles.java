@@ -18,6 +18,12 @@ public class Roles {
         this.tenant= tenant;
     }
 
+    public Roles (Roles roles)
+    {
+        this.tenant=roles.isTenant();
+        this.renter=roles.isRenter();
+    }
+
     public Boolean isRenter(){
         return this.renter;
     }
