@@ -45,7 +45,7 @@ public class PublicData {
     //Costruttore che prende un PublicData e lo copia in un'altra istanza
     public PublicData(PublicData pubD){
         this.name= new Name(pubD.getName());
-        this.surname= new Name(pubD.getName());
+        this.surname= new Name(pubD.getSurname());
         this.birthday.setGregorianChange(pubD.birthday.getGregorianChange());
         this.gender= pubD.getGender();
         this.fiscalCode= new TaxCode(pubD.getFiscalCode());
@@ -97,7 +97,7 @@ public class PublicData {
         String out;
         out="Name:"+this.name.get()+"\n";
         out+="Surname:"+this.surname.get()+"\n";
-        out+="Birthday:"+this.birthday.toString()+"\n";
+        out+="Birthday:"+this.birthday.getGregorianChange().toString()+"\n";
         out+="Gender:"+this.gender.toString()+"\n";
         out+="TaxCode:"+this.fiscalCode.get()+"\n";
         out+="SocialStatus:"+this.socialStatus.get()+"\n";
