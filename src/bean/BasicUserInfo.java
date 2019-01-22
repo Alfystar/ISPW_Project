@@ -60,5 +60,10 @@ public class BasicUserInfo {
         return this.publicData.getNickname();
     }
 
+    @Override
+    public String toString(){
+
+        return this.publicData.toString();
+    }
 
 }

@@ -38,4 +38,10 @@ public class RestrictUserInfo {
         return this.privateData.getNationality();
     }
 
+    @Override
+    public String toString(){
+
+        return this.privateData.toString();
+    }
+
 }
