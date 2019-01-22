@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 import java.util.LinkedList;
 
 public class Queue {
-    private LinkedList<NodeQueue> users = new LinkedList<>();
+    private LinkedList<NodeQueue> users;
 
     private static class LazyCointainer{
         public final static Queue queueSigletonInstance = new Queue();
@@ -15,7 +15,7 @@ public class Queue {
 
     protected Queue()
     {
-
+        this.users = new LinkedList<>();
     }
 
     public static final Queue getQueueSingletonInstance() {
@@ -90,13 +90,13 @@ public class Queue {
 
         PublicData pubD = new PublicData(new Name("ema"), new Name("alf"), new TaxCode("lfm"), new Nickname("alfy") ,new Email("ema@gmail.com"), new GregorianCalendar(97,7,31), Gender.MAN);
         PrivateData priD = new PrivateData();
-        Utente us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions());
 
 
 
         /*TEST STATEMENT START*/
 
         /*Test add users*/
+        Utente us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions());
         list.add(us);
         pubD.getNickname().set("marta");
         us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions());
