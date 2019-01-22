@@ -3,6 +3,7 @@ package control;
 import entity.Nickname;
 import entity.Utente;
 
+
 public class UserExpert {
     private Queue coda;
 
@@ -16,7 +17,10 @@ public class UserExpert {
     lo materializza in ram col dao e poi la ritorna
      */
     //todo eccezione se l'utente non è trovato
+
     public Utente getUser(Nickname nk) {
+
+
 
     }
 
