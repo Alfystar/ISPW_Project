@@ -5,12 +5,25 @@ import bean.UserInfoRegister;
 import control.DAOInterface;
 
 import java.util.GregorianCalendar;
+import java.util.Random;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
+//todo: continuare la Mock
 
 public class DAOMock implements DAOInterface{
+
+
+    private Utente utente1;
+
     //Costruttore
     public DAOMock(){
 
+
+        PublicData pubD1 = new PublicData(new Name("ema"), new Name("alf"), new TaxCode("lfm"), new Nickname("alfy") ,new Email("ema@gmail.com"), new GregorianCalendar(97,7,31), Gender.MAN);
+        PrivateData priD1 = new PrivateData(new SurfaceAddress("Roma"), new SurfaceAddress("Termini"), new Nationality("IT"), new PhoneNumber("3334233142"));
+        this.utente1 = new Utente(pubD1, priD1, new PW("testPass1"), new Roles(TRUE, FALSE), new Questions());
     }
 
     @Override
@@ -21,22 +34,39 @@ public class DAOMock implements DAOInterface{
         Roles roles = new Roles();
         Questions answers= new Questions();
         Utente us = new Utente(pubD,priD,pw,roles,answers);
-        //todo: continuare la Mock
-
         return us;
     }
 
     @Override
-    Utente loadFromDB(Nickname nickname);
+    public Utente loadFromDB(Nickname nickname){
+
+        return this.utente1;
+    }
+
+
     @Override
-    void storeUserDB(Utente user);
+    public void storeUserDB(Utente user){
+
+    }
     @Override
-    Boolean searchNickDB(Nickname nickname);
+    public Boolean searchNickDB(Nickname nickname) {
+
+        Random rand = new Random();
+        return rand.nextBoolean();
+    }
+
     @Override
-    Boolean searchTC(TaxCode cf);
+    public Boolean searchTC(TaxCode cf){
+        Random rand = new Random();
+        return rand.nextBoolean();
+    }
+
     @Override
-    void destroy(Nickname nickname);
+    public void destroy(Nickname nickname){}
+
+
+
     @Override
-    void deleteNTime(Nickname nickname, GregorianCalendar date);
+    public void deleteNTime(Nickname nickname, GregorianCalendar date){}
 
 }
