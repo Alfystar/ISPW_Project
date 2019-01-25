@@ -2,7 +2,8 @@ package control;
 
 import entity.Nickname;
 import entity.Utente;
-
+import control.Queue;
+import control.DAOInterface.*;
 
 public class UserExpert {
     private Queue coda;
@@ -25,6 +26,7 @@ public class UserExpert {
     }
 
     public Boolean isNickExist(Nickname nk) {
+        //todo implementarla con due thread
 
     }
 
@@ -33,10 +35,11 @@ public class UserExpert {
     }
 
     public void destroyUser(Nickname nk){
+        coda.remove(nk);
 
     }
 
-    public void storUser(Utente us){
+    public void storeUser(Utente us){
 
     }
 
@@ -45,7 +48,7 @@ public class UserExpert {
     }
 
     private Utente searchUserRam(Nickname nk){
-
+        return coda.find(nk);
     }
 
     private Boolean isNickExistDB(Nickname nk){
@@ -57,7 +60,7 @@ public class UserExpert {
     }
 
     private void addUserQueue(Utente user){
-
+        coda.add(user);
     }
 
 }

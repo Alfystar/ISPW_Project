@@ -19,8 +19,8 @@ public class DAOMock implements DAOInterface{
         PrivateData priD = new PrivateData();
         PW pw = new PW(infoReg.getPw());
         Roles roles = new Roles();
-        Questions answars= new Questions();
-        Utente us = new Utente(pubD,priD,pw,roles,answars);
+        Questions answers= new Questions();
+        Utente us = new Utente(pubD,priD,pw,roles,answers);
         //todo: continuare la Mock
 
         return us;
@@ -29,6 +29,8 @@ public class DAOMock implements DAOInterface{
     @Override
     Utente loadFromDB(Nickname nickname);
     @Override
+    void storeUserDB(Utente user);
+    @Override
     Boolean searchNickDB(Nickname nickname);
     @Override
     Boolean searchTC(TaxCode cf);
@@ -36,6 +38,5 @@ public class DAOMock implements DAOInterface{
     void destroy(Nickname nickname);
     @Override
     void deleteNTime(Nickname nickname, GregorianCalendar date);
-    @Override
-    Utente createUser(UserInfoRegister infoReg);
+
 }
