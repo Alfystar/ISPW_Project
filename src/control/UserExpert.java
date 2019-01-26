@@ -3,7 +3,7 @@ package control;
 import DAO.DAOMock;
 import entity.Nickname;
 import entity.Utente;
-import exceptions.UserNotInDBException;
+import exceptions.NickNotDBEx;
 
 import java.util.GregorianCalendar;
 
@@ -32,12 +32,14 @@ public class UserExpert {
         //todo: verificare che il nick ESISTA
 
         try {
-            Utente us = searchUserRam(nk);
-            if (us != null) return us;
-            else return loadUserDB(nk);
+            return searchUserRam(nk);
         }
-        catch (UserNotInDBException e) {
-            throw e;
+        catch (NickNotDBEx e) {
+        }
+        try {
+            return loadUserDB(nk);
+        } catch (NickNotDBEx e) {
+            throw new
         }
     }
 
@@ -47,7 +49,7 @@ public class UserExpert {
             if (isNickExistRam(nk) == TRUE) return TRUE;
             else return isNickExistDB(nk);
         }
-        catch (UserNotInDBException e){
+        catch (NickNotDBEx e){
             throw e;
         }
     }
@@ -59,7 +61,7 @@ public class UserExpert {
             daoFace.deleteNTime(nk, cal);
             coda.remove(nk);
         }
-        catch (UserNotInDBException e) {
+        catch (NickNotDBEx e) {
             throw e;
         }
     }
@@ -68,7 +70,7 @@ public class UserExpert {
             daoFace.destroy(nk);
             coda.remove(nk);
         }
-        catch (UserNotInDBException e) {
+        catch (NickNotDBEx e) {
             throw e;
         }
     }
@@ -85,7 +87,7 @@ public class UserExpert {
             addUserQueue(us);
             return us;
         }
-        catch (UserNotInDBException e){
+        catch (NickNotDBEx e){
             throw e;
         }
     }
@@ -99,7 +101,7 @@ public class UserExpert {
         try {
             return daoFace.searchNickDB(nk);
         }
-        catch (UserNotInDBException e){
+        catch (NickNotDBEx e){
             throw e;
         }
     }
