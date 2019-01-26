@@ -1,0 +1,25 @@
+1) Download javafx 11 per il proprio sistema da: https://gluonhq.com/products/javafx/
+
+2) Download Gluon per java11 (pacchetto deb)da : https://gluonhq.com/products/scene-builder/
+
+3) Installare il pacchetto deb come semplice doppio click o da termianele.
+NOTA: il programma che si installa si chiama scene bulder e si installa in /opt
+
+4) Estrarre jdk di javafx e spostare la cartella in : /opt/ (da terminale usando il comando mv, come sudo)
+
+A questo punto di va in intellj:
+
+1) Andando in settings (Alt+Ctrl+s) cercare path e andare a trovare nel menu "Path Variables"
+    Aggiungere una Variabile di sistema chiamata "Path_TO_FX"
+    Mettere come valore il path della libreria (dovrebbe essere :
+        PATH_TO_FX	/opt/javafx-sdk-11.0.2/lib
+
+2) Andare in Struttura progetto(Alt+Ctrl+Shift+s) e library.
+    Aggiungere una libreria, chiamata javaFx, e nel path della libreria scrivere: "/opt/javafx-sdk-11.0.2/lib"
+    Alla richiesta di aggiungere javaFx al progetto dire di si
+    
+3) A questo punto andare su una classe che usi javaFx e abbia un main e creare un nuovo profilo di esecuzione per javaFx.
+    oltre a dare la corretta classe di inizio main nella casella "VM option" digitare
+    "--module-path ${PATH_TO_FX} --add-modules=javafx.controls,javafx.fxml "
+    
+A questo punto dovreste essere in grado di eseguire le applicazioni javaFx
