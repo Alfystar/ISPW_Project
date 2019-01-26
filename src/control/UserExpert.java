@@ -89,7 +89,7 @@ public class UserExpert {
     }
 
     private Utente loadUserDB(Nickname nk) throws NickNotDBEx {
-        //todo verificare esistenza nick
+
         try {
             Utente us = daoFace.loadFromDB(nk);
             addUserQueue(us);
@@ -122,7 +122,7 @@ public class UserExpert {
     }
 
     private Boolean isNickExistRam(Nickname nk) throws NickNotQEx{
-        //todo: verificare (una volta scritte QueueException) la struttura di tale funzione
+
         if(coda.find(nk) == null) return FALSE;
         else return TRUE;
     }

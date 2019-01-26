@@ -1,5 +1,6 @@
 package control;
 import entity.*;
+import exceptions.NickNotQEx;
 
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
@@ -33,20 +34,20 @@ public class Queue {
     }
 
     /*
-    Dato un Nick, lo cerca dentro la lista, se non lo trova ritorna null
+    Dato un Nick, lo cerca dentro la lista, se non lo trova solleva un'eccezione
      */
-    public Utente find(Nickname nk)
+    public Utente find(Nickname nk) throws NickNotQEx
     {
         NodeQueue node = searchInQueue(nk);
-        if(node!=null) return node.getUs();
-        else return null;
+        if(node == null) throw new NickNotQEx("Nick not found among nodes");
+        else return node.getUs();
     }
 
     /*
-    Dato un nick lo cerca e lo elimina, se non lo trova solleva un eccezione
+    Dato un nick lo cerca e lo elimina, se non lo trova solleva un'eccezione
      */
-    //todo: aggiungere eccezione di fallimento se il nick non trova
-    public void remove(Nickname nk)
+
+    public void remove(Nickname nk) //throws NickNotQEx
     {
         NodeQueue node = searchInQueue(nk);
         if(node!=null)
@@ -54,6 +55,7 @@ public class Queue {
             node.deleteInfo();
             this.users.remove(node);
         }
+        //else throw new NickNotQEx("Nick not found among nodes"); //potrebbe non servire?
     }
 
     private NodeQueue searchInQueue(Nickname nk)
@@ -84,7 +86,7 @@ public class Queue {
         return out;
     }
 
-    public static void main(String Argv[])
+    public static void main(String[] args)
     {
         /*Crea la coda per il test e i parametri*/
         Queue list= Queue.getQueueSingletonInstance();
@@ -107,27 +109,27 @@ public class Queue {
         System.out.println(list.toString());
 
         /*Test search*/
-        String nickSearch[] = {"alfy", "marta", "pippo"};
+        String[] nickSearch = {"alfy", "marta", "pippo"};
         Utente usfind;
         System.out.println("\t##Start Search Test##");
         for (int i = 0; i < nickSearch.length ; i++) {
-            usfind= list.find(new Nickname(nickSearch[i]));
-            if(usfind!=null)
-            {
-                System.out.println("L'utente "+ nickSearch[i] + " è stato Trovato");
-            }else {
-                System.out.println("L'utente "+ nickSearch[i] + " non è stato Trovato");
 
+            try{
+                usfind= list.find(new Nickname(nickSearch[i]));
+                System.out.println("L'utente "+ nickSearch[i] + " è stato Trovato");
+            }
+            catch (NickNotQEx qEx) {
+                System.out.println("L'utente "+ nickSearch[i] + " non è stato Trovato");
             }
         }
         System.out.println(list.toString());
 
         /*Test Remove*/
-        String nickRemove[] = {"alfy", "fil", "pippo"};
+        String[] nickRemove = {"alfy", "fil", "pippo"};
 
         System.out.println("\t**Start Remove Test**");
         for (int i = 0; i < nickSearch.length ; i++) {
-            list.remove(new Nickname(nickRemove[i]));
+                list.remove(new Nickname(nickRemove[i]));
         }
         System.out.println(list.toString());
 
@@ -145,10 +147,5 @@ public class Queue {
         System.out.println(list.toString());
         System.out.println("\tLista 2");
         System.out.println(list2.toString());
-
-
-
-
-
     }
 }
