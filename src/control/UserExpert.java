@@ -30,7 +30,7 @@ public class UserExpert {
     //todo eccezione se l'utente non è trovato
 
     public Utente getUser(Nickname nk) {
-
+        //todo: verificare che il nick ESISTA
         Utente us = searchUserRam(nk);
 
         if( us != null ) return us;
@@ -54,7 +54,7 @@ public class UserExpert {
     }
 
     public void destroyUser(Nickname nk){
-
+        //todo verificare esistenza nick
         daoFace.destroy(nk);
         coda.remove(nk);
     }
@@ -66,6 +66,7 @@ public class UserExpert {
     }
 
     private Utente loadUserDB(Nickname nk){
+        //todo verificare esistenza nick
 
         Utente us = daoFace.loadFromDB(nk);
         addUserQueue(us);
@@ -88,7 +89,7 @@ public class UserExpert {
         else return TRUE;
     }
 
-    private void addUserQueue(Utente user){ // todo: verifica utilità
+    private void addUserQueue(Utente user){
         coda.add(user);
     }
 
