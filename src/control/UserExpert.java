@@ -3,8 +3,7 @@ package control;
 import DAO.DAOMock;
 import entity.Nickname;
 import entity.Utente;
-import control.Queue;
-import control.DAOInterface.*;
+import exceptions.NickNotDBEx;
 
 import java.util.GregorianCalendar;
 
@@ -29,61 +28,85 @@ public class UserExpert {
      */
     //todo eccezione se l'utente non è trovato
 
-    public Utente getUser(Nickname nk) {
+    public Utente getUser(Nickname nk) throws Exception{
         //todo: verificare che il nick ESISTA
-        Utente us = searchUserRam(nk);
 
-        if( us != null ) return us;
-        else return loadUserDB(nk);
+        try {
+            return searchUserRam(nk);
+        }
+        catch (NickNotDBEx e) {
+        }
+        try {
+            return loadUserDB(nk);
+        } catch (NickNotDBEx e) {
+            throw new
+        }
     }
 
-    public Boolean isNickExist(Nickname nk) {
+    public Boolean isNickExist(Nickname nk) throws Exception{
         //todo implementarla con due thread
-
-        if (isNickExistRam(nk) == TRUE) return TRUE;
-        else return isNickExistDB(nk);
-
+        try {
+            if (isNickExistRam(nk) == TRUE) return TRUE;
+            else return isNickExistDB(nk);
+        }
+        catch (NickNotDBEx e){
+            throw e;
+        }
     }
 
-    public void deleteUser(Nickname nk) {
-
-        GregorianCalendar cal = new GregorianCalendar();
-        cal.add(GregorianCalendar.YEAR, 10);
-        daoFace.deleteNTime(nk, cal);
-        coda.remove(nk);
+    public void deleteUser(Nickname nk) throws Exception{
+        try {
+            GregorianCalendar cal = new GregorianCalendar();
+            cal.add(GregorianCalendar.YEAR, 10);
+            daoFace.deleteNTime(nk, cal);
+            coda.remove(nk);
+        }
+        catch (NickNotDBEx e) {
+            throw e;
+        }
     }
-
-    public void destroyUser(Nickname nk){
-        //todo verificare esistenza nick
-        daoFace.destroy(nk);
-        coda.remove(nk);
+    public void destroyUser(Nickname nk) throws Exception{
+        try {
+            daoFace.destroy(nk);
+            coda.remove(nk);
+        }
+        catch (NickNotDBEx e) {
+            throw e;
+        }
     }
-
     public void storeUser(Utente us){
 
         daoFace.storeUserDB(us);
         addUserQueue(us);
     }
 
-    private Utente loadUserDB(Nickname nk){
+    private Utente loadUserDB(Nickname nk) throws Exception {
         //todo verificare esistenza nick
-
-        Utente us = daoFace.loadFromDB(nk);
-        addUserQueue(us);
-        return us;
+        try {
+            Utente us = daoFace.loadFromDB(nk);
+            addUserQueue(us);
+            return us;
+        }
+        catch (NickNotDBEx e){
+            throw e;
+        }
     }
-
     private Utente searchUserRam(Nickname nk){
 
         return coda.find(nk);
     }
 
-    private Boolean isNickExistDB(Nickname nk){
+    private Boolean isNickExistDB(Nickname nk)throws Exception{
 
-        return daoFace.searchNickDB(nk);
+        try {
+            return daoFace.searchNickDB(nk);
+        }
+        catch (NickNotDBEx e){
+            throw e;
+        }
     }
 
-    private Boolean isNickExistRam(Nickname nk){ // todo: verifica utilità
+    private Boolean isNickExistRam(Nickname nk){
 
         if(coda.find(nk) == null) return FALSE;
         else return TRUE;
