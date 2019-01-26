@@ -4,6 +4,7 @@ import DAO.DAOMock;
 import entity.Nickname;
 import entity.Utente;
 import exceptions.NickNotDBEx;
+import exceptions.NickNotQEx;
 
 import java.util.GregorianCalendar;
 
@@ -31,16 +32,21 @@ public class UserExpert {
     public Utente getUser(Nickname nk) throws Exception{
         //todo: verificare che il nick ESISTA
 
+        Utente us;
+
         try {
-            return searchUserRam(nk);
+            us = searchUserRam(nk);
+        }
+        catch (NickNotQEx e) {
+            throw e;
+        }
+        try {
+            us = loadUserDB(nk);
         }
         catch (NickNotDBEx e) {
+            throw e;
         }
-        try {
-            return loadUserDB(nk);
-        } catch (NickNotDBEx e) {
-            throw new
-        }
+        return us;
     }
 
     public Boolean isNickExist(Nickname nk) throws Exception{
@@ -91,9 +97,8 @@ public class UserExpert {
             throw e;
         }
     }
-    private Utente searchUserRam(Nickname nk){
-
-        return coda.find(nk);
+    private Utente searchUserRam(Nickname nk) throws NickNotQEx{
+            return coda.find(nk);
     }
 
     private Boolean isNickExistDB(Nickname nk)throws Exception{
