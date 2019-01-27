@@ -25,7 +25,7 @@ public class Questions {
 
     /*  VERIFICA CHE ALMENO n DOMANDE SIANO CORRETTE*/
 
-    public Boolean compareAnswers(Questions q, int n){
+    public Boolean checkAnswers(Questions q, int n){
 
         String[] tmpAns = q.getAnswers();
 
@@ -38,15 +38,20 @@ public class Questions {
             if ( this.answers[i].equals(tmpAns[i]) ) correct += 1;
         }
 
-        return (correct >= minCorrect);
+        return correct >= minCorrect;
     }
 
-    public void changeAnswers(Questions q){
+    public void saveAnswers(Questions q){
 
         this.answers = q.getAnswers();
     }
 
-    public void changeAnAnswer(Questions q, int index){
+    public Boolean checkAnAnswer(Questions q, int index){
+
+        return this.answers[index].equals(q.getAnswers()[index]);
+    }
+
+    public void saveAnAnswer(Questions q, int index){
 
         this.answers[index] = q.getAnswers()[index];
     }
