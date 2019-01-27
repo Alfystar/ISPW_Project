@@ -11,15 +11,13 @@
 
 4) Una volta aperta la pagina, in Application server scegliere la cartella dove si era messo tomcat
 
-5) ** ATTENZIONE ** potrebbe richiedere di scaricare dei file per mariadb, in tal caso dare l'OK per farlo
+5) Rinominare a piacere il Name (meglio usare TomCat 8.5.37 (o quello che è))
 
-6) Rinominare a piacere il Name (meglio usare TomCat 8.5.37 (o quello che è))
+6) ** ATTENZIONE ** sicuramente adesso richiederà di fare il fix, in quanto non sono stati trovati gli "artefatti"
+6.1) si aprirà una finestra che, a parte il ricordarci di configurare l'SDK, non ci interessa; chiudiamola con Cancel
+6.2) torniamo alla pagina di prima sul tab Deployment; di lì, premiamo il + e facciamo External source...
+6.3) scegliamo la cartella web del nostro progetto, e diamo l'ok
 
-7) ** ATTENZIONE ** sicuramente adesso richiederà di fare il fix, in quanto non sono stati trovati gli "artefatti"
-7.1) si aprirà una finestra che, a parte il ricordarci di configurare l'SDK, non ci interessa; chiudiamola con Cancel
-7.2) torniamo alla pagina di prima sul tab Deployment; di lì, premiamo il + e facciamo External source...
-7.3) scegliamo la cartella web del nostro progetto, e diamo l'ok
+7) da questo momento, da vicino al martello di build selezioniamo tomcat e facciamolo partire.
 
-8) da questo momento, da vicino al martello di build selezioniamo tomcat e facciamolo partire.
-
-9) Enjoy :)
+8) Enjoy :)
