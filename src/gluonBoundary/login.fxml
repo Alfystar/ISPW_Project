@@ -30,7 +30,7 @@
                <children>
                   <Label alignment="CENTER_RIGHT" text="User Name" textAlignment="RIGHT" />
                   <Label text="Password" textAlignment="RIGHT" GridPane.rowIndex="1" />
-                  <TextField promptText="Nickname" GridPane.columnIndex="2" />
+                  <TextField onAction="#loginPush" promptText="Nickname" GridPane.columnIndex="2" />
                   <PasswordField promptText="Passwod" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                </children>
             </GridPane>
