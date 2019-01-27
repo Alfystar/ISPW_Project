@@ -5,6 +5,7 @@ import entity.Nickname;
 import entity.Utente;
 import exceptions.NickNotDBEx;
 import exceptions.NickNotQEx;
+import exceptions.UserNotExistEx;
 
 import java.util.GregorianCalendar;
 
@@ -29,55 +30,56 @@ public class UserExpert {
      */
     //todo eccezione se l'utente non è trovato
 
-    public Utente getUser(Nickname nk) throws Exception{
-        //todo: verificare che il nick ESISTA
-
-        Utente us;
+    public Utente getUser(Nickname nk) throws UserNotExistEx {
 
         try {
-            us = searchUserRam(nk);
+            return searchUserRam(nk);
         }
-        catch (NickNotQEx e) {
-            throw e;
+        catch (NickNotQEx qEx) {
+            System.err.println(qEx.getMessage());
         }
         try {
-            us = loadUserDB(nk);
+            return loadUserDB(nk);
         }
-        catch (NickNotDBEx e) {
-            throw e;
+        catch (NickNotDBEx dbEx) {
+            throw new UserNotExistEx("getUser failed", dbEx.getCause());
         }
-        return us;
     }
 
-    public Boolean isNickExist(Nickname nk) throws Exception{
+    public Boolean isNickExist(Nickname nk) throws UserNotExistEx{
         //todo implementarla con due thread
         try {
-            if (isNickExistRam(nk) == TRUE) return TRUE;
-            else return isNickExistDB(nk);
+            return isNickExistRam(nk);
         }
-        catch (NickNotDBEx e){
-            throw e;
+        catch (NickNotQEx qEx) {
+            System.err.println(qEx.getMessage());
+        }
+        try{
+            return isNickExistDB(nk);
+        }
+        catch (NickNotDBEx dbEx){
+            throw new UserNotExistEx("isNickExistFailed", dbEx.getCause());
         }
     }
 
-    public void deleteUser(Nickname nk) throws Exception{
+    public void deleteUser(Nickname nk) throws UserNotExistEx{
         try {
             GregorianCalendar cal = new GregorianCalendar();
             cal.add(GregorianCalendar.YEAR, 10);
             daoFace.deleteNTime(nk, cal);
             coda.remove(nk);
         }
-        catch (NickNotDBEx e) {
-            throw e;
+        catch (NickNotDBEx dbEx) {
+            throw new UserNotExistEx("deleteUser failed", dbEx.getCause());
         }
     }
-    public void destroyUser(Nickname nk) throws Exception{
+    public void destroyUser(Nickname nk) throws UserNotExistEx{
         try {
             daoFace.destroy(nk);
             coda.remove(nk);
         }
-        catch (NickNotDBEx e) {
-            throw e;
+        catch (NickNotDBEx dbEx) {
+            throw new UserNotExistEx("destroyUser failed", dbEx.getCause());
         }
     }
     public void storeUser(Utente us){
@@ -86,32 +88,40 @@ public class UserExpert {
         addUserQueue(us);
     }
 
-    private Utente loadUserDB(Nickname nk) throws Exception {
-        //todo verificare esistenza nick
+    private Utente loadUserDB(Nickname nk) throws NickNotDBEx {
+
         try {
             Utente us = daoFace.loadFromDB(nk);
             addUserQueue(us);
             return us;
         }
         catch (NickNotDBEx e){
-            throw e;
+            throw new NickNotDBEx("Nickname not in DB");
         }
     }
     private Utente searchUserRam(Nickname nk) throws NickNotQEx{
+
+        try {
             return coda.find(nk);
+        }
+        catch (NickNotQEx qEx){
+            System.err.println("Search in Queue failed.");
+            throw qEx;
+        }
     }
 
-    private Boolean isNickExistDB(Nickname nk)throws Exception{
+    private Boolean isNickExistDB(Nickname nk) throws NickNotDBEx{
 
         try {
             return daoFace.searchNickDB(nk);
         }
         catch (NickNotDBEx e){
+            System.err.println("Nick not found in DB");
             throw e;
         }
     }
 
-    private Boolean isNickExistRam(Nickname nk){
+    private Boolean isNickExistRam(Nickname nk) throws NickNotQEx{
 
         if(coda.find(nk) == null) return FALSE;
         else return TRUE;
