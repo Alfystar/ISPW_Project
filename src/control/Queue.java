@@ -98,13 +98,13 @@ public class Queue {
         /*TEST STATEMENT START*/
 
         /*Test add users*/
-        Utente us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions());
+        Utente us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions(new String[] {"a","b","c","d"}));
         list.add(us);
         pubD.getNickname().set("marta");
-        us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions());
+        us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions(new String[] {"a","b","c","d"}));
         list.add(us);
         pubD.getNickname().set("fil");
-        us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions());
+        us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions(new String[] {"a","b","c","d"}));
         list.add(us);
         System.out.println(list.toString());
 
@@ -141,7 +141,7 @@ public class Queue {
 
         System.out.println("\n\tTest di singleton: dopo un add, lista comune a entrambi");
         pubD.getNickname().set("giovanni");
-        us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions());
+        us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions(new String[] {"a","b","c","d"}));
         list2.add(us);
         System.out.println("\tLista 1");
         System.out.println(list.toString());
