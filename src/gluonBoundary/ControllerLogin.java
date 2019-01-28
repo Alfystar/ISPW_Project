@@ -8,6 +8,9 @@ import javafx.scene.control.*;
 
 public class ControllerLogin {
 
+    private int istance=0;
+    private static int staticIstance=0;
+
     @FXML
     private TextField nickField;
     @FXML
@@ -19,6 +22,17 @@ public class ControllerLogin {
     {
         System.out.println(nickField.getText());
         System.out.println(pwField.getText());
+        staticIstance++;
+        istance++;
+        System.out.println("istance:"+istance+" static istance:"+staticIstance);
+        try {
+            Thread.sleep(5000);
+            System.out.println("end of : istance:"+istance+" static istance:"+staticIstance);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
