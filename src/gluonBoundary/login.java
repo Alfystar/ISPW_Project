@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class login extends Application {
@@ -15,10 +16,13 @@ public class login extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-        primaryStage.setTitle("Login");
+        Parent root = FXMLLoader.load(getClass().getResource("fxmlSrc/login.fxml"));
         primaryStage.setScene(new Scene(root));
-        primaryStage.setResizable(false);
+        primaryStage.setTitle("Login");
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("Icon/Fersa-logo.jpg")));
+        //primaryStage.setResizable(false);
+        //primaryStage.sizeToScene();
         primaryStage.show();
+
     }
 }
