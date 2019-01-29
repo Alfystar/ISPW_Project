@@ -3,8 +3,8 @@ package entity;
 import static java.lang.Integer.max;
 
 public class Questions {
-
-    private String[] questions = {
+    //uguali per tutti, risparmio di memoria
+    private static String[] questions = {
             "What is the name of your favorite pet?",
             "Who is your favorite actor, musician, or artist?",
             "What is your favorite movie?",
