@@ -3,6 +3,7 @@ package DAO;
 import entity.*;
 import bean.UserInfoRegister;
 import control.DAOInterface;
+import exceptions.WrongParameters;
 
 import java.util.GregorianCalendar;
 import java.util.Random;
@@ -27,7 +28,7 @@ public class DAOMock implements DAOInterface{
     }
 
     @Override
-    public Utente createUser(UserInfoRegister infoReg) {
+    public Utente createUser(UserInfoRegister infoReg) throws WrongParameters {
         PublicData pubD = new PublicData(infoReg.getName(), infoReg.getSurname(), infoReg.getCf(), infoReg.getNickname(), infoReg.getEmail(), infoReg.getBirthday(), infoReg.getGender());
         PrivateData priD = new PrivateData();
         PW pw = new PW(infoReg.getPw());
