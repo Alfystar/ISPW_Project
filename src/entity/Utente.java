@@ -43,6 +43,10 @@ public class Utente {
         this.userStatus= newStatus;
     }
 
+    public PW getPw(){
+        return  this.pw;
+    }
+
     public Boolean changePw(PW oldPw, PW newPw){
         if(oldPw.getPw().equals(this.pw.getPw())){
             this.pw.setPw(newPw.getPw());
