@@ -19,7 +19,7 @@ public class login extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("fxmlSrc/login.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("Login");
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("Icon/Fersa-logo.jpg")));
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("Icon/Fersa-logo.png")));
         //primaryStage.setResizable(false);
         //primaryStage.sizeToScene();
         primaryStage.show();
