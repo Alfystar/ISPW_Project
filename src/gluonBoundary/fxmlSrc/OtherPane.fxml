@@ -167,7 +167,7 @@
             <Separator orientation="VERTICAL" />
             <Label text="Progress %" />
             <Separator orientation="VERTICAL" />
-            <Label alignment="TOP_RIGHT" prefHeight="16.0" prefWidth="463.0" text="No Op" />
+            <Label alignment="TOP_RIGHT" prefHeight="16.0" prefWidth="644.0" text="No Op" />
         </items>
       </ToolBar>
    </bottom>
