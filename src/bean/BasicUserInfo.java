@@ -45,9 +45,9 @@ public class BasicUserInfo {
         return this.publicData.getSocialStatus();
     }
 
-    public ImagePath getProfileImage(){
+    public Avatar getAvatar(){
 
-        return this.publicData.getProfileImage();
+        return this.publicData.getAvatar();
     }
 
     public Email getEmail(){

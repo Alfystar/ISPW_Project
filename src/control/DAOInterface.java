@@ -6,20 +6,22 @@ import entity.TaxCode;
 import entity.Utente;
 import exceptions.NickNotDBEx;
 import exceptions.TCNotExistEx;
+import exceptions.WrongParameters;
 
+import java.sql.SQLException;
 import java.util.GregorianCalendar;
 
 public interface DAOInterface {
 
-    Utente createUser(UserInfoRegister infoReg);
+    Utente createUser(UserInfoRegister infoReg) throws WrongParameters;
 
-    Utente loadFromDB(Nickname nickname) throws NickNotDBEx;
+    Utente loadFromDB(Nickname nickname) throws NickNotDBEx, SQLException;
 
-    void storeUserDB(Utente user);
+    void storeUserDB(Utente user) throws  SQLException;
 
-    Boolean searchNickDB(Nickname nickname) throws NickNotDBEx;
+    Boolean searchNickDB(Nickname nickname)  throws Exception;
 
-    Boolean searchTC(TaxCode cf) throws TCNotExistEx;
+    Boolean searchTC(TaxCode cf) throws Exception;
 
     void destroy(Nickname nickname) throws NickNotDBEx;
 
