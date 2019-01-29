@@ -7,6 +7,7 @@ import exceptions.NickNotDBEx;
 import exceptions.NickNotQEx;
 import exceptions.UserNotExistEx;
 
+import java.sql.SQLException;
 import java.util.GregorianCalendar;
 
 import static java.lang.Boolean.FALSE;
@@ -115,10 +116,15 @@ public class UserExpert {
         try {
             return daoFace.searchNickDB(nk);
         }
-        catch (NickNotDBEx e){
-            System.err.println("Nick not found in DB");
-            throw e;
+        catch (SQLException sq){
+            System.err.println("SQL error");
+            throw new NickNotDBEx(sq);
         }
+        catch (Exception e){
+            System.err.println("Java error during search");
+            throw new NickNotDBEx(e);
+        }
+
     }
 
     private Boolean isNickExistRam(Nickname nk) throws NickNotQEx{
@@ -131,4 +137,6 @@ public class UserExpert {
         coda.add(user);
     }
 
+
+    //todo: scrivere un metodo privato che verifichi che i parametri di infoRegister siano adatti
 }

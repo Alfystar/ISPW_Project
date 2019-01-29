@@ -11,7 +11,7 @@ public class PublicData {
     private Gender gender;
     private TaxCode fiscalCode;
     private SocialStatus socialStatus;
-    private ImagePath profileImage= new ImagePath();
+    private Avatar avatar;
     private Email email;
     private Nickname nickname;
 
@@ -31,14 +31,14 @@ public class PublicData {
 
     }
     //Costruttore con tutti i parametri possibili di PublicData
-    public PublicData(Name name, Name surname, GregorianCalendar birthday, Gender gender, TaxCode fiscalCode, SocialStatus socialStatus, ImagePath profileImage, Email email, Nickname nickname){
+    public PublicData(Name name, Name surname, GregorianCalendar birthday, Gender gender, TaxCode fiscalCode, SocialStatus socialStatus, Avatar avatar, Email email, Nickname nickname){
         this.name= new Name(name);
         this.surname= new Name(surname);
         this.birthday.setGregorianChange(birthday.getGregorianChange());
         this.gender= gender;
         this.fiscalCode= new TaxCode(fiscalCode);
         this.socialStatus= new SocialStatus(socialStatus);
-        this.profileImage= new ImagePath(profileImage);
+        this.avatar= avatar;
         this.email= new Email(email);
         this.nickname= new Nickname(nickname);
     }
@@ -50,7 +50,7 @@ public class PublicData {
         this.gender= pubD.getGender();
         this.fiscalCode= new TaxCode(pubD.getFiscalCode());
         this.socialStatus= new SocialStatus(pubD.getSocialStatus());
-        this.profileImage= new ImagePath(pubD.getProfileImage());
+        this.avatar= pubD.getAvatar();
         this.email= new Email(pubD.getEmail());
         this.nickname= new Nickname(pubD.getNickname());
     }
@@ -79,8 +79,8 @@ public class PublicData {
         return this.socialStatus;
     }
 
-    public ImagePath getProfileImage(){
-        return this.profileImage;
+    public Avatar getAvatar(){
+        return this.avatar;
     }
 
     public Email getEmail(){
@@ -101,7 +101,7 @@ public class PublicData {
         out+="Gender:"+this.gender.toString()+"\n";
         out+="TaxCode:"+this.fiscalCode.get()+"\n";
         out+="SocialStatus:"+this.socialStatus.get()+"\n";
-        out+="ImagePath:"+this.profileImage.get()+"\n";
+        out+="Avatar:"+this.avatar+"\n";
         out+="Email:"+this.email.get()+"\n";
         out+="Nickname:"+this.nickname.get()+"\n";
         return out;
