@@ -102,11 +102,11 @@
         <input name="lastname" type="password">
         </p>
 <p class="mbr-text pb-3 mbr-fonts-style display-5"> 
-<input type="submit" name="loginSubmit" value="Login" class="btn btn-info" style="margin-left: 0px;margin-top: 1.2rem;">
+<input type="submit" name="loginSubmit" value="Login" class="btn btn-outline-primary" style="margin-left: 0px;margin-top: 1.2rem;">
   
 <br>
   
-<input type="submit" name="recoverSubmit" value="Credenziali perse?" class="btn btn-info" style="margin-left: 0px;margin-top: 2rem;padding-left: 1rem;padding-right: 1rem;padding-bottom: 0.1rem;padding-top: 0.1rem;margin-right: 0px;">
+<input type="submit" name="recoverSubmit" value="Credenziali perse?" class="btn btn-secondary-outline" style="margin-left: 0px;margin-top: 2rem;padding-left: 1rem;padding-right: 1rem;padding-bottom: 0.1rem;padding-top: 0.1rem;margin-right: 0px;">
  </p>
             
             
@@ -114,7 +114,7 @@
     </div>
 
     
-<div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"><div style="background-position: 50% 50%; background-size: cover; background-repeat: no-repeat; background-image: url(&quot;http://localhost:8080/web/assets/images/mbr-1-1920x1280.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 866px; height: 637.04px; overflow: hidden; pointer-events: none; margin-top: 0.479993px; transform: translate3d(0px, 23.0856px, 0px);"></div></div></section>
+<div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"><div style="background-position: 50% 50%; background-size: cover; background-repeat: no-repeat; background-image: url(&quot;http://localhost:8080/ISPW_Project/web/assets/images/mbr-1-1920x1280.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 866px; height: 637.04px; overflow: hidden; pointer-events: none; margin-top: 0.479993px; transform: translate3d(0px, 23.0856px, 0px);"></div></div></section>
 
 
   <script src="login_files/jquery.js"></script>
