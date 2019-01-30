@@ -1,3 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1" %>
+
+<%
+    if (request.getParameter("loginSubmit") != null){
+%>
+
+<jsp:forward page="userpage.html"/>
+
+<%
+} else if (request.getParameter("recoverSubmit") != null) {
+%>
+
+<jsp:forward page="recoverCredentials.html"/>
+<%
+    }
+%>
+
 <!DOCTYPE html>
 <html class="desktop mbr-site-loaded"><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><head><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -41,21 +59,21 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="http://localhost:8080/web/index.html">
+                    <a href="http://localhost:8080/ISPW_Project/web/index.html">
                          <img src="login_files/mbr-130x130.jpg" alt="Mobirise" title="" style="height: 3.8rem;">
                     </a>
                 </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="http://localhost:8080/web/index.html">FERSA</a></span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="http://localhost:8080/ISPW_Project/web/index.html">FERSA</a></span>
             </div>
         </div>
         <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item dropdown">
                     <a class="nav-link link text-white dropdown-toggle display-4" href="https://mobirise.com/" data-toggle="dropdown-submenu" aria-expanded="false">
                         
-                        Simulazione</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="http://localhost:8080/web/othersubsystem.html" aria-expanded="false">Other SubSystem</a></div>
+                        Simulazione</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="http://localhost:8080/ISPW_Project/web/othersubsystem.html" aria-expanded="false">Other SubSystem</a></div>
                 </li></ul>
-            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-white-outline display-4" href="http://localhost:8080/web/login.html">Login
-                    </a> <a class="btn btn-sm btn-primary display-4" href="http://localhost:8080/web/register.html">Register
+            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-white-outline display-4" href="http://localhost:8080/ISPW_Project/web/login.jsp">Login
+                    </a> <a class="btn btn-sm btn-primary display-4" href="http://localhost:8080/ISPW_Project/web/register.html">Register
                     </a></div>
         </div>
     </nav>
