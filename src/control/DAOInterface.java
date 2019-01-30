@@ -23,9 +23,9 @@ public interface DAOInterface {
 
     Boolean searchTC(TaxCode cf) throws Exception;
 
-    void destroy(Nickname nickname) throws NickNotDBEx;
+    void destroy(Nickname nickname) throws NickNotDBEx, SQLException;
 
-    void deleteNTime(Nickname nickname, GregorianCalendar date) throws NickNotDBEx;
+    void deleteNTime(Nickname nickname, GregorianCalendar date) throws SQLException;
 
 
 }

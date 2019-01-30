@@ -56,11 +56,11 @@ public class Questions {
         this.answers[index] = q.getAnswers()[index];
     }
 
-    private String[] getAnswers(){
+    public String[] getAnswers(){
         return this.answers;
     }
 
-    private String[] getQuestions(){
+    public String[] getQuestions(){
         return this.questions;
     }
     //todo: rivedere Class Diagram in UML (aggiunta di un po' di metodi)
