@@ -17,8 +17,8 @@ public class DAOClass implements DAOInterface {
 
     private static String UTENTE= "root";
     private static String PASSWORD= "0000";
-    private static String DB_URL= "jdbc:mysql://localhost/Utente";
-    private static String DRIVER_CLASS_NAME = "ISPW Project.drivers";
+    private static String DB_URL= "jdbc:mysql://localhost/user";
+    private static String DRIVER_CLASS_NAME = "org.mariadb.jdbc.Driver";
     //inizializzazione
     private Statement stmt= null;
     private Connection conn= null;
@@ -32,12 +32,13 @@ public class DAOClass implements DAOInterface {
                 //STEP 2: Register JDBC driver
                 Class.forName(DRIVER_CLASS_NAME);
                 nonFatta= false;
-                //STEP 3: Open a connection
-                stmt = conn.createStatement();
             }
-            System.out.println("Connecting to a selected database...");
+            //STEP 3: Open a connection
             conn = DriverManager.getConnection(DB_URL, UTENTE, PASSWORD);
             System.out.println("Connected database successfully...");
+            //STEP 4: create Statement
+            stmt = conn.createStatement();
+            System.out.println("Connecting to a selected database...");
         }
         catch (ClassNotFoundException e){
             e.printStackTrace();
@@ -144,7 +145,7 @@ public class DAOClass implements DAOInterface {
 
         //eseguo la query per Answers
         String sqlIdAnsw= "SELECT *" + "FROM answers" + "where idAnsw = " + answ_id + " ;";
-        rs =this.stmt.executeQuery(sqlPrD);
+        rs =this.stmt.executeQuery(sqlIdAnsw);
         Questions q= this.buildAnsw(rs,answ_id, nickname);
         //chiudo la connessione col DB
         this.closeConn();
@@ -156,12 +157,9 @@ public class DAOClass implements DAOInterface {
     private PublicData buidPubD(ResultSet rs, TaxCode taxCode, Nickname nickname) throws SQLException{
         Name name= new Name(rs.getString(2));
         Name surname= new Name(rs.getString(3));
+
         String birthday= rs.getString(4);
-        //Conversione data
-        String[] splitDate = birthday.split("/");
-        int days = Integer.parseInt(splitDate[0]);
-        int month = Integer.parseInt(splitDate[1]);
-        int year = Integer.parseInt(splitDate[2]);
+        GregorianCalendar birthD= stringToGregCal(birthday);
 
         Gender gender= (Gender) rs.getObject(5);
         SocialStatus socStatus= new SocialStatus(rs.getString(6));
@@ -169,7 +167,7 @@ public class DAOClass implements DAOInterface {
         Email email= new Email(rs.getString(8));
 
         //creo un'istanza di PubD
-        PublicData pubD= new PublicData(name, surname, new GregorianCalendar(year, month, days), gender, taxCode, socStatus, avatar, email,nickname);
+        PublicData pubD= new PublicData(name, surname, birthD, gender, taxCode, socStatus, avatar, email,nickname);
         return pubD;
     }
 
@@ -204,19 +202,34 @@ public class DAOClass implements DAOInterface {
         Roles roles= user.getRole();
 
         //Inserisco nel DB una tabella PublicData
-        String sqlPubD= "INSERT INTO publicdata" +
-                "VALUES (taxCode, name, surname, birthday, gender, socStat, usImg, email)" +
-                (puB.getFiscalCode().get()) + (puB.getName().get()) + (puB.getSurname().get()) + (puB.getBirthday().getGregorianChange()) +
-                (puB.getGender()) + (puB.getSocialStatus().get()) + (puB.getAvatar()) + (puB.getEmail().get()) + " ;";
+
+        String sqlPubD= "INSERT INTO publicdata(taxCode, name, surname, birthday, gender, socStat, usImg, email) " +
+                "VALUES (" +
+                "\" "+(puB.getFiscalCode().get())+"\" "+ " ," +
+                "\" "+(puB.getName().get())+"\" " + " ," +
+                "\" "+(puB.getSurname().get())+"\" " +" ," +
+                //"\" "+(puB.getBirthday().getGregorianChange())+"\" " +" ," +
+                //todo: allungare il varchar di birthday a 15 nel db
+                "\" "+"2001-01-1"+"\" " +" ," +
+                //"\" "+(puB.getGender().toString())+"\" " +" ," +
+                "\" "+(Gender.MAN)+"\" " +" ," +
+                "\" "+(puB.getSocialStatus().get())+"\" " +" ," +
+                "\" "+(puB.getAvatar())+"\" " +" ," +
+                "\" "+(puB.getEmail().get())+"\" " + ");" ;
+        this.stmt.executeQuery(sqlPubD);
         System.out.println("publicData insert executed");
 
         //Inserisco nel DB una tabella di PrivateData
-        String sqlPrD= "INSERT INTO privatedata" +
-                "VALUES (phone, address, cityOfBirth,nationality)" +
-                (prD.getPhone().get()) + (prD.getLocalAddress().get()) + (prD.getCityOfBirth().get()) + (prD.getNationality().get())+ " ;";
+        String sqlPrD= "INSERT INTO privatedata(phone, address, cityOfBirth,nationality)" +
+                "VALUES (" +
+                "\" "+(prD.getPhone().get())+"\" "+ " ," +
+                "\" "+(prD.getLocalAddress().get())+"\" "+ " ," +
+                "\" "+(prD.getCityOfBirth().get())+"\" "+ " ," +
+                "\" "+(prD.getNationality().get())+"\" " + ");";
+        this.stmt.executeQuery(sqlPrD);
         System.out.println("privateData insert executed");
         //Prendo l'id della tabella appena generata
-        String sqlPrId= "SELECT LAST_INSERT_ID;";
+        String sqlPrId= "SELECT LAST_INSERT_ID();";
         ResultSet rs= this.stmt.executeQuery(sqlPrId);
         int prD_id= rs.getInt(1);
 
@@ -226,7 +239,7 @@ public class DAOClass implements DAOInterface {
                 "VALUES (answ1,answ2,answ3,answ4)" +
                 vect[0] + vect[1] + vect[2] + vect[3] + " ;";
         //Prendo l'id della tabella appena generata
-        String sqlAId= "SELECT LAST_INSERT_ID;";
+        String sqlAId= "SELECT LAST_INSERT_ID();";
         rs= this.stmt.executeQuery(sqlAId);
         int answ_id= rs.getInt(1);
 
@@ -305,29 +318,22 @@ public class DAOClass implements DAOInterface {
 
     @Override
     public void deleteNTime(Nickname nickname, GregorianCalendar date) throws SQLException {
-        //Conversione di GregorianDate in Date, e da Date a String
-        Date d= date.getTime();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        //to convert Date to String, use format method of SimpleDateFormat class.
-        String strDate = dateFormat.format(date);
+
+        String strDate= gregCalToString(date);
 
         String sql= "INSERT INTO dateevent VALUES (idDate,nick)= " +strDate + nickname + " ;";
         this.stmt.executeQuery(sql);
         System.out.println("date inserted");
-
         return;
     }
 
     public void deleteByDeamon(GregorianCalendar today) throws SQLException{
-        //Converto GregorianCalendar in String
-        Date d= today.getTime(); //todo: da riguardare: perchè non si usa d??
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        //to convert Date to String, use format method of SimpleDateFormat class.
-        String strDate = dateFormat.format(date);
-        String sql= "SELECT nick" + "FROM dateevent " + "where date<=  " +today+ " ;";
+
+        String oggi= gregCalToString(today);
+
+        String sql= "SELECT nick" + "FROM dateevent " + "where date<=  " +oggi+ " ;";
         this.stmt.executeQuery(sql);
         System.out.println("query executed");
-
         ResultSet rs= this.stmt.executeQuery(sql);
 
         try {
@@ -344,8 +350,65 @@ public class DAOClass implements DAOInterface {
         return;
     }
 
+    public GregorianCalendar nextDeleteSession() throws SQLException{
+        String sql= "SELECT * FROM deletesession;";
+        this.stmt.executeQuery(sql);
+        System.out.println("query executed");
+        ResultSet rs= this.stmt.executeQuery(sql);
+        String nextDate= rs.getString(1);
+
+        GregorianCalendar nextDelS =stringToGregCal(nextDate);
+        return  nextDelS;
+
+    }
+
+    public GregorianCalendar stringToGregCal(String s){
+        String[] splitDate = s.split("-");
+        int days = Integer.parseInt(splitDate[0]);
+        int month = Integer.parseInt(splitDate[1]);
+        int year = Integer.parseInt(splitDate[2]);
+
+        GregorianCalendar gc= new GregorianCalendar(year, month, days);
+        return  gc;
+    }
+
+    public String gregCalToString(GregorianCalendar gc){
+        Date d= gc.getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        String s = dateFormat.format(d);
+        return s;
+    }
 
 //todo: scrivere un metodo che permetta di modificare il DB_URL, passandogli una stringa
 
-    //todo: una classe che implementa runnable, in cui un demonThread singleton si va a guardare periodicamente dataevent
+    public static void main(String[] argv){
+        DAOClass dao = null;
+        try{
+            dao = new DAOClass();
+
+        }catch (SQLException|ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(-1);
+        }
+        //todo: crea e salva
+        //todo: loadFromDB
+        //todo: printa se sono uguali
+        //todo: deleate(?)
+
+        PublicData pubD = new PublicData(new Name("ema"), new Name("alf"), new TaxCode("lfm"), new Nickname("alfy") ,new Email("ema@gmail.com"), new GregorianCalendar(97,7,31), Gender.MAN);
+        PrivateData priD = new PrivateData(new SurfaceAddress("cbduhw"), new SurfaceAddress("Roma"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
+        Utente us = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions(new String[] {"a","b","c","d"}));
+        System.out.println(us.printUser());
+
+        try {
+            dao.storeUserDB(us);
+
+        }catch (SQLException se)
+        {
+            se.printStackTrace();
+            System.exit(-1);
+        }
+
+
+    }
 }

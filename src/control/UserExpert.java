@@ -44,6 +44,11 @@ public class UserExpert {
         }
         catch (NickNotDBEx dbEx) {
             throw new UserNotExistEx("getUser failed", dbEx.getCause());
+        }catch (SQLException se)
+        {
+            se.printStackTrace();
+            throw new UserNotExistEx("getUser failed", se.getCause());
+
         }
     }
 
@@ -70,8 +75,8 @@ public class UserExpert {
             daoFace.deleteNTime(nk, cal);
             coda.remove(nk);
         }
-        catch (NickNotDBEx dbEx) {
-            throw new UserNotExistEx("deleteUser failed", dbEx.getCause());
+        catch (SQLException se) {
+            throw new UserNotExistEx("deleteUser failed", se.getCause());
         }
     }
     public void destroyUser(Nickname nk) throws UserNotExistEx{
@@ -81,15 +86,24 @@ public class UserExpert {
         }
         catch (NickNotDBEx dbEx) {
             throw new UserNotExistEx("destroyUser failed", dbEx.getCause());
+        }catch (SQLException se)
+        {
+            se.printStackTrace();
         }
     }
     public void storeUser(Utente us){
 
-        daoFace.storeUserDB(us);
-        addUserQueue(us);
+        try {
+            daoFace.storeUserDB(us);
+            addUserQueue(us);
+        }catch (SQLException se)
+        {
+            se.printStackTrace();
+        }
+
     }
 
-    private Utente loadUserDB(Nickname nk) throws NickNotDBEx {
+    private Utente loadUserDB(Nickname nk) throws NickNotDBEx, SQLException {
 
         try {
             Utente us = daoFace.loadFromDB(nk);

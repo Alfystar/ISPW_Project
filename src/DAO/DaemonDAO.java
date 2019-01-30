@@ -1,6 +1,12 @@
 package DAO;
 
-public class DaemonDAO implements Runnable{
+import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.concurrent.TimeUnit;
+
+public class DaemonDAO implements Runnable {
 
     private static DaemonDAO ourInstance = new DaemonDAO();
 
@@ -8,11 +14,64 @@ public class DaemonDAO implements Runnable{
         return ourInstance;
     }
 
-    private DaemonDAO() {
+    private static DAOClass dao;
+
+    private DaemonDAO(){
+        try{
+            this.dao= new DAOClass();
+            new Thread(this).start();
+
+        }catch (SQLException|ClassNotFoundException e){
+            e.printStackTrace();
+            System.exit(-1);
+        }
     }
 
     @Override
     public void run(){
+        java.util.Date datadioggi;
+        Calendar calendar = Calendar.getInstance();
+        GregorianCalendar gc= new GregorianCalendar(2000,01,01);
+        while (true)
+        {
+            //codice ripetuto sempre finchè con delta che diminuiscono via via, finchè non si supera la data prevista
+            restartSleep:
+            {
+                try{
+                datadioggi = java.util.GregorianCalendar.getInstance().getTime();
+                calendar.setTime(datadioggi);
+                //Aggiungo un mese
+                calendar.add(calendar.MONTH,1);
+                GregorianCalendar gcDate= this.dao.nextDeleteSession();
+                Date d= gcDate.getTime();
+                TimeUnit timeUnit= TimeUnit.MILLISECONDS;
+                long deltaTime =getDateDiff(datadioggi, d, timeUnit);
+                if(deltaTime<=0) break restartSleep;
 
+                    Thread.sleep(deltaTime);
+                    break restartSleep;
+                }catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }catch (SQLException se){
+                    se.printStackTrace();
+                    System.err.println("problemi di accesso al DB; risolvere;");
+                }
+            }
+            //todo eseguire la pulizia della tabella e impostare la successiva volta di lavoro
+            datadioggi = java.util.GregorianCalendar.getInstance().getTime();
+            gc.setTime(datadioggi);
+            try {
+                this.dao.deleteByDeamon(gc);
+            }catch (SQLException se){
+                se.printStackTrace();
+                System.err.println("clear abort!!! retry next month");
+            }
+        }
+    }
+
+    public static long getDateDiff(Date date1, Date date2,TimeUnit timeUnit) {
+        long diffInMillies = date1.getTime() - date2.getTime();
+        return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 }
