@@ -1,17 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 
+<jsp:useBean id="login_Bean" scope="request" class="externalBean.LoginBean"/>
+
+<jsp:setProperty name="login_Bean" property="*"/>
+
 <%
     if (request.getParameter("loginSubmit") != null){
+
+        if (login_Bean.validate()){
 %>
-
-<jsp:forward page="userpage.html"/>
-
+            <jsp:forward page="userpage.html"/>
 <%
-} else if (request.getParameter("recoverSubmit") != null) {
+        }
+    } else if (request.getParameter("recoverSubmit") != null) {
 %>
-
-<jsp:forward page="recoverCredentials.jsp"/>
+        <jsp:forward page="recoverCredentials.jsp"/>
 <%
     }
 %>
@@ -112,11 +116,11 @@
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
                     Nickname:
                     <br>
-                    <input name="firstname" type="text">
+                    <input name="nickname" type="text">
                     <br>
                     Password:
                     <br>
-                    <input name="lastname" type="password">
+                    <input name="password" type="password">
                     <br>
 
                     <input name="loginSubmit" type="submit" id="loginSubmit" value="Login" class="btn btn-primary-outline" style="margin-left: 0px;margin-top: 1.2rem;">
