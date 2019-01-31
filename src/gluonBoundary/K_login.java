@@ -1,5 +1,6 @@
 package gluonBoundary;
 
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,6 +31,7 @@ public class K_login {
         other = FXMLLoader.load(getClass().getResource("fxmlSrc/otherPane.fxml"));
     }
 
+    /*
     @Override
     public void start(Stage primaryStage) throws Exception{
 
@@ -39,6 +41,7 @@ public class K_login {
         primaryStage.show();
 
     }
+    */
     @FXML
     public void loginPush()
     {

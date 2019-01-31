@@ -4,6 +4,12 @@ import exceptions.NickNotQEx;
 
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 
 public class Queue {
 
@@ -24,13 +30,17 @@ public class Queue {
         return LazyCointainer.queueSigletonInstance;
     }
 
+    ReadWriteLock lock = new ReentrantReadWriteLock();
+
     /*
     Preso un utente, crea un nodo della lista, di cui tiene traccia
      */
     public void add(Utente us)
     {
+        lock.writeLock().lock();
         NodeQueue node= new NodeQueue(us);
         this.users.addLast(node);
+        lock.writeLock().unlock();
     }
 
     /*
@@ -38,24 +48,33 @@ public class Queue {
      */
     public Utente find(Nickname nk) throws NickNotQEx
     {
+        lock.readLock().lock();
         NodeQueue node = searchInQueue(nk);
-        if(node == null) throw new NickNotQEx("Nick not found among nodes");
-        else return node.getUs();
+        if(node == null)
+        {
+            lock.readLock().unlock();
+            throw new NickNotQEx("Nick not found among nodes");
+        }
+        else
+        {
+            lock.readLock().unlock();
+            return node.getUs();
+        }
     }
 
     /*
     Dato un nick lo cerca e lo elimina, se non lo trova solleva un'eccezione
      */
-
-    public void remove(Nickname nk) //throws NickNotQEx
+     public void remove(Nickname nk) //throws NickNotQEx
     {
+        lock.writeLock().lock();
         NodeQueue node = searchInQueue(nk);
         if(node!=null)
         {
             node.deleteInfo();
             this.users.remove(node);
         }
-        //else throw new NickNotQEx("Nick not found among nodes"); //potrebbe non servire?
+        lock.writeLock().unlock();
     }
 
     private NodeQueue searchInQueue(Nickname nk)
