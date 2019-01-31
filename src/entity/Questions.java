@@ -60,6 +60,15 @@ public class Questions {
         return this.answers;
     }
 
+    public String getAnswersList(){
+        String out="";
+        for (int i = 0; i < answers.length; i++) {
+            out+="Risposta "+i+": "+answers[i]+"\n";
+        }
+        out+="\n";
+        return out;
+    }
+
     public String[] getQuestions(){
         return this.questions;
     }

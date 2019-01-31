@@ -17,11 +17,13 @@ public interface DAOInterface {
 
     Utente loadFromDB(Nickname nickname) throws NickNotDBEx, SQLException;
 
-    void storeUserDB(Utente user) throws  SQLException;
+    void saveUser(Utente user) throws  SQLException;
 
-    Boolean searchNickDB(Nickname nickname)  throws Exception;
+    void updateUser(Utente user) throws SQLException;
 
-    Boolean searchTC(TaxCode cf) throws Exception;
+    Boolean searchNickDB(Nickname nickname)  throws SQLException;
+
+    Boolean searchTC(TaxCode cf) throws SQLException;
 
     void destroy(Nickname nickname) throws NickNotDBEx, SQLException;
 

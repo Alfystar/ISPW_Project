@@ -91,13 +91,31 @@ public class PublicData {
         return this.nickname;
     }
 
+    public GregorianCalendar stringToGregCal(String s){
+        String[] splitDate = s.split("-");
+        int year = Integer.parseInt(splitDate[0]);
+        int month = Integer.parseInt(splitDate[1]);
+        int days = Integer.parseInt(splitDate[2]);
+        GregorianCalendar gc= new GregorianCalendar(year, month-1, days);
+        return  gc;
+
+    }
+
+    public String gregCalToString(GregorianCalendar gc){
+        int anno = gc.get(GregorianCalendar.YEAR);
+        int mese = gc.get(GregorianCalendar.MONTH) + 1;
+        int giorno = gc.get(GregorianCalendar.DATE);
+        String s = anno + "-" + mese + "-" + giorno;
+        return s;
+    }
+
     @Override
     public String toString ()
     {
         String out;
         out="Name:"+this.name.get()+"\n";
         out+="Surname:"+this.surname.get()+"\n";
-        out+="Birthday:"+this.birthday.getGregorianChange().toString()+"\n";
+        out+="Birthday:"+gregCalToString(this.birthday)+"\n";
         out+="Gender:"+this.gender.toString()+"\n";
         out+="TaxCode:"+this.fiscalCode.get()+"\n";
         out+="SocialStatus:"+this.socialStatus.get()+"\n";

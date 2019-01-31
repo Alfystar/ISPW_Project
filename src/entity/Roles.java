@@ -52,6 +52,17 @@ public class Roles {
         this.tenant=false;
     }
 
+    //todo: Verificare l'ordine dei bit
+    public String rlBIN()
+     {
+         String out;
+         if(renter) out="1";
+         else out="0";
+         if(tenant) out+="1";
+         else out+="0";
+         return out;
+     }
+
     @Override
     public String toString ()
     {

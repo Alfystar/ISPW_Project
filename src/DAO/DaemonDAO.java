@@ -21,7 +21,7 @@ public class DaemonDAO implements Runnable {
             this.dao= new DAOClass();
             new Thread(this).start();
 
-        }catch (SQLException|ClassNotFoundException e){
+        }catch (ClassNotFoundException e){
             e.printStackTrace();
             System.exit(-1);
         }
