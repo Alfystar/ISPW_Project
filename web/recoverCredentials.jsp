@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="desktop mbr-site-loaded"><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><head><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style>
+<html class="desktop mbr-site-loaded"><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><head><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <!-- Site made with Mobirise Website Builder v4.9.1, https://mobirise.com -->
     <meta charset="UTF-8">
@@ -85,9 +85,10 @@ Who is your favorite actor, musician, or artist?  <input name="question2" type="
 What is your favorite movie? <input name="question3" type="text" style="margin-bottom: 5px;">
         <br>
 What is the name of your first school? <input name="question4" type="text">
-
     <br>
 <br>
+Nickname <input name="nickname" type="text">
+    <br>
 New Password: <input name="newPW" type="password" style="text-align:right;margin-bottom: 1px;margin-top: 1px;">
   <br>
 Confirm Password: <input name="confirmPW" type="password" style="/*! text-align:right; */margin-top: 1px;margin-bottom: 1px;">
