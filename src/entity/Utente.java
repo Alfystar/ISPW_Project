@@ -68,10 +68,11 @@ public class Utente {
         out+="\t##PublicData##\n"+ this.pubD.toString();
         out+="\t##PrivateData##\n"+ this.prD.toString();
         out+="\t##Ruolo##\n"+this.roles;
-        out+="UserStatus:"+this.userStatus.toString()+"PW:"+ this.pw.getPw()+"\n";
-        out+="\t**Answare at Question is:\n"+this.questions.toString();
+        out+="UserStatus:"+this.userStatus.toString()+"; PW:"+ this.pw.getPw()+"\n";
+        out+="\t**Answare at Question is:\n"+this.questions.getAnswersList();
         return out;
     }
+
     @Override
     public String toString()
     {

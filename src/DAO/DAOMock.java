@@ -5,6 +5,7 @@ import bean.UserInfoRegister;
 import control.DAOInterface;
 import exceptions.WrongParameters;
 
+import java.sql.SQLException;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
@@ -44,9 +45,12 @@ public class DAOMock implements DAOInterface{
         return this.utente1;
     }
 
+    @Override
+    public void updateUser(Utente user) throws SQLException
+    {}
 
     @Override
-    public void storeUserDB(Utente user){
+    public void saveUser(Utente user){
 
     }
     @Override

@@ -1,5 +1,6 @@
 package control;
 
+import DAO.DAOClass;
 import DAO.DAOMock;
 import entity.Nickname;
 import entity.Utente;
@@ -17,17 +18,19 @@ public class UserExpert {
     private Queue coda;
     private DAOInterface daoFace;
 
-    public UserExpert() {
-
-        this.coda = Queue.getQueueSingletonInstance();
-        this.daoFace = new DAOMock();
-
+    public UserExpert() throws ClassNotFoundException {
+        try {
+            this.coda = Queue.getQueueSingletonInstance();
+            this.daoFace = new DAOClass();
+        }catch (ClassNotFoundException c){
+            c.printStackTrace();
+            System.exit(-1);
+        }
     }
-
 
     /*
     Cerca un utente, o la prende dalla coda o
-    lo materializza in ram col dao e poi la ritorna
+    lo materializza in ram col dao e poi lo ritorna
      */
     //todo eccezione se l'utente non è trovato
 
@@ -44,11 +47,9 @@ public class UserExpert {
         }
         catch (NickNotDBEx dbEx) {
             throw new UserNotExistEx("getUser failed", dbEx.getCause());
-        }catch (SQLException se)
-        {
+        }catch (SQLException se) {
             se.printStackTrace();
             throw new UserNotExistEx("getUser failed", se.getCause());
-
         }
     }
 
@@ -94,7 +95,7 @@ public class UserExpert {
     public void storeUser(Utente us){
 
         try {
-            daoFace.storeUserDB(us);
+            daoFace.saveUser(us);
             addUserQueue(us);
         }catch (SQLException se)
         {
