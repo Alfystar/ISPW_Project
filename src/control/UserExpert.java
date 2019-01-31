@@ -93,19 +93,15 @@ public class UserExpert {
         }
     }
     public void storeUser(Utente us){
-
         try {
             daoFace.saveUser(us);
             addUserQueue(us);
-        }catch (SQLException se)
-        {
+        }catch (SQLException se) {
             se.printStackTrace();
         }
-
     }
 
     private Utente loadUserDB(Nickname nk) throws NickNotDBEx, SQLException {
-
         try {
             Utente us = daoFace.loadFromDB(nk);
             addUserQueue(us);
@@ -116,7 +112,6 @@ public class UserExpert {
         }
     }
     private Utente searchUserRam(Nickname nk) throws NickNotQEx{
-
         try {
             return coda.find(nk);
         }
@@ -127,7 +122,6 @@ public class UserExpert {
     }
 
     private Boolean isNickExistDB(Nickname nk) throws NickNotDBEx{
-
         try {
             return daoFace.searchNickDB(nk);
         }
