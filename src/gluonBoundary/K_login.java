@@ -1,13 +1,10 @@
 package gluonBoundary;
 
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.stage.Stage;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 public class K_login {
 

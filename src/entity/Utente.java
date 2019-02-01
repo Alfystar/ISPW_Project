@@ -1,5 +1,4 @@
 package entity;
-import javax.management.relation.Role;
 
 public class Utente {
     private PublicData pubD;

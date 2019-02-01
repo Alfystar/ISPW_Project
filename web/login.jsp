@@ -3,9 +3,12 @@
 
 <jsp:useBean id="login_Bean" scope="request" class="externalBean.LoginBean"/>
 
-<jsp:setProperty name="login_Bean" property="*"/>
+<jsp:setProperty name="loginBean" property="*"/>
+
 
 <%
+    String result = "";
+
     if (request.getParameter("loginSubmit") != null){
 
         if (login_Bean.validate()){
@@ -13,15 +16,13 @@
             <jsp:forward page="userpage.html"/>
 <%
         } else {
-            %>
-            <p style="text-overline-color:red;"> Login Fallito </p>
-            <%
+            result = "Login failed, cause"; // +... todo: aggiungere il print di eccezioni
         }
     } else if (request.getParameter("recoverSubmit") != null) {
 %>
         <jsp:forward page="recoverCredentials.jsp"/>
 <%
-    }
+    } else result = "Inserire le credenziali per procedere";
 %>
 
 <!DOCTYPE html>
@@ -113,18 +114,19 @@
                 Login</h1>
             <h3 class="mbr-section-subtitle align-left mbr-light pb-3 mbr-fonts-style display-2">Inserisci le tue credenziali per iniziare!</h3>
 
+            <p style="text-overline-color:red;"> <%=result%> </p>
 
             <form name="login_form" method="POST">
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> <output name="result"></output>
+                <p class="mbr-text pb-3 mbr-fonts-style display-5">
                 </p>
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
                     Nickname:
                     <br>
-                    <input name="nickname" type="text">
+                    <input name="nickname" type="text" id="nickname">
                     <br>
                     Password:
                     <br>
-                    <input name="password" type="password">
+                    <input name="password" type="password" id="password">
                     <br>
 
                     <input name="loginSubmit" type="submit" id="loginSubmit" value="Login" class="btn btn-primary-outline" style="margin-left: 0px;margin-top: 1.2rem;">

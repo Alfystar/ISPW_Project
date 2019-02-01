@@ -1,10 +1,10 @@
 package DAO;
 
-import bean.*;
-import control.*;
+import bean.UserInfoRegister;
+import control.DAOInterface;
 import entity.*;
-import exceptions.*;
-import org.mariadb.jdbc.internal.util.SqlStates;
+import exceptions.NickNotDBEx;
+import exceptions.WrongParameters;
 
 import java.sql.*;
 import java.util.GregorianCalendar;

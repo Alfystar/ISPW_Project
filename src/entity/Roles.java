@@ -1,7 +1,5 @@
 package entity;
 
-import javax.management.relation.Role;
-
 public class Roles {
     private Boolean renter;
     private Boolean tenant;

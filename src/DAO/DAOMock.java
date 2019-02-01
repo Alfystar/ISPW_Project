@@ -1,8 +1,8 @@
 package DAO;
 
-import entity.*;
 import bean.UserInfoRegister;
 import control.DAOInterface;
+import entity.*;
 import exceptions.WrongParameters;
 
 import java.sql.SQLException;

@@ -1,5 +1,7 @@
 package control;
-import entity.*;
+
+import entity.Nickname;
+import entity.Utente;
 public class NodeQueue {
     private Nickname nick;
     private Utente us;

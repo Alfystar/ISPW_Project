@@ -5,7 +5,6 @@ import entity.Nickname;
 import entity.TaxCode;
 import entity.Utente;
 import exceptions.NickNotDBEx;
-import exceptions.TCNotExistEx;
 import exceptions.WrongParameters;
 
 import java.sql.SQLException;

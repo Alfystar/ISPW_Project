@@ -1,7 +1,5 @@
 package entity;
 
-import java.awt.*;
-import java.awt.image.ImagingOpException;
 import java.util.GregorianCalendar;
 
 public class PublicData {

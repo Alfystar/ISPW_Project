@@ -1,12 +1,10 @@
 package control;
+
 import entity.*;
 import exceptions.NickNotQEx;
 
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 

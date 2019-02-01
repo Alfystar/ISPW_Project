@@ -10,8 +10,7 @@ public class LoginBean {
     private String password;
 
     public LoginBean() {
-        this.nickname = "";
-        this.password = "";
+
     }
 
     public void setNickname(String nk) {
