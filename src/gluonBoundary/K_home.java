@@ -2,51 +2,59 @@ package gluonBoundary;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class K_home  extends Application {
-
-    private Parent home;
-
-    private Stage windows;
-
-    public static void main(String[] args) {
-
-        //todo Inserire inizializzazione e tread vari
-
-        launch(args);
-    }
-
+public class K_home  implements Initializable {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        windows=primaryStage;
-        home = FXMLLoader.load(getClass().getResource("fxmlSrc/homeStandAlone.fxml"));
-        windows.setTitle("FERSA StandAlone");
-        windows.setScene(new Scene(home));
-        windows.getIcons().add(new Image(getClass().getResourceAsStream("Icon/Fersa-logo.png")));
-        windows.show();
+    public void initialize(URL url, ResourceBundle rb) {
     }
 
-    //@FXML
-    public void adminScene(ActionEvent event) throws IOException {
-        System.out.println("You clicked me!");
-       // label.setText("Hello World!");
-        //Here I want to swap the screen!
+    @FXML
+    public void adminSimulation(ActionEvent event) throws IOException {
+        //prepare new scene to replace
+        Parent adminParent = FXMLLoader.load(getClass().getResource("fxmlSrc/adminPane.fxml"));
+        Scene adminScene = new Scene(adminParent);
 
-        //Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        //set new scene
+        window.setScene(adminScene);
+    }
 
-        Parent root = FXMLLoader.load(getClass().getResource("fxmlSrc/adminPane.fxml"));
+    @FXML
+    public void userSimulation(ActionEvent event) throws IOException {
+        //prepare new scene to replace
+        Parent adminParent = FXMLLoader.load(getClass().getResource("fxmlSrc/login.fxml"));
+        Scene adminScene = new Scene(adminParent);
 
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        //set new scene
+        window.setScene(adminScene);
+    }
 
-        windows.setScene(new Scene(root));
+    @FXML
+    public void otherSimulation(ActionEvent event) throws IOException {
+        //prepare new scene to replace
+        Parent adminParent = FXMLLoader.load(getClass().getResource("fxmlSrc/otherPane.fxml"));
+        Scene adminScene = new Scene(adminParent);
 
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        //set new scene
+        window.setScene(adminScene);
     }
 
 }
