@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:useBean id="login_Bean" scope="request" class="externalBean.LoginBean"/>
 
-<jsp:setProperty name="loginBean" property="*"/>
+<jsp:setProperty name="login_Bean" property="*"/>
 
 
 <%
@@ -11,13 +10,14 @@
 
     if (request.getParameter("loginSubmit") != null){
 
-        if (login_Bean.validate()){
+
+        //if (login_Bean.validate()){
 %>
-            <jsp:forward page="userpage.html"/>
+
 <%
-        } else {
+        //} else {
             result = "Login failed, cause"; // +... todo: aggiungere il print di eccezioni
-        }
+       // }
     } else if (request.getParameter("recoverSubmit") != null) {
 %>
         <jsp:forward page="recoverCredentials.jsp"/>
@@ -81,21 +81,21 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="http://localhost:8080/ISPW_Project/web/index.html">
+                    <a href="http://localhost:8080/unnamed/index.html">
                          <img src="login_files/mbr-130x130.jpg" alt="Mobirise" title="" style="height: 3.8rem;">
                     </a>
                 </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="http://localhost:8080/ISPW_Project/web/index.html">FERSA</a></span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="http://localhost:8080/unnamed/index.html">FERSA</a></span>
             </div>
         </div>
         <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item dropdown">
-                <a class="nav-link link text-white dropdown-toggle display-4" href="https://mobirise.com/" data-toggle="dropdown-submenu" aria-expanded="false">
+                <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="false">
 
-                    Simulazione</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="http://localhost:8080/ISPW_Project/web/othersubsystem.html" aria-expanded="false">Other SubSystem</a></div>
+                    Simulazione</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="http://localhost:8080/unnamed/othersubsystem.jsp" aria-expanded="false">Other SubSystem</a></div>
             </li></ul>
-            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-white-outline display-4" href="http://localhost:8080/ISPW_Project/web/login.jsp">Login
-            </a> <a class="btn btn-sm btn-primary display-4" href="http://localhost:8080/ISPW_Project/web/register.html">Register
+            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-white-outline display-4" href="http://localhost:8080/unnamed/login.jsp">Login
+            </a> <a class="btn btn-sm btn-primary display-4" href="http://localhost:8080/unnamed/register.html">Register
             </a></div>
         </div>
     </nav>
@@ -114,7 +114,7 @@
                 Login</h1>
             <h3 class="mbr-section-subtitle align-left mbr-light pb-3 mbr-fonts-style display-2">Inserisci le tue credenziali per iniziare!</h3>
 
-            <p style="text-overline-color:red;"> <%=result%> </p>
+            <p style="color:white; background-color:red;"><%=result%></p>
 
             <form name="login_form" method="POST">
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
@@ -144,7 +144,7 @@
     </div>
 
 
-    <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"><div style="background-position: 50% 50%; background-size: cover; background-repeat: no-repeat; background-image: url(http://localhost:8080/ISPW_Project/web/assets/images/mbr-1-1920x1280.jpg); position: fixed; top: 0px; left: 0px; width: 866px; height: 637.04px; overflow: hidden; pointer-events: none; margin-top: 0.479993px; transform: translate3d(0px, 23.0856px, 0px);"></div></div></section>
+    <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"><div style="background-position: 50% 50%; background-size: cover; background-repeat: no-repeat; background-image: url(http://localhost:8080/unnamed/assets/images/mbr-1-1920x1280.jpg); position: fixed; top: 0px; left: 0px; width: 866px; height: 637.04px; overflow: hidden; pointer-events: none; margin-top: 0.479993px; transform: translate3d(0px, 23.0856px, 0px);"></div></div></section>
 
 
 <script src="login_files/jquery.js"></script>
