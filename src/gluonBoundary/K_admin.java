@@ -1,14 +1,33 @@
 package gluonBoundary;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
-public class K_admin {
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-    private Parent admin;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    /*
+public class K_admin implements Initializable {
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    }
+
     @FXML
-    public void initialize() throws Exception {
+    public void homeScene(ActionEvent event) throws IOException {
+        //prepare new scene to replace
+        Parent homeParent = FXMLLoader.load(getClass().getResource("fxmlSrc/homeStandAlone.fxml"));
+        Scene homeScene = new Scene(homeParent);
 
-        admin = FXMLLoader.load(getClass().getResource("fxmlSrc/adminPane.fxml"));
-    }*/
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        //set new scene
+        window.setScene(homeScene);
+    }
 }
