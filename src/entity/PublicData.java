@@ -117,7 +117,7 @@ public class PublicData {
         out+="Gender:"+this.gender.toString()+"\n";
         out+="TaxCode:"+this.fiscalCode.get()+"\n";
         out+="SocialStatus:"+this.socialStatus.get()+"\n";
-        out+="Avatar:"+this.avatar+"\n";
+        out+="ImageFile.Avatar:"+this.avatar+"\n";
         out+="Email:"+this.email.get()+"\n";
         out+="Nickname:"+this.nickname.get()+"\n";
         return out;

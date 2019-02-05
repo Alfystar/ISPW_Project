@@ -24,7 +24,7 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="300.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Icon/Fersa-logo.png" />
+                  <Image url="@../../ImageFile/Icon/Fersa-logo.png" />
                </image>
             </ImageView>
             <Label layoutX="14.0" layoutY="25.0" text="Welcome on FERSA" underline="true">
@@ -51,11 +51,11 @@
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                  <Button mnemonicParsing="false" onAction="#userSimulation" prefHeight="150.0" prefWidth="150.0">
+                  <Button fx:id="userBut" mnemonicParsing="false" onAction="#userSimulation" prefHeight="150.0" prefWidth="150.0">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Icon/User-Simulation.png" />
+                              <Image url="@../../ImageFile/Icon/User-Simulation.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -69,11 +69,11 @@
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                  <Button mnemonicParsing="false" onAction="#adminSimulation" prefHeight="150.0" prefWidth="150.0">
+                  <Button fx:id="adminBut" mnemonicParsing="false" onAction="#adminSimulation" prefHeight="150.0" prefWidth="150.0">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Icon/adminSystem.png" />
+                              <Image url="@../../ImageFile/Icon/adminSystem.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -87,11 +87,11 @@
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                  <Button mnemonicParsing="false" onAction="#otherSimulation" prefHeight="150.0" prefWidth="150.0">
+                  <Button fx:id="subSystemBut" mnemonicParsing="false" onAction="#otherSimulation" prefHeight="150.0" prefWidth="150.0">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Icon/Other-Subsystem.png" />
+                              <Image url="@../../ImageFile/Icon/Other-Subsystem.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -111,7 +111,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <Button mnemonicParsing="false" text="Test Connection" />
+            <Button fx:id="testConn" mnemonicParsing="false" onAction="#testConnection" text="Test Connection" />
          </children>
       </FlowPane>
       <GridPane prefHeight="60.0" prefWidth="444.0">
@@ -128,10 +128,10 @@
          <children>
             <Label text="Host" />
             <Label text="Port" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" text="Default" GridPane.columnIndex="3" />
-            <Button mnemonicParsing="false" text="Default" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField promptText="DB IP" text="localHost" GridPane.columnIndex="2" />
-            <TextField promptText="DB Port" text="3306" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="defIp" mnemonicParsing="false" onAction="#restoreIp" text="Default" GridPane.columnIndex="3" />
+            <Button fx:id="defPort" mnemonicParsing="false" onAction="#restorePort" text="Default" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="ipField" promptText="DB IP" text="localHost" GridPane.columnIndex="2" />
+            <TextField fx:id="portField" promptText="DB Port" text="3306" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

@@ -16,7 +16,7 @@ public class StandAloneMain extends Application {
 
         stage.setTitle("FERSA StandAlone");
         stage.setScene(scene);
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("Icon/Fersa-logo.png")));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/ImageFile/Icon/Fersa-logo.png")));
         stage.show();
     }
 

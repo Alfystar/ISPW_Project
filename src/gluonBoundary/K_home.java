@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -17,9 +19,30 @@ import java.util.ResourceBundle;
 
 public class K_home  implements Initializable {
 
+    /*******************************************************************/
+    /**                       Class Attribute                         **/
+
+
+    /*******************************************************************/
+
+    //=================================================================
+    //simulation chose sector
+    @FXML
+    Button userBut, adminBut, subSystemBut;
+
+    //=================================================================
+    //Network controll sector
+    @FXML
+    TextField ipField,portField;
+
+    @FXML
+    Button defIp, defPort;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
+
+
 
     @FXML
     public void adminSimulation(ActionEvent event) throws IOException {
@@ -56,5 +79,15 @@ public class K_home  implements Initializable {
         //set new scene
         window.setScene(adminScene);
     }
-
+    @FXML
+    public void testConnection(ActionEvent actionEvent) {
+    }
+    @FXML
+    public void restoreIp(ActionEvent actionEvent) {
+        ipField.setText("localHost");
+    }
+    @FXML
+    public void restorePort(ActionEvent actionEvent) {
+        portField.setText("3306");
+    }
 }

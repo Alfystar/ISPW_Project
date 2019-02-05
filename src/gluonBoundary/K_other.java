@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,10 +16,74 @@ import java.util.ResourceBundle;
 
 public class K_other implements Initializable {
 
+    /*******************************************************************/
+    /**                       Class Attribute                         **/
+
+
+    /*******************************************************************/
+
+    //=================================================================
+    //Top object
+    @FXML
+    Button backHome;
+
+    //=================================================================
+    //Left object
+    @FXML
+    TextField nickWork;
+
+    @FXML
+    Button makeRenter, removeRentership, makeTenant, removeTenant;
+
+    //=================================================================
+    //information view sector
+    @FXML
+    Button getStatus, getRole, getPubD, getPrD;
+
+    @FXML
+    CheckBox tenant, renter;
+    @FXML
+    RadioButton man, woman;
+
+    @FXML
+    TextField nick, email, tc, socStat, name, surname;
+
+    @FXML
+    DatePicker birthday;
+
+    @FXML
+    ChoiceBox usStat;
+
+    @FXML
+    TextField cel, address, cityBirth, nat;
+
+    //=================================================================
+    //bottom bar
+    @FXML
+    Label outLabel;
+
+    @FXML
+    ProgressBar progress;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Node[] disableVector = {
+                tenant, renter, man, woman,
+                nick, email, tc, socStat, name, surname, birthday, usStat,
+                cel, address, cityBirth, nat};
+
+        //information view sector setup
+        for (Node e:disableVector) {    //struttura foreach in java
+            e.setDisable(true);
+            e.setStyle("-fx-opacity: 1");
+        }
+        //to restore white shape
+        birthday.getEditor().setStyle("-fx-opacity: 1");
+
+        usStat.getItems().addAll("Active","inActive","Cancelled","Banned");
+        usStat.setValue("Active");
     }
+
     @FXML
     public void homeScene(ActionEvent event) throws IOException {
         //prepare new scene to replace
@@ -29,5 +94,40 @@ public class K_other implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         //set new scene
         window.setScene(homeScene);
+    }
+    @FXML
+    public void refreshStatus(ActionEvent actionEvent) {
+        outLabel.setText("refreshStatus");
+    }
+    @FXML
+    public void refreshRole(ActionEvent actionEvent) {
+        outLabel.setText("refreshRole");
+
+    }
+    @FXML
+    public void refreshPubD(ActionEvent actionEvent) {
+        outLabel.setText("refreshPubD");
+
+    }
+    @FXML
+    public void refreshPrD(ActionEvent actionEvent) {
+        outLabel.setText("refreshPrD");
+
+    }
+    @FXML
+    public void setRenter(ActionEvent actionEvent) {
+        outLabel.setText("setRenter");
+    }
+    @FXML
+    public void removeRenter(ActionEvent actionEvent) {
+        outLabel.setText("removeRenter");
+    }
+    @FXML
+    public void setTenant(ActionEvent actionEvent) {
+        outLabel.setText("setTenant");
+    }
+    @FXML
+    public void removeTenant(ActionEvent actionEvent) {
+        outLabel.setText("removeTenant");
     }
 }
