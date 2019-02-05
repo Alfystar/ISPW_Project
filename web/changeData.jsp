@@ -75,46 +75,41 @@
 
             <h3 class="mbr-section-subtitle align-left mbr-light pb-3 mbr-fonts-style display-2">Riempi i campi da modificare e conferma in fondo.</h3>
 
-            <p class="mbr-text pb-3 mbr-fonts-style display-5"> 
-  
-Nome: <input name="name" type="text" style="text-align:right">
-  <br>
-  
-Cognome: <input name="surname" type="text" style="text-align:right">
-  <br>
-CF: <input name="taxcode" type="text" style="text-align:right">
-  <br>
-Nickname: <input name="nickname" type="text" style="text-align:right">
-  <br>
-Email: <input name="email" type="text" style="text-align:right">
-  <br>
-BirthDay: <input name="birthDay" type="text" style="text-align:right">
-  <br>
-Gender: <input name="gender" type="text" style="text-align:right">
-  <br> 
-Ruoli: <input name="roles" type="text" style="text-align:right">
-  <br>
-Social Status: <input name="socialStatus" type="text" style="text-align:right">
-  <br>
-Phone Number: <input name="phoneNumber" type="text" style="text-align:right">
-  <br>
-Indirizzo: <input name="address" type="text" style="text-align:right">
-  <br> 
-Luogo di Nascita: <input name="birthPlace" type="text" style="text-align:right">
-  <br>
-Nazionalita': <input name="name" type="text" style="text-align:right">
-  <br>
+            <p class="mbr-text pb-3 mbr-fonts-style display-5">
+            <form>
+                Nome: <input name="firstname" type="text" style="text-align:right">
+                <br>
+                Cognome: <input name="lastname" type="text" style="text-align:right">
+                <br>
+                CF: <input name="taxcode" type="text" style="text-align:right">
+                <br>
+                Email: <input name="email" type="text" style="text-align:right">
+                <br>
+                BirthDay: <input name="birthDay" type="date" style="text-align:right">
+                <br>
+                Gender: <input name="gender" type="text" style="text-align:right">
+                <br>
+                Ruoli: <input name="roles" type="text" style="text-align:right">
+                <br>
+                Social Status: <input name="socialStatus" type="text" style="text-align:right">
+                <br>
+                Phone Number: <input name="phoneNumber" type="text" style="text-align:right">
+                <br>
+                Indirizzo: <input name="address" type="text" style="text-align:right">
+                <br>
+                Luogo di Nascita: <input name="birthPlace" type="text" style="text-align:right">
+                <br>
+                Nazionalita': <input name="nationality" type="text" style="text-align:right">
+                <br>
+                New Password: <input name="newPW" type="password" style="text-align:right">
+                <br>
+                Confirm Password: <input name="confirmPW" type="password" style="text-align:right">
+                <br>
 
-Old Password: <input name="oldPW" type="password" style="text-align:right">
-  <br>
-New Password: <input name="newPW" type="password" style="text-align:right">
-  <br>
-Confirm Password: <input name="confirmPW" type="password" style="text-align:right">
-  <br>
-  
-<input type="submit" name="changeDataSubmit" value="Conferma Dati" class="btn btn-info" style="margin-left: 0px;margin-top: 1rem;margin-right: 0px;margin-bottom: 0px;padding-right: 2rem;padding-left: 2rem;padding-bottom: 0.1rem;padding-top: 0.1rem;">
+                <input type="submit" name="changeDataSubmit" value="Conferma Dati" class="btn btn-info" style="margin-left: 0px;margin-top: 1rem;margin-right: 0px;margin-bottom: 0px;padding-right: 2rem;padding-left: 2rem;padding-bottom: 0.1rem;padding-top: 0.1rem;">
+            </form>
             </p>
-            
+
         </div>
     </div>
 
