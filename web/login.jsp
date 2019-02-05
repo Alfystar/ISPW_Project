@@ -10,19 +10,18 @@
 
     if (request.getParameter("loginSubmit") != null){
 
-
-        //if (login_Bean.validate()){
+        if (login_Bean.validateLogin()){
 %>
-
+            <jsp:forward page="userpage.html"/>
 <%
-        //} else {
+        } else {
             result = "Login failed, cause"; // +... todo: aggiungere il print di eccezioni
-       // }
+        }
     } else if (request.getParameter("recoverSubmit") != null) {
 %>
         <jsp:forward page="recoverCredentials.jsp"/>
 <%
-    } else result = "Inserire le credenziali per procedere";
+    }
 %>
 
 <!DOCTYPE html>
@@ -95,7 +94,7 @@
                     Simulazione</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="http://localhost:8080/unnamed/othersubsystem.jsp" aria-expanded="false">Other SubSystem</a></div>
             </li></ul>
             <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-white-outline display-4" href="http://localhost:8080/unnamed/login.jsp">Login
-            </a> <a class="btn btn-sm btn-primary display-4" href="http://localhost:8080/unnamed/register.html">Register
+            </a> <a class="btn btn-sm btn-primary display-4" href="http://localhost:8080/unnamed/register.jsp">Register
             </a></div>
         </div>
     </nav>

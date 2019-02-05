@@ -10,7 +10,8 @@ public class LoginBean {
     private String password;
 
     public LoginBean() {
-
+        this.nickname = "";
+        this.password = "";
     }
 
     public void setNickname(String nk) {
@@ -29,7 +30,7 @@ public class LoginBean {
         return this.password;
     }
 
-    public Boolean validate() {
+    public Boolean validateLogin() {
 
         if (this.nickname.equals("") || this.password.equals("")) {
             return FALSE;
