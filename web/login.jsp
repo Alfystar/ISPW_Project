@@ -11,8 +11,12 @@
     if (request.getParameter("loginSubmit") != null){
 
         if (login_Bean.validateLogin()){
+
+            String nkStr = login_Bean.getNickname();
 %>
-            <jsp:forward page="userpage.html"/>
+            <jsp:forward page="userpage.html">
+                <jsp:param name="nkSaved" value="<%=nkStr%>"/>
+            </jsp:forward>
 <%
         } else {
             result = "Login failed, cause"; // +... todo: aggiungere il print di eccezioni
