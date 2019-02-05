@@ -194,8 +194,8 @@ public class DAOClass implements DAOInterface {
 
         Gender gender= Gender.valueOf((String) rs.getObject(5));
         SocialStatus socStatus= new SocialStatus(rs.getString(6));
-        Avatar avatar= Avatar.valueOf((String) rs.getObject(7));
-        if (avatar==null) avatar=Avatar.DEFAULT;
+        //todo DIRE A MARTA CHE IL TIPO AVATAR ORA é UNA CLASSE
+        Avatar avatar= new Avatar((String) rs.getObject(7));
         Email email= new Email(rs.getString(8));
 
         //creo un'istanza di PubD

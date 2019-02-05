@@ -38,7 +38,7 @@
       </AnchorPane>
       <FlowPane alignment="TOP_RIGHT" columnHalignment="RIGHT" hgap="15.0" prefWrapLength="200.0" rowValignment="BOTTOM">
          <children>
-            <Hyperlink alignment="TOP_RIGHT" onAction="#registerPush" text="Register Here">
+            <Hyperlink fx:id="register" alignment="TOP_RIGHT" onAction="#registerPush" text="Register Here">
                <font>
                   <Font name="System Bold Italic" size="10.0" />
                </font>
@@ -46,7 +46,7 @@
           <Button mnemonicParsing="false" onAction="#loginPush" prefWidth="90.0" text="Login" />
          </children>
       </FlowPane>
-      <Hyperlink onAction="#forgottenPush" text="Forgotten Password?">
+      <Hyperlink fx:id="forgottenPw" onAction="#forgottenPush" text="Forgotten Password?">
          <font>
             <Font name="System Bold Italic" size="10.0" />
          </font>

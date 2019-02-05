@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
@@ -20,6 +21,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -29,9 +31,9 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="avatar" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icon/default-avatar.png" />
+                        <Image url="@../../ImageFile/Avatar/default-Avatar.png" />
                      </image>
                   </ImageView>
                   <GridPane layoutX="175.0" layoutY="14.0" prefHeight="260.0" prefWidth="610.0">
@@ -60,41 +62,41 @@
                         <Label text="Social Status" GridPane.rowIndex="4" />
                         <Label text="Phone Number" GridPane.rowIndex="6" />
                         <Label text="Ruolo" GridPane.rowIndex="3" />
-                        <TextField editable="false" prefWidth="215.0" GridPane.columnIndex="2" />
-                        <TextField editable="false" prefWidth="215.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <TextField editable="false" prefWidth="215.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <TextField fx:id="nick" editable="false" prefWidth="215.0" GridPane.columnIndex="2" />
+                        <TextField fx:id="email" editable="false" prefWidth="215.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="socStat" editable="false" prefWidth="215.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <children>
-                              <CheckBox mnemonicParsing="false" text="Renter" wrapText="true" />
-                              <CheckBox mnemonicParsing="false" text="Tenant" wrapText="true" />
+                              <CheckBox fx:id="renter" mnemonicParsing="false" text="Renter" wrapText="true" />
+                              <CheckBox fx:id="tenant" mnemonicParsing="false" text="Tenant" wrapText="true" />
                            </children>
                         </HBox>
                         <Label text="Tax Code" GridPane.rowIndex="2" />
                         <Label text="Name" GridPane.columnIndex="4" />
                         <Label text="Surname" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                        <DatePicker editable="false" prefWidth="215.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="birthday" editable="false" prefWidth="215.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
                         <Label text="Birthday" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                         <Label text="Gender" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                            <children>
-                              <RadioButton mnemonicParsing="false" text="Man">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="gender" />
-                                 </toggleGroup>
+                              <RadioButton fx:id="man" mnemonicParsing="false" text="Man">
+                                  <toggleGroup>
+                                      <ToggleGroup fx:id="gender" />
+                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="Woman" toggleGroup="$gender" />
+                              <RadioButton fx:id="woman" mnemonicParsing="false" text="Woman" toggleGroup="$gender" />
                            </children>
                         </HBox>
-                        <TextField editable="false" prefWidth="215.0" GridPane.columnIndex="6" />
-                        <TextField editable="false" prefWidth="215.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-                        <TextField editable="false" prefWidth="215.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                        <TextField fx:id="name" editable="false" prefWidth="215.0" GridPane.columnIndex="6" />
+                        <TextField fx:id="surname" editable="false" prefWidth="215.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                        <TextField fx:id="cel" editable="false" prefWidth="215.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                         <Label text="Address" GridPane.rowIndex="7" />
                         <Label text="City of Birth" GridPane.columnIndex="4" GridPane.rowIndex="6" />
                         <Label text="Nationality" GridPane.columnIndex="4" GridPane.rowIndex="7" />
-                        <TextField editable="false" prefWidth="215.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                        <TextField editable="false" prefWidth="215.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
-                        <TextField editable="false" prefWidth="215.0" GridPane.columnIndex="6" GridPane.rowIndex="7" />
-                        <TextField editable="false" prefWidth="215.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="address" editable="false" prefWidth="215.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                        <TextField fx:id="cityBirth" editable="false" prefWidth="215.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+                        <TextField fx:id="nat" editable="false" prefWidth="215.0" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+                        <TextField fx:id="tc" editable="false" prefWidth="215.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                         <Separator prefWidth="200.0" GridPane.rowIndex="5" />
                         <Separator prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                         <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
@@ -106,17 +108,17 @@
                   </GridPane>
                   <VBox alignment="CENTER" layoutX="4.0" layoutY="171.0" spacing="5.0">
                      <children>
-                        <Button mnemonicParsing="false" prefWidth="170.0" text="Refresh Role Data">
+                        <Button fx:id="getRole" mnemonicParsing="false" onAction="#refrehsRole" prefWidth="170.0" text="Refresh Role Data">
                            <tooltip>
                               <Tooltip text="Ottieni i dati dell'interfaccia Roles" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefWidth="170.0" text="Refresh Public Data">
+                        <Button fx:id="getPubD" mnemonicParsing="false" onAction="#refreshPubD" prefWidth="170.0" text="Refresh Public Data">
                            <tooltip>
                               <Tooltip text="Ottiene i dati publici di un utente" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" prefWidth="170.0" text="Refresh RestrictedData">
+                        <Button fx:id="getPrD" mnemonicParsing="false" onAction="#refreshPrD" prefWidth="170.0" text="Refresh RestrictedData">
                            <tooltip>
                               <Tooltip text="Ottiene i dati privati di un utente" />
                            </tooltip>
@@ -137,7 +139,7 @@
                   <VBox alignment="TOP_CENTER" prefWidth="400.0">
                      <children>
                         <Label text="Change my Data" />
-                        <AnchorPane prefWidth="200.0">
+                        <AnchorPane prefHeight="100.0">
                            <children>
                               <GridPane prefWidth="400.0">
                                 <columnConstraints>
@@ -150,11 +152,25 @@
                                 </rowConstraints>
                                  <children>
                                     <Label text="Change:" />
-                                    <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
-                                    <TextField prefWidth="212.0" GridPane.columnIndex="2" />
+                                    <ChoiceBox fx:id="paramChange" prefWidth="150.0" GridPane.columnIndex="1" />
+                                    <TextField fx:id="strChange" prefWidth="212.0" GridPane.columnIndex="2" />
                                  </children>
                               </GridPane>
-                              <Button layoutX="317.0" layoutY="39.0" mnemonicParsing="false" text="Update" />
+                              <Button fx:id="sendUpdate" layoutX="320.0" layoutY="64.0" mnemonicParsing="false" onAction="#updateUser" text="Update" />
+                              <TilePane hgap="10.0" layoutX="14.0" layoutY="44.0" prefHeight="41.0" prefWidth="279.0" vgap="5.0">
+                                 <children>
+                                    <RadioButton fx:id="av1" mnemonicParsing="false" selected="true" text="Avatar 1">
+                                     <toggleGroup>
+                                         <ToggleGroup fx:id="avatarGroup" />
+                                     </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="av2" mnemonicParsing="false" text="Avatar 2" toggleGroup="$avatarGroup" />
+                                    <RadioButton fx:id="av3" mnemonicParsing="false" text="Avatar 3" toggleGroup="$avatarGroup" />
+                                    <RadioButton fx:id="av4" mnemonicParsing="false" text="Avatar 4" toggleGroup="$avatarGroup" />
+                                    <RadioButton fx:id="av5" mnemonicParsing="false" text="Avatar 5" toggleGroup="$avatarGroup" />
+                                    <RadioButton fx:id="av6" mnemonicParsing="false" text="Avatar 6" toggleGroup="$avatarGroup" />
+                                 </children>
+                              </TilePane>
                            </children>
                         </AnchorPane>
                      </children>
@@ -180,12 +196,12 @@
                                     <Label text="Old Password" />
                                     <Label text="New Password" GridPane.rowIndex="1" />
                                     <Label text="Confirm Password" GridPane.rowIndex="2" />
-                                    <TextField GridPane.columnIndex="2" />
-                                    <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <PasswordField fx:id="oldPw" GridPane.columnIndex="2" />
+                                    <PasswordField fx:id="newPw" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <PasswordField fx:id="confPw" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
-                              <Button layoutX="318.0" layoutY="100.0" mnemonicParsing="false" text="Change" />
+                              <Button fx:id="changePw" layoutX="318.0" layoutY="100.0" mnemonicParsing="false" onAction="#changePw" text="Change" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -198,24 +214,23 @@
    <bottom>
       <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="32.0" prefWidth="601.0" BorderPane.alignment="CENTER">
          <items>
-            <ProgressBar prefWidth="200.0" progress="0.0" />
+            <ProgressBar fx:id="progress" prefWidth="200.0" progress="0.0" />
             <Separator orientation="VERTICAL" />
             <Label text="Progress %" />
             <Separator orientation="VERTICAL" />
-            <Label alignment="TOP_RIGHT" prefHeight="10.0" prefWidth="485.0" text="No Op" />
+            <Label fx:id="outLabel" alignment="TOP_RIGHT" prefHeight="10.0" prefWidth="485.0" text="No Op" />
          </items>
       </ToolBar>
    </bottom>
    <top>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#homeScene" text="Back to home" />
+            <Button fx:id="backHome" mnemonicParsing="false" onAction="#homeScene" text="Back to home" />
             <Label alignment="CENTER" layoutX="293.0" text="User Choice Screen">
                <font>
                   <Font name="Lato Black Italic" size="22.0" />
                </font>
             </Label>
-            <Separator prefWidth="200.0" />
          </children>
       </AnchorPane>
    </top>
