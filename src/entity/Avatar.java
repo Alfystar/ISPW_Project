@@ -44,6 +44,7 @@ public class Avatar
             {
                 this.myIcon=icons.get(i);
                 this.myImageIndex= i;
+
                 return;
             }
         }
