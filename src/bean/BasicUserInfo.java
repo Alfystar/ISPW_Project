@@ -57,7 +57,7 @@ public class BasicUserInfo {
 
     public Nickname getNickname(){
 
-        return this.publicData.getNickname();
+        return this.publicData.getNick();
     }
 
     @Override
