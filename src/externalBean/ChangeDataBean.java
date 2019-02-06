@@ -6,13 +6,10 @@ import static java.lang.Boolean.FALSE;
 
 public class ChangeDataBean {
     // todo:decidere quali dati lasciare (in accordo con ChangeNotAnagraphicData)
-    private String firstname;
-    private String lastname;
-    private String taxcode;
     private String email;
-    private String bday;
     private String gender;
-    private String roles;
+    private String tenant;
+    private String renter;
     private String socialStatus;
     private String phoneNumber;
     private String address;
@@ -22,13 +19,11 @@ public class ChangeDataBean {
     private String confirmPW;
 
     public ChangeDataBean() {
-        this.firstname = "";
-        this.lastname = "";
-        this.taxcode = "";
+
         this.email = "";
-        this.bday = "";
         this.gender = "";
-        this.roles = "";
+        this.tenant = "";
+        this.renter = "";
         this.socialStatus = "";
         this.phoneNumber = "";
         this.address = "";
@@ -38,37 +33,11 @@ public class ChangeDataBean {
         this.confirmPW = "";
     }
 
-    public void setFirstname(String fn) {
-        this.firstname = fn;
-    }
-    public String getFirstname() {
-        return this.firstname;
-    }
-
-    public void setLastname(String ln) {
-        this.lastname = ln;
-    }
-    public String getLastname() {
-        return this.lastname;
-    }
-
-    public void setTaxcode(String tc) { this.taxcode = tc; }
-    public String getTaxcode() {
-        return this.taxcode;
-    }
-
     public void setEmail(String em) {
         this.email = em;
     }
     public String getEmail() {
         return this.email;
-    }
-
-    public void setBday(String bd) {
-        this.bday = bd;
-    }
-    public String getBday() {
-        return this.bday;
     }
 
     public void setGender(String gen) {
@@ -78,11 +47,16 @@ public class ChangeDataBean {
         return this.gender;
     }
 
-    public void setRoles(String rol) {
-        this.roles = rol;
+    public void setTenant(String ten) {
+        this.tenant = ten;
     }
-    public String getRoles() {
-        return this.roles;
+    public String getTenant() { return this.tenant; }
+
+    public void setRenter(String ren) {
+        this.renter = ren;
+    }
+    public String getRenter() {
+        return this.renter;
     }
 
     public void setSocialStatus(String socStat) {
