@@ -1,6 +1,5 @@
 package externalControl;
 
-import externalBean.UserPageBean;
 import interfaces.UserProfileService;
 
 public class UserPageControl {

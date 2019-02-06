@@ -3,10 +3,10 @@ package interfaces;
 import bean.BasicUserInfo;
 import bean.RestrictUserInfo;
 import bean.UserInfoRegister;
-import entity.*;
-import exceptions.*;
-
-import java.sql.SQLException;
+import entity.Nickname;
+import entity.TaxCode;
+import exceptions.UserNotExistEx;
+import exceptions.WrongParameters;
 
 public interface UserProfileService {
 

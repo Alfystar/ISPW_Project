@@ -4,7 +4,8 @@ import entity.ModifyDataString;
 import entity.Nickname;
 import entity.PW;
 import entity.Questions;
-import exceptions.*;
+import exceptions.NickNotDBEx;
+import exceptions.UserNotExistEx;
 
 import java.sql.SQLException;
 

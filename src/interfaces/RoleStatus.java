@@ -3,7 +3,7 @@ package interfaces;
 import entity.Nickname;
 import entity.Roles;
 import entity.UserStatus;
-import exceptions.*;
+import exceptions.UserNotExistEx;
 
 import java.sql.SQLException;
 

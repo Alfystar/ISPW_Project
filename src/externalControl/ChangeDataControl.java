@@ -3,7 +3,6 @@ package externalControl;
 import entity.*;
 import interfaces.RoleStatus;
 import interfaces.SystemInterface;
-import interfaces.UserProfileService;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
