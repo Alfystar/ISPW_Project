@@ -16,8 +16,8 @@ import java.sql.SQLException;
 
 public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfileService {
 
-    private UserExpert usExp;
-    private FactoryInfo factInf;
+    private UserExpert usExp= new UserExpert();
+    private FactoryInfo factInf= new FactoryInfo();
     public FacadeSubSystem() {
 
     }
