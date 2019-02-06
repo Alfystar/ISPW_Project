@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="mariadb">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/src/drivers/mysql/mariadb" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/src/drivers/mysql/mariadb" recursive="false" />
+  </library>
+</component>

@@ -444,6 +444,9 @@ public class DAOClass implements DAOInterface {
         return s;
     }
 
+    public void changeUrl(String ip){
+        this.DB_URL= "jdbc:mysql://" + ip + "/user";
+    }
 
     private void openConn() throws SQLException
     {
@@ -568,10 +571,5 @@ public class DAOClass implements DAOInterface {
         }
     }
 
-    public void changeUrl(String ip){
-        this.DB_URL= "jdbc:mysql://" + ip + "/user";
-    }
-
-    //todo: scrivere un metodo che permetta di modificare il DB_URL, passandogli una stringa
 
 }
