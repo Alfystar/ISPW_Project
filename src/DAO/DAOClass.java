@@ -503,7 +503,7 @@ public class DAOClass implements DAOInterface {
         //todo: loadFromDB
         //todo: printa se sono uguali
         //todo: deleate(?)
-        int caso=6;
+        int caso=1;
         switch (caso)
         {
             case 1: //save in DB

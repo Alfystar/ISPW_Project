@@ -26,6 +26,7 @@ public class PublicData {
 
         /*start a default*/
         this.socialStatus= new SocialStatus();
+        this.avatar= new Avatar();
 
     }
     //Costruttore con tutti i parametri possibili di PublicData
