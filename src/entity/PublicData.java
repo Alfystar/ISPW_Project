@@ -50,7 +50,7 @@ public class PublicData {
         this.socialStatus= new SocialStatus(pubD.getSocialStatus());
         this.avatar= pubD.getAvatar();
         this.email= new Email(pubD.getEmail());
-        this.nickname= new Nickname(pubD.getNickname());
+        this.nickname= new Nickname(pubD.getNick());
     }
 
     public Name getName(){
@@ -85,11 +85,11 @@ public class PublicData {
         return this.email;
     }
 
-    public Nickname getNickname(){
+    public Nickname getNick(){
         return this.nickname;
     }
 
-    public GregorianCalendar stringToGregCal(String s){
+    private GregorianCalendar stringToGregCal(String s){
         String[] splitDate = s.split("-");
         int year = Integer.parseInt(splitDate[0]);
         int month = Integer.parseInt(splitDate[1]);
@@ -99,7 +99,7 @@ public class PublicData {
 
     }
 
-    public String gregCalToString(GregorianCalendar gc){
+    private String gregCalToString(GregorianCalendar gc){
         int anno = gc.get(GregorianCalendar.YEAR);
         int mese = gc.get(GregorianCalendar.MONTH) + 1;
         int giorno = gc.get(GregorianCalendar.DATE);

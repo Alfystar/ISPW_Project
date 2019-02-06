@@ -3,34 +3,37 @@ package interfaces;
 import entity.Nickname;
 import entity.Roles;
 import entity.UserStatus;
+import exceptions.*;
+
+import java.sql.SQLException;
 
 public interface RoleStatus {
 
 
-    Roles getRoles(Nickname nk);
+    Roles getRoles(Nickname nk) throws UserNotExistEx;
 
-    UserStatus getStatus(Nickname nk);
+    UserStatus getStatus(Nickname nk)  throws UserNotExistEx;
 
-    void makeARenter(Nickname nk);
+    void makeARenter(Nickname nk)throws UserNotExistEx, SQLException, ClassNotFoundException;
 
-    void removeRentership(Nickname nk);
+    void removeRentership(Nickname nk) throws UserNotExistEx, SQLException, ClassNotFoundException;
 
-    void makeATenant(Nickname nk);
+    void makeATenant(Nickname nk) throws UserNotExistEx, SQLException, ClassNotFoundException;
 
-    void removeTenantship(Nickname nk);
+    void removeTenantship(Nickname nk) throws UserNotExistEx, SQLException,ClassNotFoundException;
 
-    void changeUserStatus(Nickname nk, UserStatus stat);
+    void changeUserStatus(Nickname nk, UserStatus stat) throws UserNotExistEx, SQLException, ClassNotFoundException ;
 
-    Boolean isRenter(Nickname nk);
+    Boolean isRenter(Nickname nk) throws UserNotExistEx;
 
-    Boolean isTenant(Nickname nk);
+    Boolean isTenant(Nickname nk)throws UserNotExistEx;
 
-    Boolean isActive(Nickname nk);
+    Boolean isActive(Nickname nk)throws UserNotExistEx;
 
-    Boolean isInactive(Nickname nk);
+    Boolean isInactive(Nickname nk)throws UserNotExistEx;
 
-    Boolean isCanceled(Nickname nk);
+    Boolean isCancelled(Nickname nk)throws UserNotExistEx;
 
-    Boolean isBanned(Nickname nk);
+    Boolean isBanned(Nickname nk) throws  UserNotExistEx;
 
 }

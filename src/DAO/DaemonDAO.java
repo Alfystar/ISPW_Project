@@ -29,7 +29,7 @@ public class DaemonDAO implements Runnable {
 
     @Override
     public void run(){
-        java.util.Date datadioggi;
+        java.util.Date todayDay;
         Calendar calendar = Calendar.getInstance();
         GregorianCalendar gc= new GregorianCalendar(2000,01,01);
         while (true)
@@ -38,14 +38,14 @@ public class DaemonDAO implements Runnable {
             restartSleep:
             {
                 try{
-                datadioggi = java.util.GregorianCalendar.getInstance().getTime();
-                calendar.setTime(datadioggi);
+                todayDay = java.util.GregorianCalendar.getInstance().getTime();
+                calendar.setTime(todayDay);
                 //Aggiungo un mese
                 calendar.add(calendar.MONTH,1);
                 GregorianCalendar gcDate= this.dao.nextDeleteSession();
                 Date d= gcDate.getTime();
                 TimeUnit timeUnit= TimeUnit.MILLISECONDS;
-                long deltaTime =getDateDiff(datadioggi, d, timeUnit);
+                long deltaTime =getDateDiff(todayDay, d, timeUnit);
                 if(deltaTime<=0) break restartSleep;
 
                     Thread.sleep(deltaTime);
@@ -59,8 +59,8 @@ public class DaemonDAO implements Runnable {
                 }
             }
             //todo eseguire la pulizia della tabella e impostare la successiva volta di lavoro
-            datadioggi = java.util.GregorianCalendar.getInstance().getTime();
-            gc.setTime(datadioggi);
+            todayDay = java.util.GregorianCalendar.getInstance().getTime();
+            gc.setTime(todayDay);
             try {
                 this.dao.deleteByDeamon(gc);
             }catch (SQLException se){
@@ -70,7 +70,7 @@ public class DaemonDAO implements Runnable {
         }
     }
 
-    public static long getDateDiff(Date date1, Date date2,TimeUnit timeUnit) {
+    private static long getDateDiff(Date date1, Date date2,TimeUnit timeUnit) {
         long diffInMillies = date1.getTime() - date2.getTime();
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
