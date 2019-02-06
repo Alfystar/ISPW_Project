@@ -1,3 +1,19 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<jsp:useBean id="changeData_Bean" scope="request" class="externalBean.ChangeDataBean"/>
+
+<jsp:setProperty name="changeData_Bean" property="*"/>
+
+<%
+    String nickN = request.getParameter("nkSaved");
+
+    if (request.getParameter("changeDataSubmit") != null){
+
+        if (changeData_Bean.validateChange(nickN)){}}
+
+        //todo: finire
+
+%>
 <!DOCTYPE html>
 <html class="desktop mbr-site-loaded"><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><head><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -94,6 +110,10 @@
                 Luogo di Nascita: <input name="birthPlace" type="text" style="text-align:right">
                 <br>
                 Nazionalita': <input name="nationality" type="text" style="text-align:right">
+                <br>
+                Per cambiare la password, inserire quella vecchia e la nuova
+                <br>
+                Old Password: <input name="oldPW" type="password" style="text-align:right">
                 <br>
                 New Password: <input name="newPW" type="password" style="text-align:right">
                 <br>
