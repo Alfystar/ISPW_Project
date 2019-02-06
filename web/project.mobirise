@@ -1826,7 +1826,7 @@
         }
       ]
     },
-    "userpage.html": {
+    "userpage.jsp": {
       "settings": {
         "meta_descr": "Web Creator Description",
         "title": "UserPage",

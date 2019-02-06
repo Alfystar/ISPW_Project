@@ -14,7 +14,7 @@
 
             String nkStr = login_Bean.getNickname();
 %>
-            <jsp:forward page="userpage.html">
+            <jsp:forward page="userpage.jsp">
                 <jsp:param name="nkSaved" value="<%=nkStr%>"/>
             </jsp:forward>
 <%
