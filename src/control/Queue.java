@@ -1,7 +1,7 @@
 package control;
 
 import entity.*;
-import exceptions.NickNotQEx;
+import exceptions.*;
 
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
@@ -60,6 +60,22 @@ public class Queue {
         }
     }
 
+    public Utente find(TaxCode tc) throws TCNotExistQEx
+    {
+        lock.readLock().lock();
+        NodeQueue node = searchInQueue(tc);
+        if(node == null)
+        {
+            lock.readLock().unlock();
+            throw new TCNotExistQEx("TaxCode not found among nodes");
+        }
+        else
+        {
+            lock.readLock().unlock();
+            return node.getUs();
+        }
+    }
+
     /*
     Dato un nick lo cerca e lo elimina, se non lo trova solleva un'eccezione
      */
@@ -82,6 +98,20 @@ public class Queue {
         for (int i = 0; i < this.users.size(); i++) {
             node=this.users.get(i);
             if(node.getNick().get().equals(nick))  //if true found nickname
+            {
+                return node;
+            }
+        }
+        return null;
+    }
+
+    private NodeQueue searchInQueue(TaxCode tc)
+    {
+        String taxCode = tc.get();
+        NodeQueue node;
+        for (int i = 0; i < this.users.size(); i++) {
+            node=this.users.get(i);
+            if(node.getTC().get().equals(taxCode))  //if true found nickname
             {
                 return node;
             }

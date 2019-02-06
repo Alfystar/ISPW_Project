@@ -46,7 +46,7 @@ public class PublicData {
         this.surname= new Name(pubD.getSurname());
         this.birthday.setGregorianChange(pubD.birthday.getGregorianChange());
         this.gender= pubD.getGender();
-        this.fiscalCode= new TaxCode(pubD.getFiscalCode());
+        this.fiscalCode= new TaxCode(pubD.getTC());
         this.socialStatus= new SocialStatus(pubD.getSocialStatus());
         this.avatar= pubD.getAvatar();
         this.email= new Email(pubD.getEmail());
@@ -69,7 +69,7 @@ public class PublicData {
         return this.gender;
     }
 
-    public TaxCode getFiscalCode(){
+    public TaxCode getTC(){
         return this.fiscalCode;
     }
 

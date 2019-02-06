@@ -9,7 +9,7 @@ public class Avatar
     private String[] nameAvatar = {"default-Avatar","roket-Avatar", "girl-Avatar", "man-Avatar", "girlStudent-Avatar", "manStudent-Avatar"};
     private Vector<Image> icons = new Vector<Image>();
     private Image myIcon;
-    private int myImageIndex;
+    private int indexImage;
 
 
     public Avatar(){
@@ -21,7 +21,7 @@ public class Avatar
             icons.add(img);
         }
         this.myIcon=icons.get(0);
-        this.myImageIndex=0;
+        this.indexImage =0;
     }
 
     public Avatar(String name)
@@ -34,7 +34,7 @@ public class Avatar
     public void setMyIcon (int index)
     {
         this.myIcon=icons.get(index);
-        this.myImageIndex= index;
+        this.indexImage = index;
     }
 
     public void setMyIcon (String name)
@@ -43,13 +43,12 @@ public class Avatar
             if(name==nameAvatar[i])
             {
                 this.myIcon=icons.get(i);
-                this.myImageIndex= i;
-
+                this.indexImage = i;
                 return;
             }
         }
         this.myIcon=icons.get(0);
-        this.myImageIndex= 0;
+        this.indexImage = 0;
     }
 
     public Image getMyIcon ()
@@ -59,7 +58,7 @@ public class Avatar
 
     public String getAvatarName()
     {
-        return nameAvatar[this.myImageIndex];
+        return nameAvatar[this.indexImage];
     }
 
     public static void main (String[] argv)
