@@ -1,7 +1,7 @@
 package control;
 
 import entity.*;
-import exceptions.NickNotQEx;
+import exceptions.*;
 
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
@@ -60,14 +60,14 @@ public class Queue {
         }
     }
 
-    public Utente find(TaxCode tc) throws NickNotQEx
+    public Utente find(TaxCode tc) throws TCNotExistQEx
     {
         lock.readLock().lock();
         NodeQueue node = searchInQueue(tc);
         if(node == null)
         {
             lock.readLock().unlock();
-            throw new NickNotQEx("TaxCode not found among nodes");
+            throw new TCNotExistQEx("TaxCode not found among nodes");
         }
         else
         {
