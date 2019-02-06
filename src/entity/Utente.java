@@ -63,7 +63,7 @@ public class Utente {
     public String printUser()
     {
         String out;
-        out="Utente nick: "+ this.pubD.getNickname().get()+", Email:"+this.pubD.getEmail().get()+", CF:"+ this.pubD.getFiscalCode().get()+"\n";
+        out="Utente nick: "+ this.pubD.getNickname().get()+", Email:"+this.pubD.getEmail().get()+", CF:"+ this.pubD.getTC().get()+"\n";
         out+="\t##PublicData##\n"+ this.pubD.toString();
         out+="\t##PrivateData##\n"+ this.prD.toString();
         out+="\t##Ruolo##\n"+this.roles;
@@ -75,7 +75,7 @@ public class Utente {
     @Override
     public String toString()
     {
-        return "UserNick: "+ this.pubD.getNickname().get()+", Email:"+this.pubD.getEmail().get()+", CF:"+ this.pubD.getFiscalCode().get()+"\n";
+        return "UserNick: "+ this.pubD.getNickname().get()+", Email:"+this.pubD.getEmail().get()+", CF:"+ this.pubD.getTC().get()+"\n";
     }
 
 }

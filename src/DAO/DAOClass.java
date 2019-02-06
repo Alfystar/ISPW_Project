@@ -156,7 +156,7 @@ public class DAOClass implements DAOInterface {
                 "socStat = " + "\""+(puB.getSocialStatus().get())+"\" " +" ," +
                 "usImg=" + "\""+(puB.getAvatar())+"\" " +" ," +
                 "email =" + "\""+(puB.getEmail().get())+"\" " +
-                "WHERE taxCode= " + "\""+puB.getFiscalCode().get()+"\" "+";";
+                "WHERE taxCode= " + "\""+puB.getTC().get()+"\" "+";";
         System.out.println(sqlPubD);
         this.stmt.executeQuery(sqlPubD);
         System.out.println("publicData update executed");
@@ -238,7 +238,7 @@ public class DAOClass implements DAOInterface {
         //Inserisco nel DB una tabella PublicData
         String sqlPubD= "INSERT INTO  publicdata(taxCode, name, surname, birthday, gender, socStat, usImg, email) " +
                 "VALUES (" +
-                "\""+(puB.getFiscalCode().get())+"\" "+ " ," +
+                "\""+(puB.getTC().get())+"\" "+ " ," +
                 "\""+(puB.getName().get())+"\" " + " ," +
                 "\""+(puB.getSurname().get())+"\" " +" ," +
                 "\""+bDay+"\" " +" ," +
@@ -287,7 +287,7 @@ public class DAOClass implements DAOInterface {
         String sqlNewUs = "INSERT INTO user(nick,pubD_Tc,prD_id,userStatus,pw,answ_id,roles)" +
                 "VALUES (" +
                 "\""+(puB.getNickname().get())+"\" "+ " ,"  +
-                "\""+(puB.getFiscalCode().get())+"\" "+ " ,"  +
+                "\""+(puB.getTC().get())+"\" "+ " ,"  +
                 "\""+(prD_id)+"\" "+ " ,"  +
                 "\""+(usStat)+"\" "+ " ,"  +
                 "\""+(pw.getPw())+"\" "+ " ,"  +
