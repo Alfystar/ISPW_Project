@@ -19,6 +19,10 @@ public class UserPageControl {
     private UserPageControl() {
     }
 
-    public String[] obtainBasicUsInfo(Nickname nick){}
+    public String[] obtainBasicUsInfo(Nickname nick){
+
+        String[] tmp = {"add","right", "strings"};
+        return tmp;
+    }
 
 }
