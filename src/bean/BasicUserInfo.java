@@ -37,7 +37,7 @@ public class BasicUserInfo {
 
     public TaxCode getTaxCode(){
 
-        return this.publicData.getFiscalCode();
+        return this.publicData.getTC();
     }
 
     public SocialStatus getsocialStatus(){

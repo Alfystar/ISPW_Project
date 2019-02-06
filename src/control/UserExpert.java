@@ -4,10 +4,7 @@ import DAO.DAOClass;
 import DAO.DAOMock;
 import bean.UserInfoRegister;
 import entity.*;
-import exceptions.NickNotDBEx;
-import exceptions.NickNotQEx;
-import exceptions.UserNotExistEx;
-import exceptions.WrongParameters;
+import exceptions.*;
 
 import java.sql.SQLException;
 import java.util.GregorianCalendar;
@@ -63,13 +60,25 @@ public class UserExpert {
             return isNickExistDB(nk);
         }
         catch (NickNotDBEx dbEx){
-            throw new UserNotExistEx("isNickExistFailed", dbEx.getCause());
+            throw new UserNotExistEx("Nick not present in DB", dbEx.getCause());
         }
     }
 
-    public Boolean doesTaxCodeExist(TaxCode tc) throws ClassNotFoundException, SQLException {
-        this.daoFace = new DAOClass();
-        return this.daoFace.searchTC(tc);
+    public Boolean doesTaxCodeExist(TaxCode tc) throws UserNotExistEx {
+        //todo implementarla con due thread
+        try {
+            return isTCExistRam(tc);
+        }
+        catch (TCNotExistQEx qEx) {
+            System.err.println(qEx.getMessage());
+        }
+        try{
+            return this.daoFace.searchTC(tc);
+        }
+        catch (SQLException dbEx){
+            throw new UserNotExistEx("TaxCode not present in DB", dbEx.getCause());
+        }
+
     }
 
     public void deleteUser(Nickname nk) throws UserNotExistEx{
@@ -80,7 +89,7 @@ public class UserExpert {
             coda.remove(nk);
         }
         catch (SQLException se) {
-            throw new UserNotExistEx("deleteUser failed", se.getCause());
+            throw new UserNotExistEx("Nick not present in DB", se.getCause());
         }
     }
     public void destroyUser(Nickname nk) throws UserNotExistEx{
@@ -142,12 +151,17 @@ public class UserExpert {
         else return TRUE;
     }
 
-    public void createUser(UserInfoRegister userInfo) throws ClassNotFoundException, WrongParameters {
+    private Boolean isTCExistRam(TaxCode tc) throws TCNotExistQEx{
+        if(coda.find(tc) == null) return FALSE;
+        else return TRUE;
+    }
+
+    public void createUser(UserInfoRegister userInfo) throws WrongParameters {
         Utente user= this.daoFace.createUser(userInfo);
         coda.add(user);
     }
 
-    public void forgottenPassword(Nickname nick, Questions answers, PW newPw) throws SQLException, ClassNotFoundException, NickNotDBEx, UserNotExistEx {
+    public void forgottenPassword(Nickname nick, Questions answers, PW newPw) throws UserNotExistEx {
         Utente user = this.getUser(nick);
         Questions correctAnsw = user.getQuestions();
         if (correctAnsw.checkAnswers(answers, 4)) {
@@ -158,7 +172,7 @@ public class UserExpert {
         }
     }
 
-    public void changeUserStatus(Nickname nick, UserStatus newUsStat) throws UserNotExistEx, SQLException, ClassNotFoundException {
+    public void changeUserStatus(Nickname nick, UserStatus newUsStat) throws UserNotExistEx {
         Utente user = this.getUser(nick);
         user.setStatus(newUsStat);
         this.storeUser(user);

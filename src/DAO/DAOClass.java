@@ -36,6 +36,11 @@ public class DAOClass implements DAOInterface {
         }
     }
 
+    public DAOClass(String ip) throws ClassNotFoundException{
+        this();
+        this.changeUrl(ip);
+    }
+
     @Override
     public Utente createUser(UserInfoRegister infoReg)throws WrongParameters{
 
@@ -137,6 +142,7 @@ public class DAOClass implements DAOInterface {
 
     @Override
     public void updateUser(Utente user) throws SQLException{
+        //todo gestire il caso venga chiesto di fare update su dati inesistenti
         this.openConn();
         PublicData puB= user.getPublic();
         PrivateData prD= user.getPrivate();
@@ -154,9 +160,9 @@ public class DAOClass implements DAOInterface {
         //Faccio update nel DB di una tabella PublicData
         String sqlPubD= "UPDATE  publicdata SET " +
                 "socStat = " + "\""+(puB.getSocialStatus().get())+"\" " +" ," +
-                "usImg=" + "\""+(puB.getAvatar())+"\" " +" ," +
+                "usImg=" + "\""+(puB.getAvatar().getAvatarName())+"\" " +" ," +
                 "email =" + "\""+(puB.getEmail().get())+"\" " +
-                "WHERE taxCode= " + "\""+puB.getFiscalCode().get()+"\" "+";";
+                "WHERE taxCode= " + "\""+puB.getTC().get()+"\" "+";";
         System.out.println(sqlPubD);
         this.stmt.executeQuery(sqlPubD);
         System.out.println("publicData update executed");
@@ -194,8 +200,7 @@ public class DAOClass implements DAOInterface {
 
         Gender gender= Gender.valueOf((String) rs.getObject(5));
         SocialStatus socStatus= new SocialStatus(rs.getString(6));
-        //todo DIRE A MARTA CHE IL TIPO AVATAR ORA é UNA CLASSE
-        Avatar avatar= new Avatar((String) rs.getObject(7));
+        Avatar avatar= new Avatar(rs.getString(7));
         Email email= new Email(rs.getString(8));
 
         //creo un'istanza di PubD
@@ -238,13 +243,13 @@ public class DAOClass implements DAOInterface {
         //Inserisco nel DB una tabella PublicData
         String sqlPubD= "INSERT INTO  publicdata(taxCode, name, surname, birthday, gender, socStat, usImg, email) " +
                 "VALUES (" +
-                "\""+(puB.getFiscalCode().get())+"\" "+ " ," +
+                "\""+(puB.getTC().get())+"\" "+ " ," +
                 "\""+(puB.getName().get())+"\" " + " ," +
                 "\""+(puB.getSurname().get())+"\" " +" ," +
                 "\""+bDay+"\" " +" ," +
                 "\""+(puB.getGender().toString())+"\" " +" ," +
                 "\""+(puB.getSocialStatus().get())+"\" " +" ," +
-                "\""+(puB.getAvatar())+"\" " +" ," +
+                "\""+(puB.getAvatar().getAvatarName())+"\" " +" ," +
                 "\""+(puB.getEmail().get())+"\" " + ");" ;
         System.out.println(sqlPubD);
         this.stmt.executeQuery(sqlPubD);
@@ -287,7 +292,7 @@ public class DAOClass implements DAOInterface {
         String sqlNewUs = "INSERT INTO user(nick,pubD_Tc,prD_id,userStatus,pw,answ_id,roles)" +
                 "VALUES (" +
                 "\""+(puB.getNick().get())+"\" "+ " ,"  +
-                "\""+(puB.getFiscalCode().get())+"\" "+ " ,"  +
+                "\""+(puB.getTC().get())+"\" "+ " ,"  +
                 "\""+(prD_id)+"\" "+ " ,"  +
                 "\""+(usStat)+"\" "+ " ,"  +
                 "\""+(pw.getPw())+"\" "+ " ,"  +
@@ -439,6 +444,9 @@ public class DAOClass implements DAOInterface {
         return s;
     }
 
+    public void changeUrl(String ip){
+        this.DB_URL= "jdbc:mysql://" + ip + "/user";
+    }
 
     private void openConn() throws SQLException
     {
@@ -498,7 +506,7 @@ public class DAOClass implements DAOInterface {
         //todo: loadFromDB
         //todo: printa se sono uguali
         //todo: deleate(?)
-        int caso=6;
+        int caso=1;
         switch (caso)
         {
             case 1: //save in DB
@@ -563,7 +571,5 @@ public class DAOClass implements DAOInterface {
         }
     }
 
-
-    //todo: scrivere un metodo che permetta di modificare il DB_URL, passandogli una stringa
 
 }
