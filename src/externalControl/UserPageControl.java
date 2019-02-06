@@ -1,5 +1,7 @@
 package externalControl;
 
+import bean.BasicUserInfo;
+import entity.Nickname;
 import interfaces.UserProfileService;
 
 public class UserPageControl {
@@ -17,5 +19,6 @@ public class UserPageControl {
     private UserPageControl() {
     }
 
+    public String[] obtainBasicUsInfo(Nickname nick){}
 
 }

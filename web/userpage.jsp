@@ -6,7 +6,7 @@
 
 <%
     String nickN = request.getParameter("nkSaved");
-    String[] valueData = userPage_Bean.getStringUsData();
+    String[] valueData = userPage_Bean.getStringUsData(nickN);
 
     if (request.getParameter("changeData") != null){
 %>
