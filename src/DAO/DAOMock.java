@@ -74,4 +74,8 @@ public class DAOMock implements DAOInterface{
     @Override
     public void deleteNTime(Nickname nickname, GregorianCalendar date){}
 
+    @Override
+    public void changeUrl(String ip) {}
+
+
 }

@@ -19,7 +19,7 @@ public class NodeQueue {
     }
 
     public void setUs(Utente us) {
-        this.nick=us.getPublic().getNickname();
+        this.nick=us.getPublic().getNick();
         this.tc=us.getPublic().getTC();
         this.us = us;
     }

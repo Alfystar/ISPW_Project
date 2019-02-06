@@ -16,7 +16,7 @@ public interface UserProfileService {
 
     Boolean doesNicknameExist(Nickname nk) throws UserNotExistEx;
 
-    Boolean doesTaxCodeExist(TaxCode taxCode)throws ClassNotFoundException, SQLException;
+    Boolean doesTaxCodeExist(TaxCode taxCode)throws UserNotExistEx;
 
     void createUser(Nickname nk, UserInfoRegister dataCreate) throws WrongParameters, ClassNotFoundException;
 

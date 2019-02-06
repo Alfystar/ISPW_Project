@@ -1,11 +1,15 @@
 package gluonBoundary;
 
+import DAO.DAOClass;
+import DAO.DaemonDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+
 
 public class StandAloneMain extends Application {
 
@@ -20,9 +24,11 @@ public class StandAloneMain extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 
         //todo Inserire inizializzazione e tread vari
+        DAOClass dao= new DAOClass("196.254.224.65");
+        DaemonDAO daemonDAO = DaemonDAO.getInstance();
 
         launch(args);
     }

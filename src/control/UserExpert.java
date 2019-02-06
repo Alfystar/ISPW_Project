@@ -64,7 +64,7 @@ public class UserExpert {
         }
     }
 
-    public Boolean doesTaxCodeExist(TaxCode tc) throws ClassNotFoundException, UserNotExistEx {
+    public Boolean doesTaxCodeExist(TaxCode tc) throws UserNotExistEx {
         //todo implementarla con due thread
         try {
             return isTCExistRam(tc);
