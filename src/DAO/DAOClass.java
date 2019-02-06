@@ -145,7 +145,7 @@ public class DAOClass implements DAOInterface {
         Roles roles= user.getRole();
 
         //Faccio una query su user, per ottenere la chiave di accesso a prD;
-        String sql= "SELECT prD_id FROM user WHERE nick= " + "\""+puB.getNickname().get()+"\" "+ ";";
+        String sql= "SELECT prD_id FROM user WHERE nick= " + "\""+puB.getNick().get()+"\" "+ ";";
         System.out.println(sql);
         ResultSet rs = this.stmt.executeQuery(sql);
         rs.first();
@@ -177,7 +177,7 @@ public class DAOClass implements DAOInterface {
                 "userStatus =" + "\""+(usStat)+"\" "+ " ,"  +
                 "pw =" + "\""+(pw.getPw())+"\" "+ " ,"  +
                 "roles =" + "\""+(roles.rlBIN())+"\" " +
-                "WHERE nick =" + "\""+puB.getNickname().get()+"\" "+";";
+                "WHERE nick =" + "\""+puB.getNick().get()+"\" "+";";
         System.out.println(sqlUpUs);
         stmt.executeQuery(sqlUpUs);
         System.out.println("user update executed");
@@ -286,7 +286,7 @@ public class DAOClass implements DAOInterface {
         //Creo una tabella di Utente nel DB
         String sqlNewUs = "INSERT INTO user(nick,pubD_Tc,prD_id,userStatus,pw,answ_id,roles)" +
                 "VALUES (" +
-                "\""+(puB.getNickname().get())+"\" "+ " ,"  +
+                "\""+(puB.getNick().get())+"\" "+ " ,"  +
                 "\""+(puB.getFiscalCode().get())+"\" "+ " ,"  +
                 "\""+(prD_id)+"\" "+ " ,"  +
                 "\""+(usStat)+"\" "+ " ,"  +

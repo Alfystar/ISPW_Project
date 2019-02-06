@@ -3,22 +3,25 @@ package interfaces;
 import bean.BasicUserInfo;
 import bean.RestrictUserInfo;
 import bean.UserInfoRegister;
-import entity.Nickname;
+import entity.*;
+import exceptions.*;
+
+import java.sql.SQLException;
 
 public interface UserProfileService {
 
-    BasicUserInfo getBasicUserInfo(Nickname nk);
+    BasicUserInfo getBasicUserInfo(Nickname nk) throws UserNotExistEx;
 
-    RestrictUserInfo getRestrictedUserInfo(Nickname nk);
+    RestrictUserInfo getRestrictedUserInfo(Nickname nk) throws UserNotExistEx;
 
-    Boolean doesNicknameExist(Nickname nk);
+    Boolean doesNicknameExist(Nickname nk) throws UserNotExistEx;
 
-    Boolean doesTaxCodeExist(Nickname nk);
+    Boolean doesTaxCodeExist(TaxCode taxCode)throws ClassNotFoundException, SQLException;
 
-    void createUser(Nickname nk, UserInfoRegister dataCreate);
+    void createUser(Nickname nk, UserInfoRegister dataCreate) throws WrongParameters, ClassNotFoundException;
 
-    void cancelUser(Nickname nk);
+    void cancelUser(Nickname nk) throws UserNotExistEx;
 
-    void deleteUser(Nickname nk);
+    void deleteUser(Nickname nk)throws UserNotExistEx;
 
 }

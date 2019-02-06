@@ -70,7 +70,7 @@ public class DaemonDAO implements Runnable {
         }
     }
 
-    public static long getDateDiff(Date date1, Date date2,TimeUnit timeUnit) {
+    private static long getDateDiff(Date date1, Date date2,TimeUnit timeUnit) {
         long diffInMillies = date1.getTime() - date2.getTime();
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
