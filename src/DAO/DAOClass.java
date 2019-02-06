@@ -142,6 +142,7 @@ public class DAOClass implements DAOInterface {
 
     @Override
     public void updateUser(Utente user) throws SQLException{
+        //todo gestire il caso venga chiesto di fare update su dati inesistenti
         this.openConn();
         PublicData puB= user.getPublic();
         PrivateData prD= user.getPrivate();
