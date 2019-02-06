@@ -154,7 +154,7 @@ public class DAOClass implements DAOInterface {
         //Faccio update nel DB di una tabella PublicData
         String sqlPubD= "UPDATE  publicdata SET " +
                 "socStat = " + "\""+(puB.getSocialStatus().get())+"\" " +" ," +
-                "usImg=" + "\""+(puB.getAvatar())+"\" " +" ," +
+                "usImg=" + "\""+(puB.getAvatar().getAvatarName())+"\" " +" ," +
                 "email =" + "\""+(puB.getEmail().get())+"\" " +
                 "WHERE taxCode= " + "\""+puB.getFiscalCode().get()+"\" "+";";
         System.out.println(sqlPubD);
@@ -194,8 +194,7 @@ public class DAOClass implements DAOInterface {
 
         Gender gender= Gender.valueOf((String) rs.getObject(5));
         SocialStatus socStatus= new SocialStatus(rs.getString(6));
-        //todo DIRE A MARTA CHE IL TIPO AVATAR ORA é UNA CLASSE
-        Avatar avatar= new Avatar((String) rs.getObject(7));
+        Avatar avatar= new Avatar(rs.getString(7));
         Email email= new Email(rs.getString(8));
 
         //creo un'istanza di PubD
@@ -244,7 +243,7 @@ public class DAOClass implements DAOInterface {
                 "\""+bDay+"\" " +" ," +
                 "\""+(puB.getGender().toString())+"\" " +" ," +
                 "\""+(puB.getSocialStatus().get())+"\" " +" ," +
-                "\""+(puB.getAvatar())+"\" " +" ," +
+                "\""+(puB.getAvatar().getAvatarName())+"\" " +" ," +
                 "\""+(puB.getEmail().get())+"\" " + ");" ;
         System.out.println(sqlPubD);
         this.stmt.executeQuery(sqlPubD);
@@ -563,6 +562,9 @@ public class DAOClass implements DAOInterface {
         }
     }
 
+    public void changeUrl(String ip){
+        this.DB_URL= "jdbc:mysql://" + ip + "/user";
+    }
 
     //todo: scrivere un metodo che permetta di modificare il DB_URL, passandogli una stringa
 
