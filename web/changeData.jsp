@@ -13,7 +13,7 @@
 
         if (changeData_Bean.validateChange(nickN)){
             color = "blue";
-            result = "SUCCESSO";
+            result = "Successo";
         } else {
             color = "red";
             result = "Login failed, cause"; // +... todo: aggiungere il print di eccezioni
@@ -25,7 +25,6 @@
         </jsp:forward>
 <%
     }
-
 %>
 
 <!DOCTYPE html>
