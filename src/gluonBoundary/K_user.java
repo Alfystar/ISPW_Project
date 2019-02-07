@@ -192,10 +192,30 @@ public class K_user implements Initializable {
         }
         avatar.setImage(basic.getAvatar().getMyIcon());
 
+        //gestione birthday: da GregorianCalendar a DatePicker
+        String newBDay= gregCalToString(basic.getBirthday());
+
+        String[] parts = newBDay.split("-");
+        String part1 = parts[0];
+        String part2 = parts[1];
+        String part3 = parts[2];
+
+        int month = Integer.parseInt(part1);
+        int day = Integer.parseInt(part2);
+        int year = Integer.parseInt(part3);
+        /*
+        DatePicker dpResult= new DatePicker();
+        dpResult.getDayOfMonth()= day;
+        dpResult.getMonth() -1 = month;
+        dpResult.getYear()= year;
+
+        DatePicker dpResult.init(year, month, day, null);
+        birthday.init(year, month, day, null);
+        */
         // String date = birthday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         //todo capire come mettere birtday
         /*
-    private GregorianCalendar birthday= new GregorianCalendar();
+
 
         */
     }
@@ -226,6 +246,13 @@ public class K_user implements Initializable {
         }
     }
 
+    private String gregCalToString(GregorianCalendar gc){
+        int anno = gc.get(GregorianCalendar.YEAR);
+        int mese = gc.get(GregorianCalendar.MONTH) + 1;
+        int giorno = gc.get(GregorianCalendar.DATE);
+        String s = anno + "-" + mese + "-" + giorno;
+        return s;
+    }
 
     //todo: inserire l'eliminazione volontaria del profilo! Deve attivare cancelUser!
 }
