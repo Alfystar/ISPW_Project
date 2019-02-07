@@ -17,6 +17,14 @@ public class Utente {
         this.userStatus=UserStatus.ACTIVE;
     }
 
+    public Utente(PublicData pubD, PrivateData prD, PW pw, Roles roles, UserStatus userStatus, Questions questions){
+        this.pubD= new PublicData(pubD);
+        this.prD= new PrivateData(prD);
+        this.pw= new PW(pw);
+        this.roles= new Roles(roles);
+        this.questions= new Questions(questions);
+        this.userStatus= userStatus;
+    }
 
     public PublicData getPublic(){
         return this.pubD;

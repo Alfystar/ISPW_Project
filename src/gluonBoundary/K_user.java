@@ -136,24 +136,28 @@ public class K_user implements Initializable {
         RadioButton[] radioNode={av1,av2,av3,av4,av5,av6};
         outLabel.setText("updateUser click");
     }
-    @FXML
-    public void refrehsRole(ActionEvent actionEvent) {
 
-        outLabel.setText("refrehsRole click");
+    @FXML
+    public void refreshRole(ActionEvent actionEvent) {
+
+        outLabel.setText("refreshRole click");
         loadRole();
     }
+
     @FXML
     public void refreshPubD(ActionEvent actionEvent) {
 
         outLabel.setText("refreshPubD click");
         loadPublic();
     }
+
     @FXML
     public void refreshPrD(ActionEvent actionEvent) {
 
         outLabel.setText("refreshPrD click");
         loadPrivate();
     }
+
     @FXML
     public void changePw(ActionEvent actionEvent) {
 
@@ -161,10 +165,9 @@ public class K_user implements Initializable {
     }
 
 
-    public void setBean(BeanLogUs bean)
-    {
-        this.bean=bean;
+    public void setBean(BeanLogUs bean) {
 
+        this.bean=bean;
         nick.setText(bean.getNick().get());
     }
 
@@ -173,8 +176,7 @@ public class K_user implements Initializable {
 
         try {
             basic = usInt.getBasicUserInfo(bean.getNick());
-        }catch (UserNotExistEx e)
-        {
+        }catch (UserNotExistEx e) {
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
         }
         nick.setText(basic.getNickname().get());
@@ -197,11 +199,30 @@ public class K_user implements Initializable {
         */
     }
 
-    private void loadPrivate(){
-
-    }
+    private void loadPrivate() {
+        try {
+            restrict = usInt.getRestrictedUserInfo(bean.getNick());
+        } catch (UserNotExistEx e) {
+            outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+        }
+        cel.setText(restrict.getPhoneNumber().get());
+        cityBirth.setText(restrict.getCityOfBirth().get());
+        address.setText(restrict.getAddress().get());
+        nat.setText(restrict.getNationality().get());
+        }
 
     private void loadRole(){
-
+        try {
+            roles= rolStatInt.getRoles(bean.getNick());
+        }catch (UserNotExistEx e){
+            outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+        }
+        if(roles.isTenant()) {
+            tenant.setSelected(true);
+        }
+        if(roles.isRenter()){
+            renter.setSelected(true);
+        }
     }
+
 }
