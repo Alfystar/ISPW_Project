@@ -5,9 +5,6 @@ import entity.*;
 import interfaces.RoleStatus;
 import interfaces.SystemInterface;
 
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
-
 public class ChangeDataControl {
 
     private static ChangeDataControl instance;

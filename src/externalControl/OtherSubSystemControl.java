@@ -2,6 +2,7 @@ package externalControl;
 
 import bean.BasicUserInfo;
 import bean.RestrictUserInfo;
+import control.FacadeSubSystem;
 import entity.Nickname;
 import entity.Roles;
 import entity.UserStatus;
@@ -12,8 +13,8 @@ public class OtherSubSystemControl {
 
     private static OtherSubSystemControl instance;
 
-    private UserProfileService usProfInt; // = new Facade();
-    private RoleStatus rolInt;
+    private UserProfileService usProfInt = new FacadeSubSystem();
+    private RoleStatus rolInt = new FacadeSubSystem();
 
     public static OtherSubSystemControl getInstance() {
         if (instance == null)
@@ -60,7 +61,7 @@ public class OtherSubSystemControl {
             return basic.toString();
         }
         catch (Exception e){
-            return e.getMessage(); // todo: seguire questo approccio con le altre classi
+            return e.getMessage();
         }
     }
 

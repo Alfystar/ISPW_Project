@@ -2,8 +2,6 @@ package externalBean;
 
 import externalControl.RecoverControl;
 
-import static java.lang.Boolean.FALSE;
-
 public class RecoverBean {
 
     private String question1;
@@ -69,18 +67,18 @@ public class RecoverBean {
         return this.confirmPW;
     }
 
-    public Boolean validateRecover() {
+    public String validateRecover() {
 
         if (this.question1.equals("") || this.question2.equals("") ||
                 this.question3.equals("") || this.question4.equals("") ||
                 this.nickname.equals("") || this.newPW.equals("") ||
                 this.confirmPW.equals("")) {
-            return FALSE;
+            return "Inserire tutte le risposte";
         }
         //verifico di aver immesso la password correttamente entrambe le volte
 
         else if (!this.newPW.equals(this.confirmPW)){
-            return FALSE;
+            return "Nuova password e conferma diverse";
         }
 
         RecoverControl controller = RecoverControl.getInstance();

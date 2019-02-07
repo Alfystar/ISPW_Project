@@ -13,11 +13,9 @@
 
         result = changeData_Bean.validateChange(nickN);
 
-        if (result.equals("Successo")){
-            color = "blue";
-        } else {
-            color = "red";
-        }
+        if (result.equals("Successo")) color = "blue";
+        else color = "red";
+
     } else if (request.getParameter("backToUserSubmit") != null){
 %>
         <jsp:forward page="userpage.jsp">

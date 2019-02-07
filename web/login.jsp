@@ -10,7 +10,9 @@
 
     if (request.getParameter("loginSubmit") != null){
 
-        if (login_Bean.validateLogin()){
+        result = login_Bean.validateLogin();
+
+        if (result.equals("Successo")){
 
             String nkStr = login_Bean.getNickname();
 %>
@@ -18,9 +20,8 @@
                 <jsp:param name="nkSaved" value="<%=nkStr%>"/>
             </jsp:forward>
 <%
-        } else {
-            result = "Login failed, cause"; // +... todo: aggiungere il print di eccezioni
         }
+
     } else if (request.getParameter("recoverSubmit") != null) {
 %>
         <jsp:forward page="recoverCredentials.jsp"/>

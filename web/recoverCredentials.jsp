@@ -11,14 +11,11 @@
 
     if (request.getParameter("recoverDataSubmit") != null){
 
-        if (recover_Bean.validateLogin()){
-            colRes = "blue";
-            result = "Passed";
+        result = recover_Bean.validateRecover();
 
-        } else {
-            colRes = "red";
-            result = "Login failed, cause"; // +... todo: aggiungere il print di eccezioni
-        }
+        if (result.equals("Successo")) colRes = "blue";
+        else colRes = "red";
+
     } else if (request.getParameter("backHomeSubmit") != null) {
 %>
         <jsp:forward page="login.jsp"/>
