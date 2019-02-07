@@ -121,18 +121,22 @@ public class K_user implements Initializable {
     }
     @FXML
     public void refrehsRole(ActionEvent actionEvent) {
+
         outLabel.setText("refrehsRole click");
     }
     @FXML
     public void refreshPubD(ActionEvent actionEvent) {
+
         outLabel.setText("refreshPubD click");
     }
     @FXML
     public void refreshPrD(ActionEvent actionEvent) {
+
         outLabel.setText("refreshPrD click");
     }
     @FXML
     public void changePw(ActionEvent actionEvent) {
+
         outLabel.setText("changePw click");
     }
 }

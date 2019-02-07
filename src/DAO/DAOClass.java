@@ -7,6 +7,7 @@ import exceptions.NickNotDBEx;
 import exceptions.WrongParameters;
 
 import java.sql.*;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class DAOClass implements DAOInterface {
@@ -392,7 +393,7 @@ public class DAOClass implements DAOInterface {
         this.openConn();
         String oggi= gregCalToString(today);
 
-        String sql= "SELECT nick FROM dateevent where date<=  " +
+        String sql= "SELECT nick FROM dateevent where date<= " +
                 "\""+oggi+"\" "+ " ;";
         System.out.println(sql);
         this.stmt.executeQuery(sql);
@@ -419,8 +420,16 @@ public class DAOClass implements DAOInterface {
         this.stmt.executeQuery(sql);
         System.out.println("query executed");
         ResultSet rs= this.stmt.executeQuery(sql);
-        String nextDate= rs.getString(1);
+        if(!rs.first())
+        {
+            java.util.Date tomorrow = GregorianCalendar.getInstance().getTime();
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(calendar.HOUR,1);
+            return new GregorianCalendar(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH),calendar.get(Calendar.HOUR),calendar.get(Calendar.MINUTE));
 
+        }
+
+        String nextDate= rs.getString(1);
         GregorianCalendar nextDelS =stringToGregCal(nextDate);
         return  nextDelS;
 
@@ -446,6 +455,16 @@ public class DAOClass implements DAOInterface {
 
     public void changeUrl(String ip){
         this.DB_URL= "jdbc:mysql://" + ip + "/user";
+    }
+
+    public Boolean testNet() throws SQLException
+    {
+        this.openConn();
+        String sql = "/* ping */ SELECT 1";
+        ResultSet rs = this.stmt.executeQuery(sql);
+        System.out.println("query executed");
+        if(rs.first()) return true;
+        else return false;
     }
 
     private void openConn() throws SQLException

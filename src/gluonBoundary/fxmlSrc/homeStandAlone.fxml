@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
 <VBox alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gluonBoundary.K_home">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
@@ -115,11 +127,14 @@
         </rowConstraints>
          <children>
             <Label text="Host" />
-            <Label text="Port" GridPane.rowIndex="1" />
             <Button fx:id="defIp" mnemonicParsing="false" onAction="#restoreIp" text="Default" GridPane.columnIndex="3" />
-            <Button fx:id="defPort" mnemonicParsing="false" onAction="#restorePort" text="Default" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <TextField fx:id="ipField" promptText="DB IP" text="localHost" GridPane.columnIndex="2" />
-            <TextField fx:id="portField" promptText="DB Port" text="3306" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="outLabel" prefHeight="16.0" prefWidth="358.0" text="No op" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ImageView fx:id="testIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../ImageFile/Icon/reject.png" />
+               </image>
+            </ImageView>
          </children>
       </GridPane>
    </children>
