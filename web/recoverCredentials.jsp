@@ -98,35 +98,37 @@
                 Recupero Credenziali</h1>
             <h3 class="mbr-section-subtitle align-left mbr-light pb-3 mbr-fonts-style display-2">Inserisci le risposte per ottenere nickname e password</h3>
 
-
-            <p class="mbr-text pb-3 mbr-fonts-style display-5"> DOMANDE DI RECUPERO
-                <br>
             <form name="register_form" method="POST">
-                What is the name of your favorite pet?
-                <input name="question1" type="text" style="margin-bottom: 5px;">
-                <br>
-                Who is your favorite actor, musician, or artist?  <input name="question2" type="text" style="margin-bottom: 5px;">
-                <br>
-                What is your favorite movie? <input name="question3" type="text" style="margin-bottom: 5px;">
-                <br>
-                What is the name of your first school? <input name="question4" type="text">
-                <br>
-                <br>
-                Nickname <input name="nickname" type="text">
-                <br>
-                New Password: <input name="newPW" type="password" style="text-align:right;margin-bottom: 1px;margin-top: 1px;">
-                <br>
-                Confirm Password: <input name="confirmPW" type="password" style="/*! text-align:right; */margin-top: 1px;margin-bottom: 1px;">
-                <br>
+                <p class="mbr-text pb-3 mbr-fonts-style display-5">
+                    DOMANDE DI RECUPERO
+                    <br>
+                    What is the name of your favorite pet?
+                    <input name="question1" type="text" style="margin-bottom: 5px;">
+                    <br>
+                    Who is your favorite actor, musician, or artist?  <input name="question2" type="text" style="margin-bottom: 5px;">
+                    <br>
+                    What is your favorite movie? <input name="question3" type="text" style="margin-bottom: 5px;">
+                    <br>
+                    What is the name of your first school? <input name="question4" type="text">
+                    <br>
+                    <br>
+                    Nickname <input name="nickname" type="text">
+                    <br>
+                    New Password: <input name="newPW" type="password" style="margin-bottom: 1px;margin-top: 1px;">
+                    <br>
+                    Confirm Password: <input name="confirmPW" type="password" style="margin-top: 1px;margin-bottom: 1px;">
+                    <br>
 
-                <input type="submit" name="recoverDataSubmit" value="Invia richiesta" class="btn btn-info" style="margin-left: 0px;margin-top: 2rem;margin-right: 0px;margin-bottom: 1rem;padding-left: 2rem;padding-right: 2rem;padding-top: 0.1rem;padding-bottom: 0.1rem;">
+                    <input type="submit" name="recoverDataSubmit" value="Invia richiesta" class="btn btn-info" style="margin-left: 0px;margin-top: 2rem;margin-right: 0px;margin-bottom: 1rem;padding-left: 2rem;padding-right: 2rem;padding-top: 0.1rem;padding-bottom: 0.1rem;">
+                </p>
+
             </form>
 
             <br>
             L'operazione e': </p> <p style="color:white; background-color:<%=colRes%>;"><%=result%></p>
             <br>
-            <form>
-                <p>
+            <form name="backHome_form" method="POST">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5">
                     <input type="submit" name="backHomeSubmit" value="Torna alla home" class="btn btn-info" style="margin-left: 0px;margin-top: 1rem;margin-right: 0px;margin-bottom: 0px;padding-left: 2rem;padding-right: 2rem;padding-top: 0.1rem;padding-bottom: 0.1rem;">
                 </p>
             </form>

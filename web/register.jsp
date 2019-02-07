@@ -5,6 +5,9 @@
 <jsp:setProperty name="register_Bean" property="*"/>
 
 <%
+    // EASTER EGG:  il calendario è limitato all'indietro alla data
+    //              della persona attualmente più vecchia al mondo
+
     String result = "";
 
     if (request.getParameter("registerSubmit") != null){
@@ -119,7 +122,7 @@
                 <p class="mbr-text pb-3 mbr-fonts-style display-5"> Email: <input name="email" type="text" style="text-align-all:right">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Data Di Nascita: <input name="bday" type="date" style="text-align-all:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Data Di Nascita: <input name="bday" type="date" min="1903-01-02" style="text-align-all:right">
                 </p>
 
                 <p class="mbr-text pb-3 mbr-fonts-style display-5"> Sesso: <input name="gender" type="text" style="text-align:right">

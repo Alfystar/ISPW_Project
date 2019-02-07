@@ -38,10 +38,6 @@
 <link type="text/css" id="dark-mode" rel="stylesheet" href="">
 <style type="text/css" id="dark-mode-custom-style"></style>
 <head>
-    <link type="text/css" id="dark-mode" rel="stylesheet" href="">
-    <style type="text/css" id="dark-mode-custom-style"></style>
-    <link type="text/css" id="dark-mode" rel="stylesheet" href="">
-    <style type="text/css" id="dark-mode-custom-style"></style>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <!-- Site made with Mobirise Website Builder v4.9.1, https://mobirise.com -->
     <meta charset="UTF-8">
@@ -75,9 +71,6 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
             <div class="hamburger">
                 <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
             </div>
         </button>
         <div class="menu-logo">
@@ -103,7 +96,7 @@
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobirise.info/z">best html templates</a></section><section class="header9 cid-rgnE9yb8VN mbr-parallax-background" id="header9-6" style="z-index: 0; background-image: none; position: relative;">
+<section class="engine"><a href="https://mobirise.info/z">best html templates</a></section><section class="header9 cid-rgnE9yb8VN mbr-parallax-background" id="header9-6" style="z-index: 0; background-image: url(&quot;http://localhost:8080/unnamed/assets/images/mbr-1-1920x1280.jpg&quot;); position: relative;">
 
     <div class="container">
         <div class="media-container-column mbr-white col-lg-8 col-md-10">
