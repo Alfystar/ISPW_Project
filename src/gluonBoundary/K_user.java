@@ -5,7 +5,7 @@ import bean.RestrictUserInfo;
 import control.FacadeSubSystem;
 import entity.*;
 import exceptions.UserNotExistEx;
-import gluonBoundary.utilityClass.BeanLogUs;
+import gluonBoundary.utilityClass.Bean2User;
 import interfaces.RoleStatus;
 import interfaces.SystemInterface;
 import interfaces.UserProfileService;
@@ -22,7 +22,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 public class K_user implements Initializable {
@@ -34,7 +33,7 @@ public class K_user implements Initializable {
     private RoleStatus rolStatInt = new FacadeSubSystem();
     private UserProfileService usInt = new FacadeSubSystem();
 
-    private BeanLogUs bean;
+    private Bean2User bean;
     private BasicUserInfo basic;
     private RestrictUserInfo restrict;
     private Roles roles;
@@ -161,7 +160,7 @@ public class K_user implements Initializable {
     }
 
 
-    public void setBean(BeanLogUs bean)
+    public void setBean(Bean2User bean)
     {
         this.bean=bean;
 

@@ -4,7 +4,7 @@ import control.FacadeSubSystem;
 import entity.Nickname;
 import entity.PW;
 import exceptions.UserNotExistEx;
-import gluonBoundary.utilityClass.BeanLogUs;
+import gluonBoundary.utilityClass.Bean2User;
 import interfaces.SystemInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -65,11 +65,10 @@ public class K_login implements Initializable {
             return;
         }
 
-        //todo: should be a validation, but for now...
 
         //Parent userParent = FXMLLoader.load(getClass().getResource("fxmlSrc/userPane.fxml"));
 
-        BeanLogUs bean = new BeanLogUs();
+        Bean2User bean = new Bean2User();
         bean.setNick(new Nickname(nickField.getText()));
 
         Parent userParent=null;

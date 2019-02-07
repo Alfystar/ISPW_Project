@@ -19,6 +19,6 @@ public interface SystemInterface {
 
     void forgottenPassword(Nickname nk, Questions answers, PW newPW) throws SQLException, ClassNotFoundException, NickNotDBEx, UserNotExistEx;
 
-
+    //todo comandi per cambiare avatar
 
 }

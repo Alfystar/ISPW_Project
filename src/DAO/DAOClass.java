@@ -435,7 +435,7 @@ public class DAOClass implements DAOInterface {
 
     }
 
-    public GregorianCalendar stringToGregCal(String s){
+    private GregorianCalendar stringToGregCal(String s){
         String[] splitDate = s.split("-");
         int year = Integer.parseInt(splitDate[0]);
         int month = Integer.parseInt(splitDate[1]);
@@ -445,7 +445,7 @@ public class DAOClass implements DAOInterface {
 
     }
 
-    public String gregCalToString(GregorianCalendar gc){
+    private String gregCalToString(GregorianCalendar gc){
         int anno = gc.get(GregorianCalendar.YEAR);
         int mese = gc.get(GregorianCalendar.MONTH) + 1;
         int giorno = gc.get(GregorianCalendar.DATE);
