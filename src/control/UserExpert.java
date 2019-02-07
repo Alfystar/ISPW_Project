@@ -111,6 +111,28 @@ public class UserExpert {
         }
     }
 
+    public void createUser(UserInfoRegister userInfo) throws WrongParameters {
+        Utente user= this.daoFace.createUser(userInfo);
+        coda.add(user);
+    }
+
+    public void forgottenPassword(Nickname nick, Questions answers, PW newPw) throws UserNotExistEx {
+        Utente user = this.getUser(nick);
+        Questions correctAnsw = user.getQuestions();
+        if (correctAnsw.checkAnswers(answers, 4)) {
+            user.changePw(user.getPw(), newPw);
+            this.storeUser(user);
+        }else {
+            System.out.println("Le risposte fornite sono sbagliate");
+        }
+    }
+
+    public void changeUserStatus(Nickname nick, UserStatus newUsStat) throws UserNotExistEx {
+        Utente user = this.getUser(nick);
+        user.setStatus(newUsStat);
+        this.storeUser(user);
+    }
+
     private Utente loadUserDB(Nickname nk) throws NickNotDBEx, SQLException {
         try {
             Utente us = daoFace.loadFromDB(nk);
@@ -153,28 +175,6 @@ public class UserExpert {
     private Boolean isTCExistRam(TaxCode tc) throws TCNotExistQEx{
         if(coda.find(tc) == null) return FALSE;
         else return TRUE;
-    }
-
-    public void createUser(UserInfoRegister userInfo) throws WrongParameters {
-        Utente user= this.daoFace.createUser(userInfo);
-        coda.add(user);
-    }
-
-    public void forgottenPassword(Nickname nick, Questions answers, PW newPw) throws UserNotExistEx {
-        Utente user = this.getUser(nick);
-        Questions correctAnsw = user.getQuestions();
-        if (correctAnsw.checkAnswers(answers, 4)) {
-            user.changePw(user.getPw(), newPw);
-            this.storeUser(user);
-        }else {
-            System.out.println("Le risposte fornite sono sbagliate");
-        }
-    }
-
-    public void changeUserStatus(Nickname nick, UserStatus newUsStat) throws UserNotExistEx {
-        Utente user = this.getUser(nick);
-        user.setStatus(newUsStat);
-        this.storeUser(user);
     }
 
     private void addUserQueue(Utente user){
