@@ -9,12 +9,16 @@
 
     if (request.getParameter("registerSubmit") != null){
 
-        if (register_Bean.validateRegister()){
+        result = register_Bean.validateRegister();
+
+        if (result.equals("Successo")){
+
+            String nickN = register_Bean.getNickname();
 %>
-            <jsp:forward page="userpage.jsp"/>
+            <jsp:forward page="userpage.jsp">
+                <jsp:param name="nkSaved" value="<%=nickN%>"/>
+            </jsp:forward>
 <%
-        } else {
-            result = "Register failed, cause"; // +... todo: aggiungere il print di eccezioni
         }
     }
 %>

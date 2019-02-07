@@ -2,8 +2,6 @@ package externalBean;
 
 import externalControl.RegisterControl;
 
-import static java.lang.Boolean.FALSE;
-
 public class RegisterBean {
 
     private String firstname;
@@ -112,7 +110,7 @@ public class RegisterBean {
         return this.question4;
     }
 
-    public Boolean validateRegister() {
+    public String validateRegister() {
 
         if (this.firstname.equals("") || this.lastname.equals("") ||
             this.taxcode.equals("") || this.nickname.equals("") ||
@@ -121,7 +119,7 @@ public class RegisterBean {
             this.question1.equals("") || this.question2.equals("") ||
             this.question3.equals("") || this.question4.equals("") )
         {
-            return FALSE;
+            return "Inserire tutti i campi (obbligatori)";
         }
         RegisterControl controller = RegisterControl.getInstance();
 
