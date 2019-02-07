@@ -15,10 +15,11 @@
         </jsp:forward>
 <%
     } else if (request.getParameter("cancelMyself") != null){
-        userPage_Bean.cancelUser();
+        if(userPage_Bean.cancelUser(nickN)){ //todo: migliorarne la logica con eccezioni
 %>
-        <jsp:forward page="index.html"/>
+            <jsp:forward page="index.html"/>
 <%
+        }
     }
 %>
 
@@ -96,27 +97,27 @@
         <div class="media-container-column mbr-white col-lg-8 col-md-10">
 
             <h1 class="mbr-section-title align-left mbr-bold pb-3 mbr-fonts-style display-1">
-                Benvenuto <%=nome%> </h1>
+                Benvenuto <%=valueData[0]%> </h1>
 
             <h3 class="mbr-section-subtitle align-left mbr-light pb-3 mbr-fonts-style display-2">
                 Da qui potrai gestire i tuoi dati, sia personali che di piattaforma.</h3>
 
             <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                Nome: <%=nome%> Cognome: <%=cognome%>
+                Nome: <%=valueData[0]%> Cognome: <%=valueData[1]%>
                 <br>
-                CF: <%=codFis%> Nickname: <%=nick%>
+                CF: <%=valueData[2]%> Nickname: <%=valueData[3]%>
                 <br>
-                Email: <%=email%> BirthDay: <%=birthday%>
+                Email: <%=valueData[4]%> BirthDay: <%=valueData[5]%>
                 <br>
-                Gender: <%=genere%> Social Status: <%=socialStatus%>
+                Gender: <%=valueData[6]%> Social Status: <%=valueData[7]%>
                 <br>
                 Ruoli:
                 <br>
-                Is Tenant?: <%=tenant%> IsRenter?: <%=renter%>
+                Is Tenant?: <%=valueData[8]%> IsRenter?: <%=valueData[9]%>
                 <br>
-                Phone Number: <%=phoneNum%> Indirizzo: <%=address%>
+                Phone Number: <%=valueData[10]%> Indirizzo: <%=valueData[11]%>
                 <br>
-                Luogo di Nascita: <%=birthPlace%> Nazionalita': <%=nation%>
+                Luogo di Nascita: <%=valueData[12]%> Nazionalita': <%=valueData[13]%>
             </p>
 
             <p class="mbr-text pb-3 mbr-fonts-style display-5">
