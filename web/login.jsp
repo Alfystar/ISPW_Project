@@ -136,7 +136,7 @@
                     <input name="loginSubmit" type="submit" id="loginSubmit" value="Login" class="btn btn-primary-outline" style="margin-left: 0px;margin-top: 1.2rem;">
             </form>
             <br>
-            <form name="recovery_form" method="POST">
+            <form name="recovery_form"  method="POST">
                 <input name="recoverSubmit" type="submit" id="recoverSubmit" value="Credenziali perse?" class="btn btn-secondary-outline" style="margin-left: 0px;margin-top: 2rem;padding-left: 1rem;padding-right: 1rem;padding-bottom: 0.1rem;padding-top: 0.1rem;margin-right: 0px;">
                 </p>
             </form>
