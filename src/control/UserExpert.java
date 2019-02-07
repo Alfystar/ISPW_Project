@@ -1,7 +1,6 @@
 package control;
 
 import DAO.DAOClass;
-import DAO.DAOMock;
 import bean.UserInfoRegister;
 import entity.*;
 import exceptions.*;

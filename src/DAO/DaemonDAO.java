@@ -19,7 +19,6 @@ public class DaemonDAO implements Runnable {
     private DaemonDAO(){
         try{
             this.dao= new DAOClass();
-            System.out.println("Daemon avviato automatico, che ROBA RAGA!!!");
             new Thread(this).start();
 
         }catch (ClassNotFoundException e){

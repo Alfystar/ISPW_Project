@@ -27,10 +27,11 @@ public class StandAloneMain extends Application {
     public static void main(String[] args) throws Exception{
 
         //todo Inserire inizializzazione e tread vari
-        DAOClass dao= new DAOClass("196.254.224.65");
+        DAOClass dao= new DAOClass("169.254.224.65");
         DaemonDAO daemonDAO = DaemonDAO.getInstance();
 
         launch(args);
+        System.exit(0);
     }
 
 }

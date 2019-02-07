@@ -1,5 +1,6 @@
 package externalBean;
 
+import entity.Nickname;
 import externalControl.ChangeDataControl;
 
 import static java.lang.Boolean.FALSE;
@@ -7,7 +8,6 @@ import static java.lang.Boolean.FALSE;
 public class ChangeDataBean {
     // todo:decidere quali dati lasciare (in accordo con ChangeNotAnagraphicData)
     private String email;
-    private String gender;
     private String tenant;
     private String renter;
     private String socialStatus;
@@ -15,13 +15,13 @@ public class ChangeDataBean {
     private String address;
     private String birthPlace;
     private String nationality;
+    private String oldPW;
     private String newPW;
     private String confirmPW;
 
     public ChangeDataBean() {
 
         this.email = "";
-        this.gender = "";
         this.tenant = "";
         this.renter = "";
         this.socialStatus = "";
@@ -29,6 +29,7 @@ public class ChangeDataBean {
         this.address = "";
         this.birthPlace = "";
         this.nationality = "";
+        this.oldPW = "";
         this.newPW = "";
         this.confirmPW = "";
     }
@@ -38,13 +39,6 @@ public class ChangeDataBean {
     }
     public String getEmail() {
         return this.email;
-    }
-
-    public void setGender(String gen) {
-        this.gender = gen;
-    }
-    public String getGender() {
-        return this.gender;
     }
 
     public void setTenant(String ten) {
@@ -92,12 +86,15 @@ public class ChangeDataBean {
         return this.nationality;
     }
 
-    public void setNewPW(String nPW) {
-        this.newPW = nPW;
+    public void setOldPW(String oPW) {
+        this.oldPW = oPW;
     }
-    public String getNewPW() {
-        return this.newPW;
+    public String getOldPW() {
+        return this.oldPW;
     }
+
+    public void setNewPW(String nPW) { this.newPW = nPW; }
+    public String getNewPW() { return this.newPW; }
 
     public void setConfirmPW(String cPW) {
         this.confirmPW = cPW;
@@ -106,14 +103,19 @@ public class ChangeDataBean {
         return this.confirmPW;
     }
 
-    public Boolean validateChange() {
+    public Boolean validateChange(String nick) {
+
         if(!this.newPW.equals(this.confirmPW)){
             return FALSE;
         }
-
         ChangeDataControl controller = ChangeDataControl.getInstance();
 
-        return controller.changeData();
+        Nickname nickN = new Nickname(nick);
+
+        return controller.changeData(nickN, this.email, this.tenant,
+                                    this.renter, this.socialStatus, this.phoneNumber,
+                                    this.address, this.birthPlace, this.nationality,
+                                    this.oldPW, this.newPW);
     }
 
 

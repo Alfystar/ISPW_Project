@@ -1,3 +1,32 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<jsp:useBean id="changeData_Bean" scope="request" class="externalBean.ChangeDataBean"/>
+
+<jsp:setProperty name="changeData_Bean" property="*"/>
+
+<%
+    String nickN = request.getParameter("nkSaved");
+    String color = "white";
+    String result = "";
+
+    if (request.getParameter("changeDataSubmit") != null){
+
+        if (changeData_Bean.validateChange(nickN)){
+            color = "blue";
+            result = "Successo";
+        } else {
+            color = "red";
+            result = "Login failed, cause"; // +... todo: aggiungere il print di eccezioni
+        }
+    } else if (request.getParameter("backToUserSubmit") != null){
+%>
+        <jsp:forward page="userpage.jsp">
+            <jsp:param name="nkSaved" value="<%=nickN%>"/>
+        </jsp:forward>
+<%
+    }
+%>
+
 <!DOCTYPE html>
 <html class="desktop mbr-site-loaded"><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><head><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style><link type="text/css" id="dark-mode" rel="stylesheet" href=""><style type="text/css" id="dark-mode-custom-style"></style>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -75,7 +104,12 @@
 
             <h3 class="mbr-section-subtitle align-left mbr-light pb-3 mbr-fonts-style display-2">Riempi i campi da modificare e conferma in fondo.</h3>
 
+            <p style="color:white; background-color:<%=color%>;"><%=result%></p>
+
             <p class="mbr-text pb-3 mbr-fonts-style display-5">
+
+            <form><input type="submit" name="backToUserSubmit" value="Torna indietro" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 1rem;margin-right: 0px;margin-bottom: 0px;padding-right: 2rem;padding-left: 2rem;padding-bottom: 0.1rem;padding-top: 0.1rem;"></form>
+
             <form>
                 Email: <input name="email" type="text" style="text-align:right">
                 <br>
@@ -95,12 +129,15 @@
                 <br>
                 Nazionalita': <input name="nationality" type="text" style="text-align:right">
                 <br>
+                Per cambiare la password, inserire quella vecchia e la nuova
+                <br>
+                Old Password: <input name="oldPW" type="password" style="text-align:right">
+                <br>
                 New Password: <input name="newPW" type="password" style="text-align:right">
                 <br>
                 Confirm Password: <input name="confirmPW" type="password" style="text-align:right">
                 <br>
-
-                <input type="submit" name="changeDataSubmit" value="Conferma Dati" class="btn btn-info" style="margin-left: 0px;margin-top: 1rem;margin-right: 0px;margin-bottom: 0px;padding-right: 2rem;padding-left: 2rem;padding-bottom: 0.1rem;padding-top: 0.1rem;">
+                <input type="submit" name="changeDataSubmit" value="Conferma Dati" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 1rem;margin-right: 0px;margin-bottom: 0px;padding-right: 2rem;padding-left: 2rem;padding-bottom: 0.1rem;padding-top: 0.1rem;">
             </form>
             </p>
 

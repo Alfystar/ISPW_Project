@@ -1,7 +1,8 @@
 package control;
 
 import entity.*;
-import exceptions.*;
+import exceptions.NickNotQEx;
+import exceptions.TCNotExistQEx;
 
 import java.util.GregorianCalendar;
 import java.util.LinkedList;

@@ -1,5 +1,10 @@
 package gluonBoundary;
 
+import control.FacadeSubSystem;
+import entity.Nickname;
+import entity.PW;
+import exceptions.UserNotExistEx;
+import interfaces.SystemInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,9 +25,15 @@ public class K_login implements Initializable {
 
     /*******************************************************************/
     /**                       Class Attribute                         **/
-
+    SystemInterface sysInt;
 
     /*******************************************************************/
+
+    public K_login ()
+    {
+        sysInt = new FacadeSubSystem();
+    }
+
 
     //=================================================================
     //Top object
@@ -45,6 +56,14 @@ public class K_login implements Initializable {
     public void loginPush(ActionEvent event) throws IOException {
         System.out.println(nickField.getText());
         System.out.println(pwField.getText());
+        try {
+            sysInt.login(new Nickname(nickField.getText()),new PW(pwField.getText()));
+        }catch (UserNotExistEx e)
+        {
+            System.out.println("Utente non presente RIPROVARE");
+            return;
+        }
+
         //todo: should be a validation, but for now...
 
         Parent userParent = FXMLLoader.load(getClass().getResource("fxmlSrc/userPane.fxml"));
