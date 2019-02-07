@@ -4,6 +4,7 @@ import bean.UserInfoRegister;
 import com.sun.javafx.css.StyleCacheEntry;
 import control.FacadeSubSystem;
 import entity.*;
+import exceptions.UserNotExistEx;
 import exceptions.WrongParameters;
 import gluonBoundary.utilityClass.Bean2User;
 import gluonBoundary.utilityClass.DigitalIcon;
@@ -118,6 +119,14 @@ public class K_registration implements Initializable {
         }
 
         //todo comandi per cambiare avatar
+        try {
+            sysInt.setAvatar(new Nickname(nick.getText()), this.radioSelect() );
+            System.out.println("Avatar impostato a "+ this.radioSelect());
+        }catch (UserNotExistEx e)
+        {
+            e.printStackTrace();
+            return;
+        }
 
 
         //Parent userParent = FXMLLoader.load(getClass().getResource("fxmlSrc/userPane.fxml"));
@@ -151,16 +160,20 @@ public class K_registration implements Initializable {
 
     @FXML
     public void avatarChange(ActionEvent event) {
+        System.out.println("radio selec: "+this.radioSelect());
+        iconAvatar.setMyIcon(this.radioSelect());
+        avatar.setImage(iconAvatar.getMyIcon());
+        outLabel.setText(iconAvatar.getAvatarName());
+    }
+
+    private int radioSelect()
+    {
         RadioButton[] radioNode={av1,av2,av3,av4,av5,av6};
         for (int i = 0; i < radioNode.length; i++) {
-            if(radioNode[i].isArmed())
-            {
-                iconAvatar.setMyIcon(i);
-                avatar.setImage(iconAvatar.getMyIcon());
-                outLabel.setText(iconAvatar.getAvatarName());
-                break;
-            }
+            if(radioNode[i].isSelected()) return i;
         }
+
+        return 0;
     }
 
     @FXML
