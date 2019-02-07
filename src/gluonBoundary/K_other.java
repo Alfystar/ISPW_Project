@@ -102,8 +102,8 @@ public class K_other implements Initializable {
         //to restore white shape
         birthday.getEditor().setStyle("-fx-opacity: 1");
 
-        usStat.getItems().addAll("Active","inActive","Cancelled","Banned");
-        usStat.setValue("Active");
+        usStat.getItems().addAll("ACTIVE","INACTIVE","CANCELLED","BANNED");
+        usStat.setValue("ACTIVE");
     }
 
     @FXML
@@ -224,6 +224,8 @@ public class K_other implements Initializable {
     private void loadStatus(){
         try {
             status= rolStatInt.getStatus(new Nickname(nickWork.getText()));
+            usStat.setValue(status.name());
+
         }catch (UserNotExistEx ex){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
         }

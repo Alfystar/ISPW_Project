@@ -213,8 +213,6 @@ public class K_admin implements Initializable {
     private void loadStatus(){
         try {
             status= rolStatInt.getStatus(new Nickname(nickWork.getText()));
-            System.out.println(status.toString());
-            System.out.println(status.name());
             usStat.setValue(status.name());
 
         }catch (UserNotExistEx ex){
