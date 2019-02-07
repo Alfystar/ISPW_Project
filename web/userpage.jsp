@@ -7,6 +7,7 @@
 <%
     String nickN = request.getParameter("nkSaved");
     String[] valueData = userPage_Bean.getStringUsData(nickN);
+    String result = "";
 
     if (request.getParameter("changeData") != null){
 %>
@@ -15,7 +16,10 @@
         </jsp:forward>
 <%
     } else if (request.getParameter("cancelMyself") != null){
-        if(userPage_Bean.cancelUser(nickN)){ //todo: migliorarne la logica con eccezioni
+
+        result = userPage_Bean.cancelUser(nickN);
+
+        if(result.equals("Successo")){
 %>
             <jsp:forward page="index.html"/>
 <%
@@ -125,7 +129,10 @@
                 <input type="submit" name="changeData" value="Cambia Dati" class="btn btn-info" style="margin-left: 0px;margin-top: 1.rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
             </form>
             <form>
+                <br>
                 <input type="submit" name="cancelMyself" value="Elimina Account" class="btn btn-warning-outline" style="margin-left: 0px;margin-top: 1.rem;margin-right: 0px;padding-left: 1rem;padding-right: 1rem;padding-top: 0.2rem;padding-bottom: 0.2rem;">
+                <br>
+                Result: <%=result%>
             </form>
             </p>
         </div>

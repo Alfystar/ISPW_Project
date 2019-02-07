@@ -2,8 +2,6 @@ package externalBean;
 
 import externalControl.LoginControl;
 
-import static java.lang.Boolean.FALSE;
-
 public class LoginBean {
 
     private String nickname;
@@ -30,10 +28,10 @@ public class LoginBean {
         return this.password;
     }
 
-    public Boolean validateLogin() {
+    public String validateLogin() {
 
         if (this.nickname.equals("") || this.password.equals("")) {
-            return FALSE;
+            return "Inserire entrambi i campi";
         }
 
         LoginControl controller = LoginControl.getInstance();

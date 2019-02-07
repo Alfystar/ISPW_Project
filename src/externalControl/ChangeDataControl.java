@@ -1,18 +1,16 @@
 package externalControl;
 
+import control.FacadeSubSystem;
 import entity.*;
 import interfaces.RoleStatus;
 import interfaces.SystemInterface;
-
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 
 public class ChangeDataControl {
 
     private static ChangeDataControl instance;
 
-    private SystemInterface sysInt; // = new Facade();
-    private RoleStatus rolInt;
+    private SystemInterface sysInt = new FacadeSubSystem();
+    private RoleStatus rolInt = new FacadeSubSystem();
 
     public static ChangeDataControl getInstance() {
         if (instance == null)
@@ -23,7 +21,7 @@ public class ChangeDataControl {
     private ChangeDataControl() {
     }
 
-    public Boolean changeData(Nickname nick, String email, String renter,
+    public String changeData(Nickname nick, String email, String renter,
                               String tenant, String socialStatus,
                               String phoneNumber, String address, String birthPlace,
                               String nationality, String oldPW, String newPW) {
@@ -48,10 +46,10 @@ public class ChangeDataControl {
 
             if (!newPW.equals("")) sysInt.changePassword(nick, new PW(newPW), new PW(oldPW));
 
-            return TRUE;
+            return "Successo";
         }
         catch(Exception e){
-            return FALSE;
+            return e.getMessage();
         }
     }
 }

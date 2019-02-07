@@ -2,24 +2,21 @@ package externalControl;
 
 import bean.BasicUserInfo;
 import bean.RestrictUserInfo;
+import control.FacadeSubSystem;
 import entity.Nickname;
 import entity.Roles;
-import exceptions.UserNotExistEx;
 import interfaces.RoleStatus;
 import interfaces.UserProfileService;
 
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
-
 public class UserPageControl {
 
     private static UserPageControl instance;
 
-    private UserProfileService usProfInt; // = new Facade();
-    private RoleStatus rolInt;
+    private UserProfileService usProfInt = new FacadeSubSystem();
+    private RoleStatus rolInt = new FacadeSubSystem();
 
     public static UserPageControl getInstance() {
         if (instance == null)
@@ -60,20 +57,20 @@ public class UserPageControl {
 
             return resStr;
 
-        } catch(UserNotExistEx usEx){
+        } catch(Exception e){
 
             String[] array = new String[14];
-            Arrays.fill(array, "ERROR");
+            Arrays.fill(array, e.getMessage());
             return array;
         }
     }
 
-    public Boolean cancelUser(Nickname nick){
+    public String cancelUser(Nickname nick){
         try{
             usProfInt.cancelUser(nick);
-            return TRUE;
-        } catch (Exception e){ //todo: servono più eccezioni
-            return FALSE;
+            return "Successo";
+        } catch (Exception e){
+            return e.getMessage();
         }
     }
 
@@ -85,6 +82,5 @@ public class UserPageControl {
         String s = anno + "-" + mese + "-" + giorno;
         return s;
     }
-
 
 }

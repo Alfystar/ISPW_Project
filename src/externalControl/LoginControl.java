@@ -1,17 +1,15 @@
 package externalControl;
 
+import control.FacadeSubSystem;
 import entity.Nickname;
 import entity.PW;
 import interfaces.SystemInterface;
-
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 
 public class LoginControl {
 
     private static LoginControl instance;
 
-    private SystemInterface sysInt; // = new Facade();
+    private SystemInterface sysInt = new FacadeSubSystem();
 
     public static LoginControl getInstance() {
         if (instance == null)
@@ -22,13 +20,13 @@ public class LoginControl {
     private LoginControl() {
     }
 
-    public Boolean login(String nickname, String password) {
+    public String login(String nickname, String password) {
         try {
             sysInt.login(new Nickname(nickname), new PW(password));
-            return TRUE;
+            return "Successo";
         }
         catch (Exception e){
-            return FALSE;
+            return e.getMessage();
         }
     }
 

@@ -1,20 +1,16 @@
 package externalControl;
 
 import bean.UserInfoRegister;
+import control.FacadeSubSystem;
 import entity.*;
 import interfaces.UserProfileService;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.GregorianCalendar;
-
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 
 public class RegisterControl {
     private static RegisterControl instance;
 
-    private UserProfileService UsProfInt; // = new Facade();
+    private UserProfileService usProfInt = new FacadeSubSystem();
 
     public static RegisterControl getInstance() {
         if (instance == null)
@@ -25,7 +21,7 @@ public class RegisterControl {
     private RegisterControl() {
     }
 
-    public Boolean register( String firstname, String lastname, String taxcode,
+    public String register( String firstname, String lastname, String taxcode,
                              String nickname, String email, String bday,
                              String gender, String password, String question1,
                              String question2, String question3, String question4) {
@@ -36,14 +32,15 @@ public class RegisterControl {
                                                             new TaxCode(taxcode), new Nickname(nickname),
                                                             new Email(email), gCal, Gender.valueOf(gender.toUpperCase()),
                                                             new Questions(answers), new PW(password));
-            UsProfInt.createUser(new Nickname(nickname), usInfoReg);
-            return TRUE;
+            usProfInt.createUser(new Nickname(nickname), usInfoReg);
+            return "Successo";
         }
         catch(Exception e){
-            return FALSE;
+            return e.getMessage();
         }
 
-        }
+    }
+
     private GregorianCalendar stringToGregCal(String s){
         String[] splitDate = s.split("-");
         int year = Integer.parseInt(splitDate[0]);
@@ -51,9 +48,6 @@ public class RegisterControl {
         int days = Integer.parseInt(splitDate[2]);
         GregorianCalendar gc = new GregorianCalendar(year, month-1, days);
         return gc;
-
-
     }
-
 
 }

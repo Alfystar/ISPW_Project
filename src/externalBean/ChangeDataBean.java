@@ -3,8 +3,6 @@ package externalBean;
 import entity.Nickname;
 import externalControl.ChangeDataControl;
 
-import static java.lang.Boolean.FALSE;
-
 public class ChangeDataBean {
     // todo:decidere quali dati lasciare (in accordo con ChangeNotAnagraphicData)
     private String email;
@@ -103,10 +101,10 @@ public class ChangeDataBean {
         return this.confirmPW;
     }
 
-    public Boolean validateChange(String nick) {
+    public String validateChange(String nick) {
 
         if(!this.newPW.equals(this.confirmPW)){
-            return FALSE;
+            return "Nuova password e conferma diverse";
         }
         ChangeDataControl controller = ChangeDataControl.getInstance();
 

@@ -11,13 +11,11 @@
 
     if (request.getParameter("changeDataSubmit") != null){
 
-        if (changeData_Bean.validateChange(nickN)){
-            color = "blue";
-            result = "Successo";
-        } else {
-            color = "red";
-            result = "Login failed, cause"; // +... todo: aggiungere il print di eccezioni
-        }
+        result = changeData_Bean.validateChange(nickN);
+
+        if (result.equals("Successo")) color = "blue";
+        else color = "red";
+
     } else if (request.getParameter("backToUserSubmit") != null){
 %>
         <jsp:forward page="userpage.jsp">
