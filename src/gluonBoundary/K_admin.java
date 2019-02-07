@@ -8,7 +8,7 @@ import entity.Nickname;
 import entity.Roles;
 import entity.UserStatus;
 import exceptions.UserNotExistEx;
-import gluonBoundary.utilityClass.BeanLogUs;
+import gluonBoundary.utilityClass.Bean2User;
 import interfaces.RoleStatus;
 import interfaces.SystemInterface;
 import interfaces.UserProfileService;
