@@ -103,10 +103,10 @@ public class ChangeDataBean {
         return this.confirmPW;
     }
 
-    public Boolean validateChange(String nick) {
+    public String validateChange(String nick) {
 
         if(!this.newPW.equals(this.confirmPW)){
-            return FALSE;
+            return "Nuova password e conferma diverse";
         }
         ChangeDataControl controller = ChangeDataControl.getInstance();
 

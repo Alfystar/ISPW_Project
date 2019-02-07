@@ -11,12 +11,12 @@
 
     if (request.getParameter("changeDataSubmit") != null){
 
-        if (changeData_Bean.validateChange(nickN)){
+        result = changeData_Bean.validateChange(nickN);
+
+        if (result.equals("Successo")){
             color = "blue";
-            result = "Successo";
         } else {
             color = "red";
-            result = "Login failed, cause"; // +... todo: aggiungere il print di eccezioni
         }
     } else if (request.getParameter("backToUserSubmit") != null){
 %>
