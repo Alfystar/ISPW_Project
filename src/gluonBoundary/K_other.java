@@ -213,12 +213,11 @@ public class K_other implements Initializable {
         }catch (UserNotExistEx e){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
         }
-        if(roles.isTenant()) {
-            tenant.setSelected(true);
-        }
-        if(roles.isRenter()){
-            renter.setSelected(true);
-        }
+        if(roles.isTenant()) tenant.setSelected(true);
+        else tenant.setSelected(false);
+
+        if(roles.isRenter())renter.setSelected(true);
+        else renter.setSelected(false);
     }
 
     private void loadStatus(){
@@ -235,8 +234,8 @@ public class K_other implements Initializable {
         try{
             roles= rolStatInt.getRoles(new Nickname(nickWork.getText()));
             roles.setRenter();
-            System.out.println("il ruolo attuale è =" + roles);
-            renter.setSelected(true);
+            outLabel.setText("il ruolo attuale è =" + roles);
+            //renter.setSelected(true);
         }catch (UserNotExistEx ex){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
         }
@@ -246,8 +245,8 @@ public class K_other implements Initializable {
         try {
             roles= rolStatInt.getRoles(new Nickname(nickWork.getText()));
             roles.resetRenter();
-            System.out.println("il ruolo attuale è =" + roles);
-            renter.setSelected(false);
+            outLabel.setText("il ruolo attuale è =" + roles);
+            //renter.setSelected(false);
         }catch (UserNotExistEx ex){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
         }
@@ -257,8 +256,8 @@ public class K_other implements Initializable {
         try {
             roles= rolStatInt.getRoles(new Nickname(nickWork.getText()));
             roles.setTenant();
-            System.out.println("il ruolo attuale è =" + roles);
-            tenant.setSelected(true);
+            outLabel.setText("il ruolo attuale è =" + roles);
+            //tenant.setSelected(true);
         }catch (UserNotExistEx ex){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
         }
@@ -268,8 +267,8 @@ public class K_other implements Initializable {
         try {
             roles= rolStatInt.getRoles(new Nickname(nickWork.getText()));
             roles.resetTenant();
-            System.out.println("il ruolo attuale è =" + roles);
-            tenant.setSelected(false);
+            outLabel.setText("il ruolo attuale è =" + roles);
+            //tenant.setSelected(false);
         }catch (UserNotExistEx ex){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
         }

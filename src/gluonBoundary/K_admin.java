@@ -198,16 +198,16 @@ public class K_admin implements Initializable {
 
     private void loadRole(){
         try {
+            System.out.println("il nick letto è =" + nickWork.getText());
             roles= rolStatInt.getRoles(new Nickname(nickWork.getText()));
         }catch (UserNotExistEx e){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
         }
-        if(roles.isTenant()) {
-            tenant.setSelected(true);
-        }
-        if(roles.isRenter()){
-            renter.setSelected(true);
-        }
+        if(roles.isTenant()) tenant.setSelected(true);
+        else tenant.setSelected(false);
+
+        if(roles.isRenter())renter.setSelected(true);
+        else renter.setSelected(false);
     }
 
     private void loadStatus(){
