@@ -1,9 +1,6 @@
 package interfaces;
 
-import entity.ModifyDataString;
-import entity.Nickname;
-import entity.PW;
-import entity.Questions;
+import entity.*;
 import exceptions.NickNotDBEx;
 import exceptions.UserNotExistEx;
 
@@ -19,6 +16,9 @@ public interface SystemInterface {
 
     void forgottenPassword(Nickname nk, Questions answers, PW newPW) throws SQLException, ClassNotFoundException, NickNotDBEx, UserNotExistEx;
 
+    Avatar getAvatar(Nickname nk) throws UserNotExistEx;
+
+    void setAvatar(Nickname nk, int id) throws UserNotExistEx;
     //todo comandi per cambiare avatar
 
 }
