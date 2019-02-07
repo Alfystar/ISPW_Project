@@ -20,8 +20,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
@@ -189,6 +191,8 @@ public class K_user implements Initializable {
             woman.setSelected(true);
         }
         avatar.setImage(basic.getAvatar().getMyIcon());
+
+        // String date = birthday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         //todo capire come mettere birtday
         /*
     private GregorianCalendar birthday= new GregorianCalendar();
@@ -222,4 +226,6 @@ public class K_user implements Initializable {
         }
     }
 
+
+    //todo: inserire l'eliminazione volontaria del profilo! Deve attivare cancelUser!
 }

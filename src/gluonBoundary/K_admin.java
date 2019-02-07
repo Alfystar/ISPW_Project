@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class K_admin implements Initializable {
@@ -145,15 +146,38 @@ public class K_admin implements Initializable {
     @FXML
     public void banUser(ActionEvent actionEvent) {
         outLabel.setText("banUser");
+        banUs();
     }
 
     @FXML
     public void deBanUser(ActionEvent actionEvent) {
         outLabel.setText("deBanUser");
-
+        deBanUs();
     }
+
     @FXML
     public void destroyUser(ActionEvent actionEvent) {
+        outLabel.setText("destroyUser");
+        destroyUs();
+
+        TextField[] disableVector = {
+                nick, email, tc, socStat, name, surname,
+                cel, address, cityBirth, nat};
+
+        //information view sector setup
+        for (TextField e:disableVector) {    //struttura foreach in java
+            e.setText("ELIMINATO");
+        }
+
+        CheckBox[] butt = {tenant, renter};
+        for (CheckBox e:butt) {    //struttura foreach in java
+            e.setSelected(true);
+        }
+
+        man.setSelected(true);
+
+        usStat.setValue("CANCELLED");
+        //todo: scrivere il birthday
         outLabel.setText("destroyUser");
     }
 
@@ -215,6 +239,38 @@ public class K_admin implements Initializable {
             status= rolStatInt.getStatus(new Nickname(nickWork.getText()));
             usStat.setValue(status.name());
 
+        }catch (UserNotExistEx ex){
+            outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+        }
+    }
+
+    private void banUs(){
+        try {
+            rolStatInt.changeUserStatus(new Nickname(nickWork.getText()), UserStatus.BANNED);
+        }catch (UserNotExistEx ex){
+            outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+        }catch (SQLException se){
+            outLabel.setText("PROBLEMI CON IL DB");
+        }catch (ClassNotFoundException cex){
+            outLabel.setText("PROBLEMI CON IL DRIVER DEL DB");
+        }
+    }
+
+    private void deBanUs(){
+        try {
+            rolStatInt.changeUserStatus(new Nickname(nickWork.getText()), UserStatus.ACTIVE);
+        }catch (UserNotExistEx ex){
+            outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+        }catch (SQLException se){
+            outLabel.setText("PROBLEMI CON IL DB");
+        }catch (ClassNotFoundException cex){
+            outLabel.setText("PROBLEMI CON IL DRIVER DEL DB");
+        }
+    }
+
+    private void destroyUs(){
+        try {
+            usInt.deleteUser(new Nickname(nickWork.getText()));
         }catch (UserNotExistEx ex){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
         }
