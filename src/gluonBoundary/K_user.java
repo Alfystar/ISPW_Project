@@ -161,8 +161,6 @@ public class K_user implements Initializable {
     }
 
 
-    public void setBean(BeanLogUs bean) {
-
     public void setBean(Bean2User bean)
     {
         this.bean=bean;
