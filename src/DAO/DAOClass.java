@@ -137,7 +137,7 @@ public class DAOClass implements DAOInterface {
         //chiudo la connessione col DB
         this.closeConn();
         //creo un'istanza di utente con tutit i dati ottenuti
-        Utente us= new Utente(pubD, prD, pw, r, q);
+        Utente us= new Utente(pubD, prD, pw, r, userStatus, q);
         return us;
     }
 
@@ -435,7 +435,7 @@ public class DAOClass implements DAOInterface {
 
     }
 
-    public GregorianCalendar stringToGregCal(String s){
+    private GregorianCalendar stringToGregCal(String s){
         String[] splitDate = s.split("-");
         int year = Integer.parseInt(splitDate[0]);
         int month = Integer.parseInt(splitDate[1]);
@@ -445,7 +445,7 @@ public class DAOClass implements DAOInterface {
 
     }
 
-    public String gregCalToString(GregorianCalendar gc){
+    private String gregCalToString(GregorianCalendar gc){
         int anno = gc.get(GregorianCalendar.YEAR);
         int mese = gc.get(GregorianCalendar.MONTH) + 1;
         int giorno = gc.get(GregorianCalendar.DATE);
@@ -507,9 +507,9 @@ public class DAOClass implements DAOInterface {
          priD = new PrivateData(new SurfaceAddress("sadfg"), new SurfaceAddress("sdf"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
         Utente us2 = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions(new String[] {"a","b","c","d"}));
 
-         pubD = new PublicData(new Name("marta"), new Name("alf"), new TaxCode("lfmnadfh501x"), new Nickname("caggy") ,new Email("marta.caggiano@hotmail"), new GregorianCalendar(97,7,31), Gender.MAN);
+         pubD = new PublicData(new Name("marta"), new Name("caggiano"), new TaxCode("cggmrt98"), new Nickname("caggy") ,new Email("marta.caggiano@hotmail"), new GregorianCalendar(97,7,31), Gender.WOMAN);
          priD = new PrivateData(new SurfaceAddress("alatri"), new SurfaceAddress("alatri"), new Nationality("Italiana"), new PhoneNumber("3333071117"));
-        Utente us3 = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions(new String[] {"a","b","c","d"}));
+        Utente us3 = new Utente(pubD,priD,new PW("98765"),new Roles(true,true),new Questions(new String[] {"a","b","c","d"}));
 
          pubD = new PublicData(new Name("fil"), new Name("alf"), new TaxCode("aewdsac"), new Nickname("badr") ,new Email("rt@gmail.com"), new GregorianCalendar(97,7,31), Gender.MAN);
          priD = new PrivateData(new SurfaceAddress("roma qualcosa"), new SurfaceAddress("Roma"), new Nationality("Italiana"), new PhoneNumber("077152345678"));

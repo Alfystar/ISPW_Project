@@ -2,7 +2,7 @@ package gluonBoundary.utilityClass;
 
 import entity.Nickname;
 
-public class BeanLogUs {
+public class Bean2User {
     private Nickname nick;
 
     public Nickname getNick() {

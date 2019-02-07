@@ -21,7 +21,7 @@ public class UserInfoRegister {
         this.cf= new TaxCode(cf);
         this.nickname= new Nickname(nickname);
         this.email= new Email(email);
-        this.birthday.setGregorianChange(birthday.getGregorianChange());
+        this.birthday = birthday;
         this.gender= gender;
         this.answers= new Questions(answers);
         this.pw= new PW(pw);

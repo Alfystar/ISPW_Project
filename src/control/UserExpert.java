@@ -143,6 +143,7 @@ public class UserExpert {
             throw new NickNotDBEx("Nickname not in DB");
         }
     }
+
     private Utente searchUserRam(Nickname nk) throws NickNotQEx{
         try {
             return coda.find(nk);
