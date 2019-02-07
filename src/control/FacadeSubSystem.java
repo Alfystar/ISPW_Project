@@ -120,8 +120,7 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
 
     @Override
     public void setAvatar(Nickname nk, int id) throws UserNotExistEx{
-        Utente us = getUtente(nk);
-        us.getPublic().getAvatar().setMyIcon(id);
+        this.usExp.setAvatar(nk,id);
     }
 
     @Override

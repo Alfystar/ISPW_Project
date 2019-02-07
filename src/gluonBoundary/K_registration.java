@@ -114,6 +114,7 @@ public class K_registration implements Initializable {
             usInt.createUser(new Nickname(nick.getText()), infoReg );
         }catch (WrongParameters|ClassNotFoundException e)
         {
+            outLabel.setText("Un parametro non è unico!");
             e.printStackTrace();
             return;
         }

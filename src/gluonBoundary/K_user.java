@@ -135,9 +135,11 @@ public class K_user implements Initializable {
     }
     @FXML
     public void updateUser(ActionEvent actionEvent) {
-        RadioButton[] radioNode={av1,av2,av3,av4,av5,av6};
         outLabel.setText("updateUser click");
     }
+
+
+
     @FXML
     public void refreshRole(ActionEvent actionEvent) {
 
@@ -191,6 +193,8 @@ public class K_user implements Initializable {
             woman.setSelected(true);
         }
         avatar.setImage(basic.getAvatar().getMyIcon());
+        setRadioSelect(basic.getAvatar().getMyIconIndex());
+
 
         // String date = birthday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         //todo capire come mettere birtday
@@ -224,6 +228,21 @@ public class K_user implements Initializable {
         if(roles.isRenter()){
             renter.setSelected(true);
         }
+    }
+
+    private int radioSelect()
+    {
+        RadioButton[] radioNode={av1,av2,av3,av4,av5,av6};
+        for (int i = 0; i < radioNode.length; i++) {
+            if(radioNode[i].isSelected()) return i;
+        }
+        return 0;
+    }
+
+    private void setRadioSelect(int i)
+    {
+        RadioButton[] radioNode={av1,av2,av3,av4,av5,av6};
+        radioNode[i].setSelected(true);
     }
 
 

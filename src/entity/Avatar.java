@@ -56,6 +56,11 @@ public class Avatar
         return this.myIcon;
     }
 
+    public int getMyIconIndex ()
+    {
+        return this.indexImage;
+    }
+
     public String getAvatarName()
     {
         return nameAvatar[this.indexImage];

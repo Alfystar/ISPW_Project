@@ -133,6 +133,14 @@ public class UserExpert {
         this.storeUser(user);
     }
 
+
+    public void setAvatar(Nickname nk, int id) throws UserNotExistEx{
+        Utente us = this.getUser(nk);
+        us.getPublic().getAvatar().setMyIcon(id);
+        this.storeUser(us);
+
+    }
+
     private Utente loadUserDB(Nickname nk) throws NickNotDBEx, SQLException {
         try {
             Utente us = daoFace.loadFromDB(nk);

@@ -201,6 +201,7 @@ public class DAOClass implements DAOInterface {
 
         Gender gender= Gender.valueOf((String) rs.getObject(5));
         SocialStatus socStatus= new SocialStatus(rs.getString(6));
+        //todo qualcosa non va nel caricare l'avatar, da rivedere
         Avatar avatar= new Avatar(rs.getString(7));
         Email email= new Email(rs.getString(8));
 
