@@ -1,5 +1,14 @@
 package gluonBoundary;
 
+import bean.BasicUserInfo;
+import bean.RestrictUserInfo;
+import control.FacadeSubSystem;
+import entity.*;
+import exceptions.UserNotExistEx;
+import gluonBoundary.utilityClass.BeanLogUs;
+import interfaces.RoleStatus;
+import interfaces.SystemInterface;
+import interfaces.UserProfileService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +22,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 public class K_user implements Initializable {
@@ -20,7 +30,14 @@ public class K_user implements Initializable {
     /*******************************************************************/
     /**                       Class Attribute                         **/
 
+    private SystemInterface sysInt = new FacadeSubSystem();
+    private RoleStatus rolStatInt = new FacadeSubSystem();
+    private UserProfileService usInt = new FacadeSubSystem();
 
+    private BeanLogUs bean;
+    private BasicUserInfo basic;
+    private RestrictUserInfo restrict;
+    private Roles roles;
     /*******************************************************************/
 
     //=================================================================
@@ -121,18 +138,70 @@ public class K_user implements Initializable {
     }
     @FXML
     public void refrehsRole(ActionEvent actionEvent) {
+
         outLabel.setText("refrehsRole click");
+        loadRole();
     }
     @FXML
     public void refreshPubD(ActionEvent actionEvent) {
+
         outLabel.setText("refreshPubD click");
+        loadPublic();
     }
     @FXML
     public void refreshPrD(ActionEvent actionEvent) {
+
         outLabel.setText("refreshPrD click");
+        loadPrivate();
     }
     @FXML
     public void changePw(ActionEvent actionEvent) {
+
         outLabel.setText("changePw click");
+    }
+
+
+    public void setBean(BeanLogUs bean)
+    {
+        this.bean=bean;
+
+        nick.setText(bean.getNick().get());
+    }
+
+
+    private void loadPublic(){
+
+        try {
+            basic = usInt.getBasicUserInfo(bean.getNick());
+        }catch (UserNotExistEx e)
+        {
+            outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+        }
+        nick.setText(basic.getNickname().get());
+        email.setText(basic.getEmail().get());
+        tc.setText(basic.getTaxCode().get());
+        socStat.setText(basic.getsocialStatus().get());
+        name.setText(basic.getName().get());
+        surname.setText(basic.getSurname().get());
+        if(basic.getGender().equals(Gender.MAN))
+        {
+            man.setSelected(true);
+        }else {
+            woman.setSelected(true);
+        }
+        avatar.setImage(basic.getAvatar().getMyIcon());
+        //todo capire come mettere birtday
+        /*
+    private GregorianCalendar birthday= new GregorianCalendar();
+
+        */
+    }
+
+    private void loadPrivate(){
+
+    }
+
+    private void loadRole(){
+
     }
 }

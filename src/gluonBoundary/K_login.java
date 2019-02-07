@@ -4,6 +4,7 @@ import control.FacadeSubSystem;
 import entity.Nickname;
 import entity.PW;
 import exceptions.UserNotExistEx;
+import gluonBoundary.utilityClass.BeanLogUs;
 import interfaces.SystemInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -66,7 +67,29 @@ public class K_login implements Initializable {
 
         //todo: should be a validation, but for now...
 
-        Parent userParent = FXMLLoader.load(getClass().getResource("fxmlSrc/userPane.fxml"));
+        //Parent userParent = FXMLLoader.load(getClass().getResource("fxmlSrc/userPane.fxml"));
+
+        BeanLogUs bean = new BeanLogUs();
+        bean.setNick(new Nickname(nickField.getText()));
+
+        Parent userParent=null;
+        K_user kUser;
+
+        FXMLLoader userLoader = new FXMLLoader(getClass().getResource("fxmlSrc/userPane.fxml"));
+        try {
+            userParent = (Parent)userLoader.load();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        if(userLoader!=null){
+            //we create a custom controller
+            kUser = userLoader.getController();
+            //here we pass the reference to the  other controller
+            kUser.setBean(bean);
+            System.out.println("userLoader not null");
+        }
+
         Scene userScene = new Scene(userParent);
 
         Stage windows = (Stage)((Node)event.getSource()).getScene().getWindow();

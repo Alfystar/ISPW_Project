@@ -42,10 +42,13 @@ public class DaemonDAO implements Runnable {
                 calendar.setTime(todayDay);
                 //Aggiungo un mese
                 calendar.add(calendar.MONTH,1);
+
                 GregorianCalendar gcDate= this.dao.nextDeleteSession();
                 Date d= gcDate.getTime();
+
                 TimeUnit timeUnit= TimeUnit.MILLISECONDS;
                 long deltaTime =getDateDiff(todayDay, d, timeUnit);
+
                 if(deltaTime<=0) break restartSleep;
 
                     Thread.sleep(deltaTime);
