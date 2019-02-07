@@ -11,7 +11,7 @@
 
         if (register_Bean.validateRegister()){
 %>
-            <jsp:forward page="userpage.html"/>
+            <jsp:forward page="userpage.jsp"/>
 <%
         } else {
             result = "Register failed, cause"; // +... todo: aggiungere il print di eccezioni
