@@ -493,7 +493,7 @@ public class DAOClass implements DAOInterface {
     public static void main(String[] argv){
         DAOClass dao = null;
         try{
-            dao = new DAOClass();
+            dao = new DAOClass("10.200.146.92");
 
         }catch (ClassNotFoundException e){
             e.printStackTrace();
@@ -501,7 +501,7 @@ public class DAOClass implements DAOInterface {
         }
         PublicData pubD = new PublicData(new Name("Marta"), new Name("Caggiano"), new TaxCode("cggmrt"), new Nickname("caggy") ,new Email("marta.caggiano@hotmail"), new GregorianCalendar(1998,2,3), Gender.WOMAN);
         PrivateData priD = new PrivateData(new SurfaceAddress("Alatri casa"), new SurfaceAddress("alatri"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
-        Utente us1 = new Utente(pubD,priD,new PW("12345"),new Roles(false,true),new Questions(new String[] {"a","b","c","d"}));
+        Utente us1 = new Utente(pubD,priD,new PW("12345"),new Roles(false,true),new Questions(new String[] {"abaco","ballerina","coniglio","destra"}));
 
          pubD = new PublicData(new Name("Filippo"), new Name("Badalamenti"), new TaxCode("bflflp"), new Nickname("bal") ,new Email("filippo@gmail.com"), new GregorianCalendar(1997,5,25), Gender.MAN);
          priD = new PrivateData(new SurfaceAddress("collegio"), new SurfaceAddress("Roma"), new Nationality("Italiano"), new PhoneNumber("064586325"));
@@ -517,7 +517,7 @@ public class DAOClass implements DAOInterface {
 
          pubD = new PublicData(new Name("Marco"), new Name("alfano"), new TaxCode("lfnmrc"), new Nickname("topo65") ,new Email("marco@gmail.com"), new GregorianCalendar(1965,7,18), Gender.MAN);
          priD = new PrivateData(new SurfaceAddress("ciamarra"), new SurfaceAddress("Roma"), new Nationality("Italiano"), new PhoneNumber("333222568748"));
-        Utente us5 = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions(new String[] {"aasd","bdfhg","crty","dvbn"}));
+        Utente us5 = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions(new String[] {"gara","cavoletti","piangere","dividere"}));
 
         Utente[] users ={us1,us2,us3,us4,us5};
 
