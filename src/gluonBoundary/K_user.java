@@ -4,9 +4,7 @@ import bean.BasicUserInfo;
 import bean.RestrictUserInfo;
 import control.FacadeSubSystem;
 import entity.*;
-import exceptions.NickNotDBEx;
 import exceptions.UserNotExistEx;
-import exceptions.WrongParameters;
 import gluonBoundary.utilityClass.Bean2User;
 import interfaces.RoleStatus;
 import interfaces.SystemInterface;
@@ -20,7 +18,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -49,8 +46,6 @@ public class K_user implements Initializable {
     private BasicUserInfo basic;
     private RestrictUserInfo restrict;
     private Roles roles;
-
-    private Avatar iconAvatar = new Avatar();
     /*******************************************************************/
 
     //=================================================================
@@ -84,9 +79,6 @@ public class K_user implements Initializable {
     //change sector
     @FXML
     ChoiceBox paramChange;
-
-    @FXML
-    TextField strChange;
 
     @FXML
     Button sendUpdate;
@@ -149,70 +141,10 @@ public class K_user implements Initializable {
     }
     @FXML
     public void updateUser(ActionEvent actionEvent) {
-        RadioButton[] radioNode = {av1, av2, av3, av4, av5, av6};
-        outLabel.setText("updateUser click");
-        try {
-            if (!strChange.getText().equals("")) //ho inserito testo, modifico un parametro
-            {
-                sysInt.changeNotAnagraphicData(bean.getNick(),fillDataMod());
-
-            } else {     //non ho inserito testo, modifico l'immagine
-                sysInt.setAvatar(bean.getNick(), this.radioSelect());
-            }
-        }catch (UserNotExistEx e)
-        {
-            outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
-            return;
-        }catch (WrongParameters e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    private ModifyDataString fillDataMod() throws WrongParameters
-    {
-        String param=(String) paramChange.getValue();
-        if (param.equals("Social Status"))
-        {
-            return new SocialStatus(strChange.getText());
-
-        }else if (param.equals("Email"))
-        {
-            return new Email(strChange.getText());
-
-        }else if (param.equals("Phone Number"))
-        {
-            return new PhoneNumber(strChange.getText());
-
-        }else if (param.equals("Nationality"))
-        {
-            return new Nationality(strChange.getText());
-
-        }else if (param.equals("Surface Address"))
-        {
-            return new SurfaceAddress(strChange.getText());
-        }
-        throw new WrongParameters("Selezionato male!!!");
-    }
-
-    @FXML
-    public void changeTyped(KeyEvent event) {
         RadioButton[] radioNode={av1,av2,av3,av4,av5,av6};
-
-        if(!strChange.getText().equals("")){
-            for(RadioButton r:radioNode) r.setDisable(true);
-        }else {
-            for(RadioButton r:radioNode) r.setDisable(false);
-        }
+        outLabel.setText("updateUser click");
     }
 
-    @FXML
-    public void avatarView(ActionEvent actionEvent) {
-        System.out.println("radio selec: "+this.radioSelect());
-        iconAvatar.setMyIcon(this.radioSelect());
-        avatar.setImage(iconAvatar.getMyIcon());
-        outLabel.setText(iconAvatar.getAvatarName());
-    }
 
 
     @FXML
@@ -254,7 +186,6 @@ public class K_user implements Initializable {
             basic = usInt.getBasicUserInfo(bean.getNick());
         }catch (UserNotExistEx e) {
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
-            return;
         }
         nick.setText(basic.getNickname().get());
         email.setText(basic.getEmail().get());
@@ -268,9 +199,7 @@ public class K_user implements Initializable {
         }else {
             woman.setSelected(true);
         }
-        iconAvatar.setMyIcon(basic.getAvatar().getMyIconIndex());
         avatar.setImage(basic.getAvatar().getMyIcon());
-        this.setRadioSelect(basic.getAvatar().getMyIconIndex());
 
         //gestione birthday: GregorianCalendar -> Date -> LocalDate ->DatePicker
 
@@ -283,7 +212,6 @@ public class K_user implements Initializable {
             restrict = usInt.getRestrictedUserInfo(bean.getNick());
         } catch (UserNotExistEx e) {
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
-            return;
         }
         cel.setText(restrict.getPhoneNumber().get());
         cityBirth.setText(restrict.getCityOfBirth().get());
@@ -296,7 +224,6 @@ public class K_user implements Initializable {
             roles= rolStatInt.getRoles(bean.getNick());
         }catch (UserNotExistEx e){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
-            return;
         }
         if(roles.isTenant()) {
             tenant.setSelected(true);
@@ -313,7 +240,8 @@ public class K_user implements Initializable {
         String s = anno + "-" + mese + "-" + giorno;
         return s;
     }
-    private int radioSelect(){
+    private int radioSelect()
+    {
         RadioButton[] radioNode={av1,av2,av3,av4,av5,av6};
         for (int i = 0; i < radioNode.length; i++) {
             if(radioNode[i].isSelected()) return i;
@@ -341,7 +269,5 @@ public class K_user implements Initializable {
         LocalDate newDate= convertToLocalDateViaInstant(date);
         dp.setValue(newDate);
     }
-
-
 
 }

@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+
 <VBox alignment="CENTER_RIGHT" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gluonBoundary.K_login">
   <children>
     <AnchorPane>
@@ -34,12 +44,13 @@
                </font>
             </Hyperlink>
           <Button mnemonicParsing="false" onAction="#loginPush" prefWidth="90.0" text="Login" />
+            <Label fx:id="outLabel" prefHeight="16.0" prefWidth="133.0" />
+            <Hyperlink fx:id="forgottenPw" onAction="#forgottenPush" text="Forgotten Password?">
+               <font>
+                  <Font name="System Bold Italic" size="10.0" />
+               </font>
+            </Hyperlink>
          </children>
       </FlowPane>
-      <Hyperlink fx:id="forgottenPw" onAction="#forgottenPush" text="Forgotten Password?">
-         <font>
-            <Font name="System Bold Italic" size="10.0" />
-         </font>
-      </Hyperlink>
   </children>
 </VBox>

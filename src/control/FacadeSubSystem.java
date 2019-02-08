@@ -104,9 +104,19 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
     @Override
     public Boolean login(Nickname nick, PW pw) throws UserNotExistEx {
         Utente user = this.getUtente(nick);
+        if(user.getStatus()== UserStatus.BANNED){
+            System.out.println("L'utente è stato bannato");
+            return false;
+        }
+        if(user.getStatus()==UserStatus.CANCELLED){
+
+            //todo: reindirizzare l'utente al recupero credenziali
+            return false;
+        }
         if (user.getPw().getPw().equals(pw.getPw())){
             return true;
         } else return false;
+
     }
 
     @Override
