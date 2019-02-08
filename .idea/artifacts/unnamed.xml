@@ -6,7 +6,6 @@
         <element id="directory" name="classes">
           <element id="module-output" name="ISPW_Project" />
           <element id="dir-copy" path="$USER_HOME$/Scrivania/apache-tomcat-9.0.14" />
-          <element id="library" level="project" name="javafx-sdk-11.0" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="mariadb" />
