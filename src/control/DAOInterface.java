@@ -18,7 +18,7 @@ public interface DAOInterface {
 
     void saveUser(Utente user) throws  SQLException;
 
-    void updateUser(Utente user) throws SQLException;
+    void updateUser(Utente user) throws SQLException, NickNotDBEx;
 
     Boolean searchNickDB(Nickname nickname)  throws SQLException;
 

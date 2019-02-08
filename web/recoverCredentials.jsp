@@ -65,11 +65,11 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="http://localhost:8080/unnamed/index.html">
+                    <a href="http://localhost:8080/unnamed/index.jsp">
                          <img src="recoverCredentials_files/mbr-130x130.jpg" alt="Mobirise" title="" style="height: 3.8rem;">
                     </a>
                 </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="http://localhost:8080/unnamed/index.html">FERSA</a></span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="http://localhost:8080/unnamed/index.jsp">FERSA</a></span>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">

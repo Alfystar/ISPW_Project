@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+
 <BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gluonBoundary.K_user">
    <center>
       <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0">
@@ -133,22 +153,22 @@
                                  <children>
                                     <Label text="Change:" />
                                     <ChoiceBox fx:id="paramChange" prefWidth="150.0" GridPane.columnIndex="1" />
-                                    <TextField fx:id="strChange" prefWidth="212.0" GridPane.columnIndex="2" />
+                                    <TextField fx:id="strChange" onKeyTyped="#changeTyped" prefWidth="212.0" GridPane.columnIndex="2" />
                                  </children>
                               </GridPane>
                               <Button fx:id="sendUpdate" layoutX="320.0" layoutY="64.0" mnemonicParsing="false" onAction="#updateUser" text="Update" />
                               <TilePane hgap="10.0" layoutX="14.0" layoutY="44.0" prefHeight="41.0" prefWidth="279.0" vgap="5.0">
                                  <children>
-                                    <RadioButton fx:id="av1" mnemonicParsing="false" selected="true" text="Avatar 1">
+                                    <RadioButton fx:id="av1" mnemonicParsing="false" onAction="#avatarView" selected="true" text="Avatar 1">
                                      <toggleGroup>
                                          <ToggleGroup fx:id="avatarGroup" />
                                      </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="av2" mnemonicParsing="false" text="Avatar 2" toggleGroup="$avatarGroup" />
-                                    <RadioButton fx:id="av3" mnemonicParsing="false" text="Avatar 3" toggleGroup="$avatarGroup" />
-                                    <RadioButton fx:id="av4" mnemonicParsing="false" text="Avatar 4" toggleGroup="$avatarGroup" />
-                                    <RadioButton fx:id="av5" mnemonicParsing="false" text="Avatar 5" toggleGroup="$avatarGroup" />
-                                    <RadioButton fx:id="av6" mnemonicParsing="false" text="Avatar 6" toggleGroup="$avatarGroup" />
+                                    <RadioButton fx:id="av2" mnemonicParsing="false" onAction="#avatarView" text="Avatar 2" toggleGroup="$avatarGroup" />
+                                    <RadioButton fx:id="av3" mnemonicParsing="false" onAction="#avatarView" text="Avatar 3" toggleGroup="$avatarGroup" />
+                                    <RadioButton fx:id="av4" mnemonicParsing="false" onAction="#avatarView" text="Avatar 4" toggleGroup="$avatarGroup" />
+                                    <RadioButton fx:id="av5" mnemonicParsing="false" onAction="#avatarView" text="Avatar 5" toggleGroup="$avatarGroup" />
+                                    <RadioButton fx:id="av6" mnemonicParsing="false" onAction="#avatarView" text="Avatar 6" toggleGroup="$avatarGroup" />
                                  </children>
                               </TilePane>
                            </children>

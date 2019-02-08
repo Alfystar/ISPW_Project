@@ -142,8 +142,7 @@ public class DAOClass implements DAOInterface {
     }
 
     @Override
-    public void updateUser(Utente user) throws SQLException{
-        //todo gestire il caso venga chiesto di fare update su dati inesistenti
+    public void updateUser(Utente user) throws SQLException, NickNotDBEx{
         this.openConn();
         PublicData puB= user.getPublic();
         PrivateData prD= user.getPrivate();
@@ -155,7 +154,10 @@ public class DAOClass implements DAOInterface {
         String sql= "SELECT prD_id FROM user WHERE nick= " + "\""+puB.getNick().get()+"\" "+ ";";
         System.out.println(sql);
         ResultSet rs = this.stmt.executeQuery(sql);
-        rs.first();
+        if(!rs.first())
+        {
+            throw new NickNotDBEx("UPDATE impossibile, utente non più presente");
+        }
         long prD_id = rs.getLong("prD_id");
 
         //Faccio update nel DB di una tabella PublicData
@@ -583,7 +585,7 @@ public class DAOClass implements DAOInterface {
             case 6: //test updateUser
                 try {
                    dao.updateUser(us3);
-                }catch (SQLException se){
+                }catch (Exception se){
                     se.printStackTrace();
                 }
                 break;

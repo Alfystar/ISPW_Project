@@ -1,5 +1,7 @@
 package control;
 
+import DAO.DAOClass;
+import DAO.DaemonDAO;
 import bean.BasicUserInfo;
 import bean.FactoryInfo;
 import bean.RestrictUserInfo;
@@ -138,6 +140,12 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
     @Override
     public void setAvatar(Nickname nk, int id) throws UserNotExistEx{
         this.usExp.setAvatar(nk,id);
+    }
+
+    @Override
+    public void changeUrl(String ip) throws SQLException, ClassNotFoundException
+    {
+        DAOClass dao= new DAOClass(ip);
     }
 
     @Override

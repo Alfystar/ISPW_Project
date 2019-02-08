@@ -106,7 +106,7 @@ public class UserExpert {
         try {
             daoFace.updateUser(us);
             addUserQueue(us);
-        }catch (SQLException se) {
+        }catch (SQLException|NickNotDBEx se) {
             se.printStackTrace();
         }
     }

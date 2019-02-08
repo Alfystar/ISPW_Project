@@ -82,11 +82,11 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="http://localhost:8080/unnamed/index.html">
+                    <a href="http://localhost:8080/unnamed/index.jsp">
                          <img src="login_files/mbr-130x130.jpg" alt="Mobirise" title="" style="height: 3.8rem;">
                     </a>
                 </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="http://localhost:8080/unnamed/index.html">FERSA</a></span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="http://localhost:8080/unnamed/index.jsp">FERSA</a></span>
             </div>
         </div>
         <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
@@ -119,8 +119,6 @@
 
             <form name="login_form" method="POST">
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                </p>
-                <p class="mbr-text pb-3 mbr-fonts-style display-5">
                     Nickname:
                     <br>
                     <input name="nickname" type="text" id="nickname">
@@ -134,6 +132,7 @@
             </form>
             <br>
             <form name="recovery_form"  method="POST">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5">
                 <input name="recoverSubmit" type="submit" id="recoverSubmit" value="Credenziali perse?" class="btn btn-secondary-outline" style="margin-left: 0px;margin-top: 2rem;padding-left: 1rem;padding-right: 1rem;padding-bottom: 0.1rem;padding-top: 0.1rem;margin-right: 0px;">
                 </p>
             </form>

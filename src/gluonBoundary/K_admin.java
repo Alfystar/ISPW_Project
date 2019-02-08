@@ -181,16 +181,22 @@ public class K_admin implements Initializable {
         man.setSelected(true);
 
         usStat.setValue("CANCELLED");
-        //todo: scrivere il birthday
+
         outLabel.setText("destroyUser");
+
+        basic = null;
+        restrict = null;
+        roles = null;
+        status = null;
     }
 
     private void loadPublic(){
         try {
-            System.out.println("il nick letto è =" + nickWork.getText());
+            System.out.println("il nick letto è = " + nickWork.getText());
             basic = usInt.getBasicUserInfo(new Nickname(nickWork.getText()));
         }catch (UserNotExistEx e) {
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+            return;
         }
         nick.setText(basic.getNickname().get());
         email.setText(basic.getEmail().get());
@@ -211,9 +217,11 @@ public class K_admin implements Initializable {
 
     private void loadPrivate() {
         try {
+            System.out.println("il nick letto è = " + nickWork.getText());
             restrict = usInt.getRestrictedUserInfo(new Nickname(nickWork.getText()));
         } catch (UserNotExistEx e) {
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+            return;
         }
         cel.setText(restrict.getPhoneNumber().get());
         cityBirth.setText(restrict.getCityOfBirth().get());
@@ -223,10 +231,11 @@ public class K_admin implements Initializable {
 
     private void loadRole(){
         try {
-            System.out.println("il nick letto è =" + nickWork.getText());
+            System.out.println("il nick letto è = " + nickWork.getText());
             roles= rolStatInt.getRoles(new Nickname(nickWork.getText()));
         }catch (UserNotExistEx e){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+            return;
         }
         if(roles.isTenant()) tenant.setSelected(true);
         else tenant.setSelected(false);
@@ -237,11 +246,13 @@ public class K_admin implements Initializable {
 
     private void loadStatus(){
         try {
+            System.out.println("il nick letto è = " + nickWork.getText());
             status= rolStatInt.getStatus(new Nickname(nickWork.getText()));
             usStat.setValue(status.name());
 
         }catch (UserNotExistEx ex){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+            return;
         }
     }
 
@@ -250,10 +261,13 @@ public class K_admin implements Initializable {
             rolStatInt.changeUserStatus(new Nickname(nickWork.getText()), UserStatus.BANNED);
         }catch (UserNotExistEx ex){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+            return;
         }catch (SQLException se){
             outLabel.setText("PROBLEMI CON IL DB");
+            return;
         }catch (ClassNotFoundException cex){
             outLabel.setText("PROBLEMI CON IL DRIVER DEL DB");
+            return;
         }
     }
 
