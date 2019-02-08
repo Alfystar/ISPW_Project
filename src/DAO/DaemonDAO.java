@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Math.abs;
+
 public class DaemonDAO implements Runnable {
 
     private static DaemonDAO ourInstance = new DaemonDAO();
@@ -74,7 +76,8 @@ public class DaemonDAO implements Runnable {
     }
 
     private static long getDateDiff(Date date1, Date date2,TimeUnit timeUnit) {
-        long diffInMillies = date1.getTime() - date2.getTime();
+        long diffInMillies = abs(date1.getTime() - date2.getTime());
+        System.out.println("millisecond difference: " + diffInMillies);
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 }
