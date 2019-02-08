@@ -18,6 +18,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -128,11 +129,16 @@
                </children>
             </AnchorPane>
             <Separator prefWidth="200.0" />
-            <Label text="Operation available for User">
-               <font>
-                  <Font name="Lato Bold" size="27.0" />
-               </font>
-            </Label>
+            <FlowPane alignment="CENTER" hgap="50.0">
+               <children>
+                  <Label text="Operation available for User">
+                     <font>
+                        <Font name="Lato Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="delMyself" mnemonicParsing="false" onAction="#delMyself" text="Cancelled my Profile" />
+               </children>
+            </FlowPane>
             <Separator prefHeight="23.0" prefWidth="800.0" />
             <HBox alignment="CENTER" prefWidth="200.0">
                <children>
@@ -197,11 +203,16 @@
                                     <Label text="New Password" GridPane.rowIndex="1" />
                                     <Label text="Confirm Password" GridPane.rowIndex="2" />
                                     <PasswordField fx:id="oldPw" GridPane.columnIndex="2" />
-                                    <PasswordField fx:id="newPw" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <PasswordField fx:id="confPw" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <PasswordField fx:id="newPw" onKeyTyped="#checkPW" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <PasswordField fx:id="confPw" onKeyTyped="#checkPW" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
-                              <Button fx:id="changePw" layoutX="318.0" layoutY="100.0" mnemonicParsing="false" onAction="#changePw" text="Change" />
+                              <Button fx:id="changePw" layoutX="318.0" layoutY="100.0" mnemonicParsing="false" onAction="#changePwEvent" text="Change" />
+                              <ImageView fx:id="iconCheck" fitHeight="30.0" fitWidth="30.0" layoutX="102.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../ImageFile/Icon/reject.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>
