@@ -1,11 +1,12 @@
 package entity;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class PublicData {
     private Name name;
     private Name surname;
-    private GregorianCalendar birthday= new GregorianCalendar();
+    private GregorianCalendar birthday;
     private Gender gender;
     private TaxCode fiscalCode;
     private SocialStatus socialStatus;
@@ -21,7 +22,7 @@ public class PublicData {
         this.fiscalCode= new TaxCode(fiscalCode);
         this.nickname= new Nickname(nickname);
         this.email= new Email(email);
-        this.birthday.setGregorianChange(birthday.getGregorianChange());
+        this.birthday = new GregorianCalendar(birthday.get(Calendar.YEAR),birthday.get(Calendar.MONTH),birthday.get(Calendar.DAY_OF_MONTH));
         this.gender= gender;
 
         /*start a default*/
@@ -33,7 +34,7 @@ public class PublicData {
     public PublicData(Name name, Name surname, GregorianCalendar birthday, Gender gender, TaxCode fiscalCode, SocialStatus socialStatus, Avatar avatar, Email email, Nickname nickname){
         this.name= new Name(name);
         this.surname= new Name(surname);
-        this.birthday.setGregorianChange(birthday.getGregorianChange());
+        this.birthday = new GregorianCalendar(birthday.get(Calendar.YEAR),birthday.get(Calendar.MONTH),birthday.get(Calendar.DAY_OF_MONTH));
         this.gender= gender;
         this.fiscalCode= new TaxCode(fiscalCode);
         this.socialStatus= new SocialStatus(socialStatus);
@@ -45,7 +46,7 @@ public class PublicData {
     public PublicData(PublicData pubD){
         this.name= new Name(pubD.getName());
         this.surname= new Name(pubD.getSurname());
-        this.birthday.setGregorianChange(pubD.birthday.getGregorianChange());
+        this.birthday = new GregorianCalendar(pubD.getBirthday().get(Calendar.YEAR),pubD.getBirthday().get(Calendar.MONTH),pubD.getBirthday().get(Calendar.DAY_OF_MONTH));
         this.gender= pubD.getGender();
         this.fiscalCode= new TaxCode(pubD.getTC());
         this.socialStatus= new SocialStatus(pubD.getSocialStatus());

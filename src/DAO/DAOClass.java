@@ -48,13 +48,18 @@ public class DAOClass implements DAOInterface {
             //Prendo tutti i parametri di Utente da infoReg
             PublicData pubD = new PublicData(infoReg.getName(), infoReg.getSurname(), infoReg.getCf(), infoReg.getNickname(), infoReg.getEmail(), infoReg.getBirthday(), infoReg.getGender());
             PrivateData priD = new PrivateData();
+            priD.getCityOfBirth().set(infoReg.getCityOfBirth().get());
             PW pw = new PW(infoReg.getPw());
             Roles roles = new Roles();
             UserStatus userStatus = UserStatus.ACTIVE;
             Questions answers = new Questions(infoReg.getAnswers());
 
+            System.out.println("prima di creare utente "+gregCalToString(pubD.getBirthday()));
+
             //incapsulo i dati in un'istanza di Utente
             Utente us= new Utente(pubD, priD, pw, roles, answers);
+
+            System.out.println("dopo aver creato l'utente di creare utente "+gregCalToString(us.getPublic().getBirthday()));
             //Verifica delle eccezioni
             try{
                 this.saveUser(us);
@@ -62,6 +67,8 @@ public class DAOClass implements DAOInterface {
             }catch(SQLException se){
                 throw new WrongParameters("wrong parameters",se);
             }
+            System.out.println("dopo aver salvato l'utente nel DB "+gregCalToString(pubD.getBirthday()));
+
             return us;
     }
 
@@ -242,6 +249,8 @@ public class DAOClass implements DAOInterface {
         PW pw= user.getPw();
         Roles roles= user.getRole();
         String bDay= gregCalToString(puB.getBirthday());
+        System.out.println("dentro saveUser "+gregCalToString(puB.getBirthday()));
+
 
         //Inserisco nel DB una tabella PublicData
         String sqlPubD= "INSERT INTO  publicdata(taxCode, name, surname, birthday, gender, socStat, usImg, email) " +
@@ -383,15 +392,14 @@ public class DAOClass implements DAOInterface {
         this.openConn();
         String strDate= gregCalToString(date);
 
-        String sql= "INSERT INTO dateevent VALUES (" +
-                "idDate =" + "\""+strDate+"\" "+ "," +
-                "nick = "+ "\""+nickname.get()+"\" "+ " );";
+        String sql= "INSERT INTO dateevent(idDate, nick) VALUES (" +
+                "\""+strDate+"\" "+ "," +
+                "\""+nickname.get()+"\" "+ " );";
         System.out.println(sql);
         this.stmt.executeQuery(sql);
 
         System.out.println("date inserted");
         this.closeConn();
-        return;
     }
 
     public void deleteByDeamon(GregorianCalendar today) throws SQLException{
@@ -416,7 +424,6 @@ public class DAOClass implements DAOInterface {
         finally {
             this.closeConn();
         }
-        return;
     }
 
     public GregorianCalendar nextDeleteSession() throws SQLException{
