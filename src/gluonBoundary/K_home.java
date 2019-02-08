@@ -171,7 +171,7 @@ public class K_home  implements Initializable {
     }
 
 
-    private void treadStart() throws ClassNotFoundException, DBConnectionEx
+    private void treadStart() throws DBConnectionEx
     {
         try {
             sysInt.changeUrl(ipField.getText());
