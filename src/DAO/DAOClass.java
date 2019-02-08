@@ -394,7 +394,7 @@ public class DAOClass implements DAOInterface {
         this.openConn();
         String oggi= gregCalToString(today);
 
-        String sql= "SELECT nick FROM dateevent where date<= " +
+        String sql= "SELECT nick FROM dateevent where idDate<= " +
                 "\""+oggi+"\" "+ " ;";
         System.out.println(sql);
         this.stmt.executeQuery(sql);
