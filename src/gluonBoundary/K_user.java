@@ -46,6 +46,7 @@ public class K_user implements Initializable {
     private BasicUserInfo basic;
     private RestrictUserInfo restrict;
     private Roles roles;
+
     /*******************************************************************/
 
     //=================================================================
@@ -169,6 +170,7 @@ public class K_user implements Initializable {
     public void changePw(ActionEvent actionEvent) {
 
         outLabel.setText("changePw click");
+        changePw();
     }
 
 
@@ -193,8 +195,7 @@ public class K_user implements Initializable {
         socStat.setText(basic.getsocialStatus().get());
         name.setText(basic.getName().get());
         surname.setText(basic.getSurname().get());
-        if(basic.getGender().equals(Gender.MAN))
-        {
+        if(basic.getGender().equals(Gender.MAN)) {
             man.setSelected(true);
         }else {
             woman.setSelected(true);
@@ -202,9 +203,7 @@ public class K_user implements Initializable {
         avatar.setImage(basic.getAvatar().getMyIcon());
 
         //gestione birthday: GregorianCalendar -> Date -> LocalDate ->DatePicker
-
         setDatePicker(basic.getBirthday(), birthday);
-
     }
 
     private void loadPrivate() {
@@ -269,5 +268,25 @@ public class K_user implements Initializable {
         LocalDate newDate= convertToLocalDateViaInstant(date);
         dp.setValue(newDate);
     }
+
+    private void changePw(){
+        try {
+            Nickname nick= new Nickname(basic.getNickname());
+            PW oldP= new PW(oldPw.getText());
+            PW newP=  new PW(newPw.getText());
+
+            if(sysInt.login(nick, oldP)){
+                if(newP.getPw().equals(confPw.getText())) {
+                    sysInt.changePassword(nick, newP , oldP);
+                }else outLabel.setText("LA CONFERMA DELLA NUOVA PASSWORD NON E' CORRETTA");
+
+            }  else outLabel.setText("LA PASSWORD INSERITA NON E' CORRETTA");
+
+        }catch (UserNotExistEx e){
+            outLabel.setText("NICKNAME NON TROVATO");
+        }
+    }
+
+
 
 }
