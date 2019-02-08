@@ -82,9 +82,15 @@ public class UserExpert {
 
     public void deleteUser(Nickname nk) throws UserNotExistEx{
         try {
+            Utente user = getUser(nk);
+            user.setStatus(UserStatus.CANCELLED);
+
             GregorianCalendar cal = new GregorianCalendar();
             cal.add(GregorianCalendar.YEAR, 10);
+
             daoFace.deleteNTime(nk, cal);
+            daoFace.saveUser(user);
+
             coda.remove(nk);
         }
         catch (SQLException se) {
@@ -141,6 +147,14 @@ public class UserExpert {
 
     }
 
+    public void recoverProfile(Nickname nk) throws UserNotExistEx
+    {
+        Utente us = this.getUser(nk);
+        us.setStatus(UserStatus.ACTIVE);
+        //todo elimina dalla coda di quelli da eliminare dopo n time
+        this.storeUser(us);
+    }
+
     private Utente loadUserDB(Nickname nk) throws NickNotDBEx, SQLException {
         try {
             Utente us = daoFace.loadFromDB(nk);
@@ -189,6 +203,8 @@ public class UserExpert {
     private void addUserQueue(Utente user){
         coda.add(user);
     }
+
+
 
     //todo: scrivere un metodo privato che verifichi che i parametri di infoRegister siano adatti
 }
