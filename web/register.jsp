@@ -107,28 +107,28 @@
 
             <form name="register_form" method="POST">
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Nome: <input name="firstname" type="text" style="text-align:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Nome: <input name="firstname" type="text" style="text-align:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Cognome: <input name="lastname" type="text" style="text-align-all:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Cognome: <input name="lastname" type="text" style="text-align-all:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Codice Fiscale: <input name="taxcode" type="text" style="text-align-all:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Codice Fiscale: <input name="taxcode" type="text" style="text-align-all:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Nickname: <input name="nickname" type="text" style="text-align-all:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Nickname: <input name="nickname" type="text" style="text-align-all:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Email: <input name="email" type="text" style="text-align-all:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Email: <input name="email" type="text" style="text-align-all:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Data Di Nascita: <input name="bday" type="date" min="1903-01-02" style="text-align-all:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Data Di Nascita: <input name="bday" type="date" min="1903-01-02" max="2000-01-01" style="text-align-all:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Sesso: <input name="gender" type="text" style="text-align:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Sesso: <input name="gender" type="text" style="text-align:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Password: <input name="password" type="password" style="text-align:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Password: <input name="password" type="password" style="text-align:left">
                 </p>
 
                 <p class="mbr-text pb-3 mbr-fonts-style display-5"> DOMANDE DI RECUPERO
