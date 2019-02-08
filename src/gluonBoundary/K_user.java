@@ -138,6 +138,9 @@ public class K_user implements Initializable {
         RadioButton[] radioNode={av1,av2,av3,av4,av5,av6};
         outLabel.setText("updateUser click");
     }
+
+
+
     @FXML
     public void refreshRole(ActionEvent actionEvent) {
 
@@ -253,6 +256,21 @@ public class K_user implements Initializable {
         String s = anno + "-" + mese + "-" + giorno;
         return s;
     }
+    private int radioSelect()
+    {
+        RadioButton[] radioNode={av1,av2,av3,av4,av5,av6};
+        for (int i = 0; i < radioNode.length; i++) {
+            if(radioNode[i].isSelected()) return i;
+        }
+        return 0;
+    }
+
+    private void setRadioSelect(int i)
+    {
+        RadioButton[] radioNode={av1,av2,av3,av4,av5,av6};
+        radioNode[i].setSelected(true);
+    }
+
 
     //todo: inserire l'eliminazione volontaria del profilo! Deve attivare cancelUser!
 }
