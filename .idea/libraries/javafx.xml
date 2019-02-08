@@ -1,7 +1,6 @@
 <component name="libraryTable">
-  <library name="javafx-sdk-11.0">
+  <library name="javafx">
     <CLASSES>
-      <root url="file:///opt/javafx-sdk-11.0.2" />
       <root url="file://$PATH_TO_FX$" />
     </CLASSES>
     <JAVADOC />

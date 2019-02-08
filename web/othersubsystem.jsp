@@ -69,16 +69,16 @@
 
 
     <style type="text/css" id="jarallax-clip-0">#jarallax-container-0 {
-        clip: rect(0 866px 636.4000244140625px 0);
-        clip: rect(0, 866px, 636.4000244140625px, 0);
+        clip: rect(0 866px 10px 0);
+        clip: rect(0, 866px, 10px, 0);
     }</style></head>
 <body class=""><section id="top-1" class="engine"><a href="https://mobirise.ws/">Mobirise Website Builder</a> v4.9.1</section>
 <section class="menu cid-rgnE9xqzT6" once="menu" id="menu1-5">
 
 
 
-    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm opened">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <div class="hamburger">
                 <span></span>
             </div>
