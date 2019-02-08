@@ -8,6 +8,7 @@ import bean.RestrictUserInfo;
 import bean.UserInfoRegister;
 import entity.*;
 import exceptions.NickNotDBEx;
+import exceptions.UserBanned;
 import exceptions.UserNotExistEx;
 import exceptions.WrongParameters;
 import interfaces.RoleStatus;
@@ -28,16 +29,14 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
     public BasicUserInfo getBasicUserInfo(Nickname nick) throws UserNotExistEx {
         Utente user = this.getUtente(nick);
         PublicData pubD = user.getPublic();
-        BasicUserInfo basUI = factInf.createBasic(pubD);
-        return basUI;
+        return factInf.createBasic(pubD);
     }
 
     @Override
     public RestrictUserInfo getRestrictedUserInfo(Nickname nick) throws UserNotExistEx {
         Utente user = this.getUtente(nick);
         PrivateData prD = user.getPrivate();
-        RestrictUserInfo resUI = factInf.createRestrict(prD);
-        return resUI;
+        return factInf.createRestrict(prD);
     }
 
     @Override
@@ -53,17 +52,12 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
     @Override
     public void createUser(Nickname nick, UserInfoRegister dataCreate) throws WrongParameters, ClassNotFoundException {
         this.usExp.createUser(dataCreate);
-        return;
     }
 
     @Override
     public void cancelUser(Nickname nick) throws UserNotExistEx {
-        UserStatus usStat = UserStatus.CANCELLED;
-        Utente user = this.getUtente(nick);
-        user.setStatus(usStat);
-        this.usExp.storeUser(user);
-        //Fa partire la deleteNTime della DAOClass
-        this.usExp.deleteUser(user.getPublic().getNick());
+        //Fa partire la deleteNTime della DAOClass e mette a cancell lo stato
+        this.usExp.deleteUser(nick);
     }
 
     @Override
@@ -88,7 +82,6 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
             user.getPrivate().getPhone().set(d);
         }
         this.usExp.storeUser(user);
-        return;
     }
 
     @Override
@@ -102,21 +95,16 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
     }
 
     @Override
-    public Boolean login(Nickname nick, PW pw) throws UserNotExistEx {
+    public Boolean login(Nickname nick, PW pw) throws UserNotExistEx, UserBanned {
         Utente user = this.getUtente(nick);
         if(user.getStatus()== UserStatus.BANNED){
-            System.out.println("L'utente è stato bannato");
-            return false;
+            throw new UserBanned("Utente Bannato");
         }
         if(user.getStatus()==UserStatus.CANCELLED){
-
-            //todo: reindirizzare l'utente al recupero credenziali
-            return false;
-        }
-        if (user.getPw().getPw().equals(pw.getPw())){
+            this.usExp.recoverProfile(nick); //recupera le credenziali
             return true;
-        } else return false;
-
+        }
+        return user.getPw().getPw().equals(pw.getPw());
     }
 
     @Override
@@ -128,7 +116,7 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
 
 
     @Override
-    public void forgottenPassword(Nickname nick, Questions answers, PW newPw) throws SQLException, ClassNotFoundException, UserNotExistEx{
+    public void forgottenPassword(Nickname nick, Questions answers, PW newPw) throws UserNotExistEx{
        this.usExp.forgottenPassword(nick, answers, newPw);
     }
 
@@ -146,21 +134,19 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
     @Override
     public void changeUrl(String ip) throws SQLException, ClassNotFoundException
     {
-        DAOClass dao= new DAOClass(ip);
+        new DAOClass(ip);
     }
 
     @Override
     public Roles getRoles(Nickname nick) throws UserNotExistEx {
         Utente user = this.getUtente(nick);
-        Roles roles = user.getRole();
-        return roles;
+        return user.getRole();
     }
 
     @Override
     public UserStatus getStatus(Nickname nick) throws UserNotExistEx {
         Utente user = this.getUtente(nick);
-        UserStatus usStat = user.getStatus();
-        return usStat;
+        return user.getStatus();
     }
 
     @Override
@@ -209,38 +195,29 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
     @Override
     public Boolean isActive(Nickname nick) throws UserNotExistEx{
         Utente user = this.getUtente(nick);
-        if(user.getStatus()== UserStatus.ACTIVE){
-            return true;
-        } else return false;
+        return user.getStatus() == UserStatus.ACTIVE;
     }
 
     @Override
     public Boolean isInactive(Nickname nick) throws UserNotExistEx{
         Utente user = this.getUtente(nick);
-        if(user.getStatus()== UserStatus.INACTIVE){
-            return true;
-        } else return false;
+        return user.getStatus()== UserStatus.INACTIVE;
     }
 
     @Override
     public Boolean isCancelled (Nickname nick) throws UserNotExistEx{
         Utente user = this.getUtente(nick);
-        if(user.getStatus()== UserStatus.CANCELLED){
-            return true;
-        } else return false;
+        return user.getStatus()== UserStatus.CANCELLED;
     }
 
     @Override
     public Boolean isBanned(Nickname nick) throws UserNotExistEx{
         Utente user = this.getUtente(nick);
-        if(user.getStatus()== UserStatus.BANNED){
-            return true;
-        } else return false;
+        return user.getStatus()== UserStatus.BANNED;
     }
 
     private Utente getUtente(Nickname nick)throws UserNotExistEx {
-        Utente user = this.usExp.getUser(nick);
-        return user;
+        return this.usExp.getUser(nick);
     }
 
 }
