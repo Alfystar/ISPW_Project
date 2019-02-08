@@ -8,6 +8,8 @@
     String nickN = request.getParameter("nkSaved");
     String[] valueData = userPage_Bean.getStringUsData(nickN);
     String result = "";
+    String genere = "o";
+    if (valueData[6].equals("WOMAN")) genere = "a";
 
     if (request.getParameter("changeData") != null){
 %>
@@ -94,14 +96,14 @@
 
 
 
-    <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(255, 255, 255);">
+    <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);">
     </div>
 
     <div class="container">
         <div class="media-container-column mbr-white col-lg-8 col-md-10">
 
             <h1 class="mbr-section-title align-left mbr-bold pb-3 mbr-fonts-style display-1">
-                Benvenuto <%=valueData[0]%> </h1>
+                Benvenut<%=genere%> <%=valueData[0]%> </h1>
 
             <h3 class="mbr-section-subtitle align-left mbr-light pb-3 mbr-fonts-style display-2">
                 Da qui potrai gestire i tuoi dati, sia personali che di piattaforma.</h3>
@@ -126,11 +128,11 @@
 
             <p class="mbr-text pb-3 mbr-fonts-style display-5">
             <form>
-                <input type="submit" name="changeData" value="Cambia Dati" class="btn btn-info" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+                <input type="submit" name="changeData" value="Cambia Dati" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
             </form>
             <form>
                 <br>
-                <input type="submit" name="cancelMyself" value="Elimina Account" class="btn btn-warning-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 1rem;padding-right: 1rem;padding-top: 0.2rem;padding-bottom: 0.2rem;">
+                <input type="submit" name="cancelMyself" value="Elimina Account" class="btn btn-secondary-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 1rem;padding-right: 1rem;padding-top: 0.2rem;padding-bottom: 0.2rem;">
                 <br>
                 Result: <%=result%>
             </form>

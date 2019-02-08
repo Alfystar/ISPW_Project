@@ -125,9 +125,9 @@
                     Nickname User: <input name="nickInput" type="text" style="margin-bottom: 10px;">
                     <br>
                     New Role:<br>
-                    Tenant: <input name="tenantInput" type="text" style="margin-bottom: 10px;">
-                    <br>
                     Renter: <input name="renterInput" type="text" style="margin-bottom: 10px;">
+                    <br>
+                    Tenant: <input name="tenantInput" type="text" style="margin-bottom: 10px;">
                     <br>
                     <p style="color:white; background-color:red;"><%=opResult%></p>
                     <br>
