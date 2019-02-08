@@ -38,13 +38,23 @@
 <link type="text/css" id="dark-mode" rel="stylesheet" href="">
 <style type="text/css" id="dark-mode-custom-style"></style>
 <head>
+    <link type="text/css" rel="stylesheet" href="">
+    <style type="text/css" ></style>
+    <link type="text/css" rel="stylesheet" href="">
+    <style type="text/css" ></style>
+    <link type="text/css" rel="stylesheet" href="">
+    <style type="text/css" ></style>
+    <link type="text/css" rel="stylesheet" href="">
+    <style type="text/css" ></style>
+    <link type="text/css" rel="stylesheet" href="">
+    <style type="text/css" id=></style>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <!-- Site made with Mobirise Website Builder v4.9.1, https://mobirise.com -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="generator" content="Mobirise v4.9.1, mobirise.com">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-    <link rel="shortcut icon" href="othersubsystem_files/mbr-130x130.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="login_files/mbr-130x130.jpg" type="image/x-icon">
     <meta name="description" content="Web Creator Description">
     <title>OtherSubSystem</title>
     <link rel="stylesheet" href="othersubsystem_files/mobirise-icons.css">
@@ -59,10 +69,10 @@
 
 
     <style type="text/css" id="jarallax-clip-0">#jarallax-container-0 {
-        clip: rect(0 866px 527.5999755859375px 0);
-        clip: rect(0, 866px, 527.5999755859375px, 0);
+        clip: rect(0 866px 636.4000244140625px 0);
+        clip: rect(0, 866px, 636.4000244140625px, 0);
     }</style></head>
-<body class="navbar-dropdown-open"><section id="top-1" class="engine"><a href="https://mobirise.ws/">Mobirise Website Builder</a> v4.9.1</section>
+<body class=""><section id="top-1" class="engine"><a href="https://mobirise.ws/">Mobirise Website Builder</a> v4.9.1</section>
 <section class="menu cid-rgnE9xqzT6" once="menu" id="menu1-5">
 
 
@@ -83,7 +93,7 @@
                 <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="http://localhost:8080/unnamed/index.jsp">FERSA</a></span>
             </div>
         </div>
-        <div class="navbar-collapse collapse show" id="navbarSupportedContent" style="">
+        <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item dropdown">
                 <a class="nav-link link text-white dropdown-toggle display-4"   data-toggle="dropdown-submenu" aria-expanded="false">
 
@@ -109,7 +119,7 @@
             <p class="mbr-text align-left pb-3 mbr-fonts-style display-5">
                 Simulazione dei vari sottosistemi di Fersa.</p>
 
-            <form>
+            <form name="others_form" method="POST">
                 <p class="mbr-text pb-3 mbr-fonts-style display-5" style="margin-bottom: 1rem;">
 
                     Nickname User: <input name="nickInput" type="text" style="margin-bottom: 10px;">
@@ -119,7 +129,7 @@
                     <br>
                     Renter: <input name="renterInput" type="text" style="margin-bottom: 10px;">
                     <br>
-                    Result: <%=opResult%>
+                    <p style="color:white; background-color:red;"><%=opResult%></p>
                     <br>
                     <input type="submit" name="banSubmit" value="Ban Utente" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
 
@@ -138,10 +148,11 @@
                     <input type="submit" name="modSaveRole" value="Modifica e salva Ruolo" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
                 </p>
             </form>
+
         </div>
     </div>
 
-    <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"><div style="background-position: 100% 100%; background-size: cover; background-repeat: no-repeat; background-image: none; position: relative; top: 0px; left: 0px; width: 866px; height: 571.76px; overflow: hidden; pointer-events: none; margin-top: 33.12px; transform: translate3d(0px, -97.5024px, 0px);"></div></div></section>
+    <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"></div></section>
 
 
 <script src="othersubsystem_files/jquery.js"></script>
