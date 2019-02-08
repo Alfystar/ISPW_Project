@@ -3,6 +3,7 @@ package gluonBoundary;
 import control.FacadeSubSystem;
 import entity.Nickname;
 import entity.PW;
+import exceptions.UserBanned;
 import exceptions.UserNotExistEx;
 import gluonBoundary.utilityClass.Bean2User;
 import interfaces.SystemInterface;
@@ -66,6 +67,9 @@ public class K_login implements Initializable {
         {
             outLabel.setText("nick errato");
             return;
+        }catch (UserBanned e)
+        {
+            outLabel.setText("Utente Bannato");
         }
 
 
