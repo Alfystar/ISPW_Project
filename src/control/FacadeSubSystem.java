@@ -109,6 +109,7 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
             return false;
         }
         if(user.getStatus()==UserStatus.CANCELLED){
+
             //todo: reindirizzare l'utente al recupero credenziali
             return false;
         }
