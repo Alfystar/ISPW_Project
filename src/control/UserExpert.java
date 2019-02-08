@@ -122,6 +122,7 @@ public class UserExpert {
 
     public void createUser(UserInfoRegister userInfo) throws WrongParameters {
         Utente user= this.daoFace.createUser(userInfo);
+        System.out.println(gregCalToString(user.getPublic().getBirthday()));
         coda.add(user);
     }
 
@@ -206,6 +207,24 @@ public class UserExpert {
 
     private void addUserQueue(Utente user){
         coda.add(user);
+    }
+
+    private GregorianCalendar stringToGregCal(String s){
+        String[] splitDate = s.split("-");
+        int year = Integer.parseInt(splitDate[0]);
+        int month = Integer.parseInt(splitDate[1]);
+        int days = Integer.parseInt(splitDate[2]);
+        GregorianCalendar gc= new GregorianCalendar(year, month-1, days);
+        return  gc;
+
+    }
+
+    private String gregCalToString(GregorianCalendar gc){
+        int anno = gc.get(GregorianCalendar.YEAR);
+        int mese = gc.get(GregorianCalendar.MONTH) + 1;
+        int giorno = gc.get(GregorianCalendar.DATE);
+        String s = anno + "-" + mese + "-" + giorno;
+        return s;
     }
 
 
