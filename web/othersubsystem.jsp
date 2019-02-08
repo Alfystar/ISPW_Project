@@ -69,13 +69,16 @@
 
 
     <style type="text/css" id="jarallax-clip-0">#jarallax-container-0 {
-        clip: rect(0 866px 636.4000244140625px 0);
-        clip: rect(0, 866px, 636.4000244140625px, 0);
+        clip: rect(0 866px 10px 0);
+        clip: rect(0, 866px, 10px, 0);
     }</style></head>
 <body class=""><section id="top-1" class="engine"><a href="https://mobirise.ws/">Mobirise Website Builder</a> v4.9.1</section>
 <section class="menu cid-rgnE9xqzT6" once="menu" id="menu1-5">
-    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm opened"  >
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+
+
+
+    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <div class="hamburger">
                 <span></span>
             </div>
@@ -91,14 +94,11 @@
             </div>
         </div>
         <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
-            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
-                <li class="nav-item dropdown">
-                <a class="nav-link link text-white dropdown-toggle display-4"   data-toggle="dropdown-submenu" aria-expanded="false">Simulazione</a>
-                <div class="dropdown-menu">
-                    <a class="text-white dropdown-item display-4" href="http://localhost:8080/unnamed/othersubsystem.jsp" aria-expanded="false">Other SubSystem</a>
-                </div>
-                </li>
-            </ul>
+            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item dropdown">
+                <a class="nav-link link text-white dropdown-toggle display-4"   data-toggle="dropdown-submenu" aria-expanded="false">
+
+                    Simulazione</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="http://localhost:8080/unnamed/othersubsystem.jsp" aria-expanded="false">Other SubSystem</a></div>
+            </li></ul>
             <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-white-outline display-4" href="http://localhost:8080/unnamed/login.jsp">Login
             </a> <a class="btn btn-sm btn-primary display-4" href="http://localhost:8080/unnamed/register.jsp">Register
             </a></div>
@@ -152,7 +152,7 @@
         </div>
     </div>
 
-    <div style="position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"></div></section>
+    <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"></div></section>
 
 
 <script src="othersubsystem_files/jquery.js"></script>
