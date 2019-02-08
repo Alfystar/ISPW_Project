@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -42,6 +43,8 @@ public class K_login implements Initializable {
     private TextField nickField;
     @FXML
     private PasswordField pwField;
+    @FXML
+    private Label outLabel;
 
     //=================================================================
     //Bottom object
@@ -61,7 +64,7 @@ public class K_login implements Initializable {
             if(!sysInt.login(new Nickname(nickField.getText()),new PW(pwField.getText()))) return;
         }catch (UserNotExistEx e)
         {
-            System.out.println("Utente non presente RIPROVARE");
+            outLabel.setText("nick errato");
             return;
         }
 
@@ -86,7 +89,6 @@ public class K_login implements Initializable {
             kUser = userLoader.getController();
             //here we pass the reference to the  other controller
             kUser.setBean(bean);
-            System.out.println("userLoader not null");
         }
 
         Scene userScene = new Scene(userParent);
