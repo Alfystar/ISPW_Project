@@ -90,11 +90,11 @@
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobirise.info/t">free amp templates</a></section><section class="header9 cid-rgrhyqMNgL mbr-parallax-background" id="header9-c" style="z-index: 0; background-image: none; position: relative;">
+<section class="engine"><a href="https://mobirise.info/t">free amp templates</a></section><section class="header9 cid-rgrhyqMNgL mbr-parallax-background" id="header9-c" style="z-index: 0; background-image: url(http://localhost:8080/unnamed/assets/images/mbr-1-1920x1280.jpg);  position: relative;">
 
 
 
-    <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);">
+    <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(255, 255, 255);">
     </div>
 
     <div class="container">
@@ -126,11 +126,11 @@
 
             <p class="mbr-text pb-3 mbr-fonts-style display-5">
             <form>
-                <input type="submit" name="changeData" value="Cambia Dati" class="btn btn-info" style="margin-left: 0px;margin-top: 1.rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+                <input type="submit" name="changeData" value="Cambia Dati" class="btn btn-info" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
             </form>
             <form>
                 <br>
-                <input type="submit" name="cancelMyself" value="Elimina Account" class="btn btn-warning-outline" style="margin-left: 0px;margin-top: 1.rem;margin-right: 0px;padding-left: 1rem;padding-right: 1rem;padding-top: 0.2rem;padding-bottom: 0.2rem;">
+                <input type="submit" name="cancelMyself" value="Elimina Account" class="btn btn-warning-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 1rem;padding-right: 1rem;padding-top: 0.2rem;padding-bottom: 0.2rem;">
                 <br>
                 Result: <%=result%>
             </form>
@@ -139,7 +139,7 @@
     </div>
 
 
-    <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"><div style="background-position: 50% 50%; background-size: cover; background-repeat: no-repeat; background-image: url(&quot;http://localhost:8080/unnamed/assets/images/mbr-1-1920x1280.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 866px; height: 619.28px; overflow: hidden; pointer-events: none; margin-top: 9.36px; transform: translate3d(0px, -41.8976px, 0px);"></div></div></section>
+    <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"><div style="background-position: 100% 100%; background-size: cover; background-repeat: no-repeat; background-image: none; position: relative; top: 0px; left: 0px; width: 866px; height: 619.28px; overflow: hidden; pointer-events: none; margin-top: 9.36px; transform: translate3d(0px, -41.8976px, 0px);"></div></div></section>
 
 
 <script src="userpage_files/jquery.js"></script>
