@@ -71,9 +71,10 @@ public class K_resetPw implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        resetPwBut.setDisable(true);
-        newPw.setDisable(true);
-        confPw.setDisable(true);
+        resetPwBut.setDisable(true);    //attivato quando le pw sono uguali
+
+        newPw.setDisable(true);         //attivato da checkQuestion
+        confPw.setDisable(true);        //attivato da checkQuestion
     }
 
 
