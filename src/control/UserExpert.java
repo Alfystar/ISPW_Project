@@ -156,7 +156,6 @@ public class UserExpert {
         Utente us = this.getUser(nk);
         us.setStatus(UserStatus.ACTIVE);
         daoFace.removeDataEvent(nk);
-        //todo elimina dalla coda di quelli da eliminare dopo n time
         this.storeUser(us);
     }
 
