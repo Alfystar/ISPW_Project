@@ -58,7 +58,7 @@ public class K_login implements Initializable {
         System.out.println(nickField.getText());
         System.out.println(pwField.getText());
         try {
-            sysInt.login(new Nickname(nickField.getText()),new PW(pwField.getText()));
+            if(!sysInt.login(new Nickname(nickField.getText()),new PW(pwField.getText()))) return;
         }catch (UserNotExistEx e)
         {
             System.out.println("Utente non presente RIPROVARE");

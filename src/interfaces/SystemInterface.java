@@ -14,7 +14,9 @@ public interface SystemInterface {
 
     Boolean login(Nickname nk, PW passW) throws UserNotExistEx;
 
-    void forgottenPassword(Nickname nk, Questions answers, PW newPW) throws SQLException, ClassNotFoundException, NickNotDBEx, UserNotExistEx;
+    Boolean checkQuestion(Nickname nk, Questions q) throws UserNotExistEx;
+
+    void forgottenPassword(Nickname nk, Questions answers, PW newPW) throws SQLException, ClassNotFoundException, UserNotExistEx;
 
     Avatar getAvatar(Nickname nk) throws UserNotExistEx;
 
