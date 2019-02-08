@@ -23,9 +23,15 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
+
+import java.util.Date.*;
+import java.time.LocalDate.*;
 
 public class K_user implements Initializable {
 
@@ -192,32 +198,10 @@ public class K_user implements Initializable {
         }
         avatar.setImage(basic.getAvatar().getMyIcon());
 
-        //gestione birthday: da GregorianCalendar a DatePicker
-        String newBDay= gregCalToString(basic.getBirthday());
+        //gestione birthday: GregorianCalendar -> Date -> LocalDate ->DatePicker
 
-        String[] parts = newBDay.split("-");
-        String part1 = parts[0];
-        String part2 = parts[1];
-        String part3 = parts[2];
+        setDatePicker(basic.getBirthday(), birthday);
 
-        int month = Integer.parseInt(part1);
-        int day = Integer.parseInt(part2);
-        int year = Integer.parseInt(part3);
-        /*
-        DatePicker dpResult= new DatePicker();
-        dpResult.getDayOfMonth()= day;
-        dpResult.getMonth() -1 = month;
-        dpResult.getYear()= year;
-
-        DatePicker dpResult.init(year, month, day, null);
-        birthday.init(year, month, day, null);
-        */
-        // String date = birthday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        //todo capire come mettere birtday
-        /*
-
-
-        */
     }
 
     private void loadPrivate() {
@@ -255,4 +239,17 @@ public class K_user implements Initializable {
     }
 
     //todo: inserire l'eliminazione volontaria del profilo! Deve attivare cancelUser!
+
+    public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant().atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
+
+    public void setDatePicker(GregorianCalendar gc, DatePicker dp){
+        java.util.Date date= (gc.getTime());
+        LocalDate newDate= convertToLocalDateViaInstant(date);
+        dp.setValue(newDate);
+    }
+
 }

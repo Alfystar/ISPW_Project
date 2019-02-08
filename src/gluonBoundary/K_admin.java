@@ -26,6 +26,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 public class K_admin implements Initializable {
@@ -201,11 +205,8 @@ public class K_admin implements Initializable {
             woman.setSelected(true);
         }
         avatar.setImage(basic.getAvatar().getMyIcon());
-        //todo capire come mettere birtday
-        /*
-    private GregorianCalendar birthday= new GregorianCalendar();
+        setDatePicker(basic.getBirthday(),birthday);
 
-        */
     }
 
     private void loadPrivate() {
@@ -276,5 +277,16 @@ public class K_admin implements Initializable {
         }
     }
 
+    public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant().atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
+
+    public void setDatePicker(GregorianCalendar gc, DatePicker dp){
+        java.util.Date date= (gc.getTime());
+        LocalDate newDate= convertToLocalDateViaInstant(date);
+        dp.setValue(newDate);
+    }
 
 }
