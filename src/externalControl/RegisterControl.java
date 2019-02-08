@@ -31,7 +31,7 @@ public class RegisterControl {
             UserInfoRegister usInfoReg = new UserInfoRegister(new Name(firstname), new Name(lastname),
                                                             new TaxCode(taxcode), new Nickname(nickname),
                                                             new Email(email), gCal, Gender.valueOf(gender.toUpperCase()),
-                                                            new Questions(answers), new PW(password));
+                                                            new Questions(answers), new PW(password),new SurfaceAddress("my city"));
             usProfInt.createUser(new Nickname(nickname), usInfoReg);
             return "Successo";
         }

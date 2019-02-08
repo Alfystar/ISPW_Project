@@ -108,7 +108,7 @@ public class K_registration implements Initializable {
         Questions q = new Questions(answs);
 
         //(Name name, Name surname, TaxCode cf, Nickname nickname, Email email, GregorianCalendar birthday, Gender gender, Questions answers, PW pw){
-        UserInfoRegister infoReg = new UserInfoRegister(new Name(name.getText()), new Name(surname.getText()),new TaxCode(tc.getText()),new Nickname(nick.getText()),new Email(email.getText()),bGc,g,q,new PW(newPw.getText()));
+        UserInfoRegister infoReg = new UserInfoRegister(new Name(name.getText()), new Name(surname.getText()),new TaxCode(tc.getText()),new Nickname(nick.getText()),new Email(email.getText()),bGc,g,q,new PW(newPw.getText()), new SurfaceAddress(cityBirth.getText()));
 
         try {
             usInt.createUser(new Nickname(nick.getText()), infoReg );
