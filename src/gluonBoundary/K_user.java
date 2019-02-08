@@ -186,6 +186,7 @@ public class K_user implements Initializable {
             basic = usInt.getBasicUserInfo(bean.getNick());
         }catch (UserNotExistEx e) {
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+            return;
         }
         nick.setText(basic.getNickname().get());
         email.setText(basic.getEmail().get());
@@ -212,6 +213,7 @@ public class K_user implements Initializable {
             restrict = usInt.getRestrictedUserInfo(bean.getNick());
         } catch (UserNotExistEx e) {
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+            return;
         }
         cel.setText(restrict.getPhoneNumber().get());
         cityBirth.setText(restrict.getCityOfBirth().get());
@@ -224,6 +226,7 @@ public class K_user implements Initializable {
             roles= rolStatInt.getRoles(bean.getNick());
         }catch (UserNotExistEx e){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+            return;
         }
         if(roles.isTenant()) {
             tenant.setSelected(true);
@@ -240,8 +243,7 @@ public class K_user implements Initializable {
         String s = anno + "-" + mese + "-" + giorno;
         return s;
     }
-    private int radioSelect()
-    {
+    private int radioSelect(){
         RadioButton[] radioNode={av1,av2,av3,av4,av5,av6};
         for (int i = 0; i < radioNode.length; i++) {
             if(radioNode[i].isSelected()) return i;

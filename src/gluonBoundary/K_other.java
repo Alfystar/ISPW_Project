@@ -213,6 +213,7 @@ public class K_other implements Initializable {
             roles= rolStatInt.getRoles(new Nickname(nickWork.getText()));
         }catch (UserNotExistEx e){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+            return;
         }
         if(roles.isTenant()) tenant.setSelected(true);
         else tenant.setSelected(false);
@@ -228,6 +229,7 @@ public class K_other implements Initializable {
 
         }catch (UserNotExistEx ex){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+            return;
         }
     }
 
@@ -239,6 +241,7 @@ public class K_other implements Initializable {
             //renter.setSelected(true);
         }catch (UserNotExistEx ex){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+            return;
         }
     }
 
@@ -250,6 +253,7 @@ public class K_other implements Initializable {
             //renter.setSelected(false);
         }catch (UserNotExistEx ex){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+            return;
         }
     }
 

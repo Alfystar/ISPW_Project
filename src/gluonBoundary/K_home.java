@@ -2,8 +2,12 @@ package gluonBoundary;
 
 import DAO.DAOClass;
 import DAO.DaemonDAO;
+import control.FacadeSubSystem;
 import exceptions.DBConnectionEx;
 import gluonBoundary.utilityClass.DigitalIcon;
+import interfaces.RoleStatus;
+import interfaces.SystemInterface;
+import interfaces.UserProfileService;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,6 +33,10 @@ public class K_home  implements Initializable {
     /*******************************************************************/
     /**                       Class Attribute                         **/
     DigitalIcon testConnImg = new DigitalIcon();
+
+    private SystemInterface sysInt = new FacadeSubSystem();
+    private RoleStatus rolStatInt = new FacadeSubSystem();
+    private UserProfileService usInt = new FacadeSubSystem();
 
     /*******************************************************************/
 
@@ -166,7 +174,7 @@ public class K_home  implements Initializable {
     private void treadStart() throws ClassNotFoundException, DBConnectionEx
     {
         try {
-            DAOClass dao= new DAOClass(ipField.getText());
+            sysInt.changeUrl(ipField.getText());
             DaemonDAO daemonDAO = DaemonDAO.getInstance();
             if(!this.testDBConn()){
                 throw new DBConnectionEx("DB Connection Problem");
@@ -174,6 +182,10 @@ public class K_home  implements Initializable {
         }catch (ClassNotFoundException e)
         {
             outLabel.setText("Driver DB not found");
+        }catch (SQLException e)
+        {
+            outLabel.setText("Problemi con SQL");
+            e.printStackTrace();
         }
 
     }
