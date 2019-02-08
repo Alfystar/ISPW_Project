@@ -1,14 +1,12 @@
 package control;
 
 import DAO.DAOClass;
-import DAO.DaemonDAO;
 import bean.BasicUserInfo;
 import bean.FactoryInfo;
 import bean.RestrictUserInfo;
 import bean.UserInfoRegister;
 import entity.*;
-import exceptions.NickNotDBEx;
-import exceptions.UserBanned;
+import exceptions.UserBannedEx;
 import exceptions.UserNotExistEx;
 import exceptions.WrongParameters;
 import interfaces.RoleStatus;
@@ -95,10 +93,10 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
     }
 
     @Override
-    public Boolean login(Nickname nick, PW pw) throws UserNotExistEx, UserBanned {
+    public Boolean login(Nickname nick, PW pw) throws UserNotExistEx, SQLException, UserBannedEx {
         Utente user = this.getUtente(nick);
         if(user.getStatus()== UserStatus.BANNED){
-            throw new UserBanned("Utente Bannato");
+            throw new UserBannedEx("Utente Bannato");
         }
         if(user.getStatus()==UserStatus.CANCELLED){
             this.usExp.recoverProfile(nick); //recupera le credenziali

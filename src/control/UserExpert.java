@@ -87,10 +87,13 @@ public class UserExpert {
 
             GregorianCalendar cal = new GregorianCalendar();
             cal.add(GregorianCalendar.YEAR, 10);
-
             daoFace.deleteNTime(nk, cal);
-            daoFace.saveUser(user);
-
+            try {
+                daoFace.updateUser(user);
+            } catch (NickNotDBEx e)
+            {
+                throw new UserNotExistEx(e);
+            }
             coda.remove(nk);
         }
         catch (SQLException se) {
@@ -147,10 +150,11 @@ public class UserExpert {
 
     }
 
-    public void recoverProfile(Nickname nk) throws UserNotExistEx
+    public void recoverProfile(Nickname nk) throws UserNotExistEx, SQLException
     {
         Utente us = this.getUser(nk);
         us.setStatus(UserStatus.ACTIVE);
+        daoFace.removeDataEvent(nk);
         //todo elimina dalla coda di quelli da eliminare dopo n time
         this.storeUser(us);
     }

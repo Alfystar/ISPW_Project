@@ -28,5 +28,7 @@ public interface DAOInterface {
 
     void deleteNTime(Nickname nickname, GregorianCalendar date) throws SQLException;
 
+    void removeDataEvent(Nickname nick) throws SQLException;
+
     void changeUrl(String ip);
 }

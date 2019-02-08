@@ -3,7 +3,7 @@ package gluonBoundary;
 import control.FacadeSubSystem;
 import entity.Nickname;
 import entity.PW;
-import exceptions.UserBanned;
+import exceptions.UserBannedEx;
 import exceptions.UserNotExistEx;
 import gluonBoundary.utilityClass.Bean2User;
 import interfaces.SystemInterface;
@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class K_login implements Initializable {
@@ -67,9 +68,12 @@ public class K_login implements Initializable {
         {
             outLabel.setText("nick errato");
             return;
-        }catch (UserBanned e)
+        }catch (UserBannedEx e)
         {
             outLabel.setText("Utente Bannato");
+        }catch (SQLException e)
+        {
+            e.printStackTrace();
         }
 
 

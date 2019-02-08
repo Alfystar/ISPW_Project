@@ -1,8 +1,7 @@
 package interfaces;
 
 import entity.*;
-import exceptions.NickNotDBEx;
-import exceptions.UserBanned;
+import exceptions.UserBannedEx;
 import exceptions.UserNotExistEx;
 
 import java.sql.SQLException;
@@ -13,7 +12,7 @@ public interface SystemInterface {
 
     void changePassword(Nickname nk,PW newPw, PW oldPw ) throws UserNotExistEx;
 
-    Boolean login(Nickname nk, PW passW) throws UserNotExistEx, UserBanned;
+    Boolean login(Nickname nk, PW passW) throws UserNotExistEx, SQLException, UserBannedEx;
 
     Boolean checkQuestion(Nickname nk, Questions q) throws UserNotExistEx;
 

@@ -69,10 +69,11 @@ public class DAOMock implements DAOInterface{
     @Override
     public void destroy(Nickname nickname){}
 
-
-
     @Override
     public void deleteNTime(Nickname nickname, GregorianCalendar date){}
+
+    @Override
+    public void removeDataEvent(Nickname nick) throws SQLException{}
 
     @Override
     public void changeUrl(String ip) {}
