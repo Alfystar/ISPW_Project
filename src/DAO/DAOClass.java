@@ -73,7 +73,7 @@ public class DAOClass implements DAOInterface {
                     "\""+(nickname.get())+"\" "+ " ;";
             System.out.println(sql);
             this.stmt.executeQuery(sql);
-            System.out.println("query executed");
+            System.out.println("searchNickDB query executed");
 
             ResultSet rs= this.stmt.executeQuery(sql);
             if (!rs.first())
@@ -97,7 +97,7 @@ public class DAOClass implements DAOInterface {
         "\""+nickname.get()+"\" "+ " ;";
         System.out.println(sql);
         ResultSet rs= this.stmt.executeQuery(sql);
-        System.out.println("query executed");
+        System.out.println("loadFromDB query executed");
 
         if (!rs.first()) throw  new NickNotDBEx("nickname not found");
 
@@ -316,7 +316,7 @@ public class DAOClass implements DAOInterface {
                     "\""+cf.get()+"\" "+ " ;";
             System.out.println(sql);
             ResultSet rs = this.stmt.executeQuery(sql);
-            System.out.println("query executed");
+            System.out.println("searchTC query executed");
             if (!rs.first())
                 return false;
             else return true;
@@ -342,7 +342,7 @@ public class DAOClass implements DAOInterface {
                 "\""+nickname.get()+"\" "+ " ;";
         System.out.println(sql);
         ResultSet rs= this.stmt.executeQuery(sql);
-        System.out.println("query executed");
+        System.out.println("destroy query executed");
         if (!rs.first()) throw  new NickNotDBEx("nickname not found");
 
         //Prendo tutte chiavi delle tabelle collegate a Utente, e le distruggo
@@ -384,10 +384,13 @@ public class DAOClass implements DAOInterface {
         String strDate= gregCalToString(date);
 
         String sql= "INSERT INTO dateevent VALUES (idDate,nick)= " +
-                "\""+strDate+"\" "+ " ;" +
+                "\""+strDate+"\" "+ "," +
                 "\""+nickname.get()+"\" "+ " ;";
+        System.out.println(sql);
         this.stmt.executeQuery(sql);
+
         System.out.println("date inserted");
+        this.closeConn();
         return;
     }
 
@@ -399,7 +402,7 @@ public class DAOClass implements DAOInterface {
                 "\""+oggi+"\" "+ " ;";
         System.out.println(sql);
         this.stmt.executeQuery(sql);
-        System.out.println("query executed");
+        System.out.println("deleteByDeamon query executed");
         ResultSet rs= this.stmt.executeQuery(sql);
 
         try {
@@ -420,7 +423,7 @@ public class DAOClass implements DAOInterface {
         this.openConn();
         String sql= "SELECT * FROM deletesession;";
         this.stmt.executeQuery(sql);
-        System.out.println("query executed");
+        System.out.println("nextDeleteSession query executed");
         ResultSet rs= this.stmt.executeQuery(sql);
         if(!rs.first()) {
             java.util.Date tomorrow = GregorianCalendar.getInstance().getTime();
@@ -439,7 +442,8 @@ public class DAOClass implements DAOInterface {
         String sql= "DELETE * FROM dateevent WHERE nick =" +
                 "\""+nick.get()+"\" "+ " ;";
         this.stmt.executeQuery(sql);
-        System.out.println("query executed");
+        System.out.println("removeDataEvent query executed");
+        this.closeConn();
     }
 
     private GregorianCalendar stringToGregCal(String s){
@@ -469,7 +473,7 @@ public class DAOClass implements DAOInterface {
         this.openConn();
         String sql = "/* ping */ SELECT 1";
         ResultSet rs = this.stmt.executeQuery(sql);
-        System.out.println("query executed");
+        System.out.println("testNet query executed");
         if(rs.first()) return true;
         else return false;
     }
@@ -481,7 +485,7 @@ public class DAOClass implements DAOInterface {
         System.out.println("Connected database successfully...");
         //STEP 4: create Statement
         stmt = conn.createStatement();
-        System.out.println("Connecting to a selected database...");
+        System.out.println("Create Statement ...");
     }
 
     private void closeConn() {
@@ -490,11 +494,14 @@ public class DAOClass implements DAOInterface {
                 conn.close(); }
         } catch (SQLException se) {
         }// do nothing
+        System.out.println("Close Statement...");
+
         try {
             if (conn != null) {
                 conn.close(); }
         } catch (SQLException se) {
             se.printStackTrace(); }
+        System.out.println("Close connection wiht database...");
     }
 
     public static void main(String[] argv){

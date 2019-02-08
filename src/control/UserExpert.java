@@ -87,10 +87,16 @@ public class UserExpert {
 
             GregorianCalendar cal = new GregorianCalendar();
             cal.add(GregorianCalendar.YEAR, 10);
-
+            System.out.println("appena prima di n time");
             daoFace.deleteNTime(nk, cal);
-            daoFace.saveUser(user);
-
+            try {
+                System.out.println("appena prima di updateUser");
+                daoFace.updateUser(user);
+            } catch (NickNotDBEx e)
+            {
+                throw new UserNotExistEx(e);
+            }
+            System.out.println("appena prima di coda.remove(nk)");
             coda.remove(nk);
         }
         catch (SQLException se) {
