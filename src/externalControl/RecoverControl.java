@@ -25,7 +25,13 @@ public class RecoverControl {
                            String question4,String nickname, String newPW) {
         try {
             String[] answers= {question1, question2, question3, question4};
-            sysInt.forgottenPassword(new Nickname(nickname),new Questions(answers), new PW(newPW));
+
+            Questions tmpQuestions = new Questions(answers);
+            Nickname nick = new Nickname(nickname);
+
+            if(!sysInt.checkQuestion(nick, tmpQuestions)) return "Risposte non valide, riprova";
+
+            sysInt.forgottenPassword(nick, tmpQuestions, new PW(newPW));
             return "Successo";
         }
         catch (Exception e){

@@ -96,7 +96,7 @@
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobirise.info/z">best html templates</a></section><section class="header9 cid-rgnE9yb8VN mbr-parallax-background" id="header9-6" style="z-index: 0; background-image: url(&quot;http://localhost:8080/unnamed/assets/images/mbr-1-1920x1280.jpg&quot;); position: relative;">
+<section class="engine"><a href="https://mobirise.info/z">best html templates</a></section><section class="header9 cid-rgnE9yb8VN mbr-parallax-background" id="header9-6" style="z-index: 0; background-image: url(http://localhost:8080/unnamed/assets/images/mbr-1-1920x1280.jpg);  position: relative;">
 
     <div class="container">
         <div class="media-container-column mbr-white col-lg-8 col-md-10">
@@ -116,31 +116,31 @@
                     <br>
                     Result: <%=opResult%>
                     <br>
-                    <input type="submit" name="banSubmit" value="Ban Utente" class="btn btn-info" style="margin-left: 0px;margin-top: 1.rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+                    <input type="submit" name="banSubmit" value="Ban Utente" class="btn btn-info" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
 
-                    <input type="submit" name="unBanSubmit" value="UnBan Utente" class="btn btn-info" style="margin-left: 0px;margin-top: 1.rem;padding-left: 2rem;padding-right: 2rem;margin-right: 0px;">
+                    <input type="submit" name="unBanSubmit" value="UnBan Utente" class="btn btn-info" style="margin-left: 0px;margin-top: 0.8rem;padding-left: 2rem;padding-right: 2rem;margin-right: 0px;">
 
-                    <input type="submit" name="destroySubmit" value="Distruggi Utente" class="btn btn-info" style="margin-left: 0px;margin-top: 1.rem;padding-left: 2rem;padding-right: 2rem;">
+                    <input type="submit" name="destroySubmit" value="Distruggi Utente" class="btn btn-info" style="margin-left: 0px;margin-top: 0.8rem;padding-left: 2rem;padding-right: 2rem;">
 
-                    <input type="submit" name="obtainPubDSubmit" value="Ottieni Dati Pubblici" class="btn btn-info" style="margin-left: 0px;margin-top: 1.rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+                    <input type="submit" name="obtainPubDSubmit" value="Ottieni Dati Pubblici" class="btn btn-info" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
 
-                    <input type="submit" name="obtainPriDSubmit" value="Ottieni Dati Privati" class="btn btn-info" style="margin-left: 0px;margin-top: 1.rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+                    <input type="submit" name="obtainPriDSubmit" value="Ottieni Dati Privati" class="btn btn-info" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
 
-                    <input type="submit" name="obtainRoleSubmit" value="Ottieni Ruolo" class="btn btn-info" style="margin-left: 0px;margin-top: 1.rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+                    <input type="submit" name="obtainRoleSubmit" value="Ottieni Ruolo" class="btn btn-info" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
 
-                    <input type="submit" name="obtainStatusSubmit" value="Ottieni Status" class="btn btn-info" style="margin-left: 0px;margin-top: 1.rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+                    <input type="submit" name="obtainStatusSubmit" value="Ottieni Status" class="btn btn-info" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
 
-                    <input type="submit" name="modSaveRole" value="Modifica e salva Ruolo" class="btn btn-info" style="margin-left: 0px;margin-top: 1.rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+                    <input type="submit" name="modSaveRole" value="Modifica e salva Ruolo" class="btn btn-info" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
                 </p>
             </form>
         </div>
     </div>
 
-    <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);">
+    <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(255, 255, 255);">
     </div>
 
 
-    <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"><div style="background-position: 50% 50%; background-size: cover; background-repeat: no-repeat; background-image: url(&quot;http://localhost:8080/unnamed/assets/images/mbr-1-1920x1280.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 866px; height: 571.76px; overflow: hidden; pointer-events: none; margin-top: 33.12px; transform: translate3d(0px, -97.5024px, 0px);"></div></div></section>
+    <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"><div style="background-position: 100% 100%; background-size: cover; background-repeat: no-repeat; background-image: none; position: relative; top: 0px; left: 0px; width: 866px; height: 571.76px; overflow: hidden; pointer-events: none; margin-top: 33.12px; transform: translate3d(0px, -97.5024px, 0px);"></div></div></section>
 
 
 <script src="othersubsystem_files/jquery.js"></script>

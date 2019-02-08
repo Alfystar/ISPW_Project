@@ -102,13 +102,21 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
     @Override
     public Boolean login(Nickname nick, PW pw) throws UserNotExistEx {
         Utente user = this.getUtente(nick);
-        if (user.getPw().getPw()== pw.getPw()){
+        if (user.getPw().getPw().equals(pw.getPw())){
             return true;
         } else return false;
     }
 
     @Override
-    public void forgottenPassword(Nickname nick, Questions answers, PW newPw) throws SQLException, ClassNotFoundException, NickNotDBEx, UserNotExistEx{
+    public Boolean checkQuestion(Nickname nk, Questions q) throws UserNotExistEx
+    {
+        Utente us = getUtente(nk);
+        return us.getQuestions().checkAnswers(q,4);
+    }
+
+
+    @Override
+    public void forgottenPassword(Nickname nick, Questions answers, PW newPw) throws SQLException, ClassNotFoundException, UserNotExistEx{
        this.usExp.forgottenPassword(nick, answers, newPw);
     }
 
@@ -120,8 +128,7 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
 
     @Override
     public void setAvatar(Nickname nk, int id) throws UserNotExistEx{
-        Utente us = getUtente(nk);
-        us.getPublic().getAvatar().setMyIcon(id);
+        this.usExp.setAvatar(nk,id);
     }
 
     @Override

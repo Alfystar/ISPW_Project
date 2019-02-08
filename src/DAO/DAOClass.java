@@ -493,31 +493,31 @@ public class DAOClass implements DAOInterface {
     public static void main(String[] argv){
         DAOClass dao = null;
         try{
-            dao = new DAOClass();
+            dao = new DAOClass("10.200.146.92");
 
         }catch (ClassNotFoundException e){
             e.printStackTrace();
             System.exit(-1);
         }
-        PublicData pubD = new PublicData(new Name("supercalifragili"), new Name("alf"), new TaxCode("dsafgdsfg"), new Nickname("thadhtht") ,new Email("ema@gmail.com"), new GregorianCalendar(97,7,31), Gender.MAN);
-        PrivateData priD = new PrivateData(new SurfaceAddress("ciamarra"), new SurfaceAddress("Roma"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
-        Utente us1 = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions(new String[] {"a","b","c","d"}));
+        PublicData pubD = new PublicData(new Name("Marta"), new Name("Caggiano"), new TaxCode("cggmrt"), new Nickname("caggy") ,new Email("marta.caggiano@hotmail"), new GregorianCalendar(1998,2,3), Gender.WOMAN);
+        PrivateData priD = new PrivateData(new SurfaceAddress("Alatri casa"), new SurfaceAddress("alatri"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
+        Utente us1 = new Utente(pubD,priD,new PW("12345"),new Roles(false,true),new Questions(new String[] {"abaco","ballerina","coniglio","destra"}));
 
-         pubD = new PublicData(new Name("sdfema"), new Name("asdflf"), new TaxCode("asdasd"), new Nickname("giug") ,new Email("sdf@gmail.com"), new GregorianCalendar(97,7,31), Gender.MAN);
-         priD = new PrivateData(new SurfaceAddress("sadfg"), new SurfaceAddress("sdf"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
-        Utente us2 = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions(new String[] {"a","b","c","d"}));
+         pubD = new PublicData(new Name("Filippo"), new Name("Badalamenti"), new TaxCode("bflflp"), new Nickname("bal") ,new Email("filippo@gmail.com"), new GregorianCalendar(1997,5,25), Gender.MAN);
+         priD = new PrivateData(new SurfaceAddress("collegio"), new SurfaceAddress("Roma"), new Nationality("Italiano"), new PhoneNumber("064586325"));
+        Utente us2 = new Utente(pubD,priD,new PW("qwerty"),new Roles(true,false),new Questions(new String[] {"aa","bb","cc","dd"}));
 
-         pubD = new PublicData(new Name("marta"), new Name("caggiano"), new TaxCode("cggmrt98"), new Nickname("caggy") ,new Email("marta.caggiano@hotmail"), new GregorianCalendar(97,7,31), Gender.WOMAN);
-         priD = new PrivateData(new SurfaceAddress("alatri"), new SurfaceAddress("alatri"), new Nationality("Italiana"), new PhoneNumber("3333071117"));
-        Utente us3 = new Utente(pubD,priD,new PW("98765"),new Roles(true,true),new Questions(new String[] {"a","b","c","d"}));
+         pubD = new PublicData(new Name("Emanuele"), new Name("Alfano"), new TaxCode("lfnmnl"), new Nickname("alfy") ,new Email("alfystar1701@gmail.com"), new GregorianCalendar(1997,7,31), Gender.MAN);
+         priD = new PrivateData(new SurfaceAddress("ciamarra"), new SurfaceAddress("roma"), new Nationality("Italiano"), new PhoneNumber("3333071117"));
+        Utente us3 = new Utente(pubD,priD,new PW("lele"),new Roles(true,true),new Questions(new String[] {"astro","balocco","cavolfiore","dentista"}));
 
-         pubD = new PublicData(new Name("fil"), new Name("alf"), new TaxCode("aewdsac"), new Nickname("badr") ,new Email("rt@gmail.com"), new GregorianCalendar(97,7,31), Gender.MAN);
-         priD = new PrivateData(new SurfaceAddress("roma qualcosa"), new SurfaceAddress("Roma"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
-        Utente us4 = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions(new String[] {"a","b","c","d"}));
+         pubD = new PublicData(new Name("elisa"), new Name("alfano"), new TaxCode("lfnlsa"), new Nickname("sorreta") ,new Email("elisa@gmail.com"), new GregorianCalendar(2000,9,12), Gender.WOMAN);
+         priD = new PrivateData(new SurfaceAddress("ciamarra"), new SurfaceAddress("Roma"), new Nationality("Italiana"), new PhoneNumber("45628731982"));
+        Utente us4 = new Utente(pubD,priD,new PW("sissi"),new Roles(),new Questions(new String[] {"aaaa","bbbb","ccccc","ddddd"}));
 
-         pubD = new PublicData(new Name("cant"), new Name("alf"), new TaxCode("lfmn797h501x"), new Nickname("fanculo") ,new Email("hj@gmail.com"), new GregorianCalendar(97,7,31), Gender.MAN);
-         priD = new PrivateData(new SurfaceAddress("non a casa mia"), new SurfaceAddress("Roma"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
-        Utente us5 = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions(new String[] {"a","b","c","d"}));
+         pubD = new PublicData(new Name("Marco"), new Name("alfano"), new TaxCode("lfnmrc"), new Nickname("topo65") ,new Email("marco@gmail.com"), new GregorianCalendar(1965,7,18), Gender.MAN);
+         priD = new PrivateData(new SurfaceAddress("ciamarra"), new SurfaceAddress("Roma"), new Nationality("Italiano"), new PhoneNumber("333222568748"));
+        Utente us5 = new Utente(pubD,priD,new PW("12345"),new Roles(),new Questions(new String[] {"gara","cavoletti","piangere","dividere"}));
 
         Utente[] users ={us1,us2,us3,us4,us5};
 

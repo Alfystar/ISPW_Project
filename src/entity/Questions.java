@@ -1,6 +1,6 @@
 package entity;
 
-import static java.lang.Integer.max;
+import static java.lang.Math.*;
 
 public class Questions {
     //uguali per tutti, risparmio di memoria
@@ -25,11 +25,11 @@ public class Questions {
 
     /*  VERIFICA CHE ALMENO n DOMANDE SIANO CORRETTE*/
 
-    public Boolean checkAnswers(Questions q, int n){
+    public Boolean checkAnswers(Questions q, int minCorrect){
 
         String[] tmpAns = q.getAnswers();
 
-        int minCorrect = max(n, tmpAns.length);
+        minCorrect = min(minCorrect, tmpAns.length);
 
         int correct = 0;
 

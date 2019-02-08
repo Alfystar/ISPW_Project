@@ -25,7 +25,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -114,6 +113,7 @@ public class K_registration implements Initializable {
             usInt.createUser(new Nickname(nick.getText()), infoReg );
         }catch (WrongParameters|ClassNotFoundException e)
         {
+            outLabel.setText("Un parametro non è unico!");
             e.printStackTrace();
             return;
         }

@@ -22,8 +22,8 @@ public class LoginControl {
 
     public String login(String nickname, String password) {
         try {
-            sysInt.login(new Nickname(nickname), new PW(password));
-            return "Successo";
+            if(sysInt.login(new Nickname(nickname), new PW(password))) return "Successo";
+            else return "Nickname o password non corretti, riprova.";
         }
         catch (Exception e){
             return e.getMessage();
