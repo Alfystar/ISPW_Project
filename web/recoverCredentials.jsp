@@ -85,11 +85,11 @@
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobirise.info/d">website maker</a></section><section class="header9 cid-rgrgUwNGcq mbr-parallax-background" id="header9-a" style="z-index: 0; background-image: none; position: relative;">
+<section class="engine"><a href="https://mobirise.info/d">website maker</a></section><section class="header9 cid-rgrgUwNGcq mbr-parallax-background" id="header9-a" style="z-index: 0; background-image: url(http://localhost:8080/unnamed/assets/images/mbr-1-1920x1280.jpg);  position: relative;">
 
 
 
-    <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);">
+    <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(255, 255, 255);">
     </div>
 
     <div class="container">
@@ -136,7 +136,7 @@
     </div>
 
 
-    <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"><div style="background-position: 50% 50%; background-size: cover; background-repeat: no-repeat; background-image: url(&quot;http://localhost:8080/unnamed/assets/images/mbr-1-1920x1280.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 846px; height: 713.6px; overflow: hidden; pointer-events: none; margin-top: -37.8px; transform: translate3d(0px, 25.391px, 0px);"></div></div></section>
+    <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"><div style="background-position: 100% 100%; background-size: cover; background-repeat: no-repeat; background-image: none; position: fixed; top: 0px; left: 0px; width: 846px; height: 713.6px; overflow: hidden; pointer-events: none; margin-top: -37.8px; transform: translate3d(0px, 25.391px, 0px);"></div></div></section>
 
 
 <script src="recoverCredentials_files/jquery.js"></script>
