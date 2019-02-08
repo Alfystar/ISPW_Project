@@ -422,19 +422,24 @@ public class DAOClass implements DAOInterface {
         this.stmt.executeQuery(sql);
         System.out.println("query executed");
         ResultSet rs= this.stmt.executeQuery(sql);
-        if(!rs.first())
-        {
+        if(!rs.first()) {
             java.util.Date tomorrow = GregorianCalendar.getInstance().getTime();
             Calendar calendar = Calendar.getInstance();
             calendar.add(calendar.HOUR,1);
             return new GregorianCalendar(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH),calendar.get(Calendar.HOUR),calendar.get(Calendar.MINUTE));
-
         }
-
         String nextDate= rs.getString(1);
         GregorianCalendar nextDelS =stringToGregCal(nextDate);
         return  nextDelS;
 
+    }
+
+    public void removeDataEvent(Nickname nick) throws SQLException{
+        this.openConn();
+        String sql= "DELETE * FROM dateevent WHERE nick =" +
+                "\""+nick.get()+"\" "+ " ;";
+        this.stmt.executeQuery(sql);
+        System.out.println("query executed");
     }
 
     private GregorianCalendar stringToGregCal(String s){
