@@ -98,7 +98,7 @@
                 Recupero Credenziali</h1>
             <h3 class="mbr-section-subtitle align-left mbr-light pb-3 mbr-fonts-style display-2">Inserisci le risposte per ottenere nickname e password</h3>
 
-            <form name="register_form" method="POST">
+            <form name="recover_form" method="POST">
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
                     DOMANDE DI RECUPERO
                     <br>
