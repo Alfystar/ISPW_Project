@@ -383,9 +383,9 @@ public class DAOClass implements DAOInterface {
         this.openConn();
         String strDate= gregCalToString(date);
 
-        String sql= "INSERT INTO dateevent VALUES (idDate,nick)= " +
-                "\""+strDate+"\" "+ "," +
-                "\""+nickname.get()+"\" "+ " ;";
+        String sql= "INSERT INTO dateevent VALUES (" +
+                "idDate =" + "\""+strDate+"\" "+ "," +
+                "nick = "+ "\""+nickname.get()+"\" "+ " );";
         System.out.println(sql);
         this.stmt.executeQuery(sql);
 
