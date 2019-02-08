@@ -96,6 +96,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
                                     <Label text="Name:" />
@@ -104,12 +105,14 @@
                                     <TextField fx:id="name" onKeyTyped="#stepCheck" GridPane.columnIndex="2" />
                                     <TextField fx:id="surname" onKeyTyped="#stepCheck" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                     <TextField fx:id="tc" onKeyTyped="#stepCheck" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label text="City of Birth" GridPane.rowIndex="3" />
+                                    <TextField fx:id="cityBirth" onKeyTyped="#stepCheck" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                  </children>
                               </GridPane>
                            </children>
                         </VBox>
-                        <Label layoutX="47.0" layoutY="112.0" text="Avatar" />
-                        <TilePane hgap="10.0" layoutX="109.0" layoutY="112.0" prefHeight="41.0" prefWidth="279.0" vgap="5.0">
+                        <Label layoutX="47.0" layoutY="142.0" text="Avatar" />
+                        <TilePane hgap="10.0" layoutX="109.0" layoutY="142.0" prefHeight="41.0" prefWidth="279.0" vgap="5.0">
                            <children>
                               <RadioButton fx:id="av1" mnemonicParsing="false" onAction="#avatarChange" selected="true" text="Avatar 1">
                                  <toggleGroup>
@@ -123,7 +126,7 @@
                               <RadioButton fx:id="av6" mnemonicParsing="false" onAction="#avatarChange" text="Avatar 6" toggleGroup="$avatarGroup" />
                            </children>
                         </TilePane>
-                        <ImageView fx:id="avatar" fitHeight="75.0" fitWidth="75.0" layoutX="467.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="avatar" fitHeight="75.0" fitWidth="75.0" layoutX="467.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../ImageFile/Avatar/default-Avatar.png" />
                            </image>

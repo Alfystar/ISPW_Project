@@ -61,7 +61,7 @@ public class K_registration implements Initializable {
     //Personal Information tab
 
     @FXML
-    TextField name, surname, tc;
+    TextField name, surname, tc, cityBirth;
 
     @FXML
     RadioButton av1,av2,av3,av4,av5,av6;
@@ -98,6 +98,7 @@ public class K_registration implements Initializable {
 
         Date bDate = java.sql.Date.valueOf(birthday.getValue());
         GregorianCalendar bGc = stringToGregCal(bDate.toString());
+        System.out.println(gregCalToString(bGc));
 
         Gender g;
         if(man.isSelected()) g=Gender.MAN;
@@ -107,7 +108,7 @@ public class K_registration implements Initializable {
         Questions q = new Questions(answs);
 
         //(Name name, Name surname, TaxCode cf, Nickname nickname, Email email, GregorianCalendar birthday, Gender gender, Questions answers, PW pw){
-        UserInfoRegister infoReg = new UserInfoRegister(new Name(name.getText()), new Name(surname.getText()),new TaxCode(tc.getText()),new Nickname(nick.getText()),new Email(email.getText()),bGc,g,q,new PW(newPw.getText()));
+        UserInfoRegister infoReg = new UserInfoRegister(new Name(name.getText()), new Name(surname.getText()),new TaxCode(tc.getText()),new Nickname(nick.getText()),new Email(email.getText()),bGc,g,q,new PW(newPw.getText()), new SurfaceAddress(cityBirth.getText()));
 
         try {
             usInt.createUser(new Nickname(nick.getText()), infoReg );
@@ -181,7 +182,7 @@ public class K_registration implements Initializable {
 
         //System.out.println("stepCheck start");
 
-        TextField[] TxT = {name, surname, tc, nick, email};
+        TextField[] TxT = {name, surname, tc, nick, email, cityBirth};
         //RadioButton[] Gender = {man, woman};
         TextField[] answ = {answ1,answ2,answ3,answ4};
         //PasswordField[] PW = {newPw, confPw};
