@@ -48,6 +48,7 @@ public class DAOClass implements DAOInterface {
             //Prendo tutti i parametri di Utente da infoReg
             PublicData pubD = new PublicData(infoReg.getName(), infoReg.getSurname(), infoReg.getCf(), infoReg.getNickname(), infoReg.getEmail(), infoReg.getBirthday(), infoReg.getGender());
             PrivateData priD = new PrivateData();
+            priD.getCityOfBirth().set(infoReg.getCityOfBirth().get());
             PW pw = new PW(infoReg.getPw());
             Roles roles = new Roles();
             UserStatus userStatus = UserStatus.ACTIVE;
