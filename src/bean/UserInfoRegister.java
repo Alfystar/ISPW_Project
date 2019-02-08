@@ -13,9 +13,10 @@ public class UserInfoRegister {
     private Gender gender;
     private Questions answers;
     private PW pw;
+    private SurfaceAddress cityOfBirth;
 
     //L'unico costruttore di UserInfoRegister deve avere tutti i parametri
-    public UserInfoRegister(Name name, Name surname, TaxCode cf, Nickname nickname, Email email, GregorianCalendar birthday, Gender gender, Questions answers, PW pw){
+    public UserInfoRegister(Name name, Name surname, TaxCode cf, Nickname nickname, Email email, GregorianCalendar birthday, Gender gender, Questions answers, PW pw, SurfaceAddress cOfB){
         this.name= new Name(name);
         this.surname= new Name(surname);
         this.cf= new TaxCode(cf);
@@ -25,6 +26,7 @@ public class UserInfoRegister {
         this.gender= gender;
         this.answers= new Questions(answers);
         this.pw= new PW(pw);
+        this.cityOfBirth= new SurfaceAddress(cOfB);
     }
 
     public Name getName(){
@@ -62,4 +64,6 @@ public class UserInfoRegister {
     public PW getPw(){
         return this.pw;
     }
+
+    public SurfaceAddress getCityOfBirth(){return this.cityOfBirth;}
 }

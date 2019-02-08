@@ -383,15 +383,14 @@ public class DAOClass implements DAOInterface {
         this.openConn();
         String strDate= gregCalToString(date);
 
-        String sql= "INSERT INTO dateevent VALUES (" +
-                "idDate =" + "\""+strDate+"\" "+ "," +
-                "nick = "+ "\""+nickname.get()+"\" "+ " );";
+        String sql= "INSERT INTO dateevent(idDate, nick) VALUES (" +
+                "\""+strDate+"\" "+ "," +
+                "\""+nickname.get()+"\" "+ " );";
         System.out.println(sql);
         this.stmt.executeQuery(sql);
 
         System.out.println("date inserted");
         this.closeConn();
-        return;
     }
 
     public void deleteByDeamon(GregorianCalendar today) throws SQLException{
@@ -416,7 +415,6 @@ public class DAOClass implements DAOInterface {
         finally {
             this.closeConn();
         }
-        return;
     }
 
     public GregorianCalendar nextDeleteSession() throws SQLException{
