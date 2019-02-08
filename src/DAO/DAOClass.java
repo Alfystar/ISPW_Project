@@ -54,12 +54,9 @@ public class DAOClass implements DAOInterface {
             UserStatus userStatus = UserStatus.ACTIVE;
             Questions answers = new Questions(infoReg.getAnswers());
 
-            System.out.println("prima di creare utente "+gregCalToString(pubD.getBirthday()));
-
             //incapsulo i dati in un'istanza di Utente
             Utente us= new Utente(pubD, priD, pw, roles, answers);
 
-            System.out.println("dopo aver creato l'utente di creare utente "+gregCalToString(us.getPublic().getBirthday()));
             //Verifica delle eccezioni
             try{
                 this.saveUser(us);
@@ -67,8 +64,6 @@ public class DAOClass implements DAOInterface {
             }catch(SQLException se){
                 throw new WrongParameters("wrong parameters",se);
             }
-            System.out.println("dopo aver salvato l'utente nel DB "+gregCalToString(pubD.getBirthday()));
-
             return us;
     }
 
