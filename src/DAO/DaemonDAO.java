@@ -77,7 +77,6 @@ public class DaemonDAO implements Runnable {
 
     private static long getDateDiff(Date date1, Date date2,TimeUnit timeUnit) {
         long diffInMillies = abs(date1.getTime() - date2.getTime());
-        System.out.println("millisecond difference: " + diffInMillies);
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 }

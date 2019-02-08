@@ -40,7 +40,7 @@ public class Avatar
     public void setMyIcon (String name)
     {
         for (int i = 0; i < nameAvatar.length; i++) {
-            if(name==nameAvatar[i])
+            if(name.equals(nameAvatar[i]))
             {
                 this.myIcon=icons.get(i);
                 this.indexImage = i;
