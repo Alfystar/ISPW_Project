@@ -106,9 +106,11 @@
 
             <p class="mbr-text pb-3 mbr-fonts-style display-5">
 
-            <form><input type="submit" name="backToUserSubmit" value="Torna indietro" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 1rem;margin-right: 0px;margin-bottom: 0px;padding-right: 2rem;padding-left: 2rem;padding-bottom: 0.1rem;padding-top: 0.1rem;"></form>
+            <form name="backtoUs_form" method="POST">
+                <input type="submit" name="backToUserSubmit" value="Torna indietro" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 1rem;margin-right: 0px;margin-bottom: 0px;padding-right: 2rem;padding-left: 2rem;padding-bottom: 0.1rem;padding-top: 0.1rem;">
+            </form>
 
-            <form>
+            <form name="changeD_form" method="POST">
                 Email: <input name="email" type="text" style="text-align:right">
                 <br>
                 Ruoli: (scrivere Yes/No nei relativi campi)

@@ -127,10 +127,10 @@
             </p>
 
             <p class="mbr-text pb-3 mbr-fonts-style display-5">
-            <form>
+            <form name="gotoChData_form" method="POST">
                 <input type="submit" name="changeData" value="Cambia Dati" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
             </form>
-            <form>
+            <form name="cancel_form" method="POST">
                 <br>
                 <input type="submit" name="cancelMyself" value="Elimina Account" class="btn btn-secondary-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 1rem;padding-right: 1rem;padding-top: 0.2rem;padding-bottom: 0.2rem;">
                 <br>
