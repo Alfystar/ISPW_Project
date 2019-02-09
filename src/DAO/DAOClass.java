@@ -443,7 +443,7 @@ public class DAOClass implements DAOInterface {
 
     public void removeDataEvent(Nickname nick) throws SQLException{
         this.openConn();
-        String sql= "DELETE * FROM dateEvent WHERE nick =" +
+        String sql= "DELETE FROM dateEvent WHERE nick =" +
                 "\""+nick.get()+"\" "+ " ;";
         this.stmt.executeQuery(sql);
         System.out.println("removeDataEvent query executed");
