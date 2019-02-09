@@ -5,7 +5,8 @@
 <jsp:setProperty name="userPage_Bean" property="*"/>
 
 <%
-    String nickN = request.getParameter("nkSaved");
+    String nickN = (String) session.getAttribute("nkSaved");
+
     String[] valueData = userPage_Bean.getStringUsData(nickN);
     String result = "";
     String genere = "o";
@@ -13,15 +14,16 @@
 
     if (request.getParameter("changeData") != null){
 %>
-        <jsp:forward page="changeData.jsp">
-            <jsp:param name="nkSaved" value="<%=nickN%>"/>
-        </jsp:forward>
+        <jsp:forward page="changeData.jsp"/>
+
 <%
     } else if (request.getParameter("cancelMyself") != null){
 
         result = userPage_Bean.cancelUser(nickN);
 
         if(result.equals("Successo")){
+
+            session.removeAttribute(nickN);
 %>
             <jsp:forward page="index.jsp"/>
 <%
@@ -127,10 +129,11 @@
             </p>
 
             <p class="mbr-text pb-3 mbr-fonts-style display-5">
-            <form name="gotoChData_form" method="POST">
+
+            <form name="gotoChData_form" action="userpage.jsp" method="post">
                 <input type="submit" name="changeData" value="Cambia Dati" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
             </form>
-            <form name="cancel_form" method="POST">
+            <form name="cancel_form" action="userpage.jsp" method="post">
                 <br>
                 <input type="submit" name="cancelMyself" value="Elimina Account" class="btn btn-secondary-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 1rem;padding-right: 1rem;padding-top: 0.2rem;padding-bottom: 0.2rem;">
                 <br>

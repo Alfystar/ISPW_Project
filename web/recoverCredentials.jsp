@@ -48,7 +48,8 @@
         clip: rect(0 846px 764px 0);
         clip: rect(0, 846px, 764px, 0);
     }</style></head>
-<body><section id="top-1" class="engine"><a href="https://mobirise.ws/">Mobirise Website Builder</a> v4.9.1</section>
+<body>
+<section id="top-1" class="engine"><a href="https://mobirise.ws/">Mobirise Website Builder</a> v4.9.1</section>
 <section class="menu cid-rgrgUvVfJb" once="menu" id="menu1-9">
 
 
@@ -98,7 +99,7 @@
                 Recupero Credenziali</h1>
             <h3 class="mbr-section-subtitle align-left mbr-light pb-3 mbr-fonts-style display-2">Inserisci le risposte per ottenere nickname e password</h3>
 
-            <form name="recover_form" method="POST">
+            <form name="recover_form" action="recoverCredentials.jsp" method="post">
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
                     DOMANDE DI RECUPERO
                     <br>
@@ -127,7 +128,7 @@
             <br>
             L'operazione e': </p> <p style="color:white; background-color:<%=colRes%>;"><%=result%></p>
             <br>
-            <form name="backHome_form" method="POST">
+            <form name="backHome_form" action="recoverCredentials.jsp" method="post">
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
                     <input type="submit" name="backHomeSubmit" value="Torna alla home" class="btn btn-info" style="margin-left: 0px;margin-top: 1rem;margin-right: 0px;margin-bottom: 0px;padding-left: 2rem;padding-right: 2rem;padding-top: 0.1rem;padding-bottom: 0.1rem;">
                 </p>

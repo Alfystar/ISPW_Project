@@ -119,7 +119,7 @@
             <p class="mbr-text align-left pb-3 mbr-fonts-style display-5">
                 Simulazione dei vari sottosistemi di Fersa.</p>
 
-            <form name="others_form" method="POST">
+            <form name="others_form" action="othersubsystem.jsp" method="post">
                 <p class="mbr-text pb-3 mbr-fonts-style display-5" style="margin-bottom: 1rem;">
 
                     Nickname User: <input name="nickInput" type="text" style="margin-bottom: 10px;">

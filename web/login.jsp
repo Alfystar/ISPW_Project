@@ -5,6 +5,7 @@
 <jsp:setProperty name="login_Bean" property="*"/>
 
 
+
 <%
     String result = "";
 
@@ -15,10 +16,11 @@
         if (result.equals("Successo")){
 
             String nkStr = login_Bean.getNickname();
+
+            session.setAttribute("nkSaved", nkStr);
 %>
-            <jsp:forward page="userpage.jsp">
-                <jsp:param name="nkSaved" value="<%=nkStr%>"/>
-            </jsp:forward>
+            <jsp:forward page="userpage.jsp"/>
+
 <%
         }
 
@@ -117,7 +119,7 @@
 
             <p style="color:white; background-color:red;"><%=result%></p>
 
-            <form name="login_form" method="POST">
+            <form name="login_form" action="login.jsp" method="post">
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
                     Nickname:
                     <br>
@@ -131,7 +133,7 @@
                     <input name="loginSubmit" type="submit" id="loginSubmit" value="Login" class="btn btn-primary-outline" style="margin-left: 0px;margin-top: 1.2rem;">
             </form>
             <br>
-            <form name="recovery_form"  method="POST">
+            <form name="recovery_form" action="login.jsp" method="post">
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
                 <input name="recoverSubmit" type="submit" id="recoverSubmit" value="Credenziali perse?" class="btn btn-secondary-outline" style="margin-left: 0px;margin-top: 2rem;padding-left: 1rem;padding-right: 1rem;padding-bottom: 0.1rem;padding-top: 0.1rem;margin-right: 0px;">
                 </p>

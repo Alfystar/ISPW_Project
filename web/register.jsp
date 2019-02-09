@@ -16,11 +16,10 @@
 
         if (result.equals("Successo")){
 
-            String nickN = register_Bean.getNickname();
+            String nkStr = register_Bean.getNickname();
+            session.setAttribute("nkSaved", nkStr);
 %>
-            <jsp:forward page="userpage.jsp">
-                <jsp:param name="nkSaved" value="<%=nickN%>"/>
-            </jsp:forward>
+            <jsp:forward page="userpage.jsp"/>
 <%
         }
     }
@@ -105,7 +104,7 @@
 
             <p style="color:white; background-color:red;"><%=result%></p>
 
-            <form name="register_form" method="POST">
+            <form name="register_form" action="register.jsp" method="post">
 
                 <p class="mbr-text pb-3 mbr-fonts-style display-5"> Nome: <input name="firstname" type="text" style="text-align:left">
                 </p>

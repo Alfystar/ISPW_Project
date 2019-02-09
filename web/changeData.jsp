@@ -5,7 +5,7 @@
 <jsp:setProperty name="changeData_Bean" property="*"/>
 
 <%
-    String nickN = request.getParameter("nkSaved");
+    String nickN = (String) session.getAttribute("nkSaved");
     String color = "white";
     String result = "";
 
@@ -18,9 +18,8 @@
 
     } else if (request.getParameter("backToUserSubmit") != null){
 %>
-        <jsp:forward page="userpage.jsp">
-            <jsp:param name="nkSaved" value="<%=nickN%>"/>
-        </jsp:forward>
+        <jsp:forward page="userpage.jsp"/>
+
 <%
     }
 %>
@@ -106,36 +105,36 @@
 
             <p class="mbr-text pb-3 mbr-fonts-style display-5">
 
-            <form name="backtoUs_form" method="POST">
+            <form name="backtoUs_form" action="changeData.jsp" method="post">
                 <input type="submit" name="backToUserSubmit" value="Torna indietro" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 1rem;margin-right: 0px;margin-bottom: 0px;padding-right: 2rem;padding-left: 2rem;padding-bottom: 0.1rem;padding-top: 0.1rem;">
             </form>
 
-            <form name="changeD_form" method="POST">
-                Email: <input name="email" type="text" style="text-align:right">
+            <form name="changeD_form" action="changeData.jsp" method="post">
+                Email: <input name="email" type="text" style="text-align:left">
                 <br>
                 Ruoli: (scrivere Yes/No nei relativi campi)
                 <br>
-                Tenant:<input name="tenant" type="text" style="text-align:right">
+                Tenant:<input name="tenant" type="text" style="text-align:left">
                 <br>
-                Renter: <input name="renter" type="text" style="text-align:right">
+                Renter: <input name="renter" type="text" style="text-align:left">
                 <br>
-                Social Status: <input name="socialStatus" type="text" style="text-align:right">
+                Social Status: <input name="socialStatus" type="text" style="text-align:left">
                 <br>
-                Phone Number: <input name="phoneNumber" type="text" style="text-align:right">
+                Phone Number: <input name="phoneNumber" type="text" style="text-align:left">
                 <br>
-                Indirizzo: <input name="address" type="text" style="text-align:right">
+                Indirizzo: <input name="address" type="text" style="text-align:left">
                 <br>
-                Luogo di Nascita: <input name="birthPlace" type="text" style="text-align:right">
+                Luogo di Nascita: <input name="birthPlace" type="text" style="text-align:left">
                 <br>
-                Nazionalita': <input name="nationality" type="text" style="text-align:right">
+                Nazionalita': <input name="nationality" type="text" style="text-align:left">
                 <br>
                 Per cambiare la password, inserire quella vecchia e la nuova
                 <br>
-                Old Password: <input name="oldPW" type="password" style="text-align:right">
+                Old Password: <input name="oldPW" type="password" style="text-align:left">
                 <br>
-                New Password: <input name="newPW" type="password" style="text-align:right">
+                New Password: <input name="newPW" type="password" style="text-align:left">
                 <br>
-                Confirm Password: <input name="confirmPW" type="password" style="text-align:right">
+                Confirm Password: <input name="confirmPW" type="password" style="text-align:left">
                 <br>
                 <input type="submit" name="changeDataSubmit" value="Conferma Dati" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 1rem;margin-right: 0px;margin-bottom: 0px;padding-right: 2rem;padding-left: 2rem;padding-bottom: 0.1rem;padding-top: 0.1rem;">
             </form>
