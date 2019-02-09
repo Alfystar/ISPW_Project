@@ -8,9 +8,12 @@
     String nickN = (String) session.getAttribute("nkSaved");
 
     String[] valueData = userPage_Bean.getStringUsData(nickN);
+
+    String imgPath = "profileImage/" + valueData[0] + ".png";
+
     String result = "";
     String genere = "o";
-    if (valueData[6].equals("WOMAN")) genere = "a";
+    if (valueData[7].equals("WOMAN")) genere = "a";
 
     if (request.getParameter("changeData") != null){
 %>
@@ -105,27 +108,31 @@
         <div class="media-container-column mbr-white col-lg-8 col-md-10">
 
             <h1 class="mbr-section-title align-left mbr-bold pb-3 mbr-fonts-style display-1">
-                Benvenut<%=genere%> <%=valueData[0]%> </h1>
+                Benvenut<%=genere%> <%=valueData[1]%>
+                <br>
+                <img src=<%=imgPath%> alt="Avatar Icon" style="width:128px;height:128px;">
+            </h1>
 
             <h3 class="mbr-section-subtitle align-left mbr-light pb-3 mbr-fonts-style display-2">
-                Da qui potrai gestire i tuoi dati, sia personali che di piattaforma.</h3>
+                Da qui potrai gestire i tuoi dati, sia personali che di piattaforma.
+            </h3>
 
             <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                Nome: <%=valueData[0]%> Cognome: <%=valueData[1]%>
+                Nome: <%=valueData[1]%> Cognome: <%=valueData[2]%>
                 <br>
-                CF: <%=valueData[2]%> Nickname: <%=valueData[3]%>
+                CF: <%=valueData[3]%> Nickname: <%=valueData[4]%>
                 <br>
-                Email: <%=valueData[4]%> BirthDay: <%=valueData[5]%>
+                Email: <%=valueData[5]%> BirthDay: <%=valueData[6]%>
                 <br>
-                Gender: <%=valueData[6]%> Social Status: <%=valueData[7]%>
+                Gender: <%=valueData[7]%> Social Status: <%=valueData[8]%>
                 <br>
                 Ruoli:
                 <br>
-                Is Tenant?: <%=valueData[8]%> IsRenter?: <%=valueData[9]%>
+                Is Tenant?: <%=valueData[9]%> IsRenter?: <%=valueData[10]%>
                 <br>
-                Phone Number: <%=valueData[10]%> Indirizzo: <%=valueData[11]%>
+                Phone Number: <%=valueData[11]%> Indirizzo: <%=valueData[12]%>
                 <br>
-                Luogo di Nascita: <%=valueData[12]%> Nazionalita': <%=valueData[13]%>
+                Luogo di Nascita: <%=valueData[13]%> Nazionalita': <%=valueData[14]%>
             </p>
 
             <p class="mbr-text pb-3 mbr-fonts-style display-5">

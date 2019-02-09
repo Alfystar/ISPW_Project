@@ -22,7 +22,7 @@ public class RegisterControl {
     }
 
     public String register( String firstname, String lastname, String taxcode,
-                             String nickname, String email, String bday,
+                             String nickname, String email, String bday, String birthPlace,
                              String gender, String password, String question1,
                              String question2, String question3, String question4) {
         try {
@@ -31,7 +31,7 @@ public class RegisterControl {
             UserInfoRegister usInfoReg = new UserInfoRegister(new Name(firstname), new Name(lastname),
                                                             new TaxCode(taxcode), new Nickname(nickname),
                                                             new Email(email), gCal, Gender.valueOf(gender.toUpperCase()),
-                                                            new Questions(answers), new PW(password),new SurfaceAddress("my city"));
+                                                            new Questions(answers), new PW(password),new SurfaceAddress(birthPlace));
             usProfInt.createUser(new Nickname(nickname), usInfoReg);
             return "Successo";
         }

@@ -21,11 +21,17 @@ public class ChangeDataControl {
     private ChangeDataControl() {
     }
 
-    public String changeData(Nickname nick, String email, String renter,
+    public String changeData(Nickname nick, String avatar, String email, String renter,
                               String tenant, String socialStatus,
-                              String phoneNumber, String address, String birthPlace,
+                              String phoneNumber, String address,
                               String nationality, String oldPW, String newPW) {
         try {
+
+            if ( (!avatar.equals("")) && (avatar.equals("1") ||
+                    avatar.equals("2") || avatar.equals("3") ||
+                    avatar.equals("4") || avatar.equals("5") ||
+                    avatar.equals("6")) ) sysInt.setAvatar(nick, Integer.parseInt(avatar)-1);
+
             if (!email.equals("")) sysInt.changeNotAnagraphicData(nick, new Email(email));
 
             if (tenant.toLowerCase().equals("yes")) rolInt.makeATenant(nick);
@@ -40,11 +46,12 @@ public class ChangeDataControl {
 
             if (!address.equals("")) sysInt.changeNotAnagraphicData(nick, new SurfaceAddress(address));
 
-            if (!birthPlace.equals("")) sysInt.changeNotAnagraphicData(nick, new SurfaceAddress(birthPlace));
-
             if (!nationality.equals("")) sysInt.changeNotAnagraphicData(nick, new Nationality(nationality));
 
-            if (!newPW.equals("")) sysInt.changePassword(nick, new PW(newPW), new PW(oldPW));
+            if (!newPW.equals("")) {
+                if (newPW.equals(oldPW)) return "La nuova PW è uguale alla precedente!";
+                sysInt.changePassword(nick, new PW(newPW), new PW(oldPW));
+            }
 
             return "Successo";
         }

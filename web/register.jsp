@@ -136,6 +136,9 @@
                 <p class="mbr-text pb-3 mbr-fonts-style display-5"> Data Di Nascita: <input name="bday" type="date" min="1903-01-02" max="<%=maxCal%>" style="text-align-all:left">
                 </p>
 
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Luogo di Nascita: <input name="birthPlace" type="text" style="text-align:left">
+                </p>
+
                 <p class="mbr-text pb-3 mbr-fonts-style display-5"> Sesso: <input name="gender" type="text" style="text-align:left">
                 </p>
 

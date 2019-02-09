@@ -10,6 +10,7 @@ public class RegisterBean {
     private String nickname;
     private String email;
     private String bday;
+    private String birthPlace;
     private String gender;
     private String password;
     private String question1;
@@ -24,6 +25,7 @@ public class RegisterBean {
         this.nickname = "";
         this.email = "";
         this.bday = "";
+        this.birthPlace = "";
         this.gender = "";
         this.password = "";
         this.question1 = "";
@@ -71,6 +73,12 @@ public class RegisterBean {
     public String getBday() {
         return this.bday;
     }
+
+    public void setBirthPlace(String birPl) {
+        this.birthPlace = birPl;
+    }
+    public String getBirthPlace() { return this.birthPlace; }
+
 
     public void setGender(String gen) {
         this.gender = gen;
@@ -124,7 +132,7 @@ public class RegisterBean {
         RegisterControl controller = RegisterControl.getInstance();
 
         return controller.register(this.firstname, this.lastname, this.taxcode,
-                                    this.nickname, this.email, this.bday,
+                                    this.nickname, this.email, this.bday, this.birthPlace,
                                     this.gender, this.password, this.question1,
                                     this.question2, this.question3, this.question4);
     }

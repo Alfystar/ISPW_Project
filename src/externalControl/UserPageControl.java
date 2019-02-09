@@ -3,9 +3,11 @@ package externalControl;
 import bean.BasicUserInfo;
 import bean.RestrictUserInfo;
 import control.FacadeSubSystem;
+import entity.Avatar;
 import entity.Nickname;
 import entity.Roles;
 import interfaces.RoleStatus;
+import interfaces.SystemInterface;
 import interfaces.UserProfileService;
 
 import java.util.Arrays;
@@ -15,8 +17,9 @@ public class UserPageControl {
 
     private static UserPageControl instance;
 
-    private UserProfileService usProfInt = new FacadeSubSystem();
     private RoleStatus rolInt = new FacadeSubSystem();
+    private SystemInterface sysInt = new FacadeSubSystem();
+    private UserProfileService usProfInt = new FacadeSubSystem();
 
     public static UserPageControl getInstance() {
         if (instance == null)
@@ -29,6 +32,8 @@ public class UserPageControl {
 
     public String[] obtainUserInfo(Nickname nick){
         try {
+
+            Avatar avatar = sysInt.getAvatar(nick);
             BasicUserInfo basObj = usProfInt.getBasicUserInfo(nick);
             RestrictUserInfo restObj = usProfInt.getRestrictedUserInfo(nick);
             Roles roles = rolInt.getRoles(nick);
@@ -41,7 +46,9 @@ public class UserPageControl {
 
             //prendo solo i dati che servono
 
-            String[] resStr = { basObj.getName().get(),
+            String[] resStr = {
+                    avatar.getAvatarName(),
+                    basObj.getName().get(),
                     basObj.getSurname().get(),
                     basObj.getTaxCode().get(),
                     basObj.getNickname().get(),
@@ -59,7 +66,7 @@ public class UserPageControl {
 
         } catch(Exception e){
 
-            String[] array = new String[14];
+            String[] array = new String[15];
             Arrays.fill(array, e.getMessage());
             return array;
         }

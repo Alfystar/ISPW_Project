@@ -6,7 +6,7 @@ import java.util.Vector;
 
 public class Avatar
 {
-    private String[] nameAvatar = {"default-Avatar","roket-Avatar", "girl-Avatar", "man-Avatar", "girlStudent-Avatar", "manStudent-Avatar"};
+    private String[] nameAvatar = {"default-Avatar","rocket-Avatar", "girl-Avatar", "man-Avatar", "girlStudent-Avatar", "manStudent-Avatar"};
     private Vector<Image> icons = new Vector<Image>();
     private Image myIcon;
     private int indexImage;

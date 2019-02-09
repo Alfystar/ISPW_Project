@@ -110,6 +110,8 @@
             </form>
 
             <form name="changeD_form" action="changeData.jsp" method="post">
+                Avatar (1-6): <input name="avatar" type="text" style="text-align:left">
+                <br>
                 Email: <input name="email" type="text" style="text-align:left">
                 <br>
                 Ruoli: (scrivere Yes/No nei relativi campi)
@@ -123,8 +125,6 @@
                 Phone Number: <input name="phoneNumber" type="text" style="text-align:left">
                 <br>
                 Indirizzo: <input name="address" type="text" style="text-align:left">
-                <br>
-                Luogo di Nascita: <input name="birthPlace" type="text" style="text-align:left">
                 <br>
                 Nazionalita': <input name="nationality" type="text" style="text-align:left">
                 <br>
