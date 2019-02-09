@@ -10,6 +10,8 @@ import java.sql.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+//todo rivedere la tabella next delete session, quando si popola e come!!!
+
 public class DAOClass implements DAOInterface {
 
     private static String UTENTE= "root";
