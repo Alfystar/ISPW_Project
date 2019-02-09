@@ -50,7 +50,6 @@ public class Roles {
         this.tenant=false;
     }
 
-    //todo: Verificare l'ordine dei bit
     public String rlBIN()
      {
          String out;
