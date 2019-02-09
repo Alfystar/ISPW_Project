@@ -1,3 +1,5 @@
+<%@ page import="java.util.GregorianCalendar" %>
+<%@ page import="java.util.GregorianCalendar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:useBean id="register_Bean" scope="request" class="externalBean.RegisterBean"/>
@@ -6,7 +8,17 @@
 
 <%
     // EASTER EGG:  il calendario è limitato all'indietro alla data
-    //              della persona attualmente più vecchia al mondo
+    //              della persona attualmente più vecchia al mondo;
+    //              in avanti è limitato a 18 anni minimo
+
+    GregorianCalendar cal = new GregorianCalendar();
+    String maxCal = (cal.get(GregorianCalendar.YEAR)-18) + "-";
+
+    if (cal.get(GregorianCalendar.MONTH)+1 < 10) maxCal += "0" + (cal.get(GregorianCalendar.MONTH)+1);
+    else maxCal += (cal.get(GregorianCalendar.MONTH)+1);
+
+    if (cal.get(GregorianCalendar.DATE) < 10) maxCal += "-0" + cal.get(GregorianCalendar.DATE);
+    else maxCal += "-" + cal.get(GregorianCalendar.DATE);
 
     String result = "";
 
@@ -121,7 +133,7 @@
                 <p class="mbr-text pb-3 mbr-fonts-style display-5"> Email: <input name="email" type="text" style="text-align-all:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Data Di Nascita: <input name="bday" type="date" min="1903-01-02" max="2000-01-01" style="text-align-all:left">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Data Di Nascita: <input name="bday" type="date" min="1903-01-02" max="<%=maxCal%>" style="text-align-all:left">
                 </p>
 
                 <p class="mbr-text pb-3 mbr-fonts-style display-5"> Sesso: <input name="gender" type="text" style="text-align:left">
