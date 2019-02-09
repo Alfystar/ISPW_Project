@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -235,47 +236,59 @@ public class K_other implements Initializable {
 
     private void setRent(){
         try{
+            rolStatInt.makeARenter(new Nickname(nickWork.getText()));
             roles= rolStatInt.getRoles(new Nickname(nickWork.getText()));
-            roles.setRenter();
             outLabel.setText("il ruolo attuale è =" + roles);
             //renter.setSelected(true);
         }catch (UserNotExistEx ex){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
             return;
+        }catch (SQLException|ClassNotFoundException e)
+        {
+            e.printStackTrace();
         }
     }
 
     private void removeRent(){
         try {
+            rolStatInt.removeRentership(new Nickname(nickWork.getText()));
             roles= rolStatInt.getRoles(new Nickname(nickWork.getText()));
-            roles.resetRenter();
             outLabel.setText("il ruolo attuale è =" + roles);
             //renter.setSelected(false);
         }catch (UserNotExistEx ex){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
             return;
+        }catch (SQLException|ClassNotFoundException e)
+        {
+            e.printStackTrace();
         }
     }
 
     private void setTen(){
         try {
+            rolStatInt.makeATenant(new Nickname(nickWork.getText()));
             roles= rolStatInt.getRoles(new Nickname(nickWork.getText()));
-            roles.setTenant();
             outLabel.setText("il ruolo attuale è =" + roles);
             //tenant.setSelected(true);
         }catch (UserNotExistEx ex){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+        }catch (SQLException|ClassNotFoundException e)
+        {
+            e.printStackTrace();
         }
     }
 
     private void removeTen(){
         try {
+            rolStatInt.removeTenantship(new Nickname(nickWork.getText()));
             roles= rolStatInt.getRoles(new Nickname(nickWork.getText()));
-            roles.resetTenant();
             outLabel.setText("il ruolo attuale è =" + roles);
             //tenant.setSelected(false);
         }catch (UserNotExistEx ex){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
+        }catch (SQLException|ClassNotFoundException e)
+        {
+            e.printStackTrace();
         }
     }
 

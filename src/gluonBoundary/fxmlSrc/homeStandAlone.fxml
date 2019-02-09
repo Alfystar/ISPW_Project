@@ -128,7 +128,7 @@
          <children>
             <Label text="Host" />
             <Button fx:id="defIp" mnemonicParsing="false" onAction="#restoreIp" text="Default" GridPane.columnIndex="3" />
-            <TextField fx:id="ipField" promptText="DB IP" text="10.200.146.92" GridPane.columnIndex="2" />
+            <TextField fx:id="ipField" promptText="DB IP" text="localhost" GridPane.columnIndex="2" />
             <Label fx:id="outLabel" prefHeight="16.0" prefWidth="358.0" text="No op" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <ImageView fx:id="testIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <image>

@@ -54,9 +54,9 @@ public class Roles {
     public String rlBIN()
      {
          String out;
-         if(renter) out="1";
+         if(tenant) out="1";
          else out="0";
-         if(tenant) out+="1";
+         if(renter) out+="1";
          else out+="0";
          return out;
      }
