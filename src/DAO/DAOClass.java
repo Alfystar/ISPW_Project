@@ -450,7 +450,7 @@ public class DAOClass implements DAOInterface {
         this.stmt.executeQuery(sql);
         System.out.println("nextDeleteSession query executed");
         ResultSet rs= this.stmt.executeQuery(sql);
-        if(!rs.first()) {
+        if(!rs.first()) {   //se la cella è vuota
             java.util.Date tomorrow = GregorianCalendar.getInstance().getTime();
             Calendar calendar = Calendar.getInstance();
             calendar.add(calendar.HOUR,1);

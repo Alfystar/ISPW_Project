@@ -33,7 +33,7 @@ public class DaemonDAO implements Runnable {
     public void run(){
         java.util.Date todayDay;
         Calendar calendar = Calendar.getInstance();
-        GregorianCalendar gc= new GregorianCalendar(2000,01,01);
+        GregorianCalendar gc= new GregorianCalendar(2000,01,01);    //serve solo a generare un oggetto
         while (true)
         {
             //codice ripetuto sempre finchè con delta che diminuiscono via via, finchè non si supera la data prevista
