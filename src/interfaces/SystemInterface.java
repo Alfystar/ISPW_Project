@@ -22,7 +22,8 @@ public interface SystemInterface {
 
     void setAvatar(Nickname nk, int id) throws UserNotExistEx;
 
-    void changeUrl(String ip) throws SQLException, ClassNotFoundException;
-    //todo comandi per cambiare avatar
+    void changeHost(String ip) throws ClassNotFoundException;
+
+    String getLastHost() throws ClassNotFoundException;
 
 }

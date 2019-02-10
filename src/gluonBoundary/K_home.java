@@ -8,7 +8,6 @@ import gluonBoundary.utilityClass.DigitalIcon;
 import interfaces.RoleStatus;
 import interfaces.SystemInterface;
 import interfaces.UserProfileService;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +18,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -61,7 +59,12 @@ public class K_home  implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        try {
+            ipField.setText(sysInt.getLastHost());
+        }catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 
@@ -174,7 +177,7 @@ public class K_home  implements Initializable {
     private void treadStart() throws DBConnectionEx
     {
         try {
-            sysInt.changeUrl(ipField.getText());
+            sysInt.changeHost(ipField.getText());
             DaemonDAO daemonDAO = DaemonDAO.getInstance();
             if(!this.testDBConn()){
                 throw new DBConnectionEx("DB Connection Problem");
@@ -182,10 +185,6 @@ public class K_home  implements Initializable {
         }catch (ClassNotFoundException e)
         {
             outLabel.setText("Driver DB not found");
-        }catch (SQLException e)
-        {
-            outLabel.setText("Problemi con SQL");
-            e.printStackTrace();
         }
 
     }

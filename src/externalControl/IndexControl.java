@@ -20,7 +20,7 @@ public class IndexControl {
 
     public String changeIPDAO(String IP){
         try{
-            sysInt.changeUrl(IP);
+            sysInt.changeHost(IP);
             return "Successo";
         } catch (Exception e){
            return e.getMessage();

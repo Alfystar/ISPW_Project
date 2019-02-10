@@ -6,8 +6,7 @@ import exceptions.TCNotExistQEx;
 
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.concurrent.locks.*;
 
 
 public class Queue {
@@ -47,33 +46,25 @@ public class Queue {
      */
     public Utente find(Nickname nk) throws NickNotQEx
     {
-        lock.readLock().lock();
-        NodeQueue node = searchInQueue(nk);
-        if(node == null)
-        {
+        try {
+            lock.readLock().lock();
+            NodeQueue node = searchInQueue(nk);
+            if(node == null) throw new NickNotQEx("Nick not found among nodes");
+            else return node.getUs();
+        }finally {
             lock.readLock().unlock();
-            throw new NickNotQEx("Nick not found among nodes");
-        }
-        else
-        {
-            lock.readLock().unlock();
-            return node.getUs();
         }
     }
 
     public Utente find(TaxCode tc) throws TCNotExistQEx
     {
-        lock.readLock().lock();
-        NodeQueue node = searchInQueue(tc);
-        if(node == null)
-        {
+        try {
+            lock.readLock().lock();
+            NodeQueue node = searchInQueue(tc);
+            if(node == null) throw new TCNotExistQEx("TaxCode not found among nodes");
+            else return node.getUs();
+        }finally {
             lock.readLock().unlock();
-            throw new TCNotExistQEx("TaxCode not found among nodes");
-        }
-        else
-        {
-            lock.readLock().unlock();
-            return node.getUs();
         }
     }
 

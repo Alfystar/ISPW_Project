@@ -16,7 +16,6 @@ public class Avatar
         Image img;
         for(String str:nameAvatar)
         {
-            //ImageFile/Avatar/default-Avatar.png
             img = new Image(getClass().getResourceAsStream("/ImageFile/Avatar/"+str+".png"));
             icons.add(img);
         }

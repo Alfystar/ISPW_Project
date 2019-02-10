@@ -130,9 +130,15 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
     }
 
     @Override
-    public void changeUrl(String ip) throws SQLException, ClassNotFoundException
+    public void changeHost(String ip) throws ClassNotFoundException
     {
         new DAOClass(ip);
+    }
+
+    @Override
+    public String getLastHost() throws ClassNotFoundException
+    {
+        return new DAOClass().getLastHost();
     }
 
     @Override

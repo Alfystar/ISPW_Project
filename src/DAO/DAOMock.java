@@ -76,7 +76,10 @@ public class DAOMock implements DAOInterface{
     public void removeDataEvent(Nickname nick) throws SQLException{}
 
     @Override
-    public void changeUrl(String ip) {}
+    public void changeHost(String ip) {}
+
+    @Override
+    public String getLastHost(){return "localHost";}
 
 
 }

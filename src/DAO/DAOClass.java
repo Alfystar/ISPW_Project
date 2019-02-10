@@ -14,14 +14,23 @@ import java.util.GregorianCalendar;
 
 public class DAOClass implements DAOInterface {
 
-    private static String UTENTE= "root";
+    //parametri di accesso
+    private Config conf = new Config();
+
+    /*private static String UTENTE= "root";
     private static String PASSWORD= "0000";
-    private static String DB_URL= "jdbc:mysql://localhost/User";
+    private static String DB_URL= "jdbc:mysql://localhost/User";*/
+    private static String UTENTE;
+    private static String PASSWORD;
+    private static String DB_URL;
     private static String DRIVER_CLASS_NAME = "org.mariadb.jdbc.Driver";
+
     //inizializzazione
     private Statement stmt= null;
     private Connection conn= null;
     private static Boolean nonFatta= true;
+
+
 
     //Costruttore
     public DAOClass() throws ClassNotFoundException{
@@ -29,6 +38,7 @@ public class DAOClass implements DAOInterface {
         try {
             if (nonFatta == true) {
                 //STEP 2: Register JDBC driver
+                loadConfig();
                 Class.forName(DRIVER_CLASS_NAME);
                 nonFatta= false;
             }
@@ -41,8 +51,17 @@ public class DAOClass implements DAOInterface {
 
     public DAOClass(String ip) throws ClassNotFoundException{
         this();
-        this.changeUrl(ip);
+        this.changeHost(ip);
     }
+
+    private void loadConfig()
+    {
+        UTENTE= conf.getProperty("dbuser");
+        PASSWORD= conf.getProperty("dbpassword");
+        changeHost(conf.getProperty("dbHost"));
+    }
+
+
 
     @Override
     public Utente createUser(UserInfoRegister infoReg)throws WrongParameters{
@@ -443,6 +462,7 @@ public class DAOClass implements DAOInterface {
 
     }
 
+    @Override
     public void removeDataEvent(Nickname nick) throws SQLException{
         this.openConn();
         String sql= "DELETE FROM dateEvent WHERE nick =" +
@@ -470,8 +490,16 @@ public class DAOClass implements DAOInterface {
         return s;
     }
 
-    public void changeUrl(String ip){
+    @Override
+    public void changeHost(String ip){
         this.DB_URL= "jdbc:mysql://" + ip + "/User";
+        conf.setProprerty("dbHost",ip);
+    }
+
+    @Override
+    public String getLastHost()
+    {
+        return conf.getProperty("dbHost");
     }
 
     public Boolean testNet() throws SQLException
