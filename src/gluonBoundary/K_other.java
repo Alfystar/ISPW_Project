@@ -173,7 +173,6 @@ public class K_other implements Initializable {
 
     private void loadPublic(){
         try {
-            System.out.println("il nick letto è =" + nickWork.getText());
             basic = usInt.getBasicUserInfo(new Nickname(nickWork.getText()));
         }catch (UserNotExistEx e) {
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
@@ -197,7 +196,6 @@ public class K_other implements Initializable {
 
     private void loadPrivate() {
         try {
-            System.out.println("il nick letto è =" + nickWork.getText());
             restrict = usInt.getRestrictedUserInfo(new Nickname(nickWork.getText()));
         } catch (UserNotExistEx e) {
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
@@ -210,7 +208,6 @@ public class K_other implements Initializable {
 
     private void loadRole(){
         try {
-            System.out.println("il nick letto è =" + nickWork.getText());
             roles= rolStatInt.getRoles(new Nickname(nickWork.getText()));
         }catch (UserNotExistEx e){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");

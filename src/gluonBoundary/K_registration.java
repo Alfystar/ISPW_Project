@@ -98,7 +98,6 @@ public class K_registration implements Initializable {
 
         Date bDate = java.sql.Date.valueOf(birthday.getValue());
         GregorianCalendar bGc = stringToGregCal(bDate.toString());
-        System.out.println(gregCalToString(bGc));
 
         Gender g;
         if(man.isSelected()) g=Gender.MAN;
@@ -122,7 +121,6 @@ public class K_registration implements Initializable {
         //todo comandi per cambiare avatar
         try {
             sysInt.setAvatar(new Nickname(nick.getText()), this.radioSelect() );
-            System.out.println("Avatar impostato a "+ this.radioSelect());
         }catch (UserNotExistEx e)
         {
             e.printStackTrace();
@@ -150,7 +148,6 @@ public class K_registration implements Initializable {
             kUser = userLoader.getController();
             //here we pass the reference to the  other controller
             kUser.setBean(bean);
-            System.out.println("userLoader not null");
         }
 
         Scene userScene = new Scene(userParent);
@@ -161,7 +158,6 @@ public class K_registration implements Initializable {
 
     @FXML
     public void avatarChange(ActionEvent event) {
-        System.out.println("radio selec: "+this.radioSelect());
         iconAvatar.setMyIcon(this.radioSelect());
         avatar.setImage(iconAvatar.getMyIcon());
         outLabel.setText(iconAvatar.getAvatarName());
@@ -179,8 +175,6 @@ public class K_registration implements Initializable {
 
     @FXML
     public Boolean stepCheck(Event event) {
-
-        //System.out.println("stepCheck start");
 
         TextField[] TxT = {name, surname, tc, nick, email, cityBirth};
         //RadioButton[] Gender = {man, woman};

@@ -169,7 +169,6 @@ public class K_resetPw implements Initializable {
             kUser = userLoader.getController();
             //here we pass the reference to the  other controller
             kUser.setBean(bean);
-            System.out.println("userLoader not null");
         }
 
         Scene userScene = new Scene(userParent);

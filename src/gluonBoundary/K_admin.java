@@ -192,7 +192,6 @@ public class K_admin implements Initializable {
 
     private void loadPublic(){
         try {
-            System.out.println("il nick letto è = " + nickWork.getText());
             basic = usInt.getBasicUserInfo(new Nickname(nickWork.getText()));
         }catch (UserNotExistEx e) {
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
@@ -217,7 +216,6 @@ public class K_admin implements Initializable {
 
     private void loadPrivate() {
         try {
-            System.out.println("il nick letto è = " + nickWork.getText());
             restrict = usInt.getRestrictedUserInfo(new Nickname(nickWork.getText()));
         } catch (UserNotExistEx e) {
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
@@ -231,7 +229,6 @@ public class K_admin implements Initializable {
 
     private void loadRole(){
         try {
-            System.out.println("il nick letto è = " + nickWork.getText());
             roles= rolStatInt.getRoles(new Nickname(nickWork.getText()));
         }catch (UserNotExistEx e){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
@@ -246,7 +243,6 @@ public class K_admin implements Initializable {
 
     private void loadStatus(){
         try {
-            System.out.println("il nick letto è = " + nickWork.getText());
             status= rolStatInt.getStatus(new Nickname(nickWork.getText()));
             usStat.setValue(status.name());
 

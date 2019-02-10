@@ -214,7 +214,6 @@ public class K_user implements Initializable {
 
     @FXML
     public void avatarView(ActionEvent actionEvent) {
-        System.out.println("radio selec: "+this.radioSelect());
         iconAvatar.setMyIcon(this.radioSelect());
         avatar.setImage(iconAvatar.getMyIcon());
         outLabel.setText(iconAvatar.getAvatarName());
