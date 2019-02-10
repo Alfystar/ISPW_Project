@@ -5,7 +5,7 @@ import entity.PhoneNumber;
 import entity.PrivateData;
 import entity.SurfaceAddress;
 
-public class RestrictUserInfo {
+public class RestrictUserInfo{
 
     private PrivateData privateData;
 

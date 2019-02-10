@@ -1,24 +1,25 @@
 package entity;
-public class TaxCode {
+
+public class TaxCode{
     private String cf;
 
-    public TaxCode(String cf) {
-        this.cf= cf;
+    public TaxCode(String cf){
+        this.cf = cf;
     }
 
-    public TaxCode() {
-        this.cf= "";
+    public TaxCode(){
+        this.cf = "";
     }
 
     public TaxCode(TaxCode cf){
-        this.cf= cf.get();
+        this.cf = cf.get();
     }
 
-    public String get() {
+    public String get(){
         return this.cf;
     }
 
-    public void set(String newCf) {
-        this.cf= newCf;
+    public void set(String newCf){
+        this.cf = newCf;
     }
 }

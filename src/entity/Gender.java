@@ -1,6 +1,6 @@
 package entity;
 
-public enum Gender {
+public enum Gender{
     MAN,
     WOMAN;
 }

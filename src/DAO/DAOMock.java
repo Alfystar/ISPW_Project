@@ -23,19 +23,19 @@ public class DAOMock implements DAOInterface{
     public DAOMock(){
 
 
-        PublicData pubD1 = new PublicData(new Name("ema"), new Name("alf"), new TaxCode("lfm"), new Nickname("alfy") ,new Email("ema@gmail.com"), new GregorianCalendar(97,7,31), Gender.MAN);
+        PublicData pubD1 = new PublicData(new Name("ema"), new Name("alf"), new TaxCode("lfm"), new Nickname("alfy"), new Email("ema@gmail.com"), new GregorianCalendar(97, 7, 31), Gender.MAN);
         PrivateData priD1 = new PrivateData(new SurfaceAddress("Roma"), new SurfaceAddress("Termini"), new Nationality("IT"), new PhoneNumber("3334233142"));
-        this.utente1 = new Utente(pubD1, priD1, new PW("testPass1"), new Roles(TRUE, FALSE), new Questions(new String[] {"a","b","c","d"}));
+        this.utente1 = new Utente(pubD1, priD1, new PW("testPass1"), new Roles(TRUE, FALSE), new Questions(new String[]{"a", "b", "c", "d"}));
     }
 
     @Override
-    public Utente createUser(UserInfoRegister infoReg) throws WrongParameters {
+    public Utente createUser(UserInfoRegister infoReg) throws WrongParameters{
         PublicData pubD = new PublicData(infoReg.getName(), infoReg.getSurname(), infoReg.getCf(), infoReg.getNickname(), infoReg.getEmail(), infoReg.getBirthday(), infoReg.getGender());
         PrivateData priD = new PrivateData();
         PW pw = new PW(infoReg.getPw());
         Roles roles = new Roles();
-        Questions answers= new Questions(new String[] {"a","b","c","d"});
-        Utente us = new Utente(pubD,priD,pw,roles,answers);
+        Questions answers = new Questions(new String[]{"a", "b", "c", "d"});
+        Utente us = new Utente(pubD, priD, pw, roles, answers);
         return us;
     }
 
@@ -46,15 +46,15 @@ public class DAOMock implements DAOInterface{
     }
 
     @Override
-    public void updateUser(Utente user) throws SQLException
-    {}
+    public void updateUser(Utente user) throws SQLException{}
 
     @Override
     public void saveUser(Utente user){
 
     }
+
     @Override
-    public Boolean searchNickDB(Nickname nickname) {
+    public Boolean searchNickDB(Nickname nickname){
 
         Random rand = new Random();
         return rand.nextBoolean();
@@ -76,7 +76,7 @@ public class DAOMock implements DAOInterface{
     public void removeDataEvent(Nickname nick) throws SQLException{}
 
     @Override
-    public void changeHost(String ip) {}
+    public void changeHost(String ip){}
 
     @Override
     public String getLastHost(){return "localHost";}

@@ -10,7 +10,7 @@ import exceptions.WrongParameters;
 import java.sql.SQLException;
 import java.util.GregorianCalendar;
 
-public interface DAOInterface {
+public interface DAOInterface{
 
     Utente createUser(UserInfoRegister infoReg) throws WrongParameters;
 

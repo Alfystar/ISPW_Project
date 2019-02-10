@@ -13,7 +13,7 @@ import interfaces.UserProfileService;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 
-public class UserPageControl {
+public class UserPageControl{
 
     private static UserPageControl instance;
 
@@ -21,17 +21,17 @@ public class UserPageControl {
     private SystemInterface sysInt = new FacadeSubSystem();
     private UserProfileService usProfInt = new FacadeSubSystem();
 
-    public static UserPageControl getInstance() {
-        if (instance == null)
+    private UserPageControl(){
+    }
+
+    public static UserPageControl getInstance(){
+        if(instance == null)
             instance = new UserPageControl();
         return instance;
     }
 
-    private UserPageControl() {
-    }
-
     public String[] obtainUserInfo(Nickname nick){
-        try {
+        try{
 
             Avatar avatar = sysInt.getAvatar(nick);
             BasicUserInfo basObj = usProfInt.getBasicUserInfo(nick);
@@ -60,11 +60,11 @@ public class UserPageControl {
                     restObj.getPhoneNumber().get(),
                     restObj.getAddress().get(),
                     restObj.getCityOfBirth().get(),
-                    restObj.getNationality().get() };
+                    restObj.getNationality().get()};
 
             return resStr;
 
-        } catch(Exception e){
+        }catch(Exception e){
 
             String[] array = new String[15];
             Arrays.fill(array, e.getMessage());
@@ -76,7 +76,7 @@ public class UserPageControl {
         try{
             usProfInt.cancelUser(nick);
             return "Successo";
-        } catch (Exception e){
+        }catch(Exception e){
             return e.getMessage();
         }
     }

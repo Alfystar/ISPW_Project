@@ -9,28 +9,27 @@ import entity.UserStatus;
 import interfaces.RoleStatus;
 import interfaces.UserProfileService;
 
-public class OtherSubSystemControl {
+public class OtherSubSystemControl{
 
     private static OtherSubSystemControl instance;
 
     private UserProfileService usProfInt = new FacadeSubSystem();
     private RoleStatus rolInt = new FacadeSubSystem();
 
-    public static OtherSubSystemControl getInstance() {
-        if (instance == null)
-            instance = new OtherSubSystemControl();
-        return instance;
+    private OtherSubSystemControl(){
     }
 
-    private OtherSubSystemControl() {
+    public static OtherSubSystemControl getInstance(){
+        if(instance == null)
+            instance = new OtherSubSystemControl();
+        return instance;
     }
 
     public String banUser(Nickname nick){
         try{
             rolInt.changeUserStatus(nick, UserStatus.BANNED);
             return "Nuovo stato: " + rolInt.getStatus(nick).name();
-        }
-        catch (Exception e){
+        }catch(Exception e){
             return e.getMessage();
         }
     }
@@ -39,8 +38,7 @@ public class OtherSubSystemControl {
         try{
             rolInt.changeUserStatus(nick, UserStatus.ACTIVE);
             return "Nuovo stato: " + rolInt.getStatus(nick).name();
-        }
-        catch (Exception e){
+        }catch(Exception e){
             return e.getMessage();
         }
     }
@@ -49,8 +47,7 @@ public class OtherSubSystemControl {
         try{
             usProfInt.deleteUser(nick);
             return "Utente " + nick.get() + " eliminato dal sistema.";
-        }
-        catch (Exception e){
+        }catch(Exception e){
             return e.getMessage();
         }
     }
@@ -59,8 +56,7 @@ public class OtherSubSystemControl {
         try{
             BasicUserInfo basic = usProfInt.getBasicUserInfo(nick);
             return basic.toString();
-        }
-        catch (Exception e){
+        }catch(Exception e){
             return e.getMessage();
         }
     }
@@ -69,8 +65,7 @@ public class OtherSubSystemControl {
         try{
             RestrictUserInfo restrict = usProfInt.getRestrictedUserInfo(nick);
             return restrict.toString();
-        }
-        catch (Exception e){
+        }catch(Exception e){
             return e.getMessage();
         }
     }
@@ -79,8 +74,7 @@ public class OtherSubSystemControl {
         try{
             Roles role = rolInt.getRoles(nick);
             return role.toString();
-        }
-        catch (Exception e){
+        }catch(Exception e){
             return e.getMessage();
         }
     }
@@ -89,23 +83,21 @@ public class OtherSubSystemControl {
         try{
             UserStatus status = rolInt.getStatus(nick);
             return status.name();
-        }
-        catch (Exception e){
+        }catch(Exception e){
             return e.getMessage();
         }
     }
 
     public String modifyRole(Nickname nick, String tenant, String renter){
         try{
-            if (tenant.toLowerCase().equals("yes")) rolInt.makeATenant(nick);
-            else if (tenant.toLowerCase().equals("no")) rolInt.removeTenantship(nick);
+            if(tenant.toLowerCase().equals("yes")) rolInt.makeATenant(nick);
+            else if(tenant.toLowerCase().equals("no")) rolInt.removeTenantship(nick);
 
-            if (renter.toLowerCase().equals("yes")) rolInt.makeARenter(nick);
-            else if (renter.toLowerCase().equals("no")) rolInt.removeRentership(nick);
+            if(renter.toLowerCase().equals("yes")) rolInt.makeARenter(nick);
+            else if(renter.toLowerCase().equals("no")) rolInt.removeRentership(nick);
 
             return "Nuovi ruoli: " + rolInt.getRoles(nick).toString();
-        }
-        catch (Exception e){
+        }catch(Exception e){
             return e.getMessage();
         }
     }

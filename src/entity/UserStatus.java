@@ -1,5 +1,6 @@
 package entity;
-public enum UserStatus {
+
+public enum UserStatus{
     ACTIVE,
     INACTIVE,
     CANCELLED,

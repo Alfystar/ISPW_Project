@@ -4,15 +4,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class PropStoreInizialize
-{
+public class PropStoreInizialize{
 
-    public static void main( String[] args )
-    {
+    public static void main(String[] args){
         Properties prop = new Properties();
         String confFile = "config.properties";
 
-        try {
+        try{
             //set the properties value
             prop.setProperty("dbHost", "localhost");
             prop.setProperty("dbuser", "root");
@@ -21,7 +19,7 @@ public class PropStoreInizialize
             //save properties to project root folder
             prop.store(new FileOutputStream(confFile), null);
 
-        } catch (IOException ex) {
+        }catch(IOException ex){
             ex.printStackTrace();
         }
     }
