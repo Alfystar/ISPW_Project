@@ -12,8 +12,6 @@ import java.util.Random;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
-//todo: continuare la Mock
-
 public class DAOMock implements DAOInterface{
 
 

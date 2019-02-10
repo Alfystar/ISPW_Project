@@ -102,7 +102,6 @@ public class K_registration implements Initializable{
             return;
         }
 
-        //todo comandi per cambiare avatar
         try{
             sysInt.setAvatar(new Nickname(nick.getText()), this.radioSelect());
         }catch(UserNotExistEx e){

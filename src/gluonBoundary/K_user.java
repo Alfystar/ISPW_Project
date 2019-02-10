@@ -337,8 +337,6 @@ public class K_user implements Initializable{
     }
 
 
-    //todo: inserire l'eliminazione volontaria del profilo! Deve attivare cancelUser!
-
     public LocalDate convertToLocalDateViaInstant(Date dateToConvert){
         return dateToConvert.toInstant().atZone(ZoneId.systemDefault())
                 .toLocalDate();

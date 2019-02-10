@@ -124,13 +124,10 @@ public class K_resetPw implements Initializable{
             outLabel.setText("Utente Non trovato");
             answCheck.setState(false);
             icoCheckAnsw.setImage(answCheck.getIcon());
-        }catch(SQLException e){
-        }catch(ClassNotFoundException e){
+        }catch(SQLException|ClassNotFoundException e){
+            e.printStackTrace();
+            return;
         }
-
-
-        //todo: should be a validation, but for now...
-
 
         Bean2User bean = new Bean2User();
         bean.setNick(new Nickname(nick.getText()));
