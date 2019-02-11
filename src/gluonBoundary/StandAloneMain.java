@@ -18,9 +18,16 @@ public class StandAloneMain extends Application {
         int nThread =10;
         StandAloneMain stand = new StandAloneMain();
         //todo Inserire inizializzazione e tread vari
-        for(int i = 0; i <nThread ; i++){
-
+        Thread t;
+        FakeUser f;
+        for(int fakeType = 0; fakeType <2; fakeType++){
+            for(int i = 0; i <nThread ; i++){
+                f = new FakeUser(fakeType);
+                t = new Thread(f);
+                t.start();
+            }
         }
+
 
         launch(args);
         System.exit(0);

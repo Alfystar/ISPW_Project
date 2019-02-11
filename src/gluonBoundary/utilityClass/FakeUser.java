@@ -2,8 +2,10 @@ package gluonBoundary.utilityClass;
 
 import control.FacadeSubSystem;
 import entity.*;
+import exceptions.UserNotExistEx;
 
 import java.util.GregorianCalendar;
+import java.util.Random;
 import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -25,13 +27,13 @@ public class FakeUser implements Runnable{
         switch(fakeType)
         {
             case 0: //registerFake
-                while(true){}
+                while(true){registerFake();}
 
             case 1: //adminFake
-                while(true){}
+                while(true){adminDeleteFake();}
 
             case 2: //otherFake
-                while(true){}
+                while(true){otherFake();}
 
         }
 
@@ -55,10 +57,28 @@ public class FakeUser implements Runnable{
     }
 
     private void adminDeleteFake(){
+        try{
+            int randUser = randInt(0,users.size()-1);
+            Utente us=users.remove(randUser);
+            facade.deleteUser(us.getPublic().getNick());
+            Thread.sleep(randInt(10,50));
+        }catch(UserNotExistEx e)
+        {
+            System.err.println("##adminDeleteFake ha provato a eliminare un utente già eliminato");
+        }catch(InterruptedException e)
+        {
 
+        }
     }
 
     private void otherFake(){
 
+    }
+
+
+    private static int randInt(int min, int max) {
+        Random rand = new Random();
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+        return randomNum;
     }
 }
