@@ -76,7 +76,7 @@
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobirise.info/n">free simple site templates</a></section><section class="cid-qTkA127IK8 mbr-fullscreen mbr-parallax-background" id="header2-1" style="z-index: 0; background-image: url(http://localhost:8080/unnamed/assets/images/mbr-1-1920x1280.jpg);  position: relative;">
+<section class="engine"><a href="https://mobirise.info/n">free simple site templates</a></section><section class="cid-qTkA127IK8 mbr-fullscreen mbr-parallax-background" id="header2-1" style="z-index: 0; background-image: url(/unnamed/assets/images/mbr-1-1920x1280.jpg);  position: relative;">
 
 
 
