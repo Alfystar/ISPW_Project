@@ -65,11 +65,12 @@ public class DaemonDAO implements Runnable{
                     System.err.println("problemi di accesso al DB; risolvere;");
                 }
             }
-            //todo eseguire la pulizia della tabella e impostare la successiva volta di lavoro
             todayDay = java.util.GregorianCalendar.getInstance().getTime();
             gc.setTime(todayDay);
             try{
                 this.dao.deleteByDeamon(gc);
+                gc.add(Calendar.MONTH,1);
+                this.dao.updateNextDelS(gc);
             }catch(SQLException se){
                 se.printStackTrace();
                 System.err.println("clear abort!!! retry next month");
