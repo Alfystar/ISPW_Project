@@ -126,9 +126,9 @@
                     <br>
                     Ruoli: (scrivere Yes/No nei relativi campi)
                     <br>
-                    Tenant:<input name="tenant" type="text" style="text-align:left">
+                    Tenant (Yes/No):<input name="tenant" type="text" style="text-align:left">
                     <br>
-                    Renter: <input name="renter" type="text" style="text-align:left">
+                    Renter (Yes/No): <input name="renter" type="text" style="text-align:left">
                     <br>
                     Social Status: <input name="socialStatus" type="text" style="text-align:left">
                     <br>
