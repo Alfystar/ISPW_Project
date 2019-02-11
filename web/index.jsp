@@ -1,16 +1,14 @@
-<%@ page import="DAO.DaemonDAO" %>
-<%@ page import="interfaces.SystemInterface" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:useBean id="index_Bean" scope="request" class="externalBean.IndexBean"/>
+<jsp:useBean id="index_Bean" scope="session" class="externalBean.IndexBean"/>
 
 <jsp:setProperty name="index_Bean" property="*"/>
 
 <%
     String result = "";
     String color = "white";
-
-    String dynamicIP = index_Bean.startDB();
+    String dynamicIP = "localhost";
+    dynamicIP = index_Bean.startDB();
 
     if (request.getParameter("changeIPSubmit") != null) {
 

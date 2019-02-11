@@ -75,6 +75,8 @@ public class DaemonDAO implements Runnable{
                 this.dao.deleteByDeamon(gc);
                 gc.add(Calendar.MONTH,1);
                 this.dao.updateNextDelS(gc);
+            }catch (java.sql.SQLNonTransientConnectionException e) {
+                System.err.println("Impossible connect to db, retry again");
             }catch(SQLException se){
                 se.printStackTrace();
                 System.err.println("clear abort!!! retry next month");

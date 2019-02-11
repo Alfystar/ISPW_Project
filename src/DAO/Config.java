@@ -1,6 +1,7 @@
 package DAO;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -18,7 +19,21 @@ public class Config{
 
             configFile.load(new FileInputStream(confFile));
 
-        }catch(IOException eta){
+        }catch (FileNotFoundException e){
+            try{
+                //set the properties value
+                configFile.setProperty("dbHost", "localhost");
+                configFile.setProperty("dbuser", "root");
+                configFile.setProperty("dbpassword", "0000");
+
+                //save properties to project root folder
+                configFile.store(new FileOutputStream(confFile), null);
+
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
+        }
+        catch(IOException eta){
             eta.printStackTrace();
         }
     }

@@ -7,7 +7,8 @@ public class IndexBean{
     private String IPtext;
 
     public IndexBean(){
-        this.IPtext = "";
+        startDB();
+        //this.IPtext = "";
     }
 
     public String getIPtext(){ return this.IPtext; }
@@ -24,7 +25,9 @@ public class IndexBean{
 
     public String startDB(){
         IndexControl controller = IndexControl.getInstance();
-        return controller.startDBAndIP();
+        this.IPtext = controller.startDBAndIP();
+        System.out.println(this.IPtext);
+        return this.IPtext;
     }
 
 }
