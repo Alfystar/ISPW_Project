@@ -144,6 +144,9 @@
                 <p class="mbr-text pb-3 mbr-fonts-style display-5"> Password: <input name="password" type="password" style="text-align:left">
                 </p>
 
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Confirm Password: <input name="confPW" type="password" style="text-align:left">
+                </p>
+
                 <p class="mbr-text pb-3 mbr-fonts-style display-5"> DOMANDE DI RECUPERO
                     <br>
                     What is the name of your favorite pet? <input name="question1" type="text" style="margin-bottom: 5px;">

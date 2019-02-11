@@ -35,8 +35,8 @@ public class IndexControl{
 
     public String changeIPDAO(String IP){
         try {
-            //sysInt.changeHost(IP);
-            DAOClass daoClass = new DAOClass(IP);
+            DAOClass daoClass = new DAOClass();
+            sysInt.changeHost(IP);
             if (daoClass.testNet()) return "Successo";
             else return "Fallito";
         } catch(Exception e){

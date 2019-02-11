@@ -8,12 +8,12 @@
 
 <%
     /*  abbiamo utilizzato sendRedirect() invece di jsp:forward in quanto l'URL
-    *   in questo modo si aggiorna; questo è dovuto al fatto che con forward la
-    *   comunicazione è nel server, e il browser del client non è cosciente del
-    *   cambio di pagina, mentre con sendRedirect (che di contro è più lenta)
-    *   viene esplicitamente trasferita la richiesta ad un altro indirizzo, che
-    *   potrebbe essere locato ovunque.
-    */
+     *   in questo modo si aggiorna; questo è dovuto al fatto che con forward la
+     *   comunicazione è nel server, e il browser del client non è cosciente del
+     *   cambio di pagina, mentre con sendRedirect (che di contro è più lenta)
+     *   viene esplicitamente trasferita la richiesta ad un altro indirizzo, che
+     *   potrebbe essere locato ovunque.
+     */
 
     String result = "";
 
@@ -141,7 +141,7 @@
             <br>
             <form name="recovery_form" action="login.jsp" method="post">
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                <input name="recoverSubmit" type="submit" id="recoverSubmit" value="Credenziali perse?" class="btn btn-secondary-outline" style="margin-left: 0px;margin-top: 2rem;padding-left: 1rem;padding-right: 1rem;padding-bottom: 0.1rem;padding-top: 0.1rem;margin-right: 0px;">
+                    <input name="recoverSubmit" type="submit" id="recoverSubmit" value="Credenziali perse?" class="btn btn-secondary-outline" style="margin-left: 0px;margin-top: 2rem;padding-left: 1rem;padding-right: 1rem;padding-bottom: 0.1rem;padding-top: 0.1rem;margin-right: 0px;">
                 </p>
             </form>
 

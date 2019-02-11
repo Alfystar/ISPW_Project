@@ -99,11 +99,11 @@
                 <form name="changeIp_form" action="index.jsp" method="post">
                     <p class="mbr-text pb-3 mbr-fonts-style display-5">
                         <br>
-                        <p style="color:white; background-color:<%=color%>;"><%=result%></p>
-                        <br>
-                        IP: <input name="IPtext" type="text" id="IPtext" value=<%=dynamicIP%>>
-                        <input name="changeIPSubmit" type="submit" id="changeIPSubmit" value="Change IP" class="btn btn-success-outline" style="padding-bottom: 0.4rem;padding-top: 0.4rem;">
-                        <br>
+                    <p style="color:white; background-color:<%=color%>;"><%=result%></p>
+                    <br>
+                    IP: <input name="IPtext" type="text" id="IPtext" value=<%=dynamicIP%>>
+                    <input name="changeIPSubmit" type="submit" id="changeIPSubmit" value="Change IP" class="btn btn-success-outline" style="padding-bottom: 0.4rem;padding-top: 0.4rem;">
+                    <br>
                     </p>
                 </form>
             </div>
