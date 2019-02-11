@@ -1,8 +1,10 @@
 package gluonBoundary.utilityClass;
 
+import bean.UserInfoRegister;
 import control.FacadeSubSystem;
 import entity.*;
 import exceptions.UserNotExistEx;
+import exceptions.WrongParameters;
 
 import java.util.GregorianCalendar;
 import java.util.Random;
@@ -10,7 +12,7 @@ import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class FakeUser implements Runnable{
-    private Vector<Utente> users = new Vector<>();
+    private Vector<UserInfoRegister> users = new Vector<>();
     RandomString gen = new RandomString(8, ThreadLocalRandom.current());
 
     FacadeSubSystem facade = new FacadeSubSystem();
@@ -39,6 +41,7 @@ public class FakeUser implements Runnable{
 
     }
 
+    /*
     private Utente randomUser()
     {
         PublicData pubD = new PublicData(new Name(randomString()), new Name(randomString()), new TaxCode(randomString()), new Nickname(randomString()), new Email(randomString()), new GregorianCalendar(1998, 2, 3), Gender.WOMAN);
@@ -46,22 +49,35 @@ public class FakeUser implements Runnable{
         Utente us = new Utente(pubD, priD, new PW("12345"), new Roles(false, true), new Questions(new String[]{randomString(),randomString(),randomString(),randomString()}));
         users.add(us);
         return us;
+    }*/
+
+    private UserInfoRegister randomInfoReg() {
+        String[] answ= {randomString(), randomString(),randomString(),randomString()};
+        UserInfoRegister infoReg = new UserInfoRegister(new Name(randomString()), new Name(randomString()), new TaxCode(randomString()), new Nickname(randomString()), new Email(randomString()), new GregorianCalendar(1998, 2, 3), Gender.WOMAN, new Questions(answ), new PW(randomString()), new SurfaceAddress(randomString()));
+        users.add(infoReg);
+        return infoReg;
     }
 
     private String randomString(){
         return gen.nextString();
     }
 
-    private void registerFake(){
-
+    private void registerFake() {
+        try {
+            UserInfoRegister usInfoReg= this.randomInfoReg();
+            this.facade.createUser(usInfoReg.getNickname(), usInfoReg);
+            Thread.sleep(randInt(100,500));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void adminDeleteFake(){
         try{
             int randUser = randInt(0,users.size()-1);
-            Utente us=users.remove(randUser);
-            facade.deleteUser(us.getPublic().getNick());
-            Thread.sleep(randInt(10,50));
+            UserInfoRegister us=users.remove(randUser);
+            facade.deleteUser(us.getNickname());
+            Thread.sleep(randInt(100,500));
         }catch(UserNotExistEx e)
         {
             System.err.println("##adminDeleteFake ha provato a eliminare un utente già eliminato");
