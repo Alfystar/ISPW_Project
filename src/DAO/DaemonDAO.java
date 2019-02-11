@@ -43,6 +43,7 @@ public class DaemonDAO implements Runnable{
             restartSleep:
             {
                 try{
+                    Thread.sleep(10000);
                     todayDay = java.util.GregorianCalendar.getInstance().getTime();
                     calendar.setTime(todayDay);
                     //Aggiungo un mese
@@ -53,6 +54,7 @@ public class DaemonDAO implements Runnable{
 
                     TimeUnit timeUnit = TimeUnit.MILLISECONDS;
                     long deltaTime = getDateDiff(todayDay, d, timeUnit);
+                    System.out.println(deltaTime);
 
                     if(deltaTime <= 0) break restartSleep;
 
@@ -60,6 +62,8 @@ public class DaemonDAO implements Runnable{
                     break restartSleep;
                 }catch(InterruptedException e){
                     e.printStackTrace();
+                }catch (java.sql.SQLNonTransientConnectionException e) {
+                    System.err.println("Impossible connect to db, retry again");
                 }catch(SQLException se){
                     se.printStackTrace();
                     System.err.println("problemi di accesso al DB; risolvere;");

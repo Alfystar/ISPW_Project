@@ -21,4 +21,10 @@ public class IndexBean{
         return controller.changeIPDAO(this.IPtext);
 
     }
+
+    public String startDB(){
+        IndexControl controller = IndexControl.getInstance();
+        return controller.startDBAndIP();
+    }
+
 }
