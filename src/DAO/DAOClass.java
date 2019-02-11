@@ -14,6 +14,7 @@ import java.util.GregorianCalendar;
 
 public class DAOClass implements DAOInterface{
 
+
     /*private static String UTENTE= "root";
     private static String PASSWORD= "0000";
     private static String DB_URL= "jdbc:mysql://localhost/fersa";*/
