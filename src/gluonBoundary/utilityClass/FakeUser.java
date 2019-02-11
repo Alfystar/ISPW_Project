@@ -12,10 +12,13 @@ import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class FakeUser implements Runnable{
-    private Vector<UserInfoRegister> users = new Vector<>();
+    private static Vector<UserInfoRegister> users = new Vector<>();
     RandomString gen = new RandomString(8, ThreadLocalRandom.current());
 
     FacadeSubSystem facade = new FacadeSubSystem();
+
+    private int timeMin=500;
+    private int timeMax=1000;
 
     private int fakeType=0;
 
@@ -29,13 +32,22 @@ public class FakeUser implements Runnable{
         switch(fakeType)
         {
             case 0: //registerFake
-                while(true){registerFake();}
+                while(true){
+                    System.out.println("registerFake restart");
+                    registerFake();
+                }
 
             case 1: //adminFake
-                while(true){adminDeleteFake();}
+                while(true){
+                    System.out.println("adminFake restart");
+                    adminDeleteFake();
+                }
 
             case 2: //otherFake
-                while(true){otherFake();}
+                while(true){
+                    System.out.println("otherFake restart");
+                    otherFake();
+                }
 
         }
 
@@ -66,31 +78,44 @@ public class FakeUser implements Runnable{
         try {
             UserInfoRegister usInfoReg= this.randomInfoReg();
             this.facade.createUser(usInfoReg.getNickname(), usInfoReg);
-            Thread.sleep(randInt(100,500));
+            Thread.sleep(randInt(timeMin,timeMax));
         }catch (Exception e){
+            System.err.println("##registerFake");
             e.printStackTrace();
         }
     }
 
     private void adminDeleteFake(){
         try{
+            if(users.isEmpty())
+            {
+                System.out.println("**adminDeleteFake empty");
+                Thread.sleep(randInt(timeMin,timeMax));
+                return;
+            }
             int randUser = randInt(0,users.size()-1);
-            UserInfoRegister us=users.remove(randUser);
+            UserInfoRegister us= users.remove(randUser);
             facade.deleteUser(us.getNickname());
-            Thread.sleep(randInt(100,500));
-        }catch(UserNotExistEx e)
+            System.out.println("**adminDeleteFake eliminato: "+ us.getNickname().get());
+            Thread.sleep(randInt(timeMin,timeMax));
+        }catch(Exception e)
         {
-            System.err.println("##adminDeleteFake ha provato a eliminare un utente già eliminato");
-        }catch(InterruptedException e)
-        {
-
+            System.err.println("##adminDeleteFake");
+            e.printStackTrace();
         }
     }
 
     private void otherFake(){
+        try{
+
+            Thread.sleep(randInt(timeMin,timeMax));
+        }catch(Exception e)
+        {
+            System.err.println("##otherFake");
+            e.printStackTrace();
+        }
 
     }
-
 
     private static int randInt(int min, int max) {
         Random rand = new Random();
