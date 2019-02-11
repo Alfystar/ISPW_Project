@@ -15,9 +15,7 @@ public class Config{
 
     private static Config confSingleton = new Config();
 
-    public static Config getInstance(){
-        return confSingleton;
-    }
+    public static Config getInstance(){ return confSingleton; }
 
     private Config(){
         configFile = new Properties();
@@ -26,18 +24,7 @@ public class Config{
             configFile.load(new FileInputStream(confFilePath));
 
         }catch (FileNotFoundException e){
-            try{
-                //set the properties value
-                configFile.setProperty("dbHost", "localhost");
-                configFile.setProperty("dbuser", "root");
-                configFile.setProperty("dbpassword", "0000");
-
-                //save properties to project root folder
-                configFile.store(new FileOutputStream(confFilePath), null);
-
-            }catch(IOException ex){
-                ex.printStackTrace();
-            }
+            createFile();
         }
         catch(IOException eta){
             eta.printStackTrace();
@@ -65,6 +52,9 @@ public class Config{
             configFile.load(new FileInputStream(confFilePath));
             configFile.setProperty(prop, value);
             configFile.store(new FileOutputStream(confFilePath), null);
+        }catch (FileNotFoundException e){
+            createFile();
+            setProprerty(prop,value);
         }catch(IOException ex){
             ex.printStackTrace();
         }finally{
@@ -76,5 +66,21 @@ public class Config{
     public static void setConfFilePath(String path)
     {
         confFilePath=path;
+    }
+
+    private void createFile()
+    {
+        try{
+            //set the properties value
+            configFile.setProperty("dbHost", "localhost");
+            configFile.setProperty("dbuser", "root");
+            configFile.setProperty("dbpassword", "0000");
+
+            //save properties to project root folder
+            configFile.store(new FileOutputStream(confFilePath), null);
+
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
     }
 }
