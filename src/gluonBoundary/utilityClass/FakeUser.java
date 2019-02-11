@@ -17,8 +17,8 @@ public class FakeUser implements Runnable{
 
     FacadeSubSystem facade = new FacadeSubSystem();
 
-    private int timeMin=500;
-    private int timeMax=1000;
+    private int timeMin=1000;
+    private int timeMax=5000;
 
     private int fakeType=0;
 
@@ -37,13 +37,18 @@ public class FakeUser implements Runnable{
                     registerFake();
                 }
 
-            case 1: //adminFake
+            case 1: //adminDeleteFake
                 while(true){
                     System.out.println("adminFake restart");
                     adminDeleteFake();
                 }
+            case 2: //adminStatusFake
+                while(true){
+                    System.out.println("adminStatusFake restart");
+                    adminStatusFake();
+                }
 
-            case 2: //otherFake
+            case 3: //otherFake
                 while(true){
                     System.out.println("otherFake restart");
                     otherFake();
@@ -105,9 +110,60 @@ public class FakeUser implements Runnable{
         }
     }
 
+    private void adminStatusFake(){
+        try{
+            if(users.isEmpty())
+            {
+                System.out.println("**adminDeleteFake empty");
+                Thread.sleep(randInt(timeMin,timeMax));
+                return;
+            }
+            int randUser = randInt(0,users.size()-1);
+            UserInfoRegister us= users.get(randUser);
+            switch(randInt(0,1))
+            {
+                case 0:
+                    facade.changeUserStatus(us.getNickname(),UserStatus.BANNED);
+                    break;
+                case 1:
+                    facade.changeUserStatus(us.getNickname(),UserStatus.ACTIVE);
+                    break;
+            }
+            System.out.println("**adminStatusFake change: "+ us.getNickname().get());
+            Thread.sleep(randInt(timeMin,timeMax));
+        }catch(Exception e)
+        {
+            System.err.println("##adminDeleteFake");
+            e.printStackTrace();
+        }
+    }
+
     private void otherFake(){
         try{
-
+            if(users.isEmpty())
+            {
+                System.out.println("**otherFake empty");
+                Thread.sleep(randInt(timeMin,timeMax));
+                return;
+            }
+            int randUser = randInt(0,users.size()-1);
+            UserInfoRegister us= users.get(randUser);
+            switch(randInt(0,3))
+            {
+                case 0:
+                    facade.makeARenter(us.getNickname());
+                    break;
+                case 1:
+                    facade.removeRentership(us.getNickname());
+                    break;
+                case 2:
+                    facade.makeATenant(us.getNickname());
+                    break;
+                case 3:
+                    facade.removeTenantship(us.getNickname());
+                    break;
+            }
+            System.out.println("**otherFake modifica: "+ us.getNickname().get());
             Thread.sleep(randInt(timeMin,timeMax));
         }catch(Exception e)
         {
