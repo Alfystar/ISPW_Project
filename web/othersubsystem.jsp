@@ -86,27 +86,27 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="/unnamed/index.jsp">
+                    <a href="/FERSA/index.jsp">
                          <img src="othersubsystem_files/mbr-130x130.jpg" alt="Mobirise" title="" style="height: 3.8rem;">
                     </a>
                 </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="/unnamed/index.jsp">FERSA</a></span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="/FERSA/index.jsp">FERSA</a></span>
             </div>
         </div>
         <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item dropdown">
                 <a class="nav-link link text-white dropdown-toggle display-4"   data-toggle="dropdown-submenu" aria-expanded="false">
 
-                    Simulazione</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="/unnamed/othersubsystem.jsp" aria-expanded="false">Other SubSystem</a></div>
+                    Simulazione</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="/FERSA/othersubsystem.jsp" aria-expanded="false">Other SubSystem</a></div>
             </li></ul>
-            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-white-outline display-4" href="/unnamed/login.jsp">Login
-            </a> <a class="btn btn-sm btn-primary display-4" href="/unnamed/register.jsp">Register
+            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-white-outline display-4" href="/FERSA/login.jsp">Login
+            </a> <a class="btn btn-sm btn-primary display-4" href="/FERSA/register.jsp">Register
             </a></div>
         </div>
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobirise.info/z">best html templates</a></section><section class="header9 cid-rgnE9yb8VN mbr-parallax-background" id="header9-6" style="z-index: 0; background-image: url(/unnamed/assets/images/mbr-1-1920x1280.jpg);  position: relative;">
+<section class="engine"><a href="https://mobirise.info/z">best html templates</a></section><section class="header9 cid-rgnE9yb8VN mbr-parallax-background" id="header9-6" style="z-index: 0; background-image: url(/FERSA/assets/images/mbr-1-1920x1280.jpg);  position: relative;">
 
     <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(255, 255, 255);">
     </div>
