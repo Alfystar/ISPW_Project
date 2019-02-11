@@ -1,5 +1,6 @@
 package externalControl;
 
+import DAO.Config;
 import DAO.DAOClass;
 import DAO.DaemonDAO;
 import control.FacadeSubSystem;
@@ -22,6 +23,9 @@ public class IndexControl{
 
     public String startDBAndIP(){
         try {
+
+            Config.setConfFilePath("/unnamed/config.properties");
+
             DaemonDAO daemonDAO = DaemonDAO.getInstance();
 
             String IPtest = sysInt.getLastHost();

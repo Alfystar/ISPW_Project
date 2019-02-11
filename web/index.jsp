@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:useBean id="index_Bean" scope="session" class="externalBean.IndexBean"/>
+<jsp:useBean id="index_Bean" scope="request" class="externalBean.IndexBean"/>
 
 <jsp:setProperty name="index_Bean" property="*"/>
 

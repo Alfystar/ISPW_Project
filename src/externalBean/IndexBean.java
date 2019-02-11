@@ -7,8 +7,8 @@ public class IndexBean{
     private String IPtext;
 
     public IndexBean(){
-        startDB();
-        //this.IPtext = "";
+        //startDB();
+        this.IPtext = "";
     }
 
     public String getIPtext(){ return this.IPtext; }
