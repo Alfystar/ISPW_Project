@@ -26,6 +26,7 @@ public class StandAloneMain extends Application {
                 t = new Thread(f);
                 t.start();
             }
+            System.out.println("Thread type "+ fakeType+" created");
         }
 
 
