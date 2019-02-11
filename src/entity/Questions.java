@@ -1,8 +1,8 @@
 package entity;
 
-import static java.lang.Math.*;
+import static java.lang.Math.min;
 
-public class Questions {
+public class Questions{
     //uguali per tutti, risparmio di memoria
     private static String[] questions = {
             "What is the name of your favorite pet?",
@@ -13,7 +13,7 @@ public class Questions {
 
     private String[] answers = {};
 
-    public Questions(String[] answers) {
+    public Questions(String[] answers){
 
         this.answers = answers;
     }
@@ -35,7 +35,7 @@ public class Questions {
 
         for(int i = 0; i < tmpAns.length; i++){
 
-            if ( this.answers[i].equals(tmpAns[i]) ) correct += 1;
+            if(this.answers[i].equals(tmpAns[i])) correct += 1;
         }
 
         return correct >= minCorrect;
@@ -61,11 +61,11 @@ public class Questions {
     }
 
     public String getAnswersList(){
-        String out="";
-        for (int i = 0; i < answers.length; i++) {
-            out+="Risposta "+i+": "+answers[i]+"\n";
+        String out = "";
+        for(int i = 0; i < answers.length; i++){
+            out += "Risposta " + i + ": " + answers[i] + "\n";
         }
-        out+="\n";
+        out += "\n";
         return out;
     }
 

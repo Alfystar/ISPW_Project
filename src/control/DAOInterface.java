@@ -10,17 +10,17 @@ import exceptions.WrongParameters;
 import java.sql.SQLException;
 import java.util.GregorianCalendar;
 
-public interface DAOInterface {
+public interface DAOInterface{
 
     Utente createUser(UserInfoRegister infoReg) throws WrongParameters;
 
     Utente loadFromDB(Nickname nickname) throws NickNotDBEx, SQLException;
 
-    void saveUser(Utente user) throws  SQLException;
+    void saveUser(Utente user) throws SQLException;
 
     void updateUser(Utente user) throws SQLException, NickNotDBEx;
 
-    Boolean searchNickDB(Nickname nickname)  throws SQLException;
+    Boolean searchNickDB(Nickname nickname) throws SQLException;
 
     Boolean searchTC(TaxCode cf) throws SQLException;
 
@@ -30,5 +30,7 @@ public interface DAOInterface {
 
     void removeDataEvent(Nickname nick) throws SQLException;
 
-    void changeUrl(String ip);
+    void changeHost(String ip);
+
+    String getLastHost();
 }

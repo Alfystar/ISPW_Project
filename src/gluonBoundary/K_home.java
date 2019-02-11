@@ -8,7 +8,6 @@ import gluonBoundary.utilityClass.DigitalIcon;
 import interfaces.RoleStatus;
 import interfaces.SystemInterface;
 import interfaces.UserProfileService;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +18,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -28,51 +26,47 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class K_home  implements Initializable {
+public class K_home implements Initializable{
 
-    /*******************************************************************/
-    /**                       Class Attribute                         **/
-    DigitalIcon testConnImg = new DigitalIcon();
-
-    private SystemInterface sysInt = new FacadeSubSystem();
-    private RoleStatus rolStatInt = new FacadeSubSystem();
-    private UserProfileService usInt = new FacadeSubSystem();
-
-    /*******************************************************************/
 
     //=================================================================
     //simulation chose sector
     @FXML
-    Button userBut, adminBut, subSystemBut;
-
+    private Button userBut, adminBut, subSystemBut;
     //=================================================================
     //Network controll sector
     @FXML
-    TextField ipField;
-
+    private TextField ipField;
     @FXML
-    Button defIp;
-
+    private Button defIp;
     @FXML
-    Label outLabel;
-
+    private Label outLabel;
     @FXML
-    ImageView testIcon;
+    private ImageView testIcon;
+
+    /*** Class Attribute ***/
+    private SystemInterface sysInt = new FacadeSubSystem();
+    private RoleStatus rolStatInt = new FacadeSubSystem();
+    private UserProfileService usInt = new FacadeSubSystem();
+    private DigitalIcon testConnImg = new DigitalIcon();
+
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
+    public void initialize(URL url, ResourceBundle rb){
+        try{
+            ipField.setText(sysInt.getLastHost());
+        }catch(ClassNotFoundException e){
+            e.printStackTrace();
+        }
     }
 
 
-
     @FXML
-    public void adminSimulation(ActionEvent event) throws IOException {
+    public void adminSimulation(ActionEvent event) throws IOException{
         //Avvio dei tread
-        try {
+        try{
             this.treadStart();
-        }catch (Exception e)
-        {
+        }catch(Exception e){
             e.printStackTrace();
             return;
         }
@@ -83,18 +77,17 @@ public class K_home  implements Initializable {
         Scene adminScene = new Scene(adminParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         //set new scene
         window.setScene(adminScene);
     }
 
     @FXML
-    public void userSimulation(ActionEvent event) throws IOException {
+    public void userSimulation(ActionEvent event) throws IOException{
         //Avvio dei tread
-        try {
+        try{
             this.treadStart();
-        }catch (Exception e)
-        {
+        }catch(Exception e){
             e.printStackTrace();
             return;
         }
@@ -104,18 +97,17 @@ public class K_home  implements Initializable {
         Scene adminScene = new Scene(adminParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         //set new scene
         window.setScene(adminScene);
     }
 
     @FXML
-    public void otherSimulation(ActionEvent event) throws IOException {
+    public void otherSimulation(ActionEvent event) throws IOException{
         //Avvio dei tread
-        try {
+        try{
             this.treadStart();
-        }catch (Exception e)
-        {
+        }catch(Exception e){
             e.printStackTrace();
             return;
         }
@@ -125,40 +117,34 @@ public class K_home  implements Initializable {
         Scene adminScene = new Scene(adminParent);
 
         //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         //set new scene
         window.setScene(adminScene);
     }
 
     @FXML
-    public void testConnection(ActionEvent actionEvent) {
+    public void testConnection(ActionEvent actionEvent){
         this.testDBConn();
     }
 
-    private Boolean testDBConn()
-    {
-        try {
-            DAOClass daoClass=new DAOClass(ipField.getText());
-            if(daoClass.testNet())
-            {
+    private Boolean testDBConn(){
+        try{
+            DAOClass daoClass = new DAOClass(ipField.getText());
+            if(daoClass.testNet()){
                 testConnImg.setState(true);
                 testIcon.setImage(testConnImg.getIcon());
                 outLabel.setText("DB connected");
                 return true;
-            }
-            else
-            {
+            }else{
                 testConnImg.setState(false);
                 testIcon.setImage(testConnImg.getIcon());
                 outLabel.setText("DB not connected");
                 return false;
 
             }
-        }catch (ClassNotFoundException e)
-        {
+        }catch(ClassNotFoundException e){
             outLabel.setText("Driver DB not found");
-        }catch (SQLException e)
-        {
+        }catch(SQLException e){
             e.printStackTrace();
             outLabel.setText("DB Problem");
         }
@@ -166,27 +152,20 @@ public class K_home  implements Initializable {
     }
 
     @FXML
-    public void restoreIp(ActionEvent actionEvent) {
+    public void restoreIp(ActionEvent actionEvent){
         ipField.setText("localHost");
     }
 
 
-    private void treadStart() throws DBConnectionEx
-    {
-        try {
-            sysInt.changeUrl(ipField.getText());
+    private void treadStart() throws DBConnectionEx{
+        try{
+            sysInt.changeHost(ipField.getText());
             DaemonDAO daemonDAO = DaemonDAO.getInstance();
             if(!this.testDBConn()){
                 throw new DBConnectionEx("DB Connection Problem");
             }
-        }catch (ClassNotFoundException e)
-        {
+        }catch(ClassNotFoundException e){
             outLabel.setText("Driver DB not found");
-        }catch (SQLException e)
-        {
-            outLabel.setText("Problemi con SQL");
-            e.printStackTrace();
         }
-
     }
 }

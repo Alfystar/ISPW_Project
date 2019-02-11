@@ -6,11 +6,11 @@ import exceptions.UserNotExistEx;
 
 import java.sql.SQLException;
 
-public interface SystemInterface {
+public interface SystemInterface{
 
     void changeNotAnagraphicData(Nickname nk, ModifyDataString data) throws UserNotExistEx;
 
-    void changePassword(Nickname nk,PW newPw, PW oldPw ) throws UserNotExistEx;
+    void changePassword(Nickname nk, PW newPw, PW oldPw) throws UserNotExistEx;
 
     Boolean login(Nickname nk, PW passW) throws UserNotExistEx, SQLException, UserBannedEx;
 
@@ -22,7 +22,8 @@ public interface SystemInterface {
 
     void setAvatar(Nickname nk, int id) throws UserNotExistEx;
 
-    void changeUrl(String ip) throws SQLException, ClassNotFoundException;
-    //todo comandi per cambiare avatar
+    void changeHost(String ip) throws ClassNotFoundException;
+
+    String getLastHost() throws ClassNotFoundException;
 
 }

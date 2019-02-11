@@ -3,32 +3,37 @@ package externalControl;
 import bean.BasicUserInfo;
 import bean.RestrictUserInfo;
 import control.FacadeSubSystem;
+import entity.Avatar;
 import entity.Nickname;
 import entity.Roles;
 import interfaces.RoleStatus;
+import interfaces.SystemInterface;
 import interfaces.UserProfileService;
 
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 
-public class UserPageControl {
+public class UserPageControl{
 
     private static UserPageControl instance;
 
-    private UserProfileService usProfInt = new FacadeSubSystem();
     private RoleStatus rolInt = new FacadeSubSystem();
+    private SystemInterface sysInt = new FacadeSubSystem();
+    private UserProfileService usProfInt = new FacadeSubSystem();
 
-    public static UserPageControl getInstance() {
-        if (instance == null)
+    private UserPageControl(){
+    }
+
+    public static UserPageControl getInstance(){
+        if(instance == null)
             instance = new UserPageControl();
         return instance;
     }
 
-    private UserPageControl() {
-    }
-
     public String[] obtainUserInfo(Nickname nick){
-        try {
+        try{
+
+            Avatar avatar = sysInt.getAvatar(nick);
             BasicUserInfo basObj = usProfInt.getBasicUserInfo(nick);
             RestrictUserInfo restObj = usProfInt.getRestrictedUserInfo(nick);
             Roles roles = rolInt.getRoles(nick);
@@ -41,7 +46,9 @@ public class UserPageControl {
 
             //prendo solo i dati che servono
 
-            String[] resStr = { basObj.getName().get(),
+            String[] resStr = {
+                    avatar.getAvatarName(),
+                    basObj.getName().get(),
                     basObj.getSurname().get(),
                     basObj.getTaxCode().get(),
                     basObj.getNickname().get(),
@@ -53,13 +60,13 @@ public class UserPageControl {
                     restObj.getPhoneNumber().get(),
                     restObj.getAddress().get(),
                     restObj.getCityOfBirth().get(),
-                    restObj.getNationality().get() };
+                    restObj.getNationality().get()};
 
             return resStr;
 
-        } catch(Exception e){
+        }catch(Exception e){
 
-            String[] array = new String[14];
+            String[] array = new String[15];
             Arrays.fill(array, e.getMessage());
             return array;
         }
@@ -69,7 +76,7 @@ public class UserPageControl {
         try{
             usProfInt.cancelUser(nick);
             return "Successo";
-        } catch (Exception e){
+        }catch(Exception e){
             return e.getMessage();
         }
     }

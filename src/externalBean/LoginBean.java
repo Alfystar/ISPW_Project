@@ -2,35 +2,35 @@ package externalBean;
 
 import externalControl.LoginControl;
 
-public class LoginBean {
+public class LoginBean{
 
     private String nickname;
     private String password;
 
-    public LoginBean() {
+    public LoginBean(){
         this.nickname = "";
         this.password = "";
     }
 
-    public void setNickname(String nk) {
-        this.nickname = nk;
-    }
-
-    public String getNickname() {
+    public String getNickname(){
         return this.nickname;
     }
 
-    public void setPassword(String pwd) {
-        this.password = pwd;
+    public void setNickname(String nk){
+        this.nickname = nk;
     }
 
-    public String getPassword() {
+    public String getPassword(){
         return this.password;
     }
 
-    public String validateLogin() {
+    public void setPassword(String pwd){
+        this.password = pwd;
+    }
 
-        if (this.nickname.equals("") || this.password.equals("")) {
+    public String validateLogin(){
+
+        if(this.nickname.equals("") || this.password.equals("")){
             return "Inserire entrambi i campi";
         }
 

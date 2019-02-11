@@ -1,9 +1,10 @@
 package bean;
+
 import entity.*;
 
 import java.util.GregorianCalendar;
 
-public class UserInfoRegister {
+public class UserInfoRegister{
     private Name name;
     private Name surname;
     private TaxCode cf;
@@ -17,16 +18,16 @@ public class UserInfoRegister {
 
     //L'unico costruttore di UserInfoRegister deve avere tutti i parametri
     public UserInfoRegister(Name name, Name surname, TaxCode cf, Nickname nickname, Email email, GregorianCalendar birthday, Gender gender, Questions answers, PW pw, SurfaceAddress cOfB){
-        this.name= new Name(name);
-        this.surname= new Name(surname);
-        this.cf= new TaxCode(cf);
-        this.nickname= new Nickname(nickname);
-        this.email= new Email(email);
+        this.name = new Name(name);
+        this.surname = new Name(surname);
+        this.cf = new TaxCode(cf);
+        this.nickname = new Nickname(nickname);
+        this.email = new Email(email);
         this.birthday = birthday;
-        this.gender= gender;
-        this.answers= new Questions(answers);
-        this.pw= new PW(pw);
-        this.cityOfBirth= new SurfaceAddress(cOfB);
+        this.gender = gender;
+        this.answers = new Questions(answers);
+        this.pw = new PW(pw);
+        this.cityOfBirth = new SurfaceAddress(cOfB);
     }
 
     public Name getName(){

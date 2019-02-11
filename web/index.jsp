@@ -94,7 +94,7 @@
                 <div class="mbr-section-btn"><a class="btn btn-md btn-white-outline display-4" href="login.jsp">LOGIN</a>
                     <a class="btn btn-md btn-primary display-4" href="register.jsp">REGISTER</a></div>
 
-                <form name="changeIp_form" method="POST">
+                <form name="changeIp_form" action="index.jsp" method="post">
                     <p class="mbr-text pb-3 mbr-fonts-style display-5">
                         <br>
                         <p style="color:white; background-color:<%=color%>;"><%=result%></p>

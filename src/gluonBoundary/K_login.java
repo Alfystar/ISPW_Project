@@ -25,20 +25,12 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class K_login implements Initializable {
+public class K_login implements Initializable{
 
-    /*******************************************************************/
-    /**                       Class Attribute                         **/
-    SystemInterface sysInt;
-
-    /*******************************************************************/
-
-    public K_login ()
-    {
-        sysInt = new FacadeSubSystem();
-    }
-
-
+    //=================================================================
+    //Bottom object
+    @FXML
+    private Hyperlink register, forgottenPw;
     //=================================================================
     //Top object
     @FXML
@@ -48,31 +40,26 @@ public class K_login implements Initializable {
     @FXML
     private Label outLabel;
 
-    //=================================================================
-    //Bottom object
-    @FXML
-    Hyperlink register, forgottenPw;
+    /*** Class Attribute ***/
+    private SystemInterface sysInt = new FacadeSubSystem();;
 
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb){
     }
 
     @FXML
-    public void loginPush(ActionEvent event) throws IOException {
+    public void loginPush(ActionEvent event) throws IOException{
         System.out.println(nickField.getText());
         System.out.println(pwField.getText());
-        try {
-            if(!sysInt.login(new Nickname(nickField.getText()),new PW(pwField.getText()))) return;
-        }catch (UserNotExistEx e)
-        {
+        try{
+            if(!sysInt.login(new Nickname(nickField.getText()), new PW(pwField.getText()))) return;
+        }catch(UserNotExistEx e){
             outLabel.setText("nick errato");
             return;
-        }catch (UserBannedEx e)
-        {
+        }catch(UserBannedEx e){
             outLabel.setText("Utente Bannato");
-        }catch (SQLException e)
-        {
+        }catch(SQLException e){
             e.printStackTrace();
         }
 
@@ -82,17 +69,17 @@ public class K_login implements Initializable {
         Bean2User bean = new Bean2User();
         bean.setNick(new Nickname(nickField.getText()));
 
-        Parent userParent=null;
+        Parent userParent = null;
         K_user kUser;
 
         FXMLLoader userLoader = new FXMLLoader(getClass().getResource("fxmlSrc/userPane.fxml"));
-        try {
-            userParent = (Parent)userLoader.load();
-        } catch (IOException ex) {
+        try{
+            userParent = (Parent) userLoader.load();
+        }catch(IOException ex){
             ex.printStackTrace();
         }
 
-        if(userLoader!=null){
+        if(userLoader != null){
             //we create a custom controller
             kUser = userLoader.getController();
             //here we pass the reference to the  other controller
@@ -101,7 +88,7 @@ public class K_login implements Initializable {
 
         Scene userScene = new Scene(userParent);
 
-        Stage windows = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage windows = (Stage) ((Node) event.getSource()).getScene().getWindow();
         windows.setScene(userScene);
     }
 
@@ -111,7 +98,7 @@ public class K_login implements Initializable {
         Parent registerParent = FXMLLoader.load(getClass().getResource("fxmlSrc/registration.fxml"));
         Scene registerScene = new Scene(registerParent);
 
-        Stage windows = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage windows = (Stage) ((Node) event.getSource()).getScene().getWindow();
         windows.setScene(registerScene);
     }
 
@@ -121,7 +108,7 @@ public class K_login implements Initializable {
         Parent resetPwParent = FXMLLoader.load(getClass().getResource("fxmlSrc/resetPw.fxml"));
         Scene resetPwScene = new Scene(resetPwParent);
 
-        Stage windows = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage windows = (Stage) ((Node) event.getSource()).getScene().getWindow();
         windows.setScene(resetPwScene);
     }
 }

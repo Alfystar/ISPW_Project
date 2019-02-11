@@ -1,3 +1,5 @@
+<%@ page import="java.util.GregorianCalendar" %>
+<%@ page import="java.util.GregorianCalendar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:useBean id="register_Bean" scope="request" class="externalBean.RegisterBean"/>
@@ -6,7 +8,17 @@
 
 <%
     // EASTER EGG:  il calendario è limitato all'indietro alla data
-    //              della persona attualmente più vecchia al mondo
+    //              della persona attualmente più vecchia al mondo;
+    //              in avanti è limitato a 18 anni minimo
+
+    GregorianCalendar cal = new GregorianCalendar();
+    String maxCal = (cal.get(GregorianCalendar.YEAR)-18) + "-";
+
+    if (cal.get(GregorianCalendar.MONTH)+1 < 10) maxCal += "0" + (cal.get(GregorianCalendar.MONTH)+1);
+    else maxCal += (cal.get(GregorianCalendar.MONTH)+1);
+
+    if (cal.get(GregorianCalendar.DATE) < 10) maxCal += "-0" + cal.get(GregorianCalendar.DATE);
+    else maxCal += "-" + cal.get(GregorianCalendar.DATE);
 
     String result = "";
 
@@ -16,11 +28,10 @@
 
         if (result.equals("Successo")){
 
-            String nickN = register_Bean.getNickname();
+            String nkStr = register_Bean.getNickname();
+            session.setAttribute("nkSaved", nkStr);
 %>
-            <jsp:forward page="userpage.jsp">
-                <jsp:param name="nkSaved" value="<%=nickN%>"/>
-            </jsp:forward>
+            <jsp:forward page="userpage.jsp"/>
 <%
         }
     }
@@ -105,30 +116,33 @@
 
             <p style="color:white; background-color:red;"><%=result%></p>
 
-            <form name="register_form" method="POST">
+            <form name="register_form" action="register.jsp" method="post">
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Nome: <input name="firstname" type="text" style="text-align:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Nome: <input name="firstname" type="text" style="text-align:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Cognome: <input name="lastname" type="text" style="text-align-all:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Cognome: <input name="lastname" type="text" style="text-align-all:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Codice Fiscale: <input name="taxcode" type="text" style="text-align-all:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Codice Fiscale: <input name="taxcode" type="text" style="text-align-all:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Nickname: <input name="nickname" type="text" style="text-align-all:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Nickname: <input name="nickname" type="text" style="text-align-all:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Email: <input name="email" type="text" style="text-align-all:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Email: <input name="email" type="text" style="text-align-all:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Data Di Nascita: <input name="bday" type="date" min="1903-01-02" style="text-align-all:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Data Di Nascita: <input name="bday" type="date" min="1903-01-02" max="<%=maxCal%>" style="text-align-all:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Sesso: <input name="gender" type="text" style="text-align:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Luogo di Nascita: <input name="birthPlace" type="text" style="text-align:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Password: <input name="password" type="password" style="text-align:right">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Sesso: <input name="gender" type="text" style="text-align:left">
+                </p>
+
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Password: <input name="password" type="password" style="text-align:left">
                 </p>
 
                 <p class="mbr-text pb-3 mbr-fonts-style display-5"> DOMANDE DI RECUPERO

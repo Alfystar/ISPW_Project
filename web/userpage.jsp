@@ -5,21 +5,28 @@
 <jsp:setProperty name="userPage_Bean" property="*"/>
 
 <%
-    String nickN = request.getParameter("nkSaved");
+    String nickN = (String) session.getAttribute("nkSaved");
+
     String[] valueData = userPage_Bean.getStringUsData(nickN);
+
+    String imgPath = "profileImage/" + valueData[0] + ".png";
+
     String result = "";
+    String genere = "o";
+    if (valueData[7].equals("WOMAN")) genere = "a";
 
     if (request.getParameter("changeData") != null){
 %>
-        <jsp:forward page="changeData.jsp">
-            <jsp:param name="nkSaved" value="<%=nickN%>"/>
-        </jsp:forward>
+        <jsp:forward page="changeData.jsp"/>
+
 <%
     } else if (request.getParameter("cancelMyself") != null){
 
         result = userPage_Bean.cancelUser(nickN);
 
         if(result.equals("Successo")){
+
+            session.removeAttribute(nickN);
 %>
             <jsp:forward page="index.jsp"/>
 <%
@@ -94,43 +101,48 @@
 
 
 
-    <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(255, 255, 255);">
+    <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);">
     </div>
 
     <div class="container">
         <div class="media-container-column mbr-white col-lg-8 col-md-10">
 
             <h1 class="mbr-section-title align-left mbr-bold pb-3 mbr-fonts-style display-1">
-                Benvenuto <%=valueData[0]%> </h1>
+                Benvenut<%=genere%> <%=valueData[1]%>
+                <br>
+                <img src=<%=imgPath%> alt="Avatar Icon" style="width:128px;height:128px;">
+            </h1>
 
             <h3 class="mbr-section-subtitle align-left mbr-light pb-3 mbr-fonts-style display-2">
-                Da qui potrai gestire i tuoi dati, sia personali che di piattaforma.</h3>
+                Da qui potrai gestire i tuoi dati, sia personali che di piattaforma.
+            </h3>
 
             <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                Nome: <%=valueData[0]%> Cognome: <%=valueData[1]%>
+                Nome: <%=valueData[1]%> Cognome: <%=valueData[2]%>
                 <br>
-                CF: <%=valueData[2]%> Nickname: <%=valueData[3]%>
+                CF: <%=valueData[3]%> Nickname: <%=valueData[4]%>
                 <br>
-                Email: <%=valueData[4]%> BirthDay: <%=valueData[5]%>
+                Email: <%=valueData[5]%> BirthDay: <%=valueData[6]%>
                 <br>
-                Gender: <%=valueData[6]%> Social Status: <%=valueData[7]%>
+                Gender: <%=valueData[7]%> Social Status: <%=valueData[8]%>
                 <br>
                 Ruoli:
                 <br>
-                Is Tenant?: <%=valueData[8]%> IsRenter?: <%=valueData[9]%>
+                Is Tenant?: <%=valueData[9]%> IsRenter?: <%=valueData[10]%>
                 <br>
-                Phone Number: <%=valueData[10]%> Indirizzo: <%=valueData[11]%>
+                Phone Number: <%=valueData[11]%> Indirizzo: <%=valueData[12]%>
                 <br>
-                Luogo di Nascita: <%=valueData[12]%> Nazionalita': <%=valueData[13]%>
+                Luogo di Nascita: <%=valueData[13]%> Nazionalita': <%=valueData[14]%>
             </p>
 
             <p class="mbr-text pb-3 mbr-fonts-style display-5">
-            <form>
-                <input type="submit" name="changeData" value="Cambia Dati" class="btn btn-info" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+
+            <form name="gotoChData_form" action="userpage.jsp" method="post">
+                <input type="submit" name="changeData" value="Cambia Dati" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
             </form>
-            <form>
+            <form name="cancel_form" action="userpage.jsp" method="post">
                 <br>
-                <input type="submit" name="cancelMyself" value="Elimina Account" class="btn btn-warning-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 1rem;padding-right: 1rem;padding-top: 0.2rem;padding-bottom: 0.2rem;">
+                <input type="submit" name="cancelMyself" value="Elimina Account" class="btn btn-secondary-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 1rem;padding-right: 1rem;padding-top: 0.2rem;padding-bottom: 0.2rem;">
                 <br>
                 Result: <%=result%>
             </form>

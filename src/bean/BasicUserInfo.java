@@ -4,7 +4,7 @@ import entity.*;
 
 import java.util.GregorianCalendar;
 
-public class BasicUserInfo {
+public class BasicUserInfo{
 
     private PublicData publicData;
 
