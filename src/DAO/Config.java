@@ -7,7 +7,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Config{
     ReadWriteLock lock = new ReentrantReadWriteLock();
-    private static String confFilePath = "/config.properties";
+    private static String confFilePath;
     private Properties configFile;
 
     private static Config confSingleton = new Config();
@@ -16,8 +16,7 @@ public class Config{
 
     private Config(){
         configFile = new Properties();
-        File myFile = new File(System.getProperty("user.home"), ".config/config.properties");  //or "user.home"
-        confFilePath=System.getProperty("user.home") + "/.config/config.properties";
+        confFilePath=System.getProperty("user.home") + "/fersa/config.properties";
         try{
 
             configFile.load(new FileInputStream(confFilePath));
@@ -80,7 +79,15 @@ public class Config{
 
             //save properties to project root folder
             //System.out.println(System.getProperty("user.home"));
-            File myFile = new File(System.getProperty("user.home"), ".config/config.properties");  //or "user.home"
+            File file = new File(System.getProperty("user.home"),"fersa");
+            if (!file.exists()) {
+                if (file.mkdir()) {
+                    System.out.println("Directory is created!");
+                } else {
+                    System.out.println("Failed to create directory!");
+                }
+            }
+            File myFile = new File(System.getProperty("user.home"), "fersa/config.properties");  //or "user.home"
             myFile.createNewFile();
             confFilePath=myFile.getPath();
             configFile.store(new FileOutputStream(myFile.getPath()), null);
