@@ -29,7 +29,7 @@
     <link rel="shortcut icon" href="assets/images/mbr-130x130.jpg" type="image/x-icon">
     <meta name="description" content="">
     <title>Home</title>
-    <link rel="stylesheet" href="aassets/mobirise-icons/mobirise-icons.css">
+    <link rel="stylesheet" href="assets/mobirise-icons/mobirise-icons.css">
     <link rel="stylesheet" href="assets/tether/tether.min.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
@@ -87,7 +87,7 @@
     <div class="container align-center">
         <div class="row justify-content-md-center">
             <div class="mbr-white col-md-10">
-                <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">
+                <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1" style="margin-top: 75px;">
                     FERSA
                 </h1>
                 <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-2">Flat Evaluating, Renting, Sharing, and Advertising</h3>
