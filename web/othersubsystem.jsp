@@ -129,23 +129,23 @@
                     <br>
                     Tenant: <input name="tenantInput" type="text" style="margin-bottom: 10px;">
                     <br>
-                    <p style="color:white; background-color:red;"><%=opResult%></p>
-                    <br>
-                    <input type="submit" name="banSubmit" value="Ban Utente" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+                <p style="color:white; background-color:red;"><%=opResult%></p>
+                <br>
+                <input type="submit" name="banSubmit" value="Ban Utente" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
 
-                    <input type="submit" name="unBanSubmit" value="UnBan Utente" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;padding-left: 2rem;padding-right: 2rem;margin-right: 0px;">
+                <input type="submit" name="unBanSubmit" value="UnBan Utente" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;padding-left: 2rem;padding-right: 2rem;margin-right: 0px;">
 
-                    <input type="submit" name="destroySubmit" value="Distruggi Utente" class="btn btn-secondary-outline" style="margin-left: 0px;margin-top: 0.8rem;padding-left: 2rem;padding-right: 2rem;">
+                <input type="submit" name="destroySubmit" value="Distruggi Utente" class="btn btn-secondary-outline" style="margin-left: 0px;margin-top: 0.8rem;padding-left: 2rem;padding-right: 2rem;">
 
-                    <input type="submit" name="obtainPubDSubmit" value="Ottieni Dati Pubblici" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+                <input type="submit" name="obtainPubDSubmit" value="Ottieni Dati Pubblici" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
 
-                    <input type="submit" name="obtainPriDSubmit" value="Ottieni Dati Privati" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+                <input type="submit" name="obtainPriDSubmit" value="Ottieni Dati Privati" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
 
-                    <input type="submit" name="obtainRoleSubmit" value="Ottieni Ruolo" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+                <input type="submit" name="obtainRoleSubmit" value="Ottieni Ruolo" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
 
-                    <input type="submit" name="obtainStatusSubmit" value="Ottieni Status" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+                <input type="submit" name="obtainStatusSubmit" value="Ottieni Status" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
 
-                    <input type="submit" name="modSaveRole" value="Modifica e salva Ruolo" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+                <input type="submit" name="modSaveRole" value="Modifica e salva Ruolo" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
                 </p>
             </form>
 
