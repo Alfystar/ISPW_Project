@@ -19,12 +19,12 @@
 
         session.removeAttribute(nickN);
 
-        response.sendRedirect("/unnamed/index.jsp");
+        response.sendRedirect("/FERSA/index.jsp");
     }
 
     if (request.getParameter("changeData") != null){
 
-        response.sendRedirect("/unnamed/changeData.jsp");
+        response.sendRedirect("/FERSA/changeData.jsp");
 
     } else if (request.getParameter("cancelMyself") != null){
 
@@ -34,7 +34,7 @@
 
             session.removeAttribute(nickN);
 
-            response.sendRedirect("/unnamed/index.jsp");
+            response.sendRedirect("/FERSA/index.jsp");
         }
     }
 %>
@@ -82,27 +82,27 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="/unnamed/index.jsp">
+                    <a href="/FERSA/index.jsp">
                          <img src="userpage_files/mbr-130x130.jpg" alt="Mobirise" title="" style="height: 3.8rem;">
                     </a>
                 </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="/unnamed/index.jsp">FERSA</a></span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="/FERSA/index.jsp">FERSA</a></span>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item dropdown">
                 <a class="nav-link link text-white dropdown-toggle display-4"   data-toggle="dropdown-submenu" aria-expanded="false">
 
-                    Simulazione</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="/unnamed/othersubsystem.jsp" aria-expanded="false">Other SubSystem</a></div>
+                    Simulazione</a><div class="dropdown-menu"><a class="text-white dropdown-item display-4" href="/FERSA/othersubsystem.jsp" aria-expanded="false">Other SubSystem</a></div>
             </li></ul>
-            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-white-outline display-4" href="/unnamed/login.jsp">Login
-            </a> <a class="btn btn-sm btn-primary display-4" href="/unnamed/register.jsp">Register
+            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-white-outline display-4" href="/FERSA/login.jsp">Login
+            </a> <a class="btn btn-sm btn-primary display-4" href="/FERSA/register.jsp">Register
             </a></div>
         </div>
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobirise.info/t">free amp templates</a></section><section class="header9 cid-rgrhyqMNgL mbr-parallax-background" id="header9-c" style="z-index: 0; background-image: url(/unnamed/assets/images/mbr-1-1920x1280.jpg);  position: relative;">
+<section class="engine"><a href="https://mobirise.info/t">free amp templates</a></section><section class="header9 cid-rgrhyqMNgL mbr-parallax-background" id="header9-c" style="z-index: 0; background-image: url(/FERSA/assets/images/mbr-1-1920x1280.jpg);  position: relative;">
 
 
 
@@ -158,7 +158,7 @@
 
                     <input type="submit" name="cancelMyself" value="Elimina Account" class="btn btn-secondary-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 1rem;padding-right: 1rem;padding-top: 0.2rem;padding-bottom: 0.2rem;">
                     <br>
-                    Result: <%=result%>
+                    <%=result%>
                 </p>
 
             </form>

@@ -29,7 +29,7 @@
     <link rel="shortcut icon" href="assets/images/mbr-130x130.jpg" type="image/x-icon">
     <meta name="description" content="">
     <title>Home</title>
-    <link rel="stylesheet" href="assets/unnamed/assets/mobirise-icons/mobirise-icons.css">
+    <link rel="stylesheet" href="aassets/mobirise-icons/mobirise-icons.css">
     <link rel="stylesheet" href="assets/tether/tether.min.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
@@ -78,7 +78,7 @@
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobirise.info/n">free simple site templates</a></section><section class="cid-qTkA127IK8 mbr-fullscreen mbr-parallax-background" id="header2-1" style="z-index: 0; background-image: url(/unnamed/assets/images/mbr-1-1920x1280.jpg);  position: relative;">
+<section class="engine"><a href="https://mobirise.info/n">free simple site templates</a></section><section class="cid-qTkA127IK8 mbr-fullscreen mbr-parallax-background" id="header2-1" style="z-index: 0; background-image: url(/FERSA/assets/images/mbr-1-1920x1280.jpg);  position: relative;">
 
 
 
@@ -113,7 +113,7 @@
     <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"><div style="background-position: 100% 100%; background-size: auto; background-repeat: no-repeat; background-image: none; position: relative; top: 0px; left: 0px; width: 866px; height: 637.04px; overflow: hidden; pointer-events: none; margin-top: 0.479993px; transform: translate3d(0px, 23.0856px, 0px);"></div></div></section>
 
 
-<script src="assets/unnamed/assets/jquery/jquery.min.js"></script>
+<script src="aassets/jquery/jquery.min.js"></script>
 <script src="assets/popper/popper.min.js"></script>
 <script src="assets/tether/tether.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
