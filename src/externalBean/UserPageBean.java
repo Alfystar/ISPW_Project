@@ -3,15 +3,15 @@ package externalBean;
 import entity.Nickname;
 import externalControl.UserPageControl;
 
-public class UserPageBean {
+public class UserPageBean{
 
-public String[] getStringUsData(String nickN){
+    public String[] getStringUsData(String nickN){
 
-    UserPageControl controller = UserPageControl.getInstance();
+        UserPageControl controller = UserPageControl.getInstance();
 
-    Nickname nick = new Nickname(nickN);
+        Nickname nick = new Nickname(nickN);
 
-    return controller.obtainUserInfo(nick);
+        return controller.obtainUserInfo(nick);
 
     }
 

@@ -11,15 +11,15 @@ import java.util.GregorianCalendar;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
-public class UserExpert {
+public class UserExpert{
     private Queue coda;
     private DAOInterface daoFace;
 
-    public UserExpert() {
-        try {
+    public UserExpert(){
+        try{
             this.coda = Queue.getQueueSingletonInstance();
             this.daoFace = new DAOClass();
-        }catch (ClassNotFoundException c){
+        }catch(ClassNotFoundException c){
             c.printStackTrace();
             System.exit(-1);
         }
@@ -29,19 +29,17 @@ public class UserExpert {
     Cerca un utente, o la prende dalla coda o
     lo materializza in ram col dao e poi lo ritorna
      */
-    public Utente getUser(Nickname nk) throws UserNotExistEx {
-        try {
+    public Utente getUser(Nickname nk) throws UserNotExistEx{
+        try{
             return searchUserRam(nk);
-        }
-        catch (NickNotQEx qEx) {
+        }catch(NickNotQEx qEx){
             System.err.println(qEx.getMessage());
         }
-        try {
+        try{
             return loadUserDB(nk);
-        }
-        catch (NickNotDBEx dbEx) {
+        }catch(NickNotDBEx dbEx){
             throw new UserNotExistEx("getUser failed", dbEx.getCause());
-        }catch (SQLException se) {
+        }catch(SQLException se){
             se.printStackTrace();
             throw new UserNotExistEx("getUser failed", se.getCause());
         }
@@ -49,95 +47,90 @@ public class UserExpert {
 
     public Boolean isNickExist(Nickname nk) throws UserNotExistEx{
         //todo implementarla con due thread
-        try {
+        try{
             return isNickExistRam(nk);
-        }
-        catch (NickNotQEx qEx) {
+        }catch(NickNotQEx qEx){
             System.err.println(qEx.getMessage());
         }
         try{
             return isNickExistDB(nk);
-        }
-        catch (NickNotDBEx dbEx){
+        }catch(NickNotDBEx dbEx){
             throw new UserNotExistEx("Nick not present in DB", dbEx.getCause());
         }
     }
 
-    public Boolean doesTaxCodeExist(TaxCode tc) throws UserNotExistEx {
+    public Boolean doesTaxCodeExist(TaxCode tc) throws UserNotExistEx{
         //todo implementarla con due thread
-        try {
+        try{
             return isTCExistRam(tc);
-        }
-        catch (TCNotExistQEx qEx) {
+        }catch(TCNotExistQEx qEx){
             System.err.println(qEx.getMessage());
         }
         try{
             return this.daoFace.searchTC(tc);
-        }
-        catch (SQLException dbEx){
+        }catch(SQLException dbEx){
             throw new UserNotExistEx("TaxCode not present in DB", dbEx.getCause());
         }
 
     }
 
     public void deleteUser(Nickname nk) throws UserNotExistEx{
-        try {
+        try{
             Utente user = getUser(nk);
             user.setStatus(UserStatus.CANCELLED);
 
             GregorianCalendar cal = new GregorianCalendar();
             cal.add(GregorianCalendar.YEAR, 10);
             daoFace.deleteNTime(nk, cal);
-            try {
+            try{
                 daoFace.updateUser(user);
-            } catch (NickNotDBEx e)
-            {
+            }catch(NickNotDBEx e){
                 throw new UserNotExistEx(e);
             }
             coda.remove(nk);
-        }
-        catch (SQLException se) {
+        }catch(SQLException se){
             throw new UserNotExistEx("Nick not present in DB", se.getCause());
         }
     }
+
     public void destroyUser(Nickname nk) throws UserNotExistEx{
-        try {
+        try{
             daoFace.destroy(nk);
             coda.remove(nk);
-        }
-        catch (NickNotDBEx dbEx) {
+        }catch(NickNotDBEx dbEx){
             throw new UserNotExistEx("destroyUser failed", dbEx.getCause());
-        }catch (SQLException se) {
-            se.printStackTrace();
-        }
-    }
-    public void storeUser(Utente us){
-        try {
-            daoFace.updateUser(us);
-            addUserQueue(us);
-        }catch (SQLException|NickNotDBEx se) {
+        }catch(SQLException se){
             se.printStackTrace();
         }
     }
 
-    public void createUser(UserInfoRegister userInfo) throws WrongParameters {
-        Utente user= this.daoFace.createUser(userInfo);
+    public void storeUser(Utente us){
+        try{
+            daoFace.updateUser(us);
+            addUserQueue(us);
+        }catch(SQLException|NickNotDBEx se){
+            se.printStackTrace();
+        }
+    }
+
+    public void createUser(UserInfoRegister userInfo) throws WrongParameters{
+        Utente user = this.daoFace.createUser(userInfo);
         System.out.println(gregCalToString(user.getPublic().getBirthday()));
         coda.add(user);
     }
 
-    public void forgottenPassword(Nickname nick, Questions answers, PW newPw) throws UserNotExistEx {
+    public void forgottenPassword(Nickname nick, Questions answers, PW newPw) throws UserNotExistEx{
         Utente user = this.getUser(nick);
         Questions correctAnsw = user.getQuestions();
-        if (correctAnsw.checkAnswers(answers, 4)) {
+        if(correctAnsw.checkAnswers(answers, 4)){
             user.changePw(user.getPw(), newPw);
             this.storeUser(user);
-        }else {
+        }else{
             System.out.println("Le risposte fornite sono sbagliate");
         }
     }
 
-    public void changeUserStatus(Nickname nick, UserStatus newUsStat) throws UserNotExistEx {
+    public void changeUserStatus(Nickname nick, UserStatus newUsStat) throws UserNotExistEx{
         Utente user = this.getUser(nick);
         user.setStatus(newUsStat);
         this.storeUser(user);
@@ -151,44 +144,39 @@ public class UserExpert {
 
     }
 
-    public void recoverProfile(Nickname nk) throws UserNotExistEx, SQLException
-    {
+    public void recoverProfile(Nickname nk) throws UserNotExistEx, SQLException{
         Utente us = this.getUser(nk);
         us.setStatus(UserStatus.ACTIVE);
         daoFace.removeDataEvent(nk);
         this.storeUser(us);
     }
 
-    private Utente loadUserDB(Nickname nk) throws NickNotDBEx, SQLException {
-        try {
+    private Utente loadUserDB(Nickname nk) throws NickNotDBEx, SQLException{
+        try{
             Utente us = daoFace.loadFromDB(nk);
             addUserQueue(us);
             return us;
-        }
-        catch (NickNotDBEx e){
+        }catch(NickNotDBEx e){
             throw new NickNotDBEx("Nickname not in DB");
         }
     }
 
     private Utente searchUserRam(Nickname nk) throws NickNotQEx{
-        try {
+        try{
             return coda.find(nk);
-        }
-        catch (NickNotQEx qEx){
+        }catch(NickNotQEx qEx){
             System.err.println("Search in Queue failed.");
             throw qEx;
         }
     }
 
     private Boolean isNickExistDB(Nickname nk) throws NickNotDBEx{
-        try {
+        try{
             return daoFace.searchNickDB(nk);
-        }
-        catch (SQLException sq){
+        }catch(SQLException sq){
             System.err.println("SQL error");
             throw new NickNotDBEx(sq);
-        }
-        catch (Exception e){
+        }catch(Exception e){
             System.err.println("Java error during search");
             throw new NickNotDBEx(e);
         }
@@ -213,8 +201,8 @@ public class UserExpert {
         int year = Integer.parseInt(splitDate[0]);
         int month = Integer.parseInt(splitDate[1]);
         int days = Integer.parseInt(splitDate[2]);
-        GregorianCalendar gc= new GregorianCalendar(year, month-1, days);
-        return  gc;
+        GregorianCalendar gc = new GregorianCalendar(year, month - 1, days);
+        return gc;
 
     }
 
@@ -225,7 +213,6 @@ public class UserExpert {
         String s = anno + "-" + mese + "-" + giorno;
         return s;
     }
-
 
 
     //todo: scrivere un metodo privato che verifichi che i parametri di infoRegister siano adatti

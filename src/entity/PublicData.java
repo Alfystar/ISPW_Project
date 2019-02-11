@@ -3,7 +3,7 @@ package entity;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class PublicData {
+public class PublicData{
     private Name name;
     private Name surname;
     private GregorianCalendar birthday;
@@ -17,42 +17,44 @@ public class PublicData {
     //Costruttore con i parametri di UserInfoRegister relativi a PublicData
     public PublicData(Name name, Name surname, TaxCode fiscalCode, Nickname nickname, Email email, GregorianCalendar birthday, Gender gender){
         /*passati*/
-        this.name= new Name(name);
-        this.surname= new Name(surname);
-        this.fiscalCode= new TaxCode(fiscalCode);
-        this.nickname= new Nickname(nickname);
-        this.email= new Email(email);
-        this.birthday = new GregorianCalendar(birthday.get(Calendar.YEAR),birthday.get(Calendar.MONTH),birthday.get(Calendar.DAY_OF_MONTH));
-        this.gender= gender;
+        this.name = new Name(name);
+        this.surname = new Name(surname);
+        this.fiscalCode = new TaxCode(fiscalCode);
+        this.nickname = new Nickname(nickname);
+        this.email = new Email(email);
+        this.birthday = new GregorianCalendar(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DAY_OF_MONTH));
+        this.gender = gender;
 
         /*start a default*/
-        this.socialStatus= new SocialStatus();
-        this.avatar= new Avatar();
+        this.socialStatus = new SocialStatus();
+        this.avatar = new Avatar();
 
     }
+
     //Costruttore con tutti i parametri possibili di PublicData
     public PublicData(Name name, Name surname, GregorianCalendar birthday, Gender gender, TaxCode fiscalCode, SocialStatus socialStatus, Avatar avatar, Email email, Nickname nickname){
-        this.name= new Name(name);
-        this.surname= new Name(surname);
-        this.birthday = new GregorianCalendar(birthday.get(Calendar.YEAR),birthday.get(Calendar.MONTH),birthday.get(Calendar.DAY_OF_MONTH));
-        this.gender= gender;
-        this.fiscalCode= new TaxCode(fiscalCode);
-        this.socialStatus= new SocialStatus(socialStatus);
-        this.avatar= avatar;
-        this.email= new Email(email);
-        this.nickname= new Nickname(nickname);
+        this.name = new Name(name);
+        this.surname = new Name(surname);
+        this.birthday = new GregorianCalendar(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DAY_OF_MONTH));
+        this.gender = gender;
+        this.fiscalCode = new TaxCode(fiscalCode);
+        this.socialStatus = new SocialStatus(socialStatus);
+        this.avatar = avatar;
+        this.email = new Email(email);
+        this.nickname = new Nickname(nickname);
     }
+
     //Costruttore che prende un PublicData e lo copia in un'altra istanza
     public PublicData(PublicData pubD){
-        this.name= new Name(pubD.getName());
-        this.surname= new Name(pubD.getSurname());
-        this.birthday = new GregorianCalendar(pubD.getBirthday().get(Calendar.YEAR),pubD.getBirthday().get(Calendar.MONTH),pubD.getBirthday().get(Calendar.DAY_OF_MONTH));
-        this.gender= pubD.getGender();
-        this.fiscalCode= new TaxCode(pubD.getTC());
-        this.socialStatus= new SocialStatus(pubD.getSocialStatus());
-        this.avatar= pubD.getAvatar();
-        this.email= new Email(pubD.getEmail());
-        this.nickname= new Nickname(pubD.getNick());
+        this.name = new Name(pubD.getName());
+        this.surname = new Name(pubD.getSurname());
+        this.birthday = new GregorianCalendar(pubD.getBirthday().get(Calendar.YEAR), pubD.getBirthday().get(Calendar.MONTH), pubD.getBirthday().get(Calendar.DAY_OF_MONTH));
+        this.gender = pubD.getGender();
+        this.fiscalCode = new TaxCode(pubD.getTC());
+        this.socialStatus = new SocialStatus(pubD.getSocialStatus());
+        this.avatar = pubD.getAvatar();
+        this.email = new Email(pubD.getEmail());
+        this.nickname = new Nickname(pubD.getNick());
     }
 
     public Name getName(){
@@ -96,8 +98,8 @@ public class PublicData {
         int year = Integer.parseInt(splitDate[0]);
         int month = Integer.parseInt(splitDate[1]);
         int days = Integer.parseInt(splitDate[2]);
-        GregorianCalendar gc= new GregorianCalendar(year, month-1, days);
-        return  gc;
+        GregorianCalendar gc = new GregorianCalendar(year, month - 1, days);
+        return gc;
 
     }
 
@@ -110,18 +112,17 @@ public class PublicData {
     }
 
     @Override
-    public String toString ()
-    {
+    public String toString(){
         String out;
-        out="Name:"+this.name.get()+"\n";
-        out+="Surname:"+this.surname.get()+"\n";
-        out+="Birthday:"+gregCalToString(this.birthday)+"\n";
-        out+="Gender:"+this.gender.toString()+"\n";
-        out+="TaxCode:"+this.fiscalCode.get()+"\n";
-        out+="SocialStatus:"+this.socialStatus.get()+"\n";
-        out+="ImageFile.Avatar:"+this.avatar+"\n";
-        out+="Email:"+this.email.get()+"\n";
-        out+="Nickname:"+this.nickname.get()+"\n";
+        out = "Name:" + this.name.get() + "\n";
+        out += "Surname:" + this.surname.get() + "\n";
+        out += "Birthday:" + gregCalToString(this.birthday) + "\n";
+        out += "Gender:" + this.gender.toString() + "\n";
+        out += "TaxCode:" + this.fiscalCode.get() + "\n";
+        out += "SocialStatus:" + this.socialStatus.get() + "\n";
+        out += "ImageFile.Avatar:" + this.avatar + "\n";
+        out += "Email:" + this.email.get() + "\n";
+        out += "Nickname:" + this.nickname.get() + "\n";
         return out;
     }
 }

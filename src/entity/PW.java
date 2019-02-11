@@ -1,21 +1,21 @@
 package entity;
 
-public class PW {
+public class PW{
     private String pw;
 
     public PW(String pw){
-        this.pw= pw;
+        this.pw = pw;
     }
 
     public PW(PW pw){
-        this.pw= pw.getPw();
+        this.pw = pw.getPw();
     }
 
     public String getPw(){
-        return this.pw= pw;
+        return this.pw = pw;
     }
 
     public void setPw(String newPw){
-        this.pw= newPw;
+        this.pw = newPw;
     }
 }
