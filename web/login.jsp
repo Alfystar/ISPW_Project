@@ -7,6 +7,14 @@
 
 
 <%
+    /*  abbiamo utilizzato sendRedirect() invece di jsp:forward in quanto l'URL
+    *   in questo modo si aggiorna; questo è dovuto al fatto che con forward la
+    *   comunicazione è nel server, e il browser del client non è cosciente del
+    *   cambio di pagina, mentre con sendRedirect (che di contro è più lenta)
+    *   viene esplicitamente trasferita la richiesta ad un altro indirizzo, che
+    *   potrebbe essere locato ovunque.
+    */
+
     String result = "";
 
     if (request.getParameter("loginSubmit") != null){

@@ -15,6 +15,13 @@
     String genere = "o";
     if (valueData[7].equals("WOMAN")) genere = "a";
 
+    if (request.getParameter("gotoIndex") != null){
+
+        session.removeAttribute(nickN);
+
+        response.sendRedirect("/unnamed/index.jsp");
+    }
+
     if (request.getParameter("changeData") != null){
 
         response.sendRedirect("/unnamed/changeData.jsp");
@@ -133,18 +140,30 @@
                 Luogo di Nascita: <%=valueData[13]%> Nazionalita': <%=valueData[14]%>
             </p>
 
-            <p class="mbr-text pb-3 mbr-fonts-style display-5">
+            <form name="backIndex_form" action="userpage.jsp" method="post">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5">
+
+                    <input type="submit" name="gotoIndex" value="Torna alla Home" class="btn btn-success-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+                </p>
+            </form>
 
             <form name="gotoChData_form" action="userpage.jsp" method="post">
-                <input type="submit" name="changeData" value="Cambia Dati" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+            <p class="mbr-text pb-3 mbr-fonts-style display-5">
+
+            <input type="submit" name="changeData" value="Cambia Dati" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
+        </p>
+
             </form>
+
             <form name="cancel_form" action="userpage.jsp" method="post">
-                <br>
+            <p class="mbr-text pb-3 mbr-fonts-style display-5">
+
                 <input type="submit" name="cancelMyself" value="Elimina Account" class="btn btn-secondary-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 1rem;padding-right: 1rem;padding-top: 0.2rem;padding-bottom: 0.2rem;">
-                <br>
-                Result: <%=result%>
+            <br>
+            Result: <%=result%>
+        </p>
+
             </form>
-            </p>
         </div>
     </div>
 

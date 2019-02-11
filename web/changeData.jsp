@@ -103,42 +103,46 @@
 
             <p style="color:white; background-color:<%=color%>;"><%=result%></p>
 
-            <p class="mbr-text pb-3 mbr-fonts-style display-5">
 
             <form name="backtoUs_form" action="changeData.jsp" method="post">
-                <input type="submit" name="backToUserSubmit" value="Torna indietro" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 1rem;margin-right: 0px;margin-bottom: 0px;padding-right: 2rem;padding-left: 2rem;padding-bottom: 0.1rem;padding-top: 0.1rem;">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5">
+                    <input type="submit" name="backToUserSubmit" value="Torna indietro" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 1rem;margin-right: 0px;margin-bottom: 0px;padding-right: 2rem;padding-left: 2rem;padding-bottom: 0.1rem;padding-top: 0.1rem;">
+                </p>
             </form>
 
             <form name="changeD_form" action="changeData.jsp" method="post">
-                Avatar (1-6): <input name="avatar" type="text" style="text-align:left">
-                <br>
-                Email: <input name="email" type="text" style="text-align:left">
-                <br>
-                Ruoli: (scrivere Yes/No nei relativi campi)
-                <br>
-                Tenant:<input name="tenant" type="text" style="text-align:left">
-                <br>
-                Renter: <input name="renter" type="text" style="text-align:left">
-                <br>
-                Social Status: <input name="socialStatus" type="text" style="text-align:left">
-                <br>
-                Phone Number: <input name="phoneNumber" type="text" style="text-align:left">
-                <br>
-                Indirizzo: <input name="address" type="text" style="text-align:left">
-                <br>
-                Nazionalita': <input name="nationality" type="text" style="text-align:left">
-                <br>
-                Per cambiare la password, inserire quella vecchia e la nuova
-                <br>
-                Old Password: <input name="oldPW" type="password" style="text-align:left">
-                <br>
-                New Password: <input name="newPW" type="password" style="text-align:left">
-                <br>
-                Confirm Password: <input name="confirmPW" type="password" style="text-align:left">
-                <br>
-                <input type="submit" name="changeDataSubmit" value="Conferma Dati" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 1rem;margin-right: 0px;margin-bottom: 0px;padding-right: 2rem;padding-left: 2rem;padding-bottom: 0.1rem;padding-top: 0.1rem;">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5">
+
+                    Avatar (1-6): <input name="avatar" type="text" style="text-align:left">
+                    <br>
+                    Email: <input name="email" type="text" style="text-align:left">
+                    <br>
+                    Ruoli: (scrivere Yes/No nei relativi campi)
+                    <br>
+                    Tenant:<input name="tenant" type="text" style="text-align:left">
+                    <br>
+                    Renter: <input name="renter" type="text" style="text-align:left">
+                    <br>
+                    Social Status: <input name="socialStatus" type="text" style="text-align:left">
+                    <br>
+                    Phone Number: <input name="phoneNumber" type="text" style="text-align:left">
+                    <br>
+                    Indirizzo: <input name="address" type="text" style="text-align:left">
+                    <br>
+                    Nazionalita': <input name="nationality" type="text" style="text-align:left">
+                    <br>
+                    Per cambiare la password, inserire quella vecchia e la nuova
+                    <br>
+                    Old Password: <input name="oldPW" type="password" style="text-align:left">
+                    <br>
+                    New Password: <input name="newPW" type="password" style="text-align:left">
+                    <br>
+                    Confirm Password: <input name="confirmPW" type="password" style="text-align:left">
+                    <br>
+                    <input type="submit" name="changeDataSubmit" value="Conferma Dati" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 1rem;margin-right: 0px;margin-bottom: 0px;padding-right: 2rem;padding-left: 2rem;padding-bottom: 0.1rem;padding-top: 0.1rem;">
+
+                </p>
             </form>
-            </p>
 
         </div>
     </div>
