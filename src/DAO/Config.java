@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Config{
     ReadWriteLock lock = new ReentrantReadWriteLock();
-    private static String confFilePath = "config.properties";
+    private static String confFilePath = "/config.properties";
     private Properties configFile;
 
     private static Config confSingleton = new Config();
@@ -19,6 +19,7 @@ public class Config{
 
     private Config(){
         configFile = new Properties();
+        System.out.println("Config costructor, path= "+confFilePath);
         try{
 
             configFile.load(new FileInputStream(confFilePath));
@@ -54,7 +55,7 @@ public class Config{
             configFile.store(new FileOutputStream(confFilePath), null);
         }catch (FileNotFoundException e){
             createFile();
-            setProprerty(prop,value);
+            //setProprerty(prop,value);
         }catch(IOException ex){
             ex.printStackTrace();
         }finally{
@@ -76,6 +77,7 @@ public class Config{
             configFile.setProperty("dbuser", "root");
             configFile.setProperty("dbpassword", "0000");
 
+            System.out.println("Config path out create"+confFilePath);
             //save properties to project root folder
             configFile.store(new FileOutputStream(confFilePath), null);
 

@@ -15,16 +15,16 @@ import java.util.GregorianCalendar;
 public class DAOClass implements DAOInterface{
 
 
-    /*private static String UTENTE= "root";
+    private static String UTENTE= "root";
     private static String PASSWORD= "0000";
-    private static String DB_URL= "jdbc:mysql://localhost/fersa";*/
-    private static String UTENTE;
+    private static String DB_URL= "jdbc:mysql://localhost/fersa";
+    /*private static String UTENTE;
     private static String PASSWORD;
-    private static String DB_URL;
+    private static String DB_URL;*/
     private static String DRIVER_CLASS_NAME = "org.mariadb.jdbc.Driver";
     private static Boolean nonFatta = true;
     //parametri di accesso
-    private Config conf = Config.getInstance();
+    //private Config conf = Config.getInstance();
     //inizializzazione
     private Statement stmt = null;
     private Connection conn = null;
@@ -36,7 +36,7 @@ public class DAOClass implements DAOInterface{
         try{
             if(nonFatta == true){
                 //STEP 2: Register JDBC driver
-                loadConfig();
+                //loadConfig();
                 Class.forName(DRIVER_CLASS_NAME);
                 nonFatta = false;
             }
@@ -155,9 +155,10 @@ public class DAOClass implements DAOInterface{
     }
 
     private void loadConfig(){
-        UTENTE = conf.getProperty("dbuser");
+        /*UTENTE = conf.getProperty("dbuser");
         PASSWORD = conf.getProperty("dbpassword");
         changeHost(conf.getProperty("dbHost"));
+        */
     }
 
     @Override
@@ -603,13 +604,14 @@ public class DAOClass implements DAOInterface{
     @Override
     public void changeHost(String ip){
         this.DB_URL = "jdbc:mysql://" + ip + "/fersa";
-        conf.setProprerty("dbHost", ip);
+        //conf.setProprerty("dbHost", ip);
     }
 
     @Override
     public String getLastHost(){
         System.out.println("Dentro getLastHost");
-        return conf.getProperty("dbHost");
+        //return conf.getProperty("dbHost");
+        return "localHost";
     }
 
     public Boolean testNet() throws SQLException{

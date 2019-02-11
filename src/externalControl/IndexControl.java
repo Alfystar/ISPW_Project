@@ -17,14 +17,14 @@ public class IndexControl{
 
     public static IndexControl getInstance(){
         if(instance == null)
+            Config.setConfFilePath("/unnamed/config.properties");
             instance = new IndexControl();
         return instance;
     }
 
     public String startDBAndIP(){
         try {
-
-            Config.setConfFilePath("/unnamed/config.properties");
+            //Config.setConfFilePath("/unnamed/config.properties");
 
             DaemonDAO daemonDAO = DaemonDAO.getInstance();
 
