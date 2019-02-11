@@ -10,14 +10,21 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Config{
     ReadWriteLock lock = new ReentrantReadWriteLock();
+    private String confFilePath;
     private Properties configFile;
-    private String confFile = "config.properties";
 
-    public Config(){
+    private static Config confSingleton = new Config();
+
+    public static Config getInstance(){
+        return confSingleton;
+    }
+
+    private Config(String path){
+        confFilePath = path;
         configFile = new Properties();
         try{
 
-            configFile.load(new FileInputStream(confFile));
+            configFile.load(new FileInputStream(confFilePath));
 
         }catch (FileNotFoundException e){
             try{
@@ -27,7 +34,7 @@ public class Config{
                 configFile.setProperty("dbpassword", "0000");
 
                 //save properties to project root folder
-                configFile.store(new FileOutputStream(confFile), null);
+                configFile.store(new FileOutputStream(confFilePath), null);
 
             }catch(IOException ex){
                 ex.printStackTrace();
@@ -36,6 +43,11 @@ public class Config{
         catch(IOException eta){
             eta.printStackTrace();
         }
+    }
+
+    private Config()
+    {
+        this("config.properties");
     }
 
     public static void main(String[] argv){
@@ -56,14 +68,19 @@ public class Config{
     public void setProprerty(String prop, String value){
         try{
             lock.writeLock().lock();
-            configFile.load(new FileInputStream(confFile));
+            configFile.load(new FileInputStream(confFilePath));
             configFile.setProperty(prop, value);
-            configFile.store(new FileOutputStream(confFile), null);
+            configFile.store(new FileOutputStream(confFilePath), null);
         }catch(IOException ex){
             ex.printStackTrace();
         }finally{
             lock.writeLock().unlock();
 
         }
+    }
+
+    public void setConfFilePath(String path)
+    {
+        this.confFilePath=path;
     }
 }

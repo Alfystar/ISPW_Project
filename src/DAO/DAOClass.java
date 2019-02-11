@@ -24,7 +24,7 @@ public class DAOClass implements DAOInterface{
     private static String DRIVER_CLASS_NAME = "org.mariadb.jdbc.Driver";
     private static Boolean nonFatta = true;
     //parametri di accesso
-    private Config conf = new Config();
+    private Config conf = Config.getInstance();
     //inizializzazione
     private Statement stmt = null;
     private Connection conn = null;
@@ -47,6 +47,11 @@ public class DAOClass implements DAOInterface{
     }
 
     public DAOClass(String ip) throws ClassNotFoundException{
+        this();
+        this.changeHost(ip);
+    }
+
+    public DAOClass(String ip, String pathConfig) throws ClassNotFoundException{
         this();
         this.changeHost(ip);
     }
