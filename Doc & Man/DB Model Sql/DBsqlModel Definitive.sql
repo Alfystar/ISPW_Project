@@ -71,9 +71,9 @@ CREATE TABLE IF NOT EXISTS `fersa`.`user` (
   `answ_id` INT NOT NULL,
   `roles` VARBINARY(2) NOT NULL DEFAULT '00' COMMENT '00 isRegistered\n10 isLocatore\n01 ilLocatario\n11 entrambi',
   PRIMARY KEY (`nick`),
-  UNIQUE INDEX `PublicData_taxCode_UNIQUE` (`pubD_Tc` ASC) VISIBLE,
-  UNIQUE INDEX `PrivateData_idPrivateData_UNIQUE` (`prD_id` ASC) VISIBLE,
-  UNIQUE INDEX `Answers_idAnswers_UNIQUE` (`answ_id` ASC) VISIBLE,
+  UNIQUE INDEX `PublicData_taxCode_UNIQUE` (`pubD_Tc` ASC),
+  UNIQUE INDEX `PrivateData_idPrivateData_UNIQUE` (`prD_id` ASC),
+  UNIQUE INDEX `Answers_idAnswers_UNIQUE` (`answ_id` ASC),
   CONSTRAINT `fk_User_PublicData`
     FOREIGN KEY (`pubD_Tc`)
     REFERENCES `fersa`.`publicdata` (`taxCode`)
