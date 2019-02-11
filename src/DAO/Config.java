@@ -7,7 +7,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Config{
     ReadWriteLock lock = new ReentrantReadWriteLock();
-    private static String confFilePath;
+    private String confFilePath;
     private Properties configFile;
 
     private static Config confSingleton = new Config();
@@ -70,15 +70,13 @@ public class Config{
 
     private void createFile()
     {
-        System.out.println("Dentro createFile");
         try{
             //set the properties value
             configFile.setProperty("dbHost", "localhost");
             configFile.setProperty("dbuser", "root");
             configFile.setProperty("dbpassword", "0000");
 
-            //save properties to project root folder
-            //System.out.println(System.getProperty("user.home"));
+            //save properties to file sistem
             File file = new File(System.getProperty("user.home"),"fersa");
             if (!file.exists()) {
                 if (file.mkdir()) {
