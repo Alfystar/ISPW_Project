@@ -1,5 +1,6 @@
 package gluonBoundary.utilityClass;
 
+import control.FacadeSubSystem;
 import entity.*;
 
 import java.util.GregorianCalendar;
@@ -9,6 +10,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class FakeUser implements Runnable{
     private Vector<Utente> users = new Vector<>();
     RandomString gen = new RandomString(8, ThreadLocalRandom.current());
+
+    FacadeSubSystem facade = new FacadeSubSystem();
 
     private int fakeType=0;
 
@@ -23,13 +26,13 @@ public class FakeUser implements Runnable{
         {
             case 0: //registerFake
                 while(true){}
-                break;
+
             case 1: //adminFake
                 while(true){}
-                break;
+
             case 2: //otherFake
                 while(true){}
-                break;
+
         }
 
     }
