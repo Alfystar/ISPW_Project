@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Config{
     ReadWriteLock lock = new ReentrantReadWriteLock();
-    private static String confFilePath;
+    private static String confFilePath = "config.properties";
     private Properties configFile;
 
     private static Config confSingleton = new Config();
@@ -19,8 +19,7 @@ public class Config{
         return confSingleton;
     }
 
-    private Config(String path){
-        confFilePath = path;
+    private Config(){
         configFile = new Properties();
         try{
 
@@ -43,11 +42,6 @@ public class Config{
         catch(IOException eta){
             eta.printStackTrace();
         }
-    }
-
-    private Config()
-    {
-        this("config.properties");
     }
 
     public static void main(String[] argv){
