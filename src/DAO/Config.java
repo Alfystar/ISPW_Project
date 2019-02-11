@@ -1,9 +1,6 @@
 package DAO;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -19,13 +16,20 @@ public class Config{
 
     private Config(){
         configFile = new Properties();
-        System.out.println("Config costructor, path= "+confFilePath);
+        File myFile = new File(System.getProperty("user.home"), ".config/config.properties");  //or "user.home"
+        confFilePath=System.getProperty("user.home") + "/.config/config.properties";
         try{
 
             configFile.load(new FileInputStream(confFilePath));
 
         }catch (FileNotFoundException e){
             createFile();
+            try{
+                configFile.load(new FileInputStream(confFilePath));
+            } catch(IOException eta){
+                System.err.println("Non si vuole creare il file, attuale path: "+ confFilePath);
+                eta.printStackTrace();
+            }
         }
         catch(IOException eta){
             eta.printStackTrace();
@@ -54,6 +58,7 @@ public class Config{
             configFile.setProperty(prop, value);
             configFile.store(new FileOutputStream(confFilePath), null);
         }catch (FileNotFoundException e){
+            System.out.println("setProprerty, file not found exeption");
             createFile();
             //setProprerty(prop,value);
         }catch(IOException ex){
@@ -64,22 +69,21 @@ public class Config{
         }
     }
 
-    public static void setConfFilePath(String path)
-    {
-        confFilePath=path;
-    }
-
     private void createFile()
     {
+        System.out.println("Dentro createFile");
         try{
             //set the properties value
             configFile.setProperty("dbHost", "localhost");
             configFile.setProperty("dbuser", "root");
             configFile.setProperty("dbpassword", "0000");
 
-            System.out.println("Config path out create"+confFilePath);
             //save properties to project root folder
-            configFile.store(new FileOutputStream(confFilePath), null);
+            //System.out.println(System.getProperty("user.home"));
+            File myFile = new File(System.getProperty("user.home"), ".config/config.properties");  //or "user.home"
+            myFile.createNewFile();
+            confFilePath=myFile.getPath();
+            configFile.store(new FileOutputStream(myFile.getPath()), null);
 
         }catch(IOException ex){
             ex.printStackTrace();
