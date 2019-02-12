@@ -32,6 +32,7 @@
             session.setAttribute("nkSaved", nkStr);
 
             response.sendRedirect("/FERSA/userpage.jsp");
+            return;
         }
     }
 %>

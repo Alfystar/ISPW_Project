@@ -18,6 +18,7 @@
     if (userPage_Bean.allowActions(nickN).equals("Ban")){
         session.removeAttribute("nkSaved");
         response.sendRedirect("/FERSA/index.jsp");
+        return;
     }
 
     if (request.getParameter("gotoIndex") != null){
@@ -25,14 +26,22 @@
         session.removeAttribute("nkSaved");
 
         response.sendRedirect("/FERSA/index.jsp");
+        return;
     }
 
-    else if (request.getParameter("changeData") != null){
+    if (request.getParameter("changeData") != null) {
 
-        response.sendRedirect("/FERSA/changeData.jsp");
+        if (userPage_Bean.allowActions(nickN).equals("Ban")) {
+            session.removeAttribute("nkSaved");
+            response.sendRedirect("/FERSA/index.jsp");
+            return;
+        } else {
+            response.sendRedirect("/FERSA/changeData.jsp");
+            return;
+        }
     }
 
-    else if (request.getParameter("cancelMyself") != null){
+    if (request.getParameter("cancelMyself") != null){
 
         result = userPage_Bean.cancelUser(nickN);
 
@@ -41,6 +50,8 @@
             session.removeAttribute("nkSaved");
 
             response.sendRedirect("/FERSA/index.jsp");
+
+            return;
         }
     }
 %>
