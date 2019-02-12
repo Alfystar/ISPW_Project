@@ -1,5 +1,4 @@
 <%@ page import="java.util.GregorianCalendar" %>
-<%@ page import="java.util.GregorianCalendar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:useBean id="register_Bean" scope="request" class="externalBean.RegisterBean"/>
@@ -32,6 +31,7 @@
             session.setAttribute("nkSaved", nkStr);
 
             response.sendRedirect("/FERSA/userpage.jsp");
+            return;
         }
     }
 %>

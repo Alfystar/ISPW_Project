@@ -19,6 +19,7 @@
     } else if (request.getParameter("backHomeSubmit") != null) {
 
         response.sendRedirect("/FERSA/login.jsp");
+        return;
     }
 %>
 <!DOCTYPE html>

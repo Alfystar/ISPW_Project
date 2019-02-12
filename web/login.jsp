@@ -29,11 +29,15 @@
 
             response.sendRedirect("/FERSA/userpage.jsp");
 
+            return;
+
         }
 
     } else if (request.getParameter("recoverSubmit") != null) {
 
         response.sendRedirect("/FERSA/recoverCredentials.jsp");
+
+        return;
     }
 %>
 

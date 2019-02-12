@@ -15,26 +15,43 @@
     String genere = "o";
     if (valueData[7].equals("WOMAN")) genere = "a";
 
-    if (request.getParameter("gotoIndex") != null){
-
-        session.removeAttribute(nickN);
-
+    if (userPage_Bean.allowActions(nickN).equals("Ban")){
+        session.removeAttribute("nkSaved");
         response.sendRedirect("/FERSA/index.jsp");
+        return;
     }
 
-    if (request.getParameter("changeData") != null){
+    if (request.getParameter("gotoIndex") != null){
 
-        response.sendRedirect("/FERSA/changeData.jsp");
+        session.removeAttribute("nkSaved");
 
-    } else if (request.getParameter("cancelMyself") != null){
+        response.sendRedirect("/FERSA/index.jsp");
+        return;
+    }
+
+    if (request.getParameter("changeData") != null) {
+
+        if (userPage_Bean.allowActions(nickN).equals("Ban")) {
+            session.removeAttribute("nkSaved");
+            response.sendRedirect("/FERSA/index.jsp");
+            return;
+        } else {
+            response.sendRedirect("/FERSA/changeData.jsp");
+            return;
+        }
+    }
+
+    if (request.getParameter("cancelMyself") != null){
 
         result = userPage_Bean.cancelUser(nickN);
 
         if(result.equals("Successo")){
 
-            session.removeAttribute(nickN);
+            session.removeAttribute("nkSaved");
 
             response.sendRedirect("/FERSA/index.jsp");
+
+            return;
         }
     }
 %>
@@ -137,7 +154,7 @@
                 <br>
                 Phone Number: <%=valueData[11]%> Indirizzo: <%=valueData[12]%>
                 <br>
-                Luogo di Nascita: <%=valueData[13]%> Nazionalita': <%=valueData[14]%>
+                Luogo di Nascita: <%=valueData[13]%> Cittadinanza: <%=valueData[14]%>
             </p>
 
             <form name="backIndex_form" action="userpage.jsp" method="post">

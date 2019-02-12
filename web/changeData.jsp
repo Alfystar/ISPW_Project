@@ -9,18 +9,36 @@
     String color = "white";
     String result = "";
 
+    if (changeData_Bean.allowActions(nickN).equals("Ban")){
+        session.removeAttribute("nkSaved");
+        response.sendRedirect("/FERSA/index.jsp");
+        return;
+    }
+
     if (request.getParameter("changeDataSubmit") != null){
+
+        if (changeData_Bean.allowActions(nickN).equals("Ban")){
+            session.removeAttribute("nkSaved");
+            response.sendRedirect("/FERSA/index.jsp");
+            return;
+        }
 
         result = changeData_Bean.validateChange(nickN);
 
         if (result.equals("Successo")) color = "blue";
         else color = "red";
+    }
 
-    } else if (request.getParameter("backToUserSubmit") != null){
+    if (request.getParameter("backToUserSubmit") != null) {
 
-
-        response.sendRedirect("/FERSA/userpage.jsp");
-
+        if (changeData_Bean.allowActions(nickN).equals("Ban")) {
+            session.removeAttribute("nkSaved");
+            response.sendRedirect("/FERSA/index.jsp");
+            return;
+        } else {
+            response.sendRedirect("/FERSA/userpage.jsp");
+            return;
+        }
     }
 %>
 
@@ -124,19 +142,13 @@
                     <br>
                     Email: <input name="email" type="text" style="text-align:left; margin-top: 10px;">
                     <br>
-                    Ruoli: (scrivere Yes/No nei relativi campi)
-                    <br>
-                    Tenant:<input name="tenant" type="text" style="text-align:left">
-                    <br>
-                    Renter: <input name="renter" type="text" style="text-align:left">
-                    <br>
                     Social Status: <input name="socialStatus" type="text" style="text-align:left">
                     <br>
                     Phone Number: <input name="phoneNumber" type="text" style="text-align:left">
                     <br>
                     Indirizzo: <input name="address" type="text" style="text-align:left">
                     <br>
-                    Nazionalita': <input name="nationality" type="text" style="text-align:left">
+                    Cittadinanza': <input name="nationality" type="text" style="text-align:left">
                     <br>
                     Per cambiare la password, inserire quella vecchia e la nuova
                     <br>
