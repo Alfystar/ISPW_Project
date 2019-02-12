@@ -9,7 +9,7 @@
     String color = "white";
     String result = "";
 
-    if (changeData_Bean.allowActions(nickN).equals("BAN")){
+    if (changeData_Bean.allowActions(nickN).equals("Ban")){
         session.removeAttribute("nkSaved");
         response.sendRedirect("/FERSA/index.jsp");
     }

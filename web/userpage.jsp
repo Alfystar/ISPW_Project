@@ -15,7 +15,7 @@
     String genere = "o";
     if (valueData[7].equals("WOMAN")) genere = "a";
 
-    if (userPage_Bean.allowActions(nickN).equals("BAN")){
+    if (userPage_Bean.allowActions(nickN).equals("Ban")){
         session.removeAttribute("nkSaved");
         response.sendRedirect("/FERSA/index.jsp");
     }
