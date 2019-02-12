@@ -3,8 +3,6 @@ package gluonBoundary.utilityClass;
 import bean.UserInfoRegister;
 import control.FacadeSubSystem;
 import entity.*;
-import exceptions.UserNotExistEx;
-import exceptions.WrongParameters;
 
 import java.util.GregorianCalendar;
 import java.util.Random;

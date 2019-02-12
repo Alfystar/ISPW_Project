@@ -1,6 +1,5 @@
 package externalControl;
 
-import DAO.Config;
 import DAO.DAOClass;
 import DAO.DaemonDAO;
 import control.FacadeSubSystem;
