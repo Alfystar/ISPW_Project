@@ -144,7 +144,7 @@ public class UserExpert{
 
     }
 
-    public void recoverProfile(Nickname nk) throws UserNotExistEx, SQLException{
+    public void reActiveProfile(Nickname nk) throws UserNotExistEx, SQLException{
         Utente us = this.getUser(nk);
         us.setStatus(UserStatus.ACTIVE);
         daoFace.removeDataEvent(nk);

@@ -13,15 +13,17 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class Queue{
 
     ReadWriteLock lock = new ReentrantReadWriteLock();
-    /*Attributi della classe*/
     private LinkedList<NodeQueue> users;
 
-    protected Queue(){
+    private Queue(){
         this.users = new LinkedList<>();
     }
 
-    public static final Queue getQueueSingletonInstance(){
-        return LazyCointainer.queueSigletonInstance;
+    /*Variabile per il Singleton*/
+    private final static Queue queueSigletonInstance = new Queue();
+
+    public static Queue getQueueSingletonInstance(){
+        return queueSigletonInstance;
     }
 
     public static void main(String[] args){
@@ -30,7 +32,6 @@ public class Queue{
 
         PublicData pubD = new PublicData(new Name("ema"), new Name("alf"), new TaxCode("lfm"), new Nickname("alfy"), new Email("ema@gmail.com"), new GregorianCalendar(97, 7, 31), Gender.MAN);
         PrivateData priD = new PrivateData();
-
 
         /*TEST STATEMENT START*/
 
@@ -85,9 +86,6 @@ public class Queue{
         System.out.println(list2.toString());
     }
 
-    /*
-    Preso un utente, crea un nodo della lista, di cui tiene traccia
-     */
     public void add(Utente us){
         lock.writeLock().lock();
         NodeQueue node = new NodeQueue(us);
@@ -95,9 +93,6 @@ public class Queue{
         lock.writeLock().unlock();
     }
 
-    /*
-    Dato un Nick, lo cerca dentro la lista, se non lo trova solleva un'eccezione
-     */
     public Utente find(Nickname nk) throws NickNotQEx{
         try{
             lock.readLock().lock();
@@ -120,9 +115,6 @@ public class Queue{
         }
     }
 
-    /*
-    Dato un nick lo cerca e lo elimina, se non lo trova solleva un'eccezione
-     */
     public void remove(Nickname nk) //throws NickNotQEx
     {
         lock.writeLock().lock();
@@ -171,10 +163,5 @@ public class Queue{
         }
         out += "#End List#\n";
         return out;
-    }
-
-    /*Variabile per il Singleton*/
-    private static class LazyCointainer{
-        public final static Queue queueSigletonInstance = new Queue();
     }
 }

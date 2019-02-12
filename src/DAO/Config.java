@@ -38,7 +38,7 @@ public class Config{
     public static void main(String[] argv){
         Config cfg = new Config();
         System.out.println(cfg.getProperty("dbHost"));
-        cfg.setProprerty("dbHost", "10.200.146.10");
+        cfg.setProperty("dbHost", "10.200.146.10");
         System.out.println(cfg.getProperty("dbHost"));
 
     }
@@ -50,16 +50,16 @@ public class Config{
         return value;
     }
 
-    public void setProprerty(String prop, String value){
+    public void setProperty(String prop, String value){
         try{
             lock.writeLock().lock();
             configFile.load(new FileInputStream(confFilePath));
             configFile.setProperty(prop, value);
             configFile.store(new FileOutputStream(confFilePath), null);
         }catch (FileNotFoundException e){
-            System.out.println("setProprerty, file not found exeption");
+            System.out.println("setProperty, file not found exception");
             createFile();
-            //setProprerty(prop,value);
+            //setProperty(prop,value);
         }catch(IOException ex){
             ex.printStackTrace();
         }finally{

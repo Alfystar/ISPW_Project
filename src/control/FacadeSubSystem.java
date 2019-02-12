@@ -49,13 +49,13 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
     }
 
     @Override
-    public void createUser(Nickname nick, UserInfoRegister dataCreate) throws WrongParameters, ClassNotFoundException{
+    public void createUser(Nickname nick, UserInfoRegister dataCreate) throws WrongParameters{
         this.usExp.createUser(dataCreate);
     }
 
     @Override
     public void cancelUser(Nickname nick) throws UserNotExistEx{
-        //Fa partire la deleteNTime della DAOClass e mette a cancell lo stato
+        //Fa partire la deleteNTime della DAOClass e mette a cancelled lo stato
         this.usExp.deleteUser(nick);
     }
 
@@ -100,7 +100,7 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
             throw new UserBannedEx("Utente Bannato");
         }
         if(user.getStatus() == UserStatus.CANCELLED){
-            this.usExp.recoverProfile(nick); //recupera le credenziali
+            this.usExp.reActiveProfile(nick); //recupera le credenziali
             return true;
         }
         return user.getPw().getPw().equals(pw.getPw());

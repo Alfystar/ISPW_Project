@@ -42,16 +42,16 @@ public class Utente{
         return this.roles;
     }
 
+    public PW getPw(){
+        return this.pw;
+    }
+
     public UserStatus getStatus(){
         return this.userStatus;
     }
 
     public void setStatus(UserStatus newStatus){
         this.userStatus = newStatus;
-    }
-
-    public PW getPw(){
-        return this.pw;
     }
 
     public Boolean changePw(PW oldPw, PW newPw){

@@ -601,7 +601,7 @@ public class DAOClass implements DAOInterface{
     @Override
     public void changeHost(String ip){
         this.DB_URL = "jdbc:mysql://" + ip + "/fersa";
-        conf.setProprerty("dbHost", ip);
+        conf.setProperty("dbHost", ip);
     }
 
     @Override
