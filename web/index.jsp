@@ -7,7 +7,6 @@
 <%
     String result = "";
     String color = "white";
-    //String dynamicIP = "localhost";
     String dynamicIP = index_Bean.startDB();
 
     if (request.getParameter("changeIPSubmit") != null) {

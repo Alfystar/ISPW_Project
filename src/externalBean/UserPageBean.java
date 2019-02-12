@@ -23,4 +23,13 @@ public class UserPageBean{
         return controller.cancelUser(nick);
     }
 
+    public String allowActions(String nick){
+        UserPageControl controller = UserPageControl.getInstance();
+
+        Nickname nickN = new Nickname(nick);
+
+        return controller.verifyBan(nickN);
+    }
+
+
 }

@@ -81,6 +81,14 @@ public class UserPageControl{
         }
     }
 
+    public String verifyBan(Nickname nick) {
+        try {
+            if (rolInt.isBanned(nick)) return "Ban";
+            else return "NotBan";
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
 
     private String gregCalToString(GregorianCalendar gc){
         int anno = gc.get(GregorianCalendar.YEAR);

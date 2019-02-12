@@ -15,24 +15,30 @@
     String genere = "o";
     if (valueData[7].equals("WOMAN")) genere = "a";
 
+    if (userPage_Bean.allowActions(nickN).equals("BAN")){
+        session.removeAttribute("nkSaved");
+        response.sendRedirect("/FERSA/index.jsp");
+    }
+
     if (request.getParameter("gotoIndex") != null){
 
-        session.removeAttribute(nickN);
+        session.removeAttribute("nkSaved");
 
         response.sendRedirect("/FERSA/index.jsp");
     }
 
-    if (request.getParameter("changeData") != null){
+    else if (request.getParameter("changeData") != null){
 
         response.sendRedirect("/FERSA/changeData.jsp");
+    }
 
-    } else if (request.getParameter("cancelMyself") != null){
+    else if (request.getParameter("cancelMyself") != null){
 
         result = userPage_Bean.cancelUser(nickN);
 
         if(result.equals("Successo")){
 
-            session.removeAttribute(nickN);
+            session.removeAttribute("nkSaved");
 
             response.sendRedirect("/FERSA/index.jsp");
         }
@@ -137,7 +143,7 @@
                 <br>
                 Phone Number: <%=valueData[11]%> Indirizzo: <%=valueData[12]%>
                 <br>
-                Luogo di Nascita: <%=valueData[13]%> Nazionalita': <%=valueData[14]%>
+                Luogo di Nascita: <%=valueData[13]%> Cittadinanza: <%=valueData[14]%>
             </p>
 
             <form name="backIndex_form" action="userpage.jsp" method="post">

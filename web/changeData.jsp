@@ -9,6 +9,11 @@
     String color = "white";
     String result = "";
 
+    if (changeData_Bean.allowActions(nickN).equals("BAN")){
+        session.removeAttribute("nkSaved");
+        response.sendRedirect("/FERSA/index.jsp");
+    }
+
     if (request.getParameter("changeDataSubmit") != null){
 
         result = changeData_Bean.validateChange(nickN);
@@ -18,9 +23,7 @@
 
     } else if (request.getParameter("backToUserSubmit") != null){
 
-
         response.sendRedirect("/FERSA/userpage.jsp");
-
     }
 %>
 
@@ -124,19 +127,13 @@
                     <br>
                     Email: <input name="email" type="text" style="text-align:left; margin-top: 10px;">
                     <br>
-                    Ruoli: (scrivere Yes/No nei relativi campi)
-                    <br>
-                    Tenant (Yes/No):<input name="tenant" type="text" style="text-align:left">
-                    <br>
-                    Renter (Yes/No): <input name="renter" type="text" style="text-align:left">
-                    <br>
                     Social Status: <input name="socialStatus" type="text" style="text-align:left">
                     <br>
                     Phone Number: <input name="phoneNumber" type="text" style="text-align:left">
                     <br>
                     Indirizzo: <input name="address" type="text" style="text-align:left">
                     <br>
-                    Nazionalita': <input name="nationality" type="text" style="text-align:left">
+                    Cittadinanza': <input name="nationality" type="text" style="text-align:left">
                     <br>
                     Per cambiare la password, inserire quella vecchia e la nuova
                     <br>
