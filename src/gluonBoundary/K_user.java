@@ -232,7 +232,7 @@ public class K_user implements Initializable{
             PW oldP = new PW(oldPw.getText());
             PW newP = new PW(newPw.getText());
 
-            if(sysInt.login(nick, oldP)){
+            if(sysInt.validate(nick, oldP)){
                 if(newP.getPw().equals(confPw.getText()) && !newP.getPw().equals("")){
                     sysInt.changePassword(nick, newP, oldP);
                 }else outLabel.setText("LA CONFERMA DELLA NUOVA PASSWORD NON E' CORRETTA");

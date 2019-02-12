@@ -36,13 +36,13 @@ public class Queue{
         /*TEST STATEMENT START*/
 
         /*Test add users*/
-        Utente us = new Utente(pubD, priD, new PW("12345"), new Roles(), new Questions(new String[]{"a", "b", "c", "d"}));
+        Utente us = new Utente(pubD, priD, new PW("12345"), new Roles(), new Questionary(new String[]{"a", "b", "c", "d"}));
         list.add(us);
         pubD.getNick().set("marta");
-        us = new Utente(pubD, priD, new PW("12345"), new Roles(), new Questions(new String[]{"a", "b", "c", "d"}));
+        us = new Utente(pubD, priD, new PW("12345"), new Roles(), new Questionary(new String[]{"a", "b", "c", "d"}));
         list.add(us);
         pubD.getNick().set("fil");
-        us = new Utente(pubD, priD, new PW("12345"), new Roles(), new Questions(new String[]{"a", "b", "c", "d"}));
+        us = new Utente(pubD, priD, new PW("12345"), new Roles(), new Questionary(new String[]{"a", "b", "c", "d"}));
         list.add(us);
         System.out.println(list.toString());
 
@@ -78,7 +78,7 @@ public class Queue{
 
         System.out.println("\n\tTest di singleton: dopo un add, lista comune a entrambi");
         pubD.getNick().set("giovanni");
-        us = new Utente(pubD, priD, new PW("12345"), new Roles(), new Questions(new String[]{"a", "b", "c", "d"}));
+        us = new Utente(pubD, priD, new PW("12345"), new Roles(), new Questionary(new String[]{"a", "b", "c", "d"}));
         list2.add(us);
         System.out.println("\tLista 1");
         System.out.println(list.toString());
@@ -94,62 +94,63 @@ public class Queue{
     }
 
     public Utente find(Nickname nk) throws NickNotQEx{
-        try{
-            lock.readLock().lock();
-            NodeQueue node = searchInQueue(nk);
-            if(node == null) throw new NickNotQEx("Nick not found among nodes");
-            else return node.getUs();
-        }finally{
-            lock.readLock().unlock();
-        }
+        NodeQueue node = searchInQueue(nk);
+        if(node == null) throw new NickNotQEx("Nick not found among nodes");
+        else return node.getUs();
     }
 
     public Utente find(TaxCode tc) throws TCNotExistQEx{
-        try{
-            lock.readLock().lock();
-            NodeQueue node = searchInQueue(tc);
-            if(node == null) throw new TCNotExistQEx("TaxCode not found among nodes");
-            else return node.getUs();
-        }finally{
-            lock.readLock().unlock();
-        }
+        NodeQueue node = searchInQueue(tc);
+        if(node == null) throw new TCNotExistQEx("TaxCode not found among nodes");
+        else return node.getUs();
     }
 
     public void remove(Nickname nk) //throws NickNotQEx
     {
-        lock.writeLock().lock();
         NodeQueue node = searchInQueue(nk);
         if(node != null){
+            lock.writeLock().lock();
             node.deleteInfo();
             this.users.remove(node);
+            lock.writeLock().unlock();
         }
-        lock.writeLock().unlock();
+
     }
 
     private NodeQueue searchInQueue(Nickname nk){
-        String nick = nk.get();
-        NodeQueue node;
-        for(int i = 0; i < this.users.size(); i++){
-            node = this.users.get(i);
-            if(node.getNick().get().equals(nick))  //if true found nickname
-            {
-                return node;
+        try {
+            lock.readLock().lock();
+            String nick = nk.get();
+            NodeQueue node;
+            for(int i = 0; i < this.users.size(); i++){
+                node = this.users.get(i);
+                if(node.getNick().get().equals(nick))  //if true found nickname
+                {
+                    return node;
+                }
             }
+            return null;
+        }finally {
+            lock.readLock().unlock();
         }
-        return null;
     }
 
     private NodeQueue searchInQueue(TaxCode tc){
-        String taxCode = tc.get();
-        NodeQueue node;
-        for(int i = 0; i < this.users.size(); i++){
-            node = this.users.get(i);
-            if(node.getTC().get().equals(taxCode))  //if true found nickname
-            {
-                return node;
+        try {
+            lock.readLock().lock();
+            String taxCode = tc.get();
+            NodeQueue node;
+            for(int i = 0; i < this.users.size(); i++){
+                node = this.users.get(i);
+                if(node.getTC().get().equals(taxCode))  //if true found nickname
+                {
+                    return node;
+                }
             }
+            return null;
+        }finally {
+            lock.readLock().unlock();
         }
-        return null;
     }
 
     @Override

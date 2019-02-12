@@ -3,7 +3,7 @@ package externalControl;
 import control.FacadeSubSystem;
 import entity.Nickname;
 import entity.PW;
-import entity.Questions;
+import entity.Questionary;
 import interfaces.SystemInterface;
 
 public class RecoverControl{
@@ -26,12 +26,12 @@ public class RecoverControl{
         try{
             String[] answers = {question1, question2, question3, question4};
 
-            Questions tmpQuestions = new Questions(answers);
+            Questionary tmpQuestionary = new Questionary(answers);
             Nickname nick = new Nickname(nickname);
 
-            if(!sysInt.checkQuestion(nick, tmpQuestions)) return "Risposte non valide, riprova";
+            if(!sysInt.checkQuestion(nick, tmpQuestionary)) return "Risposte non valide, riprova";
 
-            sysInt.forgottenPassword(nick, tmpQuestions, new PW(newPW));
+            sysInt.forgottenPassword(nick, tmpQuestionary, new PW(newPW));
             return "Successo";
         }catch(Exception e){
             return e.getMessage();

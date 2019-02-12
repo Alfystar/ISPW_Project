@@ -53,7 +53,7 @@ public class K_login implements Initializable{
         System.out.println(nickField.getText());
         System.out.println(pwField.getText());
         try{
-            if(!sysInt.login(new Nickname(nickField.getText()), new PW(pwField.getText()))) return;
+            if(!sysInt.validate(new Nickname(nickField.getText()), new PW(pwField.getText()))) return;
         }catch(UserNotExistEx e){
             outLabel.setText("nick errato");
             return;

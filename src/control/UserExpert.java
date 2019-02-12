@@ -119,9 +119,9 @@ public class UserExpert{
         coda.add(user);
     }
 
-    public void forgottenPassword(Nickname nick, Questions answers, PW newPw) throws UserNotExistEx{
+    public void forgottenPassword(Nickname nick, Questionary answers, PW newPw) throws UserNotExistEx{
         Utente user = this.getUser(nick);
-        Questions correctAnsw = user.getQuestions();
+        Questionary correctAnsw = user.getQuestionary();
         if(correctAnsw.checkAnswers(answers, 4)){
             user.changePw(user.getPw(), newPw);
             this.storeUser(user);
@@ -148,6 +148,12 @@ public class UserExpert{
         Utente us = this.getUser(nk);
         us.setStatus(UserStatus.ACTIVE);
         daoFace.removeDataEvent(nk);
+        this.storeUser(us);
+    }
+
+    public void reActiveProfile(Utente us) throws SQLException{
+        us.setStatus(UserStatus.ACTIVE);
+        daoFace.removeDataEvent(us.getPublic().getNick());
         this.storeUser(us);
     }
 

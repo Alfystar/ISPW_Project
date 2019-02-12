@@ -94,27 +94,27 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
     }
 
     @Override
-    public Boolean login(Nickname nick, PW pw) throws UserNotExistEx, SQLException, UserBannedEx{
+    public Boolean validate(Nickname nick, PW pw) throws UserNotExistEx, SQLException, UserBannedEx{
         Utente user = this.getUtente(nick);
         if(user.getStatus() == UserStatus.BANNED){
             throw new UserBannedEx("Utente Bannato");
         }
         if(user.getStatus() == UserStatus.CANCELLED){
-            this.usExp.reActiveProfile(nick); //recupera le credenziali
+            this.usExp.reActiveProfile(user); //recupera le credenziali
             return true;
         }
-        return user.getPw().getPw().equals(pw.getPw());
+        return user.comparePw(pw);
     }
 
     @Override
-    public Boolean checkQuestion(Nickname nk, Questions q) throws UserNotExistEx{
+    public Boolean checkQuestion(Nickname nk, Questionary q) throws UserNotExistEx{
         Utente us = getUtente(nk);
-        return us.getQuestions().checkAnswers(q, 4);
+        return us.getQuestionary().checkAnswers(q, 4);
     }
 
 
     @Override
-    public void forgottenPassword(Nickname nick, Questions answers, PW newPw) throws UserNotExistEx{
+    public void forgottenPassword(Nickname nick, Questionary answers, PW newPw) throws UserNotExistEx{
         this.usExp.forgottenPassword(nick, answers, newPw);
     }
 

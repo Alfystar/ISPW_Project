@@ -12,12 +12,12 @@ public class UserInfoRegister{
     private Email email;
     private GregorianCalendar birthday;
     private Gender gender;
-    private Questions answers;
+    private Questionary answers;
     private PW pw;
     private SurfaceAddress cityOfBirth;
 
     //L'unico costruttore di UserInfoRegister deve avere tutti i parametri
-    public UserInfoRegister(Name name, Name surname, TaxCode cf, Nickname nickname, Email email, GregorianCalendar birthday, Gender gender, Questions answers, PW pw, SurfaceAddress cOfB){
+    public UserInfoRegister(Name name, Name surname, TaxCode cf, Nickname nickname, Email email, GregorianCalendar birthday, Gender gender, Questionary answers, PW pw, SurfaceAddress cOfB){
         this.name = new Name(name);
         this.surname = new Name(surname);
         this.cf = new TaxCode(cf);
@@ -25,7 +25,7 @@ public class UserInfoRegister{
         this.email = new Email(email);
         this.birthday = birthday;
         this.gender = gender;
-        this.answers = new Questions(answers);
+        this.answers = new Questionary(answers);
         this.pw = new PW(pw);
         this.cityOfBirth = new SurfaceAddress(cOfB);
     }
@@ -58,7 +58,7 @@ public class UserInfoRegister{
         return this.gender;
     }
 
-    public Questions getAnswers(){
+    public Questionary getAnswers(){
         return this.answers;
     }
 

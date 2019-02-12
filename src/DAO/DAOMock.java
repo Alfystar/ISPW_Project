@@ -23,7 +23,7 @@ public class DAOMock implements DAOInterface{
 
         PublicData pubD1 = new PublicData(new Name("ema"), new Name("alf"), new TaxCode("lfm"), new Nickname("alfy"), new Email("ema@gmail.com"), new GregorianCalendar(97, 7, 31), Gender.MAN);
         PrivateData priD1 = new PrivateData(new SurfaceAddress("Roma"), new SurfaceAddress("Termini"), new Nationality("IT"), new PhoneNumber("3334233142"));
-        this.utente1 = new Utente(pubD1, priD1, new PW("testPass1"), new Roles(TRUE, FALSE), new Questions(new String[]{"a", "b", "c", "d"}));
+        this.utente1 = new Utente(pubD1, priD1, new PW("testPass1"), new Roles(TRUE, FALSE), new Questionary(new String[]{"a", "b", "c", "d"}));
     }
 
     @Override
@@ -32,7 +32,7 @@ public class DAOMock implements DAOInterface{
         PrivateData priD = new PrivateData();
         PW pw = new PW(infoReg.getPw());
         Roles roles = new Roles();
-        Questions answers = new Questions(new String[]{"a", "b", "c", "d"});
+        Questionary answers = new Questionary(new String[]{"a", "b", "c", "d"});
         Utente us = new Utente(pubD, priD, pw, roles, answers);
         return us;
     }

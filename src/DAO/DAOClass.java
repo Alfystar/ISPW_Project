@@ -67,23 +67,23 @@ public class DAOClass implements DAOInterface{
         }
         PublicData pubD = new PublicData(new Name("Marta"), new Name("Caggiano"), new TaxCode("cggmrt"), new Nickname("caggy"), new Email("marta.caggiano@hotmail"), new GregorianCalendar(1998, 2, 3), Gender.WOMAN);
         PrivateData priD = new PrivateData(new SurfaceAddress("Alatri casa"), new SurfaceAddress("alatri"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
-        Utente us1 = new Utente(pubD, priD, new PW("12345"), new Roles(false, true), new Questions(new String[]{"abaco", "ballerina", "coniglio", "destra"}));
+        Utente us1 = new Utente(pubD, priD, new PW("12345"), new Roles(false, true), new Questionary(new String[]{"abaco", "ballerina", "coniglio", "destra"}));
 
         pubD = new PublicData(new Name("Filippo"), new Name("Badalamenti"), new TaxCode("bflflp"), new Nickname("bal"), new Email("filippo@gmail.com"), new GregorianCalendar(1997, 5, 25), Gender.MAN);
         priD = new PrivateData(new SurfaceAddress("collegio"), new SurfaceAddress("Roma"), new Nationality("Italiano"), new PhoneNumber("064586325"));
-        Utente us2 = new Utente(pubD, priD, new PW("qwerty"), new Roles(true, false), new Questions(new String[]{"aa", "bb", "cc", "dd"}));
+        Utente us2 = new Utente(pubD, priD, new PW("qwerty"), new Roles(true, false), new Questionary(new String[]{"aa", "bb", "cc", "dd"}));
 
         pubD = new PublicData(new Name("Emanuele"), new Name("Alfano"), new TaxCode("lfnmnl"), new Nickname("alfy"), new Email("alfystar1701@gmail.com"), new GregorianCalendar(1997, 7, 31), Gender.MAN);
         priD = new PrivateData(new SurfaceAddress("ciamarra"), new SurfaceAddress("roma"), new Nationality("Italiano"), new PhoneNumber("3333071117"));
-        Utente us3 = new Utente(pubD, priD, new PW("lele"), new Roles(true, true), new Questions(new String[]{"astro", "balocco", "cavolfiore", "dentista"}));
+        Utente us3 = new Utente(pubD, priD, new PW("lele"), new Roles(true, true), new Questionary(new String[]{"astro", "balocco", "cavolfiore", "dentista"}));
 
         pubD = new PublicData(new Name("elisa"), new Name("alfano"), new TaxCode("lfnlsa"), new Nickname("sorreta"), new Email("elisa@gmail.com"), new GregorianCalendar(2000, 9, 12), Gender.WOMAN);
         priD = new PrivateData(new SurfaceAddress("ciamarra"), new SurfaceAddress("Roma"), new Nationality("Italiana"), new PhoneNumber("45628731982"));
-        Utente us4 = new Utente(pubD, priD, new PW("sissi"), new Roles(), new Questions(new String[]{"aaaa", "bbbb", "ccccc", "ddddd"}));
+        Utente us4 = new Utente(pubD, priD, new PW("sissi"), new Roles(), new Questionary(new String[]{"aaaa", "bbbb", "ccccc", "ddddd"}));
 
         pubD = new PublicData(new Name("Marco"), new Name("alfano"), new TaxCode("lfnmrc"), new Nickname("topo65"), new Email("marco@gmail.com"), new GregorianCalendar(1965, 7, 18), Gender.MAN);
         priD = new PrivateData(new SurfaceAddress("ciamarra"), new SurfaceAddress("Roma"), new Nationality("Italiano"), new PhoneNumber("333222568748"));
-        Utente us5 = new Utente(pubD, priD, new PW("12345"), new Roles(), new Questions(new String[]{"gara", "cavoletti", "piangere", "dividere"}));
+        Utente us5 = new Utente(pubD, priD, new PW("12345"), new Roles(), new Questionary(new String[]{"gara", "cavoletti", "piangere", "dividere"}));
 
         Utente[] users = {us1, us2, us3, us4, us5};
 
@@ -168,7 +168,7 @@ public class DAOClass implements DAOInterface{
         PW pw = new PW(infoReg.getPw());
         Roles roles = new Roles();
         UserStatus userStatus = UserStatus.ACTIVE;
-        Questions Answers = new Questions(infoReg.getAnswers());
+        Questionary Answers = new Questionary(infoReg.getAnswers());
 
         //incapsulo i dati in un'istanza di Utente
         Utente us = new Utente(pubD, priD, pw, roles, Answers);
@@ -252,7 +252,7 @@ public class DAOClass implements DAOInterface{
         System.out.println(sqlIdAnsw);
         rs = this.stmt.executeQuery(sqlIdAnsw);
         rs.first();
-        Questions q = this.buildAnsw(rs, answ_id, nickname);
+        Questionary q = this.buildAnsw(rs, answ_id, nickname);
         //chiudo la connessione col DB
         this.closeConn();
         //creo un'istanza di utente con tutit i dati ottenuti
@@ -340,13 +340,13 @@ public class DAOClass implements DAOInterface{
         return prD;
     }
 
-    private Questions buildAnsw(ResultSet rs, Integer answ_id, Nickname nickname) throws SQLException{
+    private Questionary buildAnsw(ResultSet rs, Integer answ_id, Nickname nickname) throws SQLException{
         String answ1 = rs.getString(2);
         String answ2 = rs.getString(3);
         String answ3 = rs.getString(4);
         String answ4 = rs.getString(5);
         String[] Answers = {answ1, answ2, answ3, answ4};
-        Questions q = new Questions(Answers);
+        Questionary q = new Questionary(Answers);
         return q;
     }
 
@@ -355,7 +355,7 @@ public class DAOClass implements DAOInterface{
         this.openConn();
         PublicData puB = user.getPublic();
         PrivateData prD = user.getPrivate();
-        Questions answ = user.getQuestions();
+        Questionary answ = user.getQuestionary();
         UserStatus usStat = user.getStatus();
         PW pw = user.getPw();
         Roles roles = user.getRole();

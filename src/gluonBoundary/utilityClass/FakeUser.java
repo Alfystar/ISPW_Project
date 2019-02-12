@@ -61,14 +61,14 @@ public class FakeUser implements Runnable{
     {
         PublicData pubD = new PublicData(new Name(randomString()), new Name(randomString()), new TaxCode(randomString()), new Nickname(randomString()), new Email(randomString()), new GregorianCalendar(1998, 2, 3), Gender.WOMAN);
         PrivateData priD = new PrivateData(new SurfaceAddress(randomString()), new SurfaceAddress("alatri"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
-        Utente us = new Utente(pubD, priD, new PW("12345"), new Roles(false, true), new Questions(new String[]{randomString(),randomString(),randomString(),randomString()}));
+        Utente us = new Utente(pubD, priD, new PW("12345"), new Roles(false, true), new Questionary(new String[]{randomString(),randomString(),randomString(),randomString()}));
         users.add(us);
         return us;
     }*/
 
     private UserInfoRegister randomInfoReg() {
         String[] answ= {randomString(), randomString(),randomString(),randomString()};
-        UserInfoRegister infoReg = new UserInfoRegister(new Name(randomString()), new Name(randomString()), new TaxCode(randomString()), new Nickname(randomString()), new Email(randomString()), new GregorianCalendar(1998, 2, 3), Gender.WOMAN, new Questions(answ), new PW(randomString()), new SurfaceAddress(randomString()));
+        UserInfoRegister infoReg = new UserInfoRegister(new Name(randomString()), new Name(randomString()), new TaxCode(randomString()), new Nickname(randomString()), new Email(randomString()), new GregorianCalendar(1998, 2, 3), Gender.WOMAN, new Questionary(answ), new PW(randomString()), new SurfaceAddress(randomString()));
         users.add(infoReg);
         return infoReg;
     }

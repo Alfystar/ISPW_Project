@@ -6,23 +6,23 @@ public class Utente{
     private PW pw;
     private UserStatus userStatus;
     private Roles roles;
-    private Questions questions;
+    private Questionary questionary;
 
-    public Utente(PublicData pubD, PrivateData prD, PW pw, Roles roles, Questions questions){
+    public Utente(PublicData pubD, PrivateData prD, PW pw, Roles roles, Questionary questionary){
         this.pubD = new PublicData(pubD);
         this.prD = new PrivateData(prD);
         this.pw = new PW(pw);
         this.roles = new Roles(roles);
-        this.questions = new Questions(questions);
+        this.questionary = new Questionary(questionary);
         this.userStatus = UserStatus.ACTIVE;
     }
 
-    public Utente(PublicData pubD, PrivateData prD, PW pw, Roles roles, UserStatus userStatus, Questions questions){
+    public Utente(PublicData pubD, PrivateData prD, PW pw, Roles roles, UserStatus userStatus, Questionary questionary){
         this.pubD = new PublicData(pubD);
         this.prD = new PrivateData(prD);
         this.pw = new PW(pw);
         this.roles = new Roles(roles);
-        this.questions = new Questions(questions);
+        this.questionary = new Questionary(questionary);
         this.userStatus = userStatus;
     }
 
@@ -34,8 +34,8 @@ public class Utente{
         return this.prD;
     }
 
-    public Questions getQuestions(){
-        return this.questions;
+    public Questionary getQuestionary(){
+        return this.questionary;
     }
 
     public Roles getRole(){
@@ -74,7 +74,7 @@ public class Utente{
         out += "\t##PrivateData##\n" + this.prD.toString();
         out += "\t##Ruolo##\n" + this.roles;
         out += "UserStatus:" + this.userStatus.toString() + "; PW:" + this.pw.getPw() + "\n";
-        out += "\t**Answare at Question is:\n" + this.questions.getAnswersList();
+        out += "\t**Answare at Question is:\n" + this.questionary.getAnswersList();
         return out;
     }
 

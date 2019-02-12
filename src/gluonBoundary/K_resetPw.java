@@ -3,7 +3,7 @@ package gluonBoundary;
 import control.FacadeSubSystem;
 import entity.Nickname;
 import entity.PW;
-import entity.Questions;
+import entity.Questionary;
 import exceptions.UserNotExistEx;
 import gluonBoundary.utilityClass.Bean2User;
 import gluonBoundary.utilityClass.DigitalIcon;
@@ -34,7 +34,7 @@ public class K_resetPw implements Initializable{
 
 
     //=================================================================
-    //Questions tab
+    //Questionary tab
     @FXML
     private TextField nick, answ1, answ2, answ3, answ4;
     @FXML
@@ -73,7 +73,7 @@ public class K_resetPw implements Initializable{
 
         Nickname nickSearch = new Nickname(nick.getText());
         String[] answs = {answ1.getText(), answ2.getText(), answ3.getText(), answ4.getText()};
-        Questions q = new Questions(answs);
+        Questionary q = new Questionary(answs);
         try{
             if(sysInt.checkQuestion(nickSearch, q)){
                 outLabel.setText("Questionario corretto");
@@ -114,7 +114,7 @@ public class K_resetPw implements Initializable{
             if(newPw.getText().equals(confPw.getText()) && !newPw.getText().equals("")){
                 Nickname nickSearch = new Nickname(nick.getText());
                 String[] answs = {answ1.getText(), answ2.getText(), answ3.getText(), answ4.getText()};
-                Questions q = new Questions(answs);
+                Questionary q = new Questionary(answs);
 
                 sysInt.forgottenPassword(nickSearch, q, new PW(newPw.getText()));
             }else{

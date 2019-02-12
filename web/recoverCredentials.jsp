@@ -18,7 +18,7 @@
 
     } else if (request.getParameter("backHomeSubmit") != null) {
 
-        response.sendRedirect("/FERSA/login.jsp");
+        response.sendRedirect("/FERSA/validate.jsp");
         return;
     }
 %>

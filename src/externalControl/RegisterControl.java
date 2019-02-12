@@ -41,7 +41,7 @@ public class RegisterControl{
             String[] answers = {question1, question2, question3, question4};
             UserInfoRegister usInfoReg = new UserInfoRegister(new Name(firstname), new Name(lastname),
                                          TC, nick, new Email(email), gCal, Gender.valueOf(gender.toUpperCase()),
-                                         new Questions(answers), new PW(password), new SurfaceAddress(birthPlace));
+                                         new Questionary(answers), new PW(password), new SurfaceAddress(birthPlace));
 
             usProfInt.createUser(nick, usInfoReg);
 

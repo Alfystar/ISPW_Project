@@ -48,7 +48,7 @@ public class K_registration implements Initializable{
     @FXML
     private ImageView avatar;
     //=================================================================
-    //Questions tab
+    //Questionary tab
     @FXML
     private TextField answ1, answ2, answ3, answ4;
     //=================================================================
@@ -89,9 +89,9 @@ public class K_registration implements Initializable{
         else g = Gender.WOMAN;
 
         String[] answs = {answ1.getText(), answ2.getText(), answ3.getText(), answ4.getText()};
-        Questions q = new Questions(answs);
+        Questionary q = new Questionary(answs);
 
-        //(Name name, Name surname, TaxCode cf, Nickname nickname, Email email, GregorianCalendar birthday, Gender gender, Questions answers, PW pw){
+        //(Name name, Name surname, TaxCode cf, Nickname nickname, Email email, GregorianCalendar birthday, Gender gender, Questionary answers, PW pw){
         UserInfoRegister infoReg = new UserInfoRegister(new Name(name.getText()), new Name(surname.getText()), new TaxCode(tc.getText()), new Nickname(nick.getText()), new Email(email.getText()), bGc, g, q, new PW(newPw.getText()), new SurfaceAddress(cityBirth.getText()));
 
         try{

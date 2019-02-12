@@ -12,11 +12,11 @@ public interface SystemInterface{
 
     void changePassword(Nickname nk, PW newPw, PW oldPw) throws UserNotExistEx;
 
-    Boolean login(Nickname nk, PW passW) throws UserNotExistEx, SQLException, UserBannedEx;
+    Boolean validate(Nickname nk, PW passW) throws UserNotExistEx, SQLException, UserBannedEx;
 
-    Boolean checkQuestion(Nickname nk, Questions q) throws UserNotExistEx;
+    Boolean checkQuestion(Nickname nk, Questionary q) throws UserNotExistEx;
 
-    void forgottenPassword(Nickname nk, Questions answers, PW newPW) throws SQLException, ClassNotFoundException, UserNotExistEx;
+    void forgottenPassword(Nickname nk, Questionary answers, PW newPW) throws SQLException, ClassNotFoundException, UserNotExistEx;
 
     Avatar getAvatar(Nickname nk) throws UserNotExistEx;
 

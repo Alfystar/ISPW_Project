@@ -2,7 +2,7 @@ package entity;
 
 import static java.lang.Math.min;
 
-public class Questions{
+public class Questionary {
     //uguali per tutti, risparmio di memoria
     private static String[] questions = {
             "What is the name of your favorite pet?",
@@ -13,19 +13,19 @@ public class Questions{
 
     private String[] answers = {};
 
-    public Questions(String[] answers){
+    public Questionary(String[] answers){
 
         this.answers = answers;
     }
 
-    public Questions(Questions q){
+    public Questionary(Questionary q){
         this.answers = q.getAnswers();
         this.questions = q.getQuestions();
     }
 
     /*  VERIFICA CHE ALMENO n DOMANDE SIANO CORRETTE*/
 
-    public Boolean checkAnswers(Questions q, int minCorrect){
+    public Boolean checkAnswers(Questionary q, int minCorrect){
 
         String[] tmpAns = q.getAnswers();
 
@@ -41,17 +41,17 @@ public class Questions{
         return correct >= minCorrect;
     }
 
-    public void saveAnswers(Questions q){
+    public void saveAnswers(Questionary q){
 
         this.answers = q.getAnswers();
     }
 
-    public Boolean checkAnAnswer(Questions q, int index){
+    public Boolean checkAnAnswer(Questionary q, int index){
 
         return this.answers[index].equals(q.getAnswers()[index]);
     }
 
-    public void saveAnAnswer(Questions q, int index){
+    public void saveAnAnswer(Questionary q, int index){
 
         this.answers[index] = q.getAnswers()[index];
     }
