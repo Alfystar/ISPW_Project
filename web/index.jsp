@@ -5,15 +5,20 @@
 <jsp:setProperty name="index_Bean" property="*"/>
 
 <%
-    String result = "";
-    String color = "white";
-    String dynamicIP = index_Bean.startDB();
+    String result;
+    String color;
+    String dynamicIP;
 
     if (request.getParameter("changeIPSubmit") != null) {
 
         result = index_Bean.changeIP();
+        dynamicIP = index_Bean.startDB();
         if (result.equals("Successo")) color = "blue";
         else color = "red";
+    }else {
+        result = "";
+        color = "white";
+        dynamicIP = index_Bean.startDB();
     }
 %>
 

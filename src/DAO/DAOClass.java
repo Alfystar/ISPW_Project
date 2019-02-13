@@ -606,9 +606,7 @@ public class DAOClass implements DAOInterface{
 
     @Override
     public String getLastHost(){
-        System.out.println("Dentro getLastHost");
         return conf.getProperty("dbHost");
-        //return "localHost";
     }
 
     public Boolean testNet() throws SQLException{
