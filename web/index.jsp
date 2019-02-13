@@ -112,7 +112,7 @@
     <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;" id="jarallax-container-0"><div style="background-position: 100% 100%; background-size: auto; background-repeat: no-repeat; background-image: none; position: relative; top: 0px; left: 0px; width: 866px; height: 637.04px; overflow: hidden; pointer-events: none; margin-top: 0.479993px; transform: translate3d(0px, 23.0856px, 0px);"></div></div></section>
 
 
-<script src="aassets/jquery/jquery.min.js"></script>
+<script src="assets/jquery/jquery.min.js"></script>
 <script src="assets/popper/popper.min.js"></script>
 <script src="assets/tether/tether.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
