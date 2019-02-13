@@ -26,7 +26,7 @@ public class LoginControl{
             else return "Nickname o password non corretti, riprova.";
         }catch(Exception e){
             e.printStackTrace();
-            return "eccezione presa: "+e.getMessage();
+            return e.getMessage();
         }
     }
 
