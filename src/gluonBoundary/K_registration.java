@@ -42,6 +42,8 @@ public class K_registration implements Initializable{
     @FXML
     private DatePicker birthday;
     @FXML
+    private Label only18;
+    @FXML
     private TextField name, surname, tc, cityBirth;
     @FXML
     private RadioButton av1, av2, av3, av4, av5, av6;
@@ -196,9 +198,9 @@ public class K_registration implements Initializable{
             if(bGc.get(Calendar.YEAR) > 1900 && bGc.get(Calendar.YEAR) < tenYMore.get(Calendar.YEAR))
             {
                 complete++;
-                outLabel.setText("no Op");
+                only18.setVisible(false);
             }
-            else if(bGc.getTime().getTime()!=0) outLabel.setText("Solo maggiorenni");
+            else if(bGc.getTime().getTime()!=0) only18.setVisible(true);;
         }catch(Exception e){
             //e.printStackTrace();
         }
