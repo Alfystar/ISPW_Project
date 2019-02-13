@@ -6,6 +6,7 @@
 
 <%
     String opResult = "";
+    String imgPath = "";
 
     if (request.getParameter("banSubmit") != null)
         opResult = otherSubSyS_bean.banUtente();
@@ -16,8 +17,11 @@
     else if (request.getParameter("destroySubmit") != null)
         opResult = otherSubSyS_bean.destroyUtente();
 
-    else if (request.getParameter("obtainPubDSubmit") != null)
-        opResult = otherSubSyS_bean.ottieniPubDUtente();
+    else if (request.getParameter("obtainPubDSubmit") != null) {
+        String [] tmpResult = otherSubSyS_bean.ottieniPubDUtente();
+        opResult = tmpResult[0];
+        imgPath = "profileImage/" + tmpResult[1] + ".png";
+    }
 
     else if (request.getParameter("obtainPriDSubmit") != null)
         opResult = otherSubSyS_bean.ottieniPriDUtente();
@@ -128,6 +132,8 @@
                     Renter (Yes/No): <input name="renterInput" type="text" style="margin-bottom: 10px;">
                     <br>
                     Tenant (Yes/No): <input name="tenantInput" type="text" style="margin-bottom: 10px;">
+                    <br>
+                    <img src=<%=imgPath%> alt="Avatar Icon" style="width:64px;height:64px;">
                     <br>
                 <p style="color:white; background-color:red;"><%=opResult%></p>
                 <br>

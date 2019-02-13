@@ -74,9 +74,13 @@ public class OtherSubSystemBean{
 
     }
 
-    public String ottieniPubDUtente(){
+    public String[] ottieniPubDUtente(){
 
-        if(this.nickInput.equals("")) return "Inserire Nickname non nullo";
+        if(this.nickInput.equals("")) {
+
+            String[] response = {"Inserire Nickname non nullo", null};
+            return response;
+        }
 
         OtherSubSystemControl controller = OtherSubSystemControl.getInstance();
 
