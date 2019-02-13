@@ -191,9 +191,14 @@ public class K_registration implements Initializable{
             Date bDate = java.sql.Date.valueOf(birthday.getValue());
             GregorianCalendar bGc = stringToGregCal(bDate.toString());
             Calendar tenYMore = GregorianCalendar.getInstance();
-            tenYMore.add(Calendar.YEAR, 10);
+            tenYMore.add(Calendar.YEAR, -18);
 
-            if(bGc.get(Calendar.YEAR) > 1900 && bGc.get(Calendar.YEAR) < tenYMore.get(Calendar.YEAR)) complete++;
+            if(bGc.get(Calendar.YEAR) > 1900 && bGc.get(Calendar.YEAR) < tenYMore.get(Calendar.YEAR))
+            {
+                complete++;
+                outLabel.setText("no Op");
+            }
+            else if(bGc.getTime().getTime()!=0) outLabel.setText("Solo maggiorenni");
         }catch(Exception e){
             //e.printStackTrace();
         }

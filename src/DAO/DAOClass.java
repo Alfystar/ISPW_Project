@@ -518,18 +518,19 @@ public class DAOClass implements DAOInterface{
         this.openConn();
         String oggi = gregCalToString(today);
 
-        String sql = "SELECT nick FROM dataevent where idDate<= " +
+        String sql = "SELECT nick FROM dateevent where idDate<= " +
                 "\"" + oggi + "\" " + " ;";
         System.out.println(sql);
-        this.stmt.executeQuery(sql);
-        System.out.println("deleteByDeamon query executed");
         ResultSet rs = this.stmt.executeQuery(sql);
+        System.out.println("deleteByDeamon query executed");
 
         try{
-            while(rs.next()){
-                Nickname nick = new Nickname(rs.getString(2));
+            if(!rs.first()) return;
+            do{
+                Nickname nick = new Nickname(rs.getString(1));
                 destroy(nick);
-            }
+                removeDataEvent(nick);
+            }while(rs.next());
         }catch(NickNotDBEx nickNotEx){
             System.out.println("Non dovresti essere qui!!");
         }finally{

@@ -160,7 +160,7 @@ public class K_home implements Initializable{
     private void treadStart() throws DBConnectionEx{
         try{
             sysInt.changeHost(ipField.getText());
-            DaemonDAO daemonDAO = DaemonDAO.getInstance();  //per avviare il demone
+            DaemonDAO.getInstance();  //per avviare il demone
             if(!this.testDBConn()){
                 throw new DBConnectionEx("DB Connection Problem");
             }
