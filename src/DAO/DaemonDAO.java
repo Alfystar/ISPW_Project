@@ -44,7 +44,7 @@ public class DaemonDAO implements Runnable{
                     Date todayDay = GregorianCalendar.getInstance().getTime();
                     GregorianCalendar gcFutureDate = this.dao.nextDeleteSession();
                     long deltaTime = getDateDiff(todayDay, gcFutureDate.getTime(), TimeUnit.MILLISECONDS);
-                    System.out.println(deltaTime);
+                    System.out.println("DaemonDAO go to sleap for: "+deltaTime);
                     if(deltaTime <= 0) break restartSleep;
                     Thread.sleep(deltaTime);
                     break restartSleep;
