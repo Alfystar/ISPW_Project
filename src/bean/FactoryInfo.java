@@ -4,7 +4,17 @@ import entity.*;
 
 import java.util.GregorianCalendar;
 
-public class FactoryInfo{
+public class FactoryInfo {
+
+    public BasicUserInfo createBasic(PublicData pubD){
+
+        return new BasicUserInfo(pubD);
+    }
+
+    public RestrictUserInfo createRestrict(PrivateData priD){
+
+        return new RestrictUserInfo(priD);
+    }
 
     public static void main(String[] args){
         FactoryInfo testFact = new FactoryInfo();
@@ -21,15 +31,5 @@ public class FactoryInfo{
         System.out.println(basic.toString());
         System.out.println(restr.toString());
 
-    }
-
-    public BasicUserInfo createBasic(PublicData pubD){
-
-        return new BasicUserInfo(pubD);
-    }
-
-    public RestrictUserInfo createRestrict(PrivateData priD){
-
-        return new RestrictUserInfo(priD);
     }
 }
