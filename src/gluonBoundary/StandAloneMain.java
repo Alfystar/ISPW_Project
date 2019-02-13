@@ -9,17 +9,14 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
-public class StandAloneMain extends Application {
-
-
+public class StandAloneMain extends Application{
 
     public static void main(String[] args) throws Exception{
-        int nThread =10;
-        StandAloneMain stand = new StandAloneMain();
+        int nThread = 10;
         Thread t;
         FakeUser f;
-        for(int fakeType = 0; fakeType <4; fakeType++){
-            for(int i = 0; i <nThread ; i++){
+        for(int fakeType = 0; fakeType < 4; fakeType++){
+            for(int i = 0; i < nThread; i++){
                 f = new FakeUser(fakeType);
                 t = new Thread(f);
                 t.start();
@@ -41,9 +38,5 @@ public class StandAloneMain extends Application {
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/ImageFile/Icon/Fersa-logo.png")));
         stage.show();
     }
-
-
-
-
 
 }
