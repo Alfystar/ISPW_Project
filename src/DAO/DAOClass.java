@@ -236,7 +236,7 @@ public class DAOClass implements DAOInterface{
         System.out.println(sqlPubD);
         rs = this.stmt.executeQuery(sqlPubD);
         rs.first();
-        PublicData pubD = this.buidPubD(rs, taxCode, nickname);
+        PublicData pubD = this.buildPubD(rs, taxCode, nickname);
 
         //eseguo la query per PrivateData
         String sqlPrD = "SELECT * FROM privatedata where idPrD = " +
@@ -312,7 +312,7 @@ public class DAOClass implements DAOInterface{
         return;
     }
 
-    private PublicData buidPubD(ResultSet rs, TaxCode taxCode, Nickname nickname) throws SQLException{
+    private PublicData buildPubD(ResultSet rs, TaxCode taxCode, Nickname nickname) throws SQLException{
         Name name = new Name(rs.getString(2));
         Name surname = new Name(rs.getString(3));
 
