@@ -22,7 +22,7 @@ public class IndexControl{
 
     public String startDBAndIP(){
         try {
-            DaemonDAO daemonDAO = DaemonDAO.getInstance();
+            DaemonDAO.getInstance();
 
             String IPtest = sysInt.getLastHost();
             //System.out.println("Controller: " + IPtest);
