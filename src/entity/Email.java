@@ -4,7 +4,7 @@ public class Email extends ModifyDataString{
     private String email;
 
     public Email(String email){
-        this.email = email.toLowerCase();
+        this.email = email.toLowerCase().replaceAll("\\s+","");
     }
 
     public Email(){
