@@ -1,8 +1,10 @@
+<!-- Serve a includere le classi java normali -->
 <%@ page import="java.util.GregorianCalendar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<!-- serve per dire a jsp quale classe bean deve essere chiamata quando la pagina viene avviata con la ricezione di un form -->
 <jsp:useBean id="register_Bean" scope="request" class="externalBean.RegisterBean"/>
-
+<!-- dice come mappare dinamicamente tutti gli attributi dentro classi equivalenti, per dire tutti si usa * -->
 <jsp:setProperty name="register_Bean" property="*"/>
 
 <%

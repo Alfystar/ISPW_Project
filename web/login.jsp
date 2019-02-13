@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<!-- il parametro scope indica quanto la classe externalBean.LoginBean rimane dentro tomcat
+e con che dinamiche, request è per risolvere il form e poi morire  -->
 <jsp:useBean id="login_Bean" scope="request" class="externalBean.LoginBean"/>
 
 <jsp:setProperty name="login_Bean" property="*"/>
-
-
 
 <%
     /*  abbiamo utilizzato sendRedirect() invece di jsp:forward in quanto l'URL
@@ -14,29 +14,23 @@
      *   viene esplicitamente trasferita la richiesta ad un altro indirizzo, che
      *   potrebbe essere locato ovunque.
      */
-
     String result = "";
-
     if (request.getParameter("loginSubmit") != null){
-
         result = login_Bean.validateLogin();
-
         if (result.equals("Successo")){
-
             String nkStr = login_Bean.getNickname();
-
+            //session riguarda la sessione di un utente (finchè il client è collegato al server),
+            //e permette di fare delle impostazioni globali
             session.setAttribute("nkSaved", nkStr);
-
+            //response invia dei comandi sotto il cofano del client, in questo caso di cambiare pagina
+            //ma in generale potrebbero essere comandi di pulizzia o simili dei quali non ci rendiamo conto
             response.sendRedirect("/FERSA/userpage.jsp");
-
+            //interrompe la codifica della pagina dovendo cambiare schermata, pure per evitare
+            //inconsistenze nello sviluppo della pagina
             return;
-
         }
-
     } else if (request.getParameter("recoverSubmit") != null) {
-
         response.sendRedirect("/FERSA/recoverCredentials.jsp");
-
         return;
     }
 %>
