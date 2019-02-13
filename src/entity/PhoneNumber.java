@@ -4,7 +4,7 @@ public class PhoneNumber extends ModifyDataString{
     private String phone;
 
     public PhoneNumber(String phone){
-        this.phone = phone;
+        this.phone = phone.replaceAll("\\s+","");
     }
 
     public PhoneNumber(){ this.phone = "";}

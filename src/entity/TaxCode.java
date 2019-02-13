@@ -3,9 +3,7 @@ package entity;
 public class TaxCode{
     private String cf;
 
-    public TaxCode(String cf){
-        this.cf = cf;
-    }
+    public TaxCode(String cf){ this.cf = cf.toUpperCase().replaceAll("\\s+","");}
 
     public TaxCode(){
         this.cf = "";
