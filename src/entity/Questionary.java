@@ -35,7 +35,7 @@ public class Questionary {
 
         for(int i = 0; i < tmpAns.length; i++){
 
-            if(this.answers[i].equals(tmpAns[i])) correct += 1;
+            if(this.answers[i].equalsIgnoreCase(tmpAns[i])) correct += 1;
         }
 
         return correct >= minCorrect;

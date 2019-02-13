@@ -58,5 +58,4 @@ public class Avatar{
     public String getAvatarName(){
         return nameAvatar[this.indexImage];
     }
-
 }

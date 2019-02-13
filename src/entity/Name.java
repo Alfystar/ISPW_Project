@@ -4,7 +4,8 @@ public class Name{
     private String name;
 
     public Name(String name){
-        this.name = name;
+        if(name.length()>=2) this.name =name.substring(0,1).toUpperCase()+name.substring(1).toLowerCase();
+        else this.name=name.toUpperCase();
     }
 
     public Name(){
