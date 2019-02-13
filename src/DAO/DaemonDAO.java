@@ -11,7 +11,7 @@ import static java.lang.Math.abs;
 public class DaemonDAO implements Runnable{
 
     private static DaemonDAO ourInstance = new DaemonDAO();
-    private static DAOClass dao;
+    private DAOClass dao;
 
     private DaemonDAO(){
         try{
@@ -35,29 +35,17 @@ public class DaemonDAO implements Runnable{
 
     @Override
     public void run(){
-        java.util.Date todayDay;
-        Calendar calendar = Calendar.getInstance();
-        GregorianCalendar gc = new GregorianCalendar(2000, 01, 01);    //serve solo a generare un oggetto
         while(true){
             //codice ripetuto sempre finchè con delta che diminuiscono via via, finchè non si supera la data prevista
             restartSleep:
             {
                 try{
                     Thread.sleep(10000);
-                    todayDay = java.util.GregorianCalendar.getInstance().getTime();
-                    calendar.setTime(todayDay);
-                    //Aggiungo un mese
-                    calendar.add(calendar.MONTH, 1);
-
-                    GregorianCalendar gcDate = this.dao.nextDeleteSession();
-                    Date d = gcDate.getTime();
-
-                    TimeUnit timeUnit = TimeUnit.MILLISECONDS;
-                    long deltaTime = getDateDiff(todayDay, d, timeUnit);
+                    Date todayDay = GregorianCalendar.getInstance().getTime();
+                    GregorianCalendar gcFutureDate = this.dao.nextDeleteSession();
+                    long deltaTime = getDateDiff(todayDay, gcFutureDate.getTime(), TimeUnit.MILLISECONDS);
                     System.out.println(deltaTime);
-
                     if(deltaTime <= 0) break restartSleep;
-
                     Thread.sleep(deltaTime);
                     break restartSleep;
                 }catch(InterruptedException e){
@@ -69,8 +57,9 @@ public class DaemonDAO implements Runnable{
                     System.err.println("problemi di accesso al DB; risolvere;");
                 }
             }
-            todayDay = java.util.GregorianCalendar.getInstance().getTime();
-            gc.setTime(todayDay);
+
+            GregorianCalendar gc = new GregorianCalendar(2000, 01, 01);    //serve solo a generare un oggetto
+            gc.setTime(GregorianCalendar.getInstance().getTime());
             try{
                 this.dao.deleteByDeamon(gc);
                 gc.add(Calendar.MONTH,1);
