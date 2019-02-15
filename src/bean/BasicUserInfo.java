@@ -66,4 +66,13 @@ public class BasicUserInfo{
         return this.publicData.toString();
     }
 
+    @Override
+    public boolean equals(Object o){
+        try{
+            return publicData.equals(((BasicUserInfo) o).publicData);
+        }catch(ClassCastException e){
+            return false;
+        }
+    }
+
 }

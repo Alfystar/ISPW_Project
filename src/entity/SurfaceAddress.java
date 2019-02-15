@@ -24,4 +24,13 @@ public class SurfaceAddress extends ModifyDataString{
     public void set(String newAddress){
         this.address = newAddress;
     }
+
+    @Override
+    public boolean equals(Object o){
+        try{
+            return this.address.equals(((SurfaceAddress) o).address);
+        }catch(ClassCastException e){
+            return false;
+        }
+    }
 }

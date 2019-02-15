@@ -3,7 +3,7 @@ package entity;
 public class TaxCode{
     private String cf;
 
-    public TaxCode(String cf){ this.cf = cf.toUpperCase().replaceAll("\\s+","");}
+    public TaxCode(String cf){ this.cf = cf.toUpperCase().replaceAll("\\s+", "");}
 
     public TaxCode(){
         this.cf = "";
@@ -19,5 +19,14 @@ public class TaxCode{
 
     public void set(String newCf){
         this.cf = newCf;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        try{
+            return this.cf.equals(((TaxCode) o).cf);
+        }catch(ClassCastException e){
+            return false;
+        }
     }
 }

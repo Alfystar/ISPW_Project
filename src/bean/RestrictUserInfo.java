@@ -44,4 +44,13 @@ public class RestrictUserInfo{
         return this.privateData.toString();
     }
 
+    @Override
+    public boolean equals(Object o){
+        try{
+            return privateData.equals(((RestrictUserInfo) o).privateData);
+        }catch(ClassCastException e){
+            return false;
+        }
+    }
+
 }

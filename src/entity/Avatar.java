@@ -58,4 +58,14 @@ public class Avatar{
     public String getAvatarName(){
         return nameAvatar[this.indexImage];
     }
+
+    @Override
+    public boolean equals(Object o){
+        try{
+            Avatar a = (Avatar) o;
+            return this.indexImage == a.indexImage;
+        }catch(ClassCastException e){
+            return false;
+        }
+    }
 }

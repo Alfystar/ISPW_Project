@@ -62,4 +62,15 @@ public class Roles{
     public String toString(){
         return "isRenter:" + this.isRenter() + ", isTenant:" + isTenant() + "\n";
     }
+
+    @Override
+    public boolean equals(Object o){
+        try{
+            Roles r = (Roles) o;
+            return (this.renter == r.renter && this.tenant == r.tenant);
+        }catch(ClassCastException e){
+            return false;
+        }
+    }
+
 }

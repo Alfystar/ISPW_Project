@@ -24,4 +24,13 @@ public class SocialStatus extends ModifyDataString{
     public void set(String newSocialStatus){
         this.socialStatus = newSocialStatus;
     }
+
+    @Override
+    public boolean equals(Object o){
+        try{
+            return this.socialStatus.equals(((SocialStatus) o).socialStatus);
+        }catch(ClassCastException e){
+            return false;
+        }
+    }
 }

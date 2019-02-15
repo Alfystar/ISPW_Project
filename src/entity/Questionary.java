@@ -2,7 +2,7 @@ package entity;
 
 import static java.lang.Math.min;
 
-public class Questionary {
+public class Questionary{
     //uguali per tutti, risparmio di memoria
     private static String[] questions = {
             "What is the name of your favorite pet?",
@@ -11,7 +11,7 @@ public class Questionary {
             "What is the name of your first school?"
     };
 
-    private String[] answers = {};
+    private String[] answers;
 
     public Questionary(String[] answers){
 
@@ -39,6 +39,18 @@ public class Questionary {
         }
 
         return correct >= minCorrect;
+    }
+
+    public Boolean checkAnswers(Questionary q){
+        String[] tmpAns = q.getAnswers();
+        if(tmpAns.length != this.answers.length) return false;
+
+        int correct = 0;
+        for(int i = 0; i < tmpAns.length; i++){
+
+            if(!this.answers[i].equalsIgnoreCase(tmpAns[i])) return false;
+        }
+        return true;
     }
 
     public void saveAnswers(Questionary q){
@@ -72,5 +84,13 @@ public class Questionary {
     public String[] getQuestions(){
         return this.questions;
     }
-    //todo: rivedere Class Diagram in UML (aggiunta di un po' di metodi)
+
+    @Override
+    public boolean equals(Object o){
+        try{
+            return checkAnswers((Questionary) o);
+        }catch(ClassCastException e){
+            return false;
+        }
+    }
 }

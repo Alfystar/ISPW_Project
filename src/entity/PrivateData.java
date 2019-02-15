@@ -59,4 +59,15 @@ public class PrivateData{
 
     }
 
+    @Override
+    public boolean equals(Object o){
+        try{
+            PrivateData p = (PrivateData) o;
+            return (this.address.equals(p.address) && this.cityOfBirth.equals(p.cityOfBirth) &&
+                    this.nat.equals(p.nat) && this.phone.equals(p.phone));
+        }catch(ClassCastException e){
+            return false;
+        }
+    }
+
 }

@@ -18,4 +18,13 @@ public class PW{
     public void setPw(String newPw){
         this.pw = newPw;
     }
+
+    @Override
+    public boolean equals(Object o){
+        try{
+            return this.pw.equals(((PW) o).pw);
+        }catch(ClassCastException e){
+            return false;
+        }
+    }
 }

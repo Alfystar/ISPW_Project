@@ -20,9 +20,7 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
     private UserExpert usExp = new UserExpert();
     private FactoryInfo factInf = new FactoryInfo();
 
-    public FacadeSubSystem(){
-
-    }
+    public FacadeSubSystem(){}
 
     @Override
     public BasicUserInfo getBasicUserInfo(Nickname nick) throws UserNotExistEx{

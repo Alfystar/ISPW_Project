@@ -83,4 +83,16 @@ public class Utente{
         return "UserNick: " + this.pubD.getNick().get() + ", Email:" + this.pubD.getEmail().get() + ", CF:" + this.pubD.getTC().get() + "\n";
     }
 
+    @Override
+    public boolean equals(Object o){
+        try{
+            Utente u = (Utente) o;
+            return (this.pubD.equals(u.pubD) && this.prD.equals(u.prD) &&
+                    this.pw.equals(u.pw) && this.userStatus.equals(u.userStatus) &&
+                    this.roles.equals(u.roles) && this.questionary.equals(u.questionary));
+        }catch(ClassCastException e){
+            return false;
+        }
+    }
+
 }

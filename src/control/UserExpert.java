@@ -115,7 +115,13 @@ public class UserExpert{
 
     public void createUser(UserInfoRegister userInfo) throws WrongParameters{
         Utente user = this.daoFace.createUser(userInfo);
-        System.out.println(gregCalToString(user.getPublic().getBirthday()));
+        coda.add(user);
+    }
+
+    /**   Metodo a solo fine di TEST per junit   **/
+    public void createUserAll(Utente user)throws SQLException
+    {
+        this.daoFace.saveUser(user);
         coda.add(user);
     }
 

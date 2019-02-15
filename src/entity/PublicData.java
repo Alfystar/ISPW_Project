@@ -125,4 +125,18 @@ public class PublicData{
         out += "Nickname:" + this.nickname.get() + "\n";
         return out;
     }
+
+    @Override
+    public boolean equals(Object o){
+        try{
+            PublicData p = (PublicData) o;
+            return (this.name.equals(p.name) && this.surname.equals(p.surname) &&
+                    this.birthday.equals(p.birthday) && this.gender.equals(p.gender) &&
+                    this.fiscalCode.equals(p.fiscalCode) && this.socialStatus.equals(p.socialStatus) &&
+                    this.avatar.equals(p.avatar) && this.email.equals(p.email) &&
+                    this.nickname.equals(p.nickname));
+        }catch(ClassCastException e){
+            return false;
+        }
+    }
 }
