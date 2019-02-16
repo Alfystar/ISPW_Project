@@ -131,14 +131,13 @@
             <form name="changeD_form" action="changeData.jsp" method="post">
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
 
-                    Avatar (1-6): <input name="avatar" type="text" style="text-align:left; margin-bottom: 10px;">
-                    <br>
-                    1 <img src="profileImage/default-Avatar.png" alt="Avatar1 Icon" style="width:64px;height:64px;">
-                    2 <img src="profileImage/rocket-Avatar.png" alt="Avatar2 Icon" style="width:64px;height:64px;">
-                    3 <img src="profileImage/girl-Avatar.png" alt="Avatar3 Icon" style="width:64px;height:64px;">
-                    4 <img src="profileImage/man-Avatar.png" alt="Avatar4 Icon" style="width:64px;height:64px;">
-                    5 <img src="profileImage/girlStudent-Avatar.png" alt="Avatar5 Icon" style="width:64px;height:64px;">
-                    6 <img src="profileImage/manStudent-Avatar.png" alt="Avatar6 Icon" style="width:64px;height:64px;">
+                    Avatar:
+                    <img src="profileImage/default-Avatar.png" alt="Avatar1 Icon" style="width:64px;height:64px;"><input type="radio" name="avatar" value="1">&nbsp;
+                    <img src="profileImage/rocket-Avatar.png" alt="Avatar2 Icon" style="width:64px;height:64px;"><input type="radio" name="avatar" value="2">&nbsp;
+                    <img src="profileImage/girl-Avatar.png" alt="Avatar3 Icon" style="width:64px;height:64px;"><input type="radio" name="avatar" value="3">&nbsp;
+                    <img src="profileImage/man-Avatar.png" alt="Avatar4 Icon" style="width:64px;height:64px;"><input type="radio" name="avatar" value="4">&nbsp;
+                    <img src="profileImage/girlStudent-Avatar.png" alt="Avatar5 Icon" style="width:64px;height:64px;"><input type="radio" name="avatar" value="5">&nbsp;
+                    <img src="profileImage/manStudent-Avatar.png" alt="Avatar6 Icon" style="width:64px;height:64px;"><input type="radio" name="avatar" value="6">
                     <br>
                     Email: <input name="email" type="text" style="text-align:left; margin-top: 10px;">
                     <br>

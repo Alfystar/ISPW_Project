@@ -140,7 +140,8 @@
                 <p class="mbr-text pb-3 mbr-fonts-style display-5"> Luogo di Nascita: <input name="birthPlace" type="text" style="text-align:left">
                 </p>
 
-                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Sesso (Man/Woman): <input name="gender" type="text" style="text-align:left">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5"> Sesso:
+                    <input type="radio" name="gender" value="Man"> Man <input type="radio" name="gender" value="Woman"> Woman
                 </p>
 
                 <p class="mbr-text pb-3 mbr-fonts-style display-5"> Password: <input name="password" type="password" style="text-align:left">

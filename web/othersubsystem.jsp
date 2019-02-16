@@ -7,6 +7,7 @@
 <%
     String opResult = "";
     String imgPath = "";
+    String showImg = "width:0px;height:0px;";
 
     if (request.getParameter("banSubmit") != null)
         opResult = otherSubSyS_bean.banUtente();
@@ -21,6 +22,7 @@
         String [] tmpResult = otherSubSyS_bean.ottieniPubDUtente();
         opResult = tmpResult[0];
         imgPath = "profileImage/" + tmpResult[1] + ".png";
+        showImg = "width:64px;height:64px;";
     }
 
     else if (request.getParameter("obtainPriDSubmit") != null)
@@ -124,19 +126,19 @@
                 Simulazione dei vari sottosistemi di Fersa.</p>
 
             <form name="others_form" action="othersubsystem.jsp" method="post">
-                <p class="mbr-text pb-3 mbr-fonts-style display-5" style="margin-bottom: 1rem;">
+                <p class="mbr-text pb-3 mbr-fonts-style display-5" style="margin-bottom: 0px;">
 
                     Nickname User: <input name="nickInput" type="text" style="margin-bottom: 10px;">
                     <br>
                     New Role:<br>
-                    Renter (Yes/No): <input name="renterInput" type="text" style="margin-bottom: 10px;">
+                    Renter:&nbsp; Yes <input type="radio" name="renterInput" value="Yes"> No<input type="radio" name="renterInput" value="No">
                     <br>
-                    Tenant (Yes/No): <input name="tenantInput" type="text" style="margin-bottom: 10px;">
+                    Tenant:&nbsp; Yes <input type="radio" name="tenantInput" value="Yes"> No<input type="radio" name="tenantInput" value="No">
                     <br>
-                    <img src=<%=imgPath%> alt="Avatar Icon" style="width:64px;height:64px;">
+                    <img src=<%=imgPath%> alt="Avatar Icon" style=<%=showImg%>>
                     <br>
                 <p style="color:white; background-color:red;"><%=opResult%></p>
-                <br>
+
                 <input type="submit" name="banSubmit" value="Ban Utente" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;margin-right: 0px;padding-left: 2rem;padding-right: 2rem;">
 
                 <input type="submit" name="unBanSubmit" value="UnBan Utente" class="btn btn-info-outline" style="margin-left: 0px;margin-top: 0.8rem;padding-left: 2rem;padding-right: 2rem;margin-right: 0px;">
