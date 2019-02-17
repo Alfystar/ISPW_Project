@@ -140,21 +140,21 @@
             </h3>
 
             <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                Nome: <%=valueData[1]%> Cognome: <%=valueData[2]%>
+                Nome: <%=valueData[1]%> &nbsp;&nbsp; Cognome: <%=valueData[2]%>
                 <br>
-                CF: <%=valueData[3]%> Nickname: <%=valueData[4]%>
+                CF: <%=valueData[3]%> &nbsp;&nbsp; Nickname: <%=valueData[4]%>
                 <br>
-                Email: <%=valueData[5]%> BirthDay: <%=valueData[6]%>
+                Email: <%=valueData[5]%> &nbsp;&nbsp; BirthDay: <%=valueData[6]%>
                 <br>
-                Gender: <%=valueData[7]%> Social Status: <%=valueData[8]%>
+                Gender: <%=valueData[7]%> &nbsp;&nbsp; Social Status: <%=valueData[8]%>
                 <br>
                 Ruoli:
                 <br>
-                Is Tenant?: <%=valueData[9]%> IsRenter?: <%=valueData[10]%>
+                IsRenter?: <%=valueData[10]%> &nbsp;&nbsp; Is Tenant?: <%=valueData[9]%>
                 <br>
-                Phone Number: <%=valueData[11]%> Indirizzo: <%=valueData[12]%>
+                Phone Number: <%=valueData[11]%> &nbsp;&nbsp; Indirizzo: <%=valueData[12]%>
                 <br>
-                Luogo di Nascita: <%=valueData[13]%> Cittadinanza: <%=valueData[14]%>
+                Luogo di Nascita: <%=valueData[13]%> &nbsp;&nbsp; Cittadinanza: <%=valueData[14]%>
             </p>
 
             <form name="backIndex_form" action="userpage.jsp" method="post">
