@@ -49,9 +49,7 @@ public class K_login implements Initializable{
     }
 
     @FXML
-    public void loginPush(ActionEvent event) throws IOException{
-        System.out.println(nickField.getText());
-        System.out.println(pwField.getText());
+    public void loginPush(ActionEvent event) {
         try{
             if(!sysInt.validate(new Nickname(nickField.getText()), new PW(pwField.getText()))) return;
         }catch(UserNotExistEx e){
@@ -62,7 +60,6 @@ public class K_login implements Initializable{
         }catch(SQLException e){
             e.printStackTrace();
         }
-
 
         //Parent userParent = FXMLLoader.load(getClass().getResource("fxmlSrc/userPane.fxml"));
 
@@ -78,16 +75,13 @@ public class K_login implements Initializable{
         }catch(IOException ex){
             ex.printStackTrace();
         }
-
         if(userLoader != null){
             //we create a custom controller
             kUser = userLoader.getController();
             //here we pass the reference to the  other controller
             kUser.setBean(bean);
         }
-
         Scene userScene = new Scene(userParent);
-
         Stage windows = (Stage) ((Node) event.getSource()).getScene().getWindow();
         windows.setScene(userScene);
     }

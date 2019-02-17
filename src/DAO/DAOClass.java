@@ -188,7 +188,7 @@ public class DAOClass implements DAOInterface{
         try{
             this.openConn();
             String sql = "SELECT nick FROM user where nick = " +
-                    "\"" + (nickname.get()) + "\" " + " ;";
+                    "\"" + (nickname.get()) + "\";";
             System.out.println("\t|->> "+sql);
             ResultSet rs = this.stmt.executeQuery(sql);
             System.out.println("\t|-searchNickDB query executed");
@@ -208,7 +208,7 @@ public class DAOClass implements DAOInterface{
     public Utente loadFromDB(Nickname nickname) throws NickNotDBEx, SQLException{
         this.openConn();
         String sql = "SELECT * FROM user where nick= " +
-                "\"" + nickname.get() + "\" " + " ;";
+                "\"" + nickname.get() + "\";";
         System.out.println("\t|->> "+sql);
         ResultSet rs = this.stmt.executeQuery(sql);
         if(!rs.first()) throw new NickNotDBEx("nickname not found");
@@ -225,7 +225,7 @@ public class DAOClass implements DAOInterface{
 
         //eseguo la query per BasicUserInfo
         String sqlPubD = "SELECT * FROM publicdata where taxCode =" +
-                "\"" + taxCode.get() + "\" " + " ;";
+                "\"" + taxCode.get() + "\";";
         System.out.println("\t|->> "+sqlPubD);
         rs = this.stmt.executeQuery(sqlPubD);
         rs.first();
@@ -233,7 +233,7 @@ public class DAOClass implements DAOInterface{
 
         //eseguo la query per RestrictUserInfo
         String sqlPrD = "SELECT * FROM privatedata where idPrD = " +
-                "\"" + prD_id + "\" " + " ;";
+                "\"" + prD_id + "\";";
         System.out.println("\t|->> "+sqlPrD);
         rs = this.stmt.executeQuery(sqlPrD);
         rs.first();
@@ -241,7 +241,7 @@ public class DAOClass implements DAOInterface{
 
         //eseguo la query per Answers
         String sqlIdAnsw = "SELECT * FROM answers where idAnsw = " +
-                "\"" + answ_id + "\" " + " ;";
+                "\"" + answ_id + "\";";
         System.out.println("\t|->> "+sqlIdAnsw);
         rs = this.stmt.executeQuery(sqlIdAnsw);
         System.out.println("\t|-loadFromDB query SET executed");
@@ -265,7 +265,7 @@ public class DAOClass implements DAOInterface{
         Roles roles = user.getRole();
 
         //Faccio una query su user, per ottenere la chiave di accesso a prD;
-        String sql = "SELECT prD_id FROM user WHERE nick= " + "\"" + puB.getNick().get() + "\" " + ";";
+        String sql = "SELECT prD_id FROM user WHERE nick= " + "\"" + puB.getNick().get() + "\";";
         System.out.println("\t|->> "+sql);
         ResultSet rs = this.stmt.executeQuery(sql);
         if(!rs.first()){
@@ -277,29 +277,29 @@ public class DAOClass implements DAOInterface{
 
         //Faccio update nel DB di una tabella BasicUserInfo
         String sqlPubD = "UPDATE  publicdata SET " +
-                "socStat = " + "\"" + (puB.getSocialStatus().get()) + "\" " + " ," +
-                "usImg=" + "\"" + (puB.getAvatar().getAvatarName()) + "\" " + " ," +
+                "socStat = " + "\"" + (puB.getSocialStatus().get()) + "\" " + "," +
+                "usImg=" + "\"" + (puB.getAvatar().getAvatarName()) + "\" " + "," +
                 "email =" + "\"" + (puB.getEmail().get()) + "\" " +
-                "WHERE taxCode= " + "\"" + puB.getTC().get() + "\" " + ";";
+                "WHERE taxCode= " + "\"" + puB.getTC().get() + "\";";
         System.out.println("\t|->> "+sqlPubD);
         this.stmt.executeQuery(sqlPubD);
 
         //Faccio update nel DB di una tabella di RestrictUserInfo
         String sqlPrD = "UPDATE privatedata SET " +
-                "phone =" + "\"" + (prD.getPhone().get()) + "\" " + " ," +
-                "address =" + "\"" + (prD.getLocalAddress().get()) + "\" " + " ," +
-                "cityOfBirth =" + "\"" + (prD.getCityOfBirth().get()) + "\" " + " ," +
+                "phone =" + "\"" + (prD.getPhone().get()) + "\" " + "," +
+                "address =" + "\"" + (prD.getLocalAddress().get()) + "\" " + "," +
+                "cityOfBirth =" + "\"" + (prD.getCityOfBirth().get()) + "\" " + "," +
                 "nationality =" + "\"" + (prD.getNationality().get()) + "\" " +
-                "WHERE idPrD =" + "\"" + prD_id + "\" " + ";";
+                "WHERE idPrD =" + "\"" + prD_id + "\";";
         System.out.println("\t|->> "+sqlPrD);
         this.stmt.executeQuery(sqlPrD);
 
         //Faccio update dell'utente
         String sqlUpUs = "UPDATE user SET " +
-                "userStatus =" + "\"" + (usStat) + "\" " + " ," +
-                "pw =" + "\"" + (pw.getPw()) + "\" " + " ," +
+                "userStatus =" + "\"" + (usStat) + "\" " + "," +
+                "pw =" + "\"" + (pw.getPw()) + "\" " + "," +
                 "roles =" + "\"" + (roles.rlBIN()) + "\" " +
-                "WHERE nick =" + "\"" + puB.getNick().get() + "\" " + ";";
+                "WHERE nick =" + "\"" + puB.getNick().get() + "\";";
         System.out.println("\t|->> "+sqlUpUs);
         stmt.executeQuery(sqlUpUs);
         System.out.println("\t|-user update SET executed");
@@ -354,19 +354,17 @@ public class DAOClass implements DAOInterface{
         PW pw = user.getPw();
         Roles roles = user.getRole();
         String bDay = gregCalToString(puB.getBirthday());
-        System.out.println("dentro saveUser " + gregCalToString(puB.getBirthday()));
-
 
         //Inserisco nel DB una tabella BasicUserInfo
         String sqlPubD = "INSERT INTO  publicdata(taxCode, name, surname, birthday, gender, socStat, usImg, email) " +
                 "VALUES (" +
-                "\"" + (puB.getTC().get()) + "\" " + " ," +
-                "\"" + (puB.getName().get()) + "\" " + " ," +
-                "\"" + (puB.getSurname().get()) + "\" " + " ," +
-                "\"" + bDay + "\" " + " ," +
-                "\"" + (puB.getGender().toString()) + "\" " + " ," +
-                "\"" + (puB.getSocialStatus().get()) + "\" " + " ," +
-                "\"" + (puB.getAvatar().getAvatarName()) + "\" " + " ," +
+                "\"" + (puB.getTC().get()) + "\" " + "," +
+                "\"" + (puB.getName().get()) + "\" " + "," +
+                "\"" + (puB.getSurname().get()) + "\" " + "," +
+                "\"" + bDay + "\" " + "," +
+                "\"" + (puB.getGender().toString()) + "\" " + "," +
+                "\"" + (puB.getSocialStatus().get()) + "\" " + "," +
+                "\"" + (puB.getAvatar().getAvatarName()) + "\" " + "," +
                 "\"" + (puB.getEmail().get()) + "\" " + ");";
         System.out.println("\t|->> "+sqlPubD);
         this.stmt.executeQuery(sqlPubD);
@@ -374,9 +372,9 @@ public class DAOClass implements DAOInterface{
         //Inserisco nel DB una tabella di RestrictUserInfo
         String sqlPrD = "INSERT INTO privatedata(phone, address, cityOfBirth,nationality)" +
                 "VALUES (" +
-                "\"" + (prD.getPhone().get()) + "\" " + " ," +
-                "\"" + (prD.getLocalAddress().get()) + "\" " + " ," +
-                "\"" + (prD.getCityOfBirth().get()) + "\" " + " ," +
+                "\"" + (prD.getPhone().get()) + "\" " + "," +
+                "\"" + (prD.getLocalAddress().get()) + "\" " + "," +
+                "\"" + (prD.getCityOfBirth().get()) + "\" " + "," +
                 "\"" + (prD.getNationality().get()) + "\" " + ");";
         System.out.println("\t|->> "+sqlPrD);
         this.stmt.executeQuery(sqlPrD);
@@ -391,9 +389,9 @@ public class DAOClass implements DAOInterface{
         String[] vect = answ.getAnswers();
         String sqlAnsw = "INSERT INTO answers(answ1,answ2,answ3,answ4)" +
                 "VALUES (" +
-                "\"" + vect[0] + "\" " + " ," +
-                "\"" + vect[1] + "\" " + " ," +
-                "\"" + vect[2] + "\" " + " ," +
+                "\"" + vect[0] + "\" " + "," +
+                "\"" + vect[1] + "\" " + "," +
+                "\"" + vect[2] + "\" " + "," +
                 "\"" + vect[3] + "\" " + ");";
         System.out.println("\t|->> "+sqlAnsw);
         this.stmt.executeQuery(sqlAnsw);
@@ -407,12 +405,12 @@ public class DAOClass implements DAOInterface{
         //Creo una tabella di Utente nel DB
         String sqlNewUs = "INSERT INTO user(nick,pubD_Tc,prD_id,userStatus,pw,answ_id,roles)" +
                 "VALUES (" +
-                "\"" + (puB.getNick().get()) + "\" " + " ," +
-                "\"" + (puB.getTC().get()) + "\" " + " ," +
-                "\"" + (prD_id) + "\" " + " ," +
-                "\"" + (usStat) + "\" " + " ," +
-                "\"" + (pw.getPw()) + "\" " + " ," +
-                "\"" + (answ_id) + "\" " + " ," +
+                "\"" + (puB.getNick().get()) + "\" " + "," +
+                "\"" + (puB.getTC().get()) + "\" " + "," +
+                "\"" + (prD_id) + "\" " + "," +
+                "\"" + (usStat) + "\" " + "," +
+                "\"" + (pw.getPw()) + "\" " + "," +
+                "\"" + (answ_id) + "\" " + "," +
                 "\"" + (roles.rlBIN()) + "\" " + ");";
         System.out.println("\t|->> "+sqlNewUs);
         stmt.executeQuery(sqlNewUs);
@@ -425,7 +423,7 @@ public class DAOClass implements DAOInterface{
         try{
             this.openConn();
             String sql = "SELECT taxCode FROM publicdata where taxCode = " +
-                    "\"" + cf.get() + "\" " + " ;";
+                    "\"" + cf.get() + "\";";
             System.out.println("\t|->> "+sql);
             ResultSet rs = this.stmt.executeQuery(sql);
             System.out.println("\t|-searchTC query executed");
@@ -445,7 +443,7 @@ public class DAOClass implements DAOInterface{
     public void destroy(Nickname nickname) throws NickNotDBEx, SQLException{
         this.openConn();
         String sql = "SELECT * FROM user where nick=  " +
-                "\"" + nickname.get() + "\" " + " ;";
+                "\"" + nickname.get() + "\";";
         System.out.println("\t|->> "+sql);
         ResultSet rs = this.stmt.executeQuery(sql);
         if(!rs.first()) throw new NickNotDBEx("nickname not found");
@@ -456,29 +454,29 @@ public class DAOClass implements DAOInterface{
         int answ_id = rs.getInt(6);
 
         String sqlDate = "DELETE FROM dateevent WHERE nick =" +
-                "\"" + nickname.get() + "\" " + " ;";
+                "\"" + nickname.get() + "\";";
         System.out.println("\t|->> "+sqlDate);
         this.stmt.executeQuery(sqlDate);
         System.out.println("\t|-removeDataEvent query executed");
 
         String sqlPubD = "DELETE FROM publicdata where taxCode = " +
-                "\"" + tc + "\" " + " ;";
+                "\"" + tc + "\";";
         System.out.println("\t|->> "+sqlPubD);
         this.stmt.executeQuery(sqlPubD);
 
         String sqlPrD = "DELETE FROM privatedata where idPrD = " +
-                "\"" + prD_id + "\" " + " ;";
+                "\"" + prD_id + "\";";
         System.out.println("\t|->> "+sqlPrD);
         this.stmt.executeQuery(sqlPrD);
 
         String sqlAnsw = "DELETE FROM answers where idAnsw = " +
-                "\"" + answ_id + "\" " + " ;";
+                "\"" + answ_id + "\";";
         System.out.println("\t|->> "+sqlAnsw);
         this.stmt.executeQuery(sqlAnsw);
 
         //Ora distruggo l'istanza di Utente
         String sqlUs = "DELETE FROM user where nick = " +
-                "\"" + nickname.get() + "\" " + " ;";
+                "\"" + nickname.get() + "\";";
         System.out.println("\t|->> "+sqlUs);
         this.stmt.executeQuery(sqlUs);
         System.out.println("\t|-User destroy query executed");
@@ -503,7 +501,7 @@ public class DAOClass implements DAOInterface{
         String oggi = gregCalToString(today);
 
         String sql = "SELECT nick FROM dateevent where idDate<= " +
-                "\"" + oggi + "\" " + " ;";
+                "\"" + oggi + "\";";
         System.out.println("\t|->> "+sql);
         ResultSet rs = this.stmt.executeQuery(sql);
         System.out.println("\t|-deleteByDeamon query executed");
@@ -563,7 +561,7 @@ public class DAOClass implements DAOInterface{
     public void removeDataEvent(Nickname nick) throws SQLException{
         this.openConn();
         String sql = "DELETE FROM dateevent WHERE nick =" +
-                "\"" + nick.get() + "\" " + " ;";
+                "\"" + nick.get() + "\";";
         System.out.println("\t|->> "+sql);
         this.stmt.executeQuery(sql);
         System.out.println("\t|-removeDataEvent query executed");

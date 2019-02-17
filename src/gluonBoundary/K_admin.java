@@ -61,8 +61,6 @@ public class K_admin implements Initializable{
     //bottom bar
     @FXML
     Label outLabel;
-    @FXML
-    ProgressBar progress;
 
     /*** Class Attribute ***/
     private SystemInterface sysInt = new FacadeSubSystem();

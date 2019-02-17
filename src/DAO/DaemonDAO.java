@@ -44,14 +44,14 @@ public class DaemonDAO implements Runnable{
                     Thread.sleep(1000);
                     Date todayDay = GregorianCalendar.getInstance().getTime();
                     GregorianCalendar gcFutureDate = this.dao.nextDeleteSession();
-                    System.out.println("DaemonDAO next delete is: " + gregCalToString(gcFutureDate)+" at 2:00 AM");
+                    System.out.println("\t###@@@ >> DaemonDAO next delete is: " + gregCalToString(gcFutureDate)+" at 2:00 AM");
 
                     GregorianCalendar gc = new GregorianCalendar(2000, 01, 01);    //serve solo a generare un oggetto
                     gc.setTime(GregorianCalendar.getInstance().getTime());
-                    System.out.println("DaemonDAO today is is: " + gregCalToString(gc));
+                    System.out.println("\t###@@@ >> DaemonDAO today is is: " + gregCalToString(gc));
 
                     long deltaTime = getDateDiff(gcFutureDate.getTime(), todayDay, TimeUnit.MILLISECONDS);
-                    System.out.println("DaemonDAO go to sleap for: " + deltaTime);
+                    System.out.println("\t###@@@ >> DaemonDAO go to sleap for: " + deltaTime+"ms");
                     if(deltaTime <= 0) break restartSleep;
                     Thread.sleep(deltaTime);
                     break restartSleep;

@@ -60,8 +60,6 @@ public class K_other implements Initializable{
     //bottom bar
     @FXML
     private Label outLabel;
-    @FXML
-    private ProgressBar progress;
 
     /*** Class Attribute ***/
     private SystemInterface sysInt = new FacadeSubSystem();
