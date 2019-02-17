@@ -5,12 +5,12 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="ISPW_Project" />
+          <element id="dir-copy" path="$USER_HOME$/Scrivania/apache-tomcat-9.0.14" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="mariadb" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="ISPW_Project/web/Web" />
       <element id="javaee-facet-resources" facet="ISPW_Project/web/Web" />
     </root>
   </artifact>
