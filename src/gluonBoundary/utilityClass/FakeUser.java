@@ -15,8 +15,8 @@ public class FakeUser implements Runnable{
 
     FacadeSubSystem facade = new FacadeSubSystem();
 
-    private int timeMin=1000;
-    private int timeMax=5000;
+    private int timeMin=10000;
+    private int timeMax=15000;
 
     private int fakeType=0;
 
