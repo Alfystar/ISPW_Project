@@ -12,7 +12,7 @@ public class Avatar{
     private Image myIcon;
     private int indexImage;
 
-    ReadWriteLock lock = new ReentrantReadWriteLock();
+    private ReadWriteLock lock = new ReentrantReadWriteLock();
 
 
     public Avatar(){

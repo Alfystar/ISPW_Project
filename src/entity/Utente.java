@@ -1,6 +1,9 @@
 package entity;
 
 
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 public class Utente{
     private BasicUserInfo pubD;
     private RestrictUserInfo prD;
@@ -8,6 +11,8 @@ public class Utente{
     private UserStatus userStatus;
     private Roles roles;
     private Questionary questionary;
+
+    private ReadWriteLock lockUserStatus = new ReentrantReadWriteLock();
 
 
     public Utente(BasicUserInfo pubD, RestrictUserInfo prD, PW pw, Roles roles, Questionary questionary){
@@ -49,11 +54,22 @@ public class Utente{
     }
 
     public UserStatus getStatus(){
-        return this.userStatus;
+
+        try{
+            lockUserStatus.readLock().lock();
+            return this.userStatus;
+        }finally{
+            lockUserStatus.readLock().unlock();
+        }
     }
 
     public void setStatus(UserStatus newStatus){
-        this.userStatus = newStatus;
+        try{
+            lockUserStatus.writeLock().lock();
+            this.userStatus = newStatus;
+        }finally{
+            lockUserStatus.writeLock().unlock();
+        }
     }
 
     public Boolean changePw(PW oldPw, PW newPw){

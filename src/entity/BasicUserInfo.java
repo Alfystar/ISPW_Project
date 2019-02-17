@@ -4,6 +4,8 @@ import bean.PrototypeData;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class BasicUserInfo implements PrototypeData{
     private Name name;
@@ -15,6 +17,9 @@ public class BasicUserInfo implements PrototypeData{
     private Avatar avatar;
     private Email email;
     private Nickname nickname;
+
+    private ReadWriteLock lockGender = new ReentrantReadWriteLock();
+
 
     //Costruttore con i parametri di UserInfoRegister relativi a BasicUserInfo
     public BasicUserInfo(Name name, Name surname, TaxCode fiscalCode, Nickname nickname, Email email, GregorianCalendar birthday, Gender gender){
@@ -71,8 +76,22 @@ public class BasicUserInfo implements PrototypeData{
         return this.birthday;
     }
 
+    public void setGender(Gender g){
+        try{
+            lockGender.writeLock().lock();
+            this.gender = g;
+        }finally{
+            lockGender.writeLock().unlock();
+        }
+    }
+
     public Gender getGender(){
-        return this.gender;
+        try{
+            lockGender.readLock().lock();
+            return this.gender;
+        }finally{
+            lockGender.readLock().unlock();
+        }
     }
 
     public TaxCode getTC(){
