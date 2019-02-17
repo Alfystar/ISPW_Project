@@ -1,0 +1,199 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Utente</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">entity</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Utente (entity)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Utente</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92,9%
+  </span>
+  <span class="absValue">
+    (13/ 14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (40/ 50)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package entity;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;import java.util.concurrent.locks.ReadWriteLock;
+<i>5</i>&nbsp;import java.util.concurrent.locks.ReentrantReadWriteLock;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;public class Utente{
+<i>8</i>&nbsp;    private BasicUserInfo pubD;
+<i>9</i>&nbsp;    private RestrictUserInfo prD;
+<i>10</i>&nbsp;    private PW pw;
+<i>11</i>&nbsp;    private UserStatus userStatus;
+<i>12</i>&nbsp;    private Roles roles;
+<i>13</i>&nbsp;    private Questionary questionary;
+<i>14</i>&nbsp;
+<b class="fc"><i>15</i>&nbsp;    private ReadWriteLock lockUserStatus = new ReentrantReadWriteLock();</b>
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;
+<b class="fc"><i>18</i>&nbsp;    public Utente(BasicUserInfo pubD, RestrictUserInfo prD, PW pw, Roles roles, Questionary questionary){</b>
+<b class="fc"><i>19</i>&nbsp;        this.pubD = (BasicUserInfo) pubD.clone();</b>
+<b class="fc"><i>20</i>&nbsp;        this.prD = (RestrictUserInfo) prD.clone();</b>
+<b class="fc"><i>21</i>&nbsp;        this.pw = new PW(pw);</b>
+<b class="fc"><i>22</i>&nbsp;        this.roles = new Roles(roles);</b>
+<b class="fc"><i>23</i>&nbsp;        this.questionary = new Questionary(questionary);</b>
+<b class="fc"><i>24</i>&nbsp;        this.userStatus = UserStatus.ACTIVE;</b>
+<b class="fc"><i>25</i>&nbsp;    }</b>
+<i>26</i>&nbsp;
+<b class="fc"><i>27</i>&nbsp;    public Utente(BasicUserInfo pubD, RestrictUserInfo prD, PW pw, Roles roles, UserStatus userStatus, Questionary questionary){</b>
+<b class="fc"><i>28</i>&nbsp;        this.pubD = (BasicUserInfo) pubD.clone();</b>
+<b class="fc"><i>29</i>&nbsp;        this.prD = (RestrictUserInfo) prD.clone();</b>
+<b class="fc"><i>30</i>&nbsp;        this.pw = new PW(pw);</b>
+<b class="fc"><i>31</i>&nbsp;        this.roles = new Roles(roles);</b>
+<b class="fc"><i>32</i>&nbsp;        this.questionary = new Questionary(questionary);</b>
+<b class="fc"><i>33</i>&nbsp;        this.userStatus = userStatus;</b>
+<b class="fc"><i>34</i>&nbsp;    }</b>
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    public BasicUserInfo getPublic(){
+<b class="fc"><i>37</i>&nbsp;        return this.pubD;</b>
+<i>38</i>&nbsp;    }
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    public RestrictUserInfo getPrivate(){
+<b class="fc"><i>41</i>&nbsp;        return this.prD;</b>
+<i>42</i>&nbsp;    }
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    public Questionary getQuestionary(){
+<b class="fc"><i>45</i>&nbsp;        return this.questionary;</b>
+<i>46</i>&nbsp;    }
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    public Roles getRole(){
+<b class="fc"><i>49</i>&nbsp;        return this.roles;</b>
+<i>50</i>&nbsp;    }
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;    public PW getPw(){
+<b class="fc"><i>53</i>&nbsp;        return this.pw;</b>
+<i>54</i>&nbsp;    }
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    public UserStatus getStatus(){
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;        try{
+<b class="fc"><i>59</i>&nbsp;            lockUserStatus.readLock().lock();</b>
+<b class="fc"><i>60</i>&nbsp;            return this.userStatus;</b>
+<i>61</i>&nbsp;        }finally{
+<b class="fc"><i>62</i>&nbsp;            lockUserStatus.readLock().unlock();</b>
+<b class="nc"><i>63</i>&nbsp;        }</b>
+<i>64</i>&nbsp;    }
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;    public void setStatus(UserStatus newStatus){
+<i>67</i>&nbsp;        try{
+<b class="fc"><i>68</i>&nbsp;            lockUserStatus.writeLock().lock();</b>
+<b class="fc"><i>69</i>&nbsp;            this.userStatus = newStatus;</b>
+<i>70</i>&nbsp;        }finally{
+<b class="fc"><i>71</i>&nbsp;            lockUserStatus.writeLock().unlock();</b>
+<b class="fc"><i>72</i>&nbsp;        }</b>
+<b class="fc"><i>73</i>&nbsp;    }</b>
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    public Boolean changePw(PW oldPw, PW newPw){
+<b class="fc"><i>76</i>&nbsp;        if(oldPw.getPw().equals(this.pw.getPw())){</b>
+<b class="fc"><i>77</i>&nbsp;            this.pw.setPw(newPw.getPw());</b>
+<b class="fc"><i>78</i>&nbsp;            return true;</b>
+<i>79</i>&nbsp;        }else{
+<b class="fc"><i>80</i>&nbsp;            return false;</b>
+<i>81</i>&nbsp;        }
+<i>82</i>&nbsp;    }
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;    public Boolean comparePw(PW password){
+<b class="fc"><i>85</i>&nbsp;        return password.getPw().equals(this.pw.getPw());</b>
+<i>86</i>&nbsp;    }
+<i>87</i>&nbsp;
+<i>88</i>&nbsp;    public String printUser(){
+<i>89</i>&nbsp;        String out;
+<b class="nc"><i>90</i>&nbsp;        out = &quot;Utente nick: &quot; + this.pubD.getNick().get() + &quot;, Email:&quot; + this.pubD.getEmail().get() + &quot;, CF:&quot; + this.pubD.getTC().get() + &quot;\n&quot;;</b>
+<b class="nc"><i>91</i>&nbsp;        out += &quot;\t##BasicUserInfo##\n&quot; + this.pubD.toString();</b>
+<b class="nc"><i>92</i>&nbsp;        out += &quot;\t##RestrictUserInfo##\n&quot; + this.prD.toString();</b>
+<b class="nc"><i>93</i>&nbsp;        out += &quot;\t##Ruolo##\n&quot; + this.roles;</b>
+<b class="nc"><i>94</i>&nbsp;        out += &quot;UserStatus:&quot; + this.userStatus.toString() + &quot;; PW:&quot; + this.pw.getPw() + &quot;\n&quot;;</b>
+<b class="nc"><i>95</i>&nbsp;        out += &quot;\t**Answare at Question is:\n&quot; + this.questionary.getAnswersList();</b>
+<b class="nc"><i>96</i>&nbsp;        return out;</b>
+<i>97</i>&nbsp;    }
+<i>98</i>&nbsp;
+<i>99</i>&nbsp;    @Override
+<i>100</i>&nbsp;    public String toString(){
+<b class="fc"><i>101</i>&nbsp;        return &quot;UserNick: &quot; + this.pubD.getNick().get() + &quot;, Email:&quot; + this.pubD.getEmail().get() + &quot;, CF:&quot; + this.pubD.getTC().get() + &quot;\n&quot;;</b>
+<i>102</i>&nbsp;    }
+<i>103</i>&nbsp;
+<i>104</i>&nbsp;    @Override
+<i>105</i>&nbsp;    public boolean equals(Object o){
+<i>106</i>&nbsp;        try{
+<b class="fc"><i>107</i>&nbsp;            Utente u = (Utente) o;</b>
+<b class="fc"><i>108</i>&nbsp;            return (this.pubD.equals(u.pubD) &amp;&amp; this.prD.equals(u.prD) &amp;&amp;</b>
+<b class="fc"><i>109</i>&nbsp;                    this.pw.equals(u.pw) &amp;&amp; this.userStatus.equals(u.userStatus) &amp;&amp;</b>
+<b class="fc"><i>110</i>&nbsp;                    this.roles.equals(u.roles) &amp;&amp; this.questionary.equals(u.questionary));</b>
+<b class="nc"><i>111</i>&nbsp;        }catch(ClassCastException e){</b>
+<b class="nc"><i>112</i>&nbsp;            return false;</b>
+<i>113</i>&nbsp;        }
+<i>114</i>&nbsp;    }
+<i>115</i>&nbsp;
+<i>116</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-02-17 15:49</div>
+</div>
+</body>
+</html>

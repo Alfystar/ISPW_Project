@@ -1,0 +1,83 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: DAOInterface</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">control</a> ]
+</div>
+
+<h1>Coverage Summary for Class: DAOInterface (control)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">DAOInterface</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package control;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import bean.UserInfoRegister;
+<i>4</i>&nbsp;import entity.Nickname;
+<i>5</i>&nbsp;import entity.TaxCode;
+<i>6</i>&nbsp;import entity.Utente;
+<i>7</i>&nbsp;import exceptions.NickNotDBEx;
+<i>8</i>&nbsp;import exceptions.WrongParameters;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import java.sql.SQLException;
+<i>11</i>&nbsp;import java.util.GregorianCalendar;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;public interface DAOInterface{
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    Utente createUser(UserInfoRegister infoReg) throws WrongParameters;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    Utente loadFromDB(Nickname nickname) throws NickNotDBEx, SQLException;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    void saveUser(Utente user) throws SQLException;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    void updateUser(Utente user) throws SQLException, NickNotDBEx;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    Boolean searchNickDB(Nickname nickname) throws SQLException;
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    Boolean searchTC(TaxCode cf) throws SQLException;
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    void destroy(Nickname nickname) throws NickNotDBEx, SQLException;
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    void deleteNTime(Nickname nickname, GregorianCalendar date) throws SQLException;
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    void removeDataEvent(Nickname nick) throws SQLException;
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    void changeHost(String ip);
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    String getLastHost();
+<i>36</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-02-17 15:49</div>
+</div>
+</body>
+</html>

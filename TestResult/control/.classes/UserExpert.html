@@ -1,0 +1,314 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UserExpert</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">control</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UserExpert (control)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserExpert</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    81,8%
+  </span>
+  <span class="absValue">
+    (18/ 22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    60,8%
+  </span>
+  <span class="absValue">
+    (73/ 120)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package control;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import DAO.DAOClass;
+<i>4</i>&nbsp;import bean.UserInfoRegister;
+<i>5</i>&nbsp;import entity.*;
+<i>6</i>&nbsp;import exceptions.*;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import java.sql.SQLException;
+<i>9</i>&nbsp;import java.util.GregorianCalendar;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import static java.lang.Boolean.FALSE;
+<i>12</i>&nbsp;import static java.lang.Boolean.TRUE;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;public class UserExpert{
+<i>15</i>&nbsp;    private Queue coda;
+<i>16</i>&nbsp;    private DAOInterface daoFace;
+<i>17</i>&nbsp;
+<b class="fc"><i>18</i>&nbsp;    public UserExpert(){</b>
+<i>19</i>&nbsp;        try{
+<b class="fc"><i>20</i>&nbsp;            this.coda = Queue.getQueueSingletonInstance();</b>
+<b class="fc"><i>21</i>&nbsp;            this.daoFace = new DAOClass();</b>
+<b class="nc"><i>22</i>&nbsp;        }catch(ClassNotFoundException c){</b>
+<b class="nc"><i>23</i>&nbsp;            c.printStackTrace();</b>
+<b class="nc"><i>24</i>&nbsp;            System.exit(-1);</b>
+<b class="fc"><i>25</i>&nbsp;        }</b>
+<b class="fc"><i>26</i>&nbsp;    }</b>
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    /*
+<i>29</i>&nbsp;    Cerca un utente, o la prende dalla coda o
+<i>30</i>&nbsp;    lo materializza in ram col dao e poi lo ritorna
+<i>31</i>&nbsp;     */
+<i>32</i>&nbsp;    public Utente getUser(Nickname nk) throws UserNotExistEx{
+<i>33</i>&nbsp;        try{
+<b class="fc"><i>34</i>&nbsp;            return searchUserRam(nk);</b>
+<b class="fc"><i>35</i>&nbsp;        }catch(NickNotQEx qEx){</b>
+<b class="fc"><i>36</i>&nbsp;            System.err.println(qEx.getMessage());</b>
+<i>37</i>&nbsp;        }
+<i>38</i>&nbsp;        try{
+<b class="fc"><i>39</i>&nbsp;            return loadUserDB(nk);</b>
+<b class="fc"><i>40</i>&nbsp;        }catch(NickNotDBEx dbEx){</b>
+<b class="fc"><i>41</i>&nbsp;            throw new UserNotExistEx(&quot;getUser failed&quot;, dbEx.getCause());</b>
+<b class="nc"><i>42</i>&nbsp;        }catch(SQLException se){</b>
+<b class="nc"><i>43</i>&nbsp;            se.printStackTrace();</b>
+<b class="nc"><i>44</i>&nbsp;            throw new UserNotExistEx(&quot;getUser failed&quot;, se.getCause());</b>
+<i>45</i>&nbsp;        }
+<i>46</i>&nbsp;    }
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    public Boolean isNickExist(Nickname nk) throws UserNotExistEx{
+<i>49</i>&nbsp;        //todo implementarla con due thread
+<i>50</i>&nbsp;        try{
+<b class="fc"><i>51</i>&nbsp;            return isNickExistRam(nk);</b>
+<b class="fc"><i>52</i>&nbsp;        }catch(NickNotQEx qEx){</b>
+<b class="fc"><i>53</i>&nbsp;            System.err.println(qEx.getMessage());</b>
+<i>54</i>&nbsp;        }
+<i>55</i>&nbsp;        try{
+<b class="fc"><i>56</i>&nbsp;            return isNickExistDB(nk);</b>
+<b class="nc"><i>57</i>&nbsp;        }catch(NickNotDBEx dbEx){</b>
+<b class="nc"><i>58</i>&nbsp;            throw new UserNotExistEx(&quot;Nick not present in DB&quot;, dbEx.getCause());</b>
+<i>59</i>&nbsp;        }
+<i>60</i>&nbsp;    }
+<i>61</i>&nbsp;
+<i>62</i>&nbsp;    public Boolean doesTaxCodeExist(TaxCode tc) throws UserNotExistEx{
+<i>63</i>&nbsp;        //todo implementarla con due thread
+<i>64</i>&nbsp;        try{
+<b class="fc"><i>65</i>&nbsp;            return isTCExistRam(tc);</b>
+<b class="fc"><i>66</i>&nbsp;        }catch(TCNotExistQEx qEx){</b>
+<b class="fc"><i>67</i>&nbsp;            System.err.println(qEx.getMessage());</b>
+<i>68</i>&nbsp;        }
+<i>69</i>&nbsp;        try{
+<b class="fc"><i>70</i>&nbsp;            return this.daoFace.searchTC(tc);</b>
+<b class="nc"><i>71</i>&nbsp;        }catch(SQLException dbEx){</b>
+<b class="nc"><i>72</i>&nbsp;            throw new UserNotExistEx(&quot;TaxCode not present in DB&quot;, dbEx.getCause());</b>
+<i>73</i>&nbsp;        }
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    }
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;    public void deleteUser(Nickname nk) throws UserNotExistEx{
+<i>78</i>&nbsp;        try{
+<b class="fc"><i>79</i>&nbsp;            Utente user = getUser(nk);</b>
+<b class="fc"><i>80</i>&nbsp;            user.setStatus(UserStatus.CANCELLED);</b>
+<i>81</i>&nbsp;
+<b class="fc"><i>82</i>&nbsp;            GregorianCalendar cal = new GregorianCalendar();</b>
+<b class="fc"><i>83</i>&nbsp;            cal.add(GregorianCalendar.YEAR, 10);</b>
+<b class="fc"><i>84</i>&nbsp;            daoFace.deleteNTime(nk, cal);</b>
+<i>85</i>&nbsp;            try{
+<b class="fc"><i>86</i>&nbsp;                daoFace.updateUser(user);</b>
+<b class="nc"><i>87</i>&nbsp;            }catch(NickNotDBEx e){</b>
+<b class="nc"><i>88</i>&nbsp;                throw new UserNotExistEx(e);</b>
+<b class="fc"><i>89</i>&nbsp;            }</b>
+<b class="fc"><i>90</i>&nbsp;            coda.remove(nk);</b>
+<b class="nc"><i>91</i>&nbsp;        }catch(SQLException se){</b>
+<b class="nc"><i>92</i>&nbsp;            throw new UserNotExistEx(&quot;Nick not present in DB&quot;, se.getCause());</b>
+<b class="fc"><i>93</i>&nbsp;        }</b>
+<b class="fc"><i>94</i>&nbsp;    }</b>
+<i>95</i>&nbsp;
+<i>96</i>&nbsp;    public void destroyUser(Nickname nk) throws UserNotExistEx{
+<i>97</i>&nbsp;        try{
+<b class="fc"><i>98</i>&nbsp;            daoFace.destroy(nk);</b>
+<b class="fc"><i>99</i>&nbsp;            coda.remove(nk);</b>
+<b class="nc"><i>100</i>&nbsp;        }catch(NickNotDBEx dbEx){</b>
+<b class="nc"><i>101</i>&nbsp;            throw new UserNotExistEx(&quot;destroyUser failed&quot;, dbEx.getCause());</b>
+<b class="nc"><i>102</i>&nbsp;        }catch(SQLException se){</b>
+<b class="nc"><i>103</i>&nbsp;            se.printStackTrace();</b>
+<b class="fc"><i>104</i>&nbsp;        }</b>
+<b class="fc"><i>105</i>&nbsp;    }</b>
+<i>106</i>&nbsp;
+<i>107</i>&nbsp;    public void storeUser(Utente us){
+<i>108</i>&nbsp;        try{
+<b class="fc"><i>109</i>&nbsp;            daoFace.updateUser(us);</b>
+<b class="fc"><i>110</i>&nbsp;            addUserQueue(us);</b>
+<b class="nc"><i>111</i>&nbsp;        }catch(SQLException|NickNotDBEx se){</b>
+<b class="nc"><i>112</i>&nbsp;            se.printStackTrace();</b>
+<b class="fc"><i>113</i>&nbsp;        }</b>
+<b class="fc"><i>114</i>&nbsp;    }</b>
+<i>115</i>&nbsp;
+<i>116</i>&nbsp;    public void createUser(UserInfoRegister userInfo) throws WrongParameters{
+<b class="fc"><i>117</i>&nbsp;        Utente user = this.daoFace.createUser(userInfo);</b>
+<b class="fc"><i>118</i>&nbsp;        coda.add(user);</b>
+<b class="fc"><i>119</i>&nbsp;    }</b>
+<i>120</i>&nbsp;
+<i>121</i>&nbsp;    /**   Metodo a solo fine di TEST per junit   **/
+<i>122</i>&nbsp;    public void createUserAll(Utente user)throws SQLException
+<i>123</i>&nbsp;    {
+<b class="fc"><i>124</i>&nbsp;        this.daoFace.saveUser(user);</b>
+<b class="fc"><i>125</i>&nbsp;        coda.add(user);</b>
+<b class="fc"><i>126</i>&nbsp;    }</b>
+<i>127</i>&nbsp;
+<i>128</i>&nbsp;    public void forgottenPassword(Nickname nick, Questionary answers, PW newPw) throws UserNotExistEx{
+<b class="fc"><i>129</i>&nbsp;        Utente user = this.getUser(nick);</b>
+<b class="fc"><i>130</i>&nbsp;        Questionary correctAnsw = user.getQuestionary();</b>
+<b class="fc"><i>131</i>&nbsp;        if(correctAnsw.checkAnswers(answers, 4)){</b>
+<b class="fc"><i>132</i>&nbsp;            user.changePw(user.getPw(), newPw);</b>
+<b class="fc"><i>133</i>&nbsp;            this.storeUser(user);</b>
+<i>134</i>&nbsp;        }else{
+<b class="nc"><i>135</i>&nbsp;            System.out.println(&quot;Le risposte fornite sono sbagliate&quot;);</b>
+<i>136</i>&nbsp;        }
+<b class="fc"><i>137</i>&nbsp;    }</b>
+<i>138</i>&nbsp;
+<i>139</i>&nbsp;    public void changeUserStatus(Nickname nick, UserStatus newUsStat) throws UserNotExistEx{
+<b class="fc"><i>140</i>&nbsp;        Utente user = this.getUser(nick);</b>
+<b class="fc"><i>141</i>&nbsp;        user.setStatus(newUsStat);</b>
+<b class="fc"><i>142</i>&nbsp;        this.storeUser(user);</b>
+<b class="fc"><i>143</i>&nbsp;    }</b>
+<i>144</i>&nbsp;
+<i>145</i>&nbsp;
+<i>146</i>&nbsp;    public void setAvatar(Nickname nk, int id) throws UserNotExistEx{
+<b class="fc"><i>147</i>&nbsp;        Utente us = this.getUser(nk);</b>
+<b class="fc"><i>148</i>&nbsp;        us.getPublic().getAvatar().setMyIcon(id);</b>
+<b class="fc"><i>149</i>&nbsp;        this.storeUser(us);</b>
+<i>150</i>&nbsp;
+<b class="fc"><i>151</i>&nbsp;    }</b>
+<i>152</i>&nbsp;
+<i>153</i>&nbsp;    public void reActiveProfile(Nickname nk) throws UserNotExistEx, SQLException{
+<b class="nc"><i>154</i>&nbsp;        Utente us = this.getUser(nk);</b>
+<b class="nc"><i>155</i>&nbsp;        us.setStatus(UserStatus.ACTIVE);</b>
+<b class="nc"><i>156</i>&nbsp;        daoFace.removeDataEvent(nk);</b>
+<b class="nc"><i>157</i>&nbsp;        this.storeUser(us);</b>
+<b class="nc"><i>158</i>&nbsp;    }</b>
+<i>159</i>&nbsp;
+<i>160</i>&nbsp;    public void reActiveProfile(Utente us) throws SQLException{
+<b class="nc"><i>161</i>&nbsp;        us.setStatus(UserStatus.ACTIVE);</b>
+<b class="nc"><i>162</i>&nbsp;        daoFace.removeDataEvent(us.getPublic().getNick());</b>
+<b class="nc"><i>163</i>&nbsp;        this.storeUser(us);</b>
+<b class="nc"><i>164</i>&nbsp;    }</b>
+<i>165</i>&nbsp;
+<i>166</i>&nbsp;    private Utente loadUserDB(Nickname nk) throws NickNotDBEx, SQLException{
+<i>167</i>&nbsp;        try{
+<b class="fc"><i>168</i>&nbsp;            Utente us = daoFace.loadFromDB(nk);</b>
+<b class="fc"><i>169</i>&nbsp;            addUserQueue(us);</b>
+<b class="fc"><i>170</i>&nbsp;            return us;</b>
+<b class="fc"><i>171</i>&nbsp;        }catch(NickNotDBEx e){</b>
+<b class="fc"><i>172</i>&nbsp;            throw new NickNotDBEx(&quot;Nickname not in DB&quot;);</b>
+<i>173</i>&nbsp;        }
+<i>174</i>&nbsp;    }
+<i>175</i>&nbsp;
+<i>176</i>&nbsp;    private Utente searchUserRam(Nickname nk) throws NickNotQEx{
+<i>177</i>&nbsp;        try{
+<b class="fc"><i>178</i>&nbsp;            return coda.find(nk);</b>
+<b class="fc"><i>179</i>&nbsp;        }catch(NickNotQEx qEx){</b>
+<b class="fc"><i>180</i>&nbsp;            System.err.println(&quot;Search in Queue failed.&quot;);</b>
+<b class="fc"><i>181</i>&nbsp;            throw qEx;</b>
+<i>182</i>&nbsp;        }
+<i>183</i>&nbsp;    }
+<i>184</i>&nbsp;
+<i>185</i>&nbsp;    private Boolean isNickExistDB(Nickname nk) throws NickNotDBEx{
+<i>186</i>&nbsp;        try{
+<b class="fc"><i>187</i>&nbsp;            return daoFace.searchNickDB(nk);</b>
+<b class="nc"><i>188</i>&nbsp;        }catch(SQLException sq){</b>
+<b class="nc"><i>189</i>&nbsp;            System.err.println(&quot;SQL error&quot;);</b>
+<b class="nc"><i>190</i>&nbsp;            throw new NickNotDBEx(sq);</b>
+<b class="nc"><i>191</i>&nbsp;        }catch(Exception e){</b>
+<b class="nc"><i>192</i>&nbsp;            System.err.println(&quot;Java error during search&quot;);</b>
+<b class="nc"><i>193</i>&nbsp;            throw new NickNotDBEx(e);</b>
+<i>194</i>&nbsp;        }
+<i>195</i>&nbsp;    }
+<i>196</i>&nbsp;
+<i>197</i>&nbsp;    private Boolean isNickExistRam(Nickname nk) throws NickNotQEx{
+<b class="fc"><i>198</i>&nbsp;        if(coda.find(nk) == null) return FALSE;</b>
+<b class="fc"><i>199</i>&nbsp;        else return TRUE;</b>
+<i>200</i>&nbsp;    }
+<i>201</i>&nbsp;
+<i>202</i>&nbsp;    private Boolean isTCExistRam(TaxCode tc) throws TCNotExistQEx{
+<b class="fc"><i>203</i>&nbsp;        if(coda.find(tc) == null) return FALSE;</b>
+<b class="fc"><i>204</i>&nbsp;        else return TRUE;</b>
+<i>205</i>&nbsp;    }
+<i>206</i>&nbsp;
+<i>207</i>&nbsp;    private void addUserQueue(Utente user){
+<b class="fc"><i>208</i>&nbsp;        coda.add(user);</b>
+<b class="fc"><i>209</i>&nbsp;    }</b>
+<i>210</i>&nbsp;
+<i>211</i>&nbsp;    private GregorianCalendar stringToGregCal(String s){
+<b class="nc"><i>212</i>&nbsp;        String[] splitDate = s.split(&quot;-&quot;);</b>
+<b class="nc"><i>213</i>&nbsp;        int year = Integer.parseInt(splitDate[0]);</b>
+<b class="nc"><i>214</i>&nbsp;        int month = Integer.parseInt(splitDate[1]);</b>
+<b class="nc"><i>215</i>&nbsp;        int days = Integer.parseInt(splitDate[2]);</b>
+<b class="nc"><i>216</i>&nbsp;        GregorianCalendar gc = new GregorianCalendar(year, month - 1, days);</b>
+<b class="nc"><i>217</i>&nbsp;        return gc;</b>
+<i>218</i>&nbsp;
+<i>219</i>&nbsp;    }
+<i>220</i>&nbsp;
+<i>221</i>&nbsp;    private String gregCalToString(GregorianCalendar gc){
+<b class="nc"><i>222</i>&nbsp;        int anno = gc.get(GregorianCalendar.YEAR);</b>
+<b class="nc"><i>223</i>&nbsp;        int mese = gc.get(GregorianCalendar.MONTH) + 1;</b>
+<b class="nc"><i>224</i>&nbsp;        int giorno = gc.get(GregorianCalendar.DATE);</b>
+<b class="nc"><i>225</i>&nbsp;        String s = anno + &quot;-&quot; + mese + &quot;-&quot; + giorno;</b>
+<b class="nc"><i>226</i>&nbsp;        return s;</b>
+<i>227</i>&nbsp;    }
+<i>228</i>&nbsp;
+<i>229</i>&nbsp;
+<i>230</i>&nbsp;    //todo: scrivere un metodo privato che verifichi che i parametri di infoRegister siano adatti
+<i>231</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-02-17 15:49</div>
+</div>
+</body>
+</html>

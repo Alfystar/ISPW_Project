@@ -1,0 +1,180 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Config</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">DAO</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Config (DAO)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Config</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    71,4%
+  </span>
+  <span class="absValue">
+    (5/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    36,4%
+  </span>
+  <span class="absValue">
+    (20/ 55)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package DAO;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.io.*;
+<i>4</i>&nbsp;import java.util.Properties;
+<i>5</i>&nbsp;import java.util.concurrent.locks.ReadWriteLock;
+<i>6</i>&nbsp;import java.util.concurrent.locks.ReentrantReadWriteLock;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;public class Config{
+<b class="fc"><i>9</i>&nbsp;    ReadWriteLock lock = new ReentrantReadWriteLock();</b>
+<i>10</i>&nbsp;    private String confFilePath;
+<i>11</i>&nbsp;    private Properties configFile;
+<i>12</i>&nbsp;
+<b class="fc"><i>13</i>&nbsp;    private static Config confSingleton = new Config();</b>
+<i>14</i>&nbsp;
+<b class="fc"><i>15</i>&nbsp;    public static Config getInstance(){ return confSingleton; }</b>
+<i>16</i>&nbsp;
+<b class="fc"><i>17</i>&nbsp;    private Config(){</b>
+<b class="fc"><i>18</i>&nbsp;        configFile = new Properties();</b>
+<b class="fc"><i>19</i>&nbsp;        confFilePath=System.getProperty(&quot;user.home&quot;) + &quot;/fersa/config.properties&quot;;</b>
+<i>20</i>&nbsp;        try{
+<i>21</i>&nbsp;
+<b class="fc"><i>22</i>&nbsp;            configFile.load(new FileInputStream(confFilePath));</b>
+<i>23</i>&nbsp;
+<b class="nc"><i>24</i>&nbsp;        }catch (FileNotFoundException e){</b>
+<b class="nc"><i>25</i>&nbsp;            createFile();</b>
+<i>26</i>&nbsp;            try{
+<b class="nc"><i>27</i>&nbsp;                configFile.load(new FileInputStream(confFilePath));</b>
+<b class="nc"><i>28</i>&nbsp;            } catch(IOException eta){</b>
+<b class="nc"><i>29</i>&nbsp;                System.err.println(&quot;Non si vuole creare il file, attuale path: &quot;+ confFilePath);</b>
+<b class="nc"><i>30</i>&nbsp;                eta.printStackTrace();</b>
+<b class="nc"><i>31</i>&nbsp;            }</b>
+<i>32</i>&nbsp;        }
+<b class="nc"><i>33</i>&nbsp;        catch(IOException eta){</b>
+<b class="nc"><i>34</i>&nbsp;            eta.printStackTrace();</b>
+<b class="fc"><i>35</i>&nbsp;        }</b>
+<b class="fc"><i>36</i>&nbsp;    }</b>
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    public static void main(String[] argv){
+<b class="nc"><i>39</i>&nbsp;        Config cfg = new Config();</b>
+<b class="nc"><i>40</i>&nbsp;        System.out.println(cfg.getProperty(&quot;dbHost&quot;));</b>
+<b class="nc"><i>41</i>&nbsp;        cfg.setProperty(&quot;dbHost&quot;, &quot;10.200.146.10&quot;);</b>
+<b class="nc"><i>42</i>&nbsp;        System.out.println(cfg.getProperty(&quot;dbHost&quot;));</b>
+<i>43</i>&nbsp;
+<b class="nc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    public String getProperty(String key){
+<b class="fc"><i>47</i>&nbsp;        lock.readLock().lock();</b>
+<b class="fc"><i>48</i>&nbsp;        String value = this.configFile.getProperty(key);</b>
+<b class="fc"><i>49</i>&nbsp;        lock.readLock().unlock();</b>
+<b class="fc"><i>50</i>&nbsp;        return value;</b>
+<i>51</i>&nbsp;    }
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    public void setProperty(String prop, String value){
+<i>54</i>&nbsp;        try{
+<b class="fc"><i>55</i>&nbsp;            lock.writeLock().lock();</b>
+<b class="fc"><i>56</i>&nbsp;            configFile.load(new FileInputStream(confFilePath));</b>
+<b class="fc"><i>57</i>&nbsp;            configFile.setProperty(prop, value);</b>
+<b class="fc"><i>58</i>&nbsp;            configFile.store(new FileOutputStream(confFilePath), null);</b>
+<b class="nc"><i>59</i>&nbsp;        }catch (FileNotFoundException e){</b>
+<b class="nc"><i>60</i>&nbsp;            System.out.println(&quot;setProperty, file not found exception&quot;);</b>
+<b class="nc"><i>61</i>&nbsp;            createFile();</b>
+<i>62</i>&nbsp;            //setProperty(prop,value);
+<b class="nc"><i>63</i>&nbsp;        }catch(IOException ex){</b>
+<b class="nc"><i>64</i>&nbsp;            ex.printStackTrace();</b>
+<i>65</i>&nbsp;        }finally{
+<b class="fc"><i>66</i>&nbsp;            lock.writeLock().unlock();</b>
+<i>67</i>&nbsp;
+<b class="fc"><i>68</i>&nbsp;        }</b>
+<b class="fc"><i>69</i>&nbsp;    }</b>
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;    private void createFile()
+<i>72</i>&nbsp;    {
+<i>73</i>&nbsp;        try{
+<i>74</i>&nbsp;            //set the properties value
+<b class="nc"><i>75</i>&nbsp;            configFile.setProperty(&quot;dbHost&quot;, &quot;localhost&quot;);</b>
+<b class="nc"><i>76</i>&nbsp;            configFile.setProperty(&quot;dbuser&quot;, &quot;root&quot;);</b>
+<b class="nc"><i>77</i>&nbsp;            configFile.setProperty(&quot;dbpassword&quot;, &quot;0000&quot;);</b>
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;            //save properties to file sistem
+<b class="nc"><i>80</i>&nbsp;            File file = new File(System.getProperty(&quot;user.home&quot;),&quot;fersa&quot;);</b>
+<b class="nc"><i>81</i>&nbsp;            if (!file.exists()) {</b>
+<b class="nc"><i>82</i>&nbsp;                if (file.mkdir()) {</b>
+<b class="nc"><i>83</i>&nbsp;                    System.out.println(&quot;Directory is created!&quot;);</b>
+<i>84</i>&nbsp;                } else {
+<b class="nc"><i>85</i>&nbsp;                    System.out.println(&quot;Failed to create directory!&quot;);</b>
+<i>86</i>&nbsp;                }
+<i>87</i>&nbsp;            }
+<b class="nc"><i>88</i>&nbsp;            File myFile = new File(System.getProperty(&quot;user.home&quot;), &quot;fersa/config.properties&quot;);  //or &quot;user.home&quot;</b>
+<b class="nc"><i>89</i>&nbsp;            myFile.createNewFile();</b>
+<b class="nc"><i>90</i>&nbsp;            confFilePath=myFile.getPath();</b>
+<b class="nc"><i>91</i>&nbsp;            configFile.store(new FileOutputStream(myFile.getPath()), null);</b>
+<i>92</i>&nbsp;
+<b class="nc"><i>93</i>&nbsp;        }catch(IOException ex){</b>
+<b class="nc"><i>94</i>&nbsp;            ex.printStackTrace();</b>
+<b class="nc"><i>95</i>&nbsp;        }</b>
+<b class="nc"><i>96</i>&nbsp;    }</b>
+<i>97</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-02-17 15:49</div>
+</div>
+</body>
+</html>
