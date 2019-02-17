@@ -15,20 +15,34 @@ public class FakeUser implements Runnable{
 
     FacadeSubSystem facade = new FacadeSubSystem();
 
-    private int timeMin=10000;
-    private int timeMax=15000;
+    private int timeMin = 1000;
+    private int timeMax = 5000;
 
-    private int fakeType=0;
+    private int fakeType = 0;
 
-    public FakeUser(int typeFake)
-    {
-        fakeType=typeFake;
+    public FakeUser(int typeFake){
+        fakeType = typeFake;
     }
+
+    private static int randInt(int min, int max){
+        Random rand = new Random();
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+        return randomNum;
+    }
+
+    /*
+    private Utente randomUser()
+    {
+        BasicUserInfo pubD = new BasicUserInfo(new Name(randomString()), new Name(randomString()), new TaxCode(randomString()), new Nickname(randomString()), new Email(randomString()), new GregorianCalendar(1998, 2, 3), Gender.WOMAN);
+        RestrictUserInfo priD = new RestrictUserInfo(new SurfaceAddress(randomString()), new SurfaceAddress("alatri"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
+        Utente us = new Utente(pubD, priD, new PW("12345"), new Roles(false, true), new Questionary(new String[]{randomString(),randomString(),randomString(),randomString()}));
+        users.add(us);
+        return us;
+    }*/
 
     @Override
     public void run(){
-        switch(fakeType)
-        {
+        switch(fakeType){
             case 0: //registerFake
                 while(true){
                     System.out.println("registerFake restart");
@@ -56,18 +70,8 @@ public class FakeUser implements Runnable{
 
     }
 
-    /*
-    private Utente randomUser()
-    {
-        BasicUserInfo pubD = new BasicUserInfo(new Name(randomString()), new Name(randomString()), new TaxCode(randomString()), new Nickname(randomString()), new Email(randomString()), new GregorianCalendar(1998, 2, 3), Gender.WOMAN);
-        RestrictUserInfo priD = new RestrictUserInfo(new SurfaceAddress(randomString()), new SurfaceAddress("alatri"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
-        Utente us = new Utente(pubD, priD, new PW("12345"), new Roles(false, true), new Questionary(new String[]{randomString(),randomString(),randomString(),randomString()}));
-        users.add(us);
-        return us;
-    }*/
-
-    private UserInfoRegister randomInfoReg() {
-        String[] answ= {randomString(), randomString(),randomString(),randomString()};
+    private UserInfoRegister randomInfoReg(){
+        String[] answ = {randomString(), randomString(), randomString(), randomString()};
         UserInfoRegister infoReg = new UserInfoRegister(new Name(randomString()), new Name(randomString()), new TaxCode(randomString()), new Nickname(randomString()), new Email(randomString()), new GregorianCalendar(1998, 2, 3), Gender.WOMAN, new Questionary(answ), new PW(randomString()), new SurfaceAddress(randomString()));
         users.add(infoReg);
         return infoReg;
@@ -77,12 +81,12 @@ public class FakeUser implements Runnable{
         return gen.nextString();
     }
 
-    private void registerFake() {
-        try {
-            UserInfoRegister usInfoReg= this.randomInfoReg();
+    private void registerFake(){
+        try{
+            UserInfoRegister usInfoReg = this.randomInfoReg();
             this.facade.createUser(usInfoReg.getNickname(), usInfoReg);
-            Thread.sleep(randInt(timeMin,timeMax));
-        }catch (Exception e){
+            Thread.sleep(randInt(timeMin, timeMax));
+        }catch(Exception e){
             System.err.println("##registerFake");
             e.printStackTrace();
         }
@@ -90,19 +94,17 @@ public class FakeUser implements Runnable{
 
     private void adminDeleteFake(){
         try{
-            if(users.isEmpty())
-            {
+            if(users.isEmpty()){
                 System.out.println("**adminDeleteFake empty");
-                Thread.sleep(randInt(timeMin,timeMax));
+                Thread.sleep(randInt(timeMin, timeMax));
                 return;
             }
-            int randUser = randInt(0,users.size()-1);
-            UserInfoRegister us= users.remove(randUser);
+            int randUser = randInt(0, users.size() - 1);
+            UserInfoRegister us = users.remove(randUser);
             facade.deleteUser(us.getNickname());
-            System.out.println("**adminDeleteFake eliminato: "+ us.getNickname().get());
-            Thread.sleep(randInt(timeMin,timeMax));
-        }catch(Exception e)
-        {
+            System.out.println("**adminDeleteFake eliminato: " + us.getNickname().get());
+            Thread.sleep(randInt(timeMin, timeMax));
+        }catch(Exception e){
             System.err.println("##adminDeleteFake");
             e.printStackTrace();
         }
@@ -110,27 +112,24 @@ public class FakeUser implements Runnable{
 
     private void adminStatusFake(){
         try{
-            if(users.isEmpty())
-            {
+            if(users.isEmpty()){
                 System.out.println("**adminDeleteFake empty");
-                Thread.sleep(randInt(timeMin,timeMax));
+                Thread.sleep(randInt(timeMin, timeMax));
                 return;
             }
-            int randUser = randInt(0,users.size()-1);
-            UserInfoRegister us= users.get(randUser);
-            switch(randInt(0,1))
-            {
+            int randUser = randInt(0, users.size() - 1);
+            UserInfoRegister us = users.get(randUser);
+            switch(randInt(0, 1)){
                 case 0:
-                    facade.changeUserStatus(us.getNickname(),UserStatus.BANNED);
+                    facade.changeUserStatus(us.getNickname(), UserStatus.BANNED);
                     break;
                 case 1:
-                    facade.changeUserStatus(us.getNickname(),UserStatus.ACTIVE);
+                    facade.changeUserStatus(us.getNickname(), UserStatus.ACTIVE);
                     break;
             }
-            System.out.println("**adminStatusFake change: "+ us.getNickname().get());
-            Thread.sleep(randInt(timeMin,timeMax));
-        }catch(Exception e)
-        {
+            System.out.println("**adminStatusFake change: " + us.getNickname().get());
+            Thread.sleep(randInt(timeMin, timeMax));
+        }catch(Exception e){
             System.err.println("##adminDeleteFake");
             e.printStackTrace();
         }
@@ -138,16 +137,14 @@ public class FakeUser implements Runnable{
 
     private void otherFake(){
         try{
-            if(users.isEmpty())
-            {
+            if(users.isEmpty()){
                 System.out.println("**otherFake empty");
-                Thread.sleep(randInt(timeMin,timeMax));
+                Thread.sleep(randInt(timeMin, timeMax));
                 return;
             }
-            int randUser = randInt(0,users.size()-1);
-            UserInfoRegister us= users.get(randUser);
-            switch(randInt(0,3))
-            {
+            int randUser = randInt(0, users.size() - 1);
+            UserInfoRegister us = users.get(randUser);
+            switch(randInt(0, 3)){
                 case 0:
                     facade.makeARenter(us.getNickname());
                     break;
@@ -161,19 +158,12 @@ public class FakeUser implements Runnable{
                     facade.removeTenantship(us.getNickname());
                     break;
             }
-            System.out.println("**otherFake modifica: "+ us.getNickname().get());
-            Thread.sleep(randInt(timeMin,timeMax));
-        }catch(Exception e)
-        {
+            System.out.println("**otherFake modifica: " + us.getNickname().get());
+            Thread.sleep(randInt(timeMin, timeMax));
+        }catch(Exception e){
             System.err.println("##otherFake");
             e.printStackTrace();
         }
 
-    }
-
-    private static int randInt(int min, int max) {
-        Random rand = new Random();
-        int randomNum = rand.nextInt((max - min) + 1) + min;
-        return randomNum;
     }
 }

@@ -22,8 +22,8 @@ public class ChangeDataControl{
     }
 
     public String changeData(Nickname nick, String avatar, String email,
-                             String socialStatus, String phoneNumber, String address,
-                             String nationality, String oldPW, String newPW){
+            String socialStatus, String phoneNumber, String address,
+            String nationality, String oldPW, String newPW){
         try{
 
             if((!avatar.equals("")) && (avatar.equals("1") ||
@@ -52,11 +52,11 @@ public class ChangeDataControl{
         }
     }
 
-    public String verifyBan(Nickname nick) {
-        try {
-            if (rolInt.isBanned(nick)) return "Ban";
+    public String verifyBan(Nickname nick){
+        try{
+            if(rolInt.isBanned(nick)) return "Ban";
             else return "NotBan";
-        } catch (Exception e) {
+        }catch(Exception e){
             return e.getMessage();
         }
     }

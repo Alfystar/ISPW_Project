@@ -25,7 +25,7 @@ public class Questionary{
 
     public Questionary(Questionary q){
         this.answers = q.getAnswers();
-        this.questions = q.getQuestions();
+        questions = q.getQuestions();
     }
 
     /*  VERIFICA CHE ALMENO n DOMANDE SIANO CORRETTE*/
@@ -116,7 +116,7 @@ public class Questionary{
     }
 
     public String[] getQuestions(){
-        return this.questions;
+        return questions;
     }
 
     @Override

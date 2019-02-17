@@ -31,7 +31,7 @@ public class TaxCode{
 
         try{
             lock.writeLock().lock();
-            this.cf = newCf.toUpperCase().replaceAll("\\s+", "");;
+            this.cf = newCf.toUpperCase().replaceAll("\\s+", "");
         }finally{
             lock.writeLock().unlock();
         }

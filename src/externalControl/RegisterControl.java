@@ -27,27 +27,27 @@ public class RegisterControl{
             String nickname, String email, String bday, String birthPlace,
             String gender, String password, String question1,
             String question2, String question3, String question4){
-        try {
+        try{
             Nickname nick = new Nickname(nickname);
             TaxCode TC = new TaxCode(taxcode);
 
-            if (usProfInt.doesNicknameExist(nick)){
-                if (rolInt.isBanned(nick)) return "Tentativo di registrazione con nickname bannato";
+            if(usProfInt.doesNicknameExist(nick)){
+                if(rolInt.isBanned(nick)) return "Tentativo di registrazione con nickname bannato";
                 else return "Nickname già esistente";
             }
-            if (usProfInt.doesTaxCodeExist(TC)) return "Codice Fiscale già esistente";
+            if(usProfInt.doesTaxCodeExist(TC)) return "Codice Fiscale già esistente";
 
             GregorianCalendar gCal = stringToGregCal(bday);
             String[] answers = {question1, question2, question3, question4};
             UserInfoRegister usInfoReg = new UserInfoRegister(new Name(firstname), new Name(lastname),
-                                         TC, nick, new Email(email), gCal, Gender.valueOf(gender.toUpperCase()),
-                                         new Questionary(answers), new PW(password), new SurfaceAddress(birthPlace));
+                    TC, nick, new Email(email), gCal, Gender.valueOf(gender.toUpperCase()),
+                    new Questionary(answers), new PW(password), new SurfaceAddress(birthPlace));
 
             usProfInt.createUser(nick, usInfoReg);
 
             return "Successo";
 
-        } catch(Exception e){
+        }catch(Exception e){
             return e.getMessage();
         }
 

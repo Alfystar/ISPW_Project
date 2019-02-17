@@ -49,13 +49,12 @@ public class OtherSubSystemControl{
     }
 
     public String[] obtainPubData(Nickname nick){
-        try {
+        try{
             BasicUserInfo basic = usProfInt.getBasicUserInfo(nick);
 
             String[] tmp = {basic.toString(), basic.getAvatar().getAvatarName()};
             return tmp;
-        }
-        catch(Exception e) {
+        }catch(Exception e){
 
             String[] tmpEx = {e.getMessage(), null};
             return tmpEx;

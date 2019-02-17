@@ -6,34 +6,32 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Config{
+    private static Config confSingleton = new Config();
     ReadWriteLock lock = new ReentrantReadWriteLock();
     private String confFilePath;
     private Properties configFile;
 
-    private static Config confSingleton = new Config();
-
-    public static Config getInstance(){ return confSingleton; }
-
     private Config(){
         configFile = new Properties();
-        confFilePath=System.getProperty("user.home") + "/fersa/config.properties";
+        confFilePath = System.getProperty("user.home") + "/fersa/config.properties";
         try{
 
             configFile.load(new FileInputStream(confFilePath));
 
-        }catch (FileNotFoundException e){
+        }catch(FileNotFoundException e){
             createFile();
             try{
                 configFile.load(new FileInputStream(confFilePath));
-            } catch(IOException eta){
-                System.err.println("Non si vuole creare il file, attuale path: "+ confFilePath);
+            }catch(IOException eta){
+                System.err.println("Non si vuole creare il file, attuale path: " + confFilePath);
                 eta.printStackTrace();
             }
-        }
-        catch(IOException eta){
+        }catch(IOException eta){
             eta.printStackTrace();
         }
     }
+
+    public static Config getInstance(){ return confSingleton; }
 
     public static void main(String[] argv){
         Config cfg = new Config();
@@ -56,7 +54,7 @@ public class Config{
             configFile.load(new FileInputStream(confFilePath));
             configFile.setProperty(prop, value);
             configFile.store(new FileOutputStream(confFilePath), null);
-        }catch (FileNotFoundException e){
+        }catch(FileNotFoundException e){
             System.out.println("setProperty, file not found exception");
             createFile();
             //setProperty(prop,value);
@@ -68,8 +66,7 @@ public class Config{
         }
     }
 
-    private void createFile()
-    {
+    private void createFile(){
         try{
             //set the properties value
             configFile.setProperty("dbHost", "localhost");
@@ -77,17 +74,17 @@ public class Config{
             configFile.setProperty("dbpassword", "0000");
 
             //save properties to file sistem
-            File file = new File(System.getProperty("user.home"),"fersa");
-            if (!file.exists()) {
-                if (file.mkdir()) {
+            File file = new File(System.getProperty("user.home"), "fersa");
+            if(!file.exists()){
+                if(file.mkdir()){
                     System.out.println("Directory is created!");
-                } else {
+                }else{
                     System.out.println("Failed to create directory!");
                 }
             }
             File myFile = new File(System.getProperty("user.home"), "fersa/config.properties");  //or "user.home"
             myFile.createNewFile();
-            confFilePath=myFile.getPath();
+            confFilePath = myFile.getPath();
             configFile.store(new FileOutputStream(myFile.getPath()), null);
 
         }catch(IOException ex){

@@ -77,11 +77,11 @@ public class UserPageControl{
         }
     }
 
-    public String verifyBan(Nickname nick) {
-        try {
-            if (rolInt.isBanned(nick)) return "Ban";
+    public String verifyBan(Nickname nick){
+        try{
+            if(rolInt.isBanned(nick)) return "Ban";
             else return "NotBan";
-        } catch (Exception e) {
+        }catch(Exception e){
             return e.getMessage();
         }
     }
