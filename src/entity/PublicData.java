@@ -1,9 +1,11 @@
 package entity;
 
+import bean.PrototypeData;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class PublicData{
+public class PublicData implements PrototypeData{
     private Name name;
     private Name surname;
     private GregorianCalendar birthday;
@@ -45,7 +47,7 @@ public class PublicData{
     }
 
     //Costruttore che prende un PublicData e lo copia in un'altra istanza
-    public PublicData(PublicData pubD){
+    private PublicData(PublicData pubD){
         this.name = new Name(pubD.getName());
         this.surname = new Name(pubD.getSurname());
         this.birthday = new GregorianCalendar(pubD.getBirthday().get(Calendar.YEAR), pubD.getBirthday().get(Calendar.MONTH), pubD.getBirthday().get(Calendar.DAY_OF_MONTH));
@@ -138,5 +140,10 @@ public class PublicData{
         }catch(ClassCastException e){
             return false;
         }
+    }
+
+    @Override
+    public Object clone(){
+        return new PublicData(this);
     }
 }

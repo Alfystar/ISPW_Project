@@ -1,6 +1,8 @@
 package entity;
 
-public class PrivateData{
+import bean.PrototypeData;
+
+public class PrivateData implements PrototypeData{
     private SurfaceAddress address;
     private SurfaceAddress cityOfBirth;
     private Nationality nat;
@@ -24,7 +26,7 @@ public class PrivateData{
     }
 
     //Costruttore per copiare i dati di un PrivateData in un'altra istanza di PrivateData
-    public PrivateData(PrivateData prD){
+    private PrivateData(PrivateData prD){
         this.address = new SurfaceAddress(prD.getLocalAddress());
         this.cityOfBirth = new SurfaceAddress(prD.getCityOfBirth());
         this.nat = new Nationality(prD.getNationality());
@@ -70,4 +72,8 @@ public class PrivateData{
         }
     }
 
+    @Override
+    public Object clone() {
+        return new PrivateData(this);
+    }
 }

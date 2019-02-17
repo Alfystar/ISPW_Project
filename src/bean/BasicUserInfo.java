@@ -11,7 +11,7 @@ public class BasicUserInfo{
     /*Constructor*/
 
     public BasicUserInfo(PublicData pubDPass){
-        this.publicData = new PublicData(pubDPass);
+        this.publicData = (PublicData) pubDPass.clone();
     }
 
     /*Methods*/

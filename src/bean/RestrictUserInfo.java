@@ -13,7 +13,7 @@ public class RestrictUserInfo{
 
     public RestrictUserInfo(PrivateData priD){
 
-        this.privateData = new PrivateData(priD);
+        this.privateData = (PrivateData) priD.clone();
     }
 
     /*Methods*/
