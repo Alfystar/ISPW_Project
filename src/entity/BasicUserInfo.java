@@ -51,7 +51,7 @@ public class BasicUserInfo implements PrototypeData{
         this.nickname = new Nickname(nickname);
     }
 
-    //Costruttore che prende un BasicUserInfo e lo copia in un'altra istanza
+    //Costruttore che prende un BasicUserInfo e lo fa una DeepCopy in un'altra istanza
     private BasicUserInfo(BasicUserInfo pubD){
         this.name = new Name(pubD.getName());
         this.surname = new Name(pubD.getSurname());
