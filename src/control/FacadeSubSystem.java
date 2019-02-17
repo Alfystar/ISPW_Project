@@ -1,6 +1,7 @@
 package control;
 
 import DAO.DAOClass;
+import bean.PrototypeData;
 import bean.UserInfoRegister;
 import entity.*;
 import exceptions.UserBannedEx;
@@ -21,15 +22,15 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
     @Override
     public BasicUserInfo getBasicUserInfo(Nickname nick) throws UserNotExistEx{
         Utente user = this.getUtente(nick);
-        BasicUserInfo pubD = user.getPublic();
-        return (BasicUserInfo) pubD.clone();
+        PrototypeData protD = user.getPublic();
+        return (BasicUserInfo) protD.clone();
     }
 
     @Override
     public RestrictUserInfo getRestrictedUserInfo(Nickname nick) throws UserNotExistEx{
         Utente user = this.getUtente(nick);
-        RestrictUserInfo prD = user.getPrivate();
-        return (RestrictUserInfo) prD.clone();
+        PrototypeData protD = user.getPrivate();
+        return (RestrictUserInfo) protD.clone();
     }
 
     @Override
