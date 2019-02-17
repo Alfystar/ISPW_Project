@@ -128,12 +128,12 @@ public class K_user implements Initializable{
 
     @FXML
     public void updateUser(ActionEvent actionEvent){
-        RadioButton[] radioNode = {av1, av2, av3, av4, av5, av6};
         outLabel.setText("updateUser click");
         try{
             if(!strChange.getText().equals("")) //ho inserito testo, modifico un parametro
             {
                 sysInt.changeNotAnagraphicData(bean.getNick(), fillDataMod());
+                strChange.setText("");
 
             }else{     //non ho inserito testo, modifico l'immagine
                 sysInt.setAvatar(bean.getNick(), this.radioSelect());

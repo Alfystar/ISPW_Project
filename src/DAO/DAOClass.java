@@ -10,7 +10,6 @@ import java.sql.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-//todo rivedere la tabella next delete session, quando si popola e come!!!
 
 public class DAOClass implements DAOInterface{
 
@@ -190,11 +189,9 @@ public class DAOClass implements DAOInterface{
             this.openConn();
             String sql = "SELECT nick FROM user where nick = " +
                     "\"" + (nickname.get()) + "\" " + " ;";
-            System.out.println(sql);
-            this.stmt.executeQuery(sql);
-            System.out.println("searchNickDB query executed");
-
+            System.out.println("\t|->> "+sql);
             ResultSet rs = this.stmt.executeQuery(sql);
+            System.out.println("\t|-searchNickDB query executed");
             return rs.first();
 
         }catch(SQLException se){
@@ -212,10 +209,8 @@ public class DAOClass implements DAOInterface{
         this.openConn();
         String sql = "SELECT * FROM user where nick= " +
                 "\"" + nickname.get() + "\" " + " ;";
-        System.out.println(sql);
+        System.out.println("\t|->> "+sql);
         ResultSet rs = this.stmt.executeQuery(sql);
-        System.out.println("loadFromDB query executed");
-
         if(!rs.first()) throw new NickNotDBEx("nickname not found");
 
         //estraggo da rs i dati e le chiavi per raggiungere le altre tabelle
@@ -231,7 +226,7 @@ public class DAOClass implements DAOInterface{
         //eseguo la query per BasicUserInfo
         String sqlPubD = "SELECT * FROM publicdata where taxCode =" +
                 "\"" + taxCode.get() + "\" " + " ;";
-        System.out.println(sqlPubD);
+        System.out.println("\t|->> "+sqlPubD);
         rs = this.stmt.executeQuery(sqlPubD);
         rs.first();
         BasicUserInfo pubD = this.buildPubD(rs, taxCode, nickname);
@@ -239,7 +234,7 @@ public class DAOClass implements DAOInterface{
         //eseguo la query per RestrictUserInfo
         String sqlPrD = "SELECT * FROM privatedata where idPrD = " +
                 "\"" + prD_id + "\" " + " ;";
-
+        System.out.println("\t|->> "+sqlPrD);
         rs = this.stmt.executeQuery(sqlPrD);
         rs.first();
         RestrictUserInfo prD = this.buildPrD(rs, prD_id, nickname);
@@ -247,8 +242,10 @@ public class DAOClass implements DAOInterface{
         //eseguo la query per Answers
         String sqlIdAnsw = "SELECT * FROM answers where idAnsw = " +
                 "\"" + answ_id + "\" " + " ;";
-        System.out.println(sqlIdAnsw);
+        System.out.println("\t|->> "+sqlIdAnsw);
         rs = this.stmt.executeQuery(sqlIdAnsw);
+        System.out.println("\t|-loadFromDB query SET executed");
+
         rs.first();
         Questionary q = this.buildAnsw(rs, answ_id, nickname);
         //chiudo la connessione col DB
@@ -269,9 +266,11 @@ public class DAOClass implements DAOInterface{
 
         //Faccio una query su user, per ottenere la chiave di accesso a prD;
         String sql = "SELECT prD_id FROM user WHERE nick= " + "\"" + puB.getNick().get() + "\" " + ";";
-        System.out.println(sql);
+        System.out.println("\t|->> "+sql);
         ResultSet rs = this.stmt.executeQuery(sql);
         if(!rs.first()){
+            System.out.println("\t|-updateUser ABORT");
+            this.closeConn();
             throw new NickNotDBEx("UPDATE impossibile, utente non più presente");
         }
         long prD_id = rs.getLong("prD_id");
@@ -282,9 +281,8 @@ public class DAOClass implements DAOInterface{
                 "usImg=" + "\"" + (puB.getAvatar().getAvatarName()) + "\" " + " ," +
                 "email =" + "\"" + (puB.getEmail().get()) + "\" " +
                 "WHERE taxCode= " + "\"" + puB.getTC().get() + "\" " + ";";
-        System.out.println(sqlPubD);
+        System.out.println("\t|->> "+sqlPubD);
         this.stmt.executeQuery(sqlPubD);
-        System.out.println("publicData update executed");
 
         //Faccio update nel DB di una tabella di RestrictUserInfo
         String sqlPrD = "UPDATE privatedata SET " +
@@ -293,9 +291,8 @@ public class DAOClass implements DAOInterface{
                 "cityOfBirth =" + "\"" + (prD.getCityOfBirth().get()) + "\" " + " ," +
                 "nationality =" + "\"" + (prD.getNationality().get()) + "\" " +
                 "WHERE idPrD =" + "\"" + prD_id + "\" " + ";";
-        System.out.println(sqlPrD);
+        System.out.println("\t|->> "+sqlPrD);
         this.stmt.executeQuery(sqlPrD);
-        System.out.println("RestrictUserInfo update executed");
 
         //Faccio update dell'utente
         String sqlUpUs = "UPDATE user SET " +
@@ -303,11 +300,10 @@ public class DAOClass implements DAOInterface{
                 "pw =" + "\"" + (pw.getPw()) + "\" " + " ," +
                 "roles =" + "\"" + (roles.rlBIN()) + "\" " +
                 "WHERE nick =" + "\"" + puB.getNick().get() + "\" " + ";";
-        System.out.println(sqlUpUs);
+        System.out.println("\t|->> "+sqlUpUs);
         stmt.executeQuery(sqlUpUs);
-        System.out.println("user update executed");
+        System.out.println("\t|-user update SET executed");
         this.closeConn();
-        return;
     }
 
     private BasicUserInfo buildPubD(ResultSet rs, TaxCode taxCode, Nickname nickname) throws SQLException{
@@ -372,9 +368,8 @@ public class DAOClass implements DAOInterface{
                 "\"" + (puB.getSocialStatus().get()) + "\" " + " ," +
                 "\"" + (puB.getAvatar().getAvatarName()) + "\" " + " ," +
                 "\"" + (puB.getEmail().get()) + "\" " + ");";
-        System.out.println(sqlPubD);
+        System.out.println("\t|->> "+sqlPubD);
         this.stmt.executeQuery(sqlPubD);
-        System.out.println("publicData insert executed");
 
         //Inserisco nel DB una tabella di RestrictUserInfo
         String sqlPrD = "INSERT INTO privatedata(phone, address, cityOfBirth,nationality)" +
@@ -383,11 +378,11 @@ public class DAOClass implements DAOInterface{
                 "\"" + (prD.getLocalAddress().get()) + "\" " + " ," +
                 "\"" + (prD.getCityOfBirth().get()) + "\" " + " ," +
                 "\"" + (prD.getNationality().get()) + "\" " + ");";
-        System.out.println(sqlPrD);
+        System.out.println("\t|->> "+sqlPrD);
         this.stmt.executeQuery(sqlPrD);
-        System.out.println("RestrictUserInfo insert executed");
         //Prendo l'id della tabella appena generata
         String sqlPrId = "SELECT LAST_INSERT_ID() FROM privatedata;";
+        System.out.println("\t|->> "+sqlPrId);
         ResultSet rs = this.stmt.executeQuery(sqlPrId);
         rs.first();
         long prD_id = rs.getLong("LAST_INSERT_ID()");
@@ -400,12 +395,12 @@ public class DAOClass implements DAOInterface{
                 "\"" + vect[1] + "\" " + " ," +
                 "\"" + vect[2] + "\" " + " ," +
                 "\"" + vect[3] + "\" " + ");";
-        System.out.println(sqlAnsw);
+        System.out.println("\t|->> "+sqlAnsw);
         this.stmt.executeQuery(sqlAnsw);
-        System.out.println("Answers insert executed");
 
         //Prendo l'id della tabella appena generata
         String sqlAId = "SELECT LAST_INSERT_ID();";
+        System.out.println("\t|->> "+sqlAId);
         rs = this.stmt.executeQuery(sqlAId);
         rs.first();
         long answ_id = rs.getLong("LAST_INSERT_ID()");
@@ -419,11 +414,10 @@ public class DAOClass implements DAOInterface{
                 "\"" + (pw.getPw()) + "\" " + " ," +
                 "\"" + (answ_id) + "\" " + " ," +
                 "\"" + (roles.rlBIN()) + "\" " + ");";
-        System.out.println(sqlNewUs);
+        System.out.println("\t|->> "+sqlNewUs);
         stmt.executeQuery(sqlNewUs);
-        System.out.println("user insert executed");
+        System.out.println("\t|-user insert SET executed");
         this.closeConn();
-        return;
     }
 
     @Override
@@ -432,19 +426,15 @@ public class DAOClass implements DAOInterface{
             this.openConn();
             String sql = "SELECT taxCode FROM publicdata where taxCode = " +
                     "\"" + cf.get() + "\" " + " ;";
-            System.out.println(sql);
+            System.out.println("\t|->> "+sql);
             ResultSet rs = this.stmt.executeQuery(sql);
-            System.out.println("searchTC query executed");
+            System.out.println("\t|-searchTC query executed");
             return rs.first();
 
-        }catch(SQLException se){
+        }catch(Exception se){
             //Handle errors for JDBC
             se.printStackTrace();
             throw se;
-        }catch(Exception e){
-            //Handle errors for Class.forName
-            e.printStackTrace();
-            throw e;
         }finally{
             //finally block used to close resources
             this.closeConn();
@@ -456,57 +446,55 @@ public class DAOClass implements DAOInterface{
         this.openConn();
         String sql = "SELECT * FROM user where nick=  " +
                 "\"" + nickname.get() + "\" " + " ;";
-        System.out.println(sql);
+        System.out.println("\t|->> "+sql);
         ResultSet rs = this.stmt.executeQuery(sql);
-        System.out.println("destroy query executed");
         if(!rs.first()) throw new NickNotDBEx("nickname not found");
 
         //Prendo tutte chiavi delle tabelle collegate a Utente, e le distruggo
         String tc = rs.getString(2);
         int prD_id = rs.getInt(3);
         int answ_id = rs.getInt(6);
-        //todo eliminare anche da dateEvent se l'utente era in stato cancelled
+
+        String sqlDate = "DELETE FROM dateevent WHERE nick =" +
+                "\"" + nickname.get() + "\" " + " ;";
+        System.out.println("\t|->> "+sqlDate);
+        this.stmt.executeQuery(sqlDate);
+        System.out.println("\t|-removeDataEvent query executed");
 
         String sqlPubD = "DELETE FROM publicdata where taxCode = " +
                 "\"" + tc + "\" " + " ;";
-        System.out.println(sqlPubD);
+        System.out.println("\t|->> "+sqlPubD);
         this.stmt.executeQuery(sqlPubD);
-        System.out.println("BasicUserInfo deleted");
 
         String sqlPrD = "DELETE FROM privatedata where idPrD = " +
                 "\"" + prD_id + "\" " + " ;";
-        System.out.println(sqlPrD);
+        System.out.println("\t|->> "+sqlPrD);
         this.stmt.executeQuery(sqlPrD);
-        System.out.println("RestrictUserInfo deleted");
 
         String sqlAnsw = "DELETE FROM answers where idAnsw = " +
                 "\"" + answ_id + "\" " + " ;";
-        System.out.println(sqlAnsw);
+        System.out.println("\t|->> "+sqlAnsw);
         this.stmt.executeQuery(sqlAnsw);
-        System.out.println("Answers deleted");
 
         //Ora distruggo l'istanza di Utente
         String sqlUs = "DELETE FROM user where nick = " +
                 "\"" + nickname.get() + "\" " + " ;";
-        System.out.println(sqlUs);
+        System.out.println("\t|->> "+sqlUs);
         this.stmt.executeQuery(sqlUs);
-        System.out.println("user destroyed");
-
-        return;
+        System.out.println("\t|-User destroy query executed");
+        this.closeConn();
     }
 
     @Override
     public void deleteNTime(Nickname nickname, GregorianCalendar date) throws SQLException{
         this.openConn();
         String strDate = gregCalToString(date);
-
         String sql = "INSERT INTO dateevent(idDate, nick) VALUES (" +
                 "\"" + strDate + "\" " + "," +
                 "\"" + nickname.get() + "\" " + " );";
-        System.out.println(sql);
+        System.out.println("\t|->> "+sql);
         this.stmt.executeQuery(sql);
-
-        System.out.println("date inserted");
+        System.out.println("\t|-date inserted");
         this.closeConn();
     }
 
@@ -516,9 +504,9 @@ public class DAOClass implements DAOInterface{
 
         String sql = "SELECT nick FROM dateevent where idDate<= " +
                 "\"" + oggi + "\" " + " ;";
-        System.out.println(sql);
+        System.out.println("\t|->> "+sql);
         ResultSet rs = this.stmt.executeQuery(sql);
-        System.out.println("deleteByDeamon query executed");
+        System.out.println("\t|-deleteByDeamon query executed");
 
         try{
             if(!rs.first()) return;
@@ -538,8 +526,7 @@ public class DAOClass implements DAOInterface{
     public GregorianCalendar nextDeleteSession() throws SQLException{
         this.openConn();
         String sql = "SELECT * FROM deletesession;";
-        this.stmt.executeQuery(sql);
-        System.out.println("nextDeleteSession query executed");
+        System.out.println("\t|->> "+sql);
         ResultSet rs = this.stmt.executeQuery(sql);
         if(!rs.first()){   //se la cella è vuota
             Calendar calendar = Calendar.getInstance();
@@ -548,11 +535,13 @@ public class DAOClass implements DAOInterface{
             String nextMonth = gregCalToString(gc);
             String sql1 = "INSERT INTO deletesession(nextDelS) VALUES (" +
                     "\"" + nextMonth + "\" " + " );";
-            System.out.println(sql1);
+            System.out.println("\t|->> "+sql1);
             this.stmt.executeQuery(sql1);
-            System.out.println("nextDeleteSession insert query executed");
+            System.out.println("\t|-nextDeleteSession insert query executed");
             this.closeConn();
             return gc;
+        }else {
+            System.out.println("\t|-nextDeleteSession query executed");
         }
         String nextDate = rs.getString(1);
         this.closeConn();
@@ -564,7 +553,9 @@ public class DAOClass implements DAOInterface{
         String date = gregCalToString(gc);
         String sql = "UPDATE deletesession SET " +
                 "nextDelS =" + "\"" + date + "\"" + ";";
+        System.out.println("\t|->> "+sql);
         this.stmt.executeQuery(sql);
+        System.out.println("\t|-updateNextDelS query execute");
         this.closeConn();
     }
 
@@ -573,8 +564,9 @@ public class DAOClass implements DAOInterface{
         this.openConn();
         String sql = "DELETE FROM dateevent WHERE nick =" +
                 "\"" + nick.get() + "\" " + " ;";
+        System.out.println("\t|->> "+sql);
         this.stmt.executeQuery(sql);
-        System.out.println("removeDataEvent query executed");
+        System.out.println("\t|-removeDataEvent query executed");
         this.closeConn();
     }
 
@@ -609,19 +601,21 @@ public class DAOClass implements DAOInterface{
 
     public Boolean testNet() throws SQLException{
         this.openConn();
-        String sql = "/* ping */ SELECT 1";
+        String sql = "SELECT 1";    //ping
+        System.out.println("\t|->> "+sql);
         ResultSet rs = this.stmt.executeQuery(sql);
-        System.out.println("testNet query executed");
+        System.out.println("\t|-testNet query executed");
+        this.closeConn();
         return rs.first();
     }
 
     private void openConn() throws SQLException{
         //STEP 3: Open a connection
         conn = DriverManager.getConnection(DB_URL, UTENTE, PASSWORD);
-        System.out.println("Connected database successfully...");
+        System.out.println("|-Connected database successfully...");
         //STEP 4: create Statement
         stmt = conn.createStatement();
-        System.out.println("Create Statement ...");
+        System.out.println("\t|-Create Statement ...");
     }
 
     private void closeConn(){
@@ -631,7 +625,7 @@ public class DAOClass implements DAOInterface{
             }
         }catch(SQLException se){
         }// do nothing
-        System.out.println("Close Statement...");
+        System.out.println("\t|-Close Statement...");
 
         try{
             if(conn != null){
@@ -640,7 +634,7 @@ public class DAOClass implements DAOInterface{
         }catch(SQLException se){
             se.printStackTrace();
         }
-        System.out.println("Close connection wiht database...");
+        System.out.println("|-Close connection wiht database...\n");
     }
 
 

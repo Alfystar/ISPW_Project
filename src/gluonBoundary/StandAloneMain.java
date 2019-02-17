@@ -25,7 +25,6 @@ public class StandAloneMain extends Application{
             }
         }
 
-
         launch(args);
         System.exit(0);
     }

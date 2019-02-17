@@ -4,7 +4,7 @@ public class PhoneNumber extends ModifyDataString{
     private String phone;
 
     public PhoneNumber(String phone){
-        this.phone = phone.replaceAll("\\s+", "");
+        this.phone = phone.replaceAll("\\s+", "").replaceAll("[^\\d-+]", "");
     }
 
     public PhoneNumber(){ this.phone = "";}
@@ -29,7 +29,7 @@ public class PhoneNumber extends ModifyDataString{
 
         try{
             lock.writeLock().lock();
-            this.phone = newPhone.replaceAll("\\s+", "");
+            this.phone = newPhone.replaceAll("\\s+", "").replaceAll("[^\\d-+]", "");
         }finally{
             lock.writeLock().unlock();
         }

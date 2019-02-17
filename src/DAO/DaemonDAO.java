@@ -14,7 +14,9 @@ public class DaemonDAO implements Runnable{
     private DaemonDAO(){
         try{
             this.dao = new DAOClass();
-            new Thread(this).start();
+            Thread t=new Thread(this);
+            t.setDaemon(true); //when the main thread end, the daemon also end instead
+            t.start();
 
         }catch(ClassNotFoundException e){
             e.printStackTrace();
@@ -33,6 +35,7 @@ public class DaemonDAO implements Runnable{
 
     @Override
     public void run(){
+        System.out.println("\t###@@@ DaemonDAO ONLINE @@@###");
         while(true){
             //codice ripetuto sempre finchè con delta che diminuiscono via via, finchè non si supera la data prevista
             restartSleep:
@@ -41,7 +44,7 @@ public class DaemonDAO implements Runnable{
                     Thread.sleep(1000);
                     Date todayDay = GregorianCalendar.getInstance().getTime();
                     GregorianCalendar gcFutureDate = this.dao.nextDeleteSession();
-                    System.out.println("DaemonDAO next delete is: " + gregCalToString(gcFutureDate));
+                    System.out.println("DaemonDAO next delete is: " + gregCalToString(gcFutureDate)+" at 2:00 AM");
 
                     GregorianCalendar gc = new GregorianCalendar(2000, 01, 01);    //serve solo a generare un oggetto
                     gc.setTime(GregorianCalendar.getInstance().getTime());
