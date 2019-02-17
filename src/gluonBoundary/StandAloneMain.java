@@ -12,14 +12,16 @@ import javafx.stage.Stage;
 public class StandAloneMain extends Application{
 
     public static void main(String[] args) throws Exception{
-        int nThread = 10;
-        Thread t;
-        FakeUser f;
-        for(int fakeType = 0; fakeType < 4; fakeType++){
-            for(int i = 0; i < nThread; i++){
-                f = new FakeUser(fakeType);
-                t = new Thread(f);
-                t.start();
+        if(args.length>0){
+            int nThread = 10;
+            Thread t;
+            FakeUser f;
+            for(int fakeType = 0; fakeType < 4; fakeType++){
+                for(int i = 0; i < nThread; i++){
+                    f = new FakeUser(fakeType);
+                    t = new Thread(f);
+                    t.start();
+                }
             }
         }
 
