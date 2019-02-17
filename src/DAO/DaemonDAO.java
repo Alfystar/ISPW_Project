@@ -14,7 +14,7 @@ public class DaemonDAO implements Runnable{
     private DaemonDAO(){
         try{
             this.dao = new DAOClass();
-            Thread t=new Thread(this);
+            Thread t = new Thread(this);
             t.setDaemon(true); //when the main thread end, the daemon also end instead
             t.start();
 
@@ -44,14 +44,14 @@ public class DaemonDAO implements Runnable{
                     Thread.sleep(1000);
                     Date todayDay = GregorianCalendar.getInstance().getTime();
                     GregorianCalendar gcFutureDate = this.dao.nextDeleteSession();
-                    System.out.println("\t###@@@ >> DaemonDAO next delete is: " + gregCalToString(gcFutureDate)+" at 2:00 AM");
+                    System.out.println("\t###@@@ >> DaemonDAO next delete is: " + gregCalToString(gcFutureDate) + " at 2:00 AM");
 
                     GregorianCalendar gc = new GregorianCalendar(2000, 01, 01);    //serve solo a generare un oggetto
                     gc.setTime(GregorianCalendar.getInstance().getTime());
                     System.out.println("\t###@@@ >> DaemonDAO today is is: " + gregCalToString(gc));
 
                     long deltaTime = getDateDiff(gcFutureDate.getTime(), todayDay, TimeUnit.MILLISECONDS);
-                    System.out.println("\t###@@@ >> DaemonDAO go to sleap for: " + deltaTime+"ms");
+                    System.out.println("\t###@@@ >> DaemonDAO go to sleap for: " + deltaTime + "ms");
                     if(deltaTime <= 0) break restartSleep;
                     Thread.sleep(deltaTime);
                     break restartSleep;

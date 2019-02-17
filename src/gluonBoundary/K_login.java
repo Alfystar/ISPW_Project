@@ -49,7 +49,7 @@ public class K_login implements Initializable{
     }
 
     @FXML
-    public void loginPush(ActionEvent event) {
+    public void loginPush(ActionEvent event){
         try{
             if(!sysInt.validate(new Nickname(nickField.getText()), new PW(pwField.getText()))) return;
         }catch(UserNotExistEx e){
