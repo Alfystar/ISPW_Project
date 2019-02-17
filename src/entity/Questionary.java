@@ -1,5 +1,8 @@
 package entity;
 
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 import static java.lang.Math.min;
 
 public class Questionary{
@@ -12,6 +15,8 @@ public class Questionary{
     };
 
     private String[] answers;
+
+    private ReadWriteLock lock = new ReentrantReadWriteLock();
 
     public Questionary(String[] answers){
 
@@ -27,58 +32,87 @@ public class Questionary{
 
     public Boolean checkAnswers(Questionary q, int minCorrect){
 
-        String[] tmpAns = q.getAnswers();
-
-        minCorrect = min(minCorrect, tmpAns.length);
-
-        int correct = 0;
-
-        for(int i = 0; i < tmpAns.length; i++){
-
-            if(this.answers[i].equalsIgnoreCase(tmpAns[i])) correct += 1;
+        try{
+            lock.readLock().lock();
+            String[] tmpAns = q.getAnswers();
+            minCorrect = min(minCorrect, tmpAns.length);
+            int correct = 0;
+            for(int i = 0; i < tmpAns.length; i++){
+                if(this.answers[i].equalsIgnoreCase(tmpAns[i])) correct += 1;
+            }
+            return correct >= minCorrect;
+        }finally{
+            lock.readLock().unlock();
         }
-
-        return correct >= minCorrect;
     }
 
     public Boolean checkAnswers(Questionary q){
-        String[] tmpAns = q.getAnswers();
-        if(tmpAns.length != this.answers.length) return false;
+        try{
+            lock.readLock().lock();
+            String[] tmpAns = q.getAnswers();
+            if(tmpAns.length != this.answers.length) return false;
 
-        int correct = 0;
-        for(int i = 0; i < tmpAns.length; i++){
+            int correct = 0;
+            for(int i = 0; i < tmpAns.length; i++){
 
-            if(!this.answers[i].equalsIgnoreCase(tmpAns[i])) return false;
+                if(!this.answers[i].equalsIgnoreCase(tmpAns[i])) return false;
+            }
+            return true;
+        }finally{
+            lock.readLock().unlock();
         }
-        return true;
     }
 
     public void saveAnswers(Questionary q){
-
-        this.answers = q.getAnswers();
+        try{
+            lock.writeLock().lock();
+            this.answers = q.getAnswers();
+        }finally{
+            lock.writeLock().unlock();
+        }
     }
 
     public Boolean checkAnAnswer(Questionary q, int index){
 
-        return this.answers[index].equals(q.getAnswers()[index]);
+        try{
+            lock.readLock().lock();
+            return this.answers[index].equals(q.getAnswers()[index]);
+        }finally{
+            lock.readLock().unlock();
+        }
     }
 
     public void saveAnAnswer(Questionary q, int index){
 
-        this.answers[index] = q.getAnswers()[index];
+        try{
+            lock.readLock().lock();
+            this.answers[index] = q.getAnswers()[index];
+        }finally{
+            lock.readLock().unlock();
+        }
     }
 
     public String[] getAnswers(){
-        return this.answers;
+        try{
+            lock.readLock().lock();
+            return this.answers;
+        }finally{
+            lock.readLock().unlock();
+        }
     }
 
     public String getAnswersList(){
-        String out = "";
-        for(int i = 0; i < answers.length; i++){
-            out += "Risposta " + i + ": " + answers[i] + "\n";
+        try{
+            lock.readLock().lock();
+            String out = "";
+            for(int i = 0; i < answers.length; i++){
+                out += "Risposta " + i + ": " + answers[i] + "\n";
+            }
+            out += "\n";
+            return out;
+        }finally{
+            lock.readLock().unlock();
         }
-        out += "\n";
-        return out;
     }
 
     public String[] getQuestions(){

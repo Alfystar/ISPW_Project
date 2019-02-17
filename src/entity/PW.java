@@ -1,7 +1,11 @@
 package entity;
 
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 public class PW{
     private String pw;
+    private ReadWriteLock lock = new ReentrantReadWriteLock();
 
     public PW(String pw){
         this.pw = pw;

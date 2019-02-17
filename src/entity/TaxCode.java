@@ -1,7 +1,11 @@
 package entity;
 
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 public class TaxCode{
     private String cf;
+    private ReadWriteLock lock = new ReentrantReadWriteLock();
 
     public TaxCode(String cf){ this.cf = cf.toUpperCase().replaceAll("\\s+", "");}
 
@@ -14,11 +18,23 @@ public class TaxCode{
     }
 
     public String get(){
-        return this.cf;
+
+        try{
+            lock.readLock().lock();
+            return this.cf;
+        }finally{
+            lock.readLock().unlock();
+        }
     }
 
     public void set(String newCf){
-        this.cf = newCf;
+
+        try{
+            lock.writeLock().lock();
+            this.cf = newCf.toUpperCase().replaceAll("\\s+", "");;
+        }finally{
+            lock.writeLock().unlock();
+        }
     }
 
     @Override

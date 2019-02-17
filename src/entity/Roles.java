@@ -1,8 +1,13 @@
 package entity;
 
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 public class Roles{
     private Boolean renter;
     private Boolean tenant;
+
+    private ReadWriteLock lock = new ReentrantReadWriteLock();
 
     //Costruttore di default
     public Roles(){
@@ -22,31 +27,72 @@ public class Roles{
     }
 
     public Boolean isRenter(){
-        return this.renter;
+
+        try{
+            lock.readLock().lock();
+            return this.renter;
+        }finally{
+            lock.readLock().unlock();
+        }
     }
 
     public Boolean isTenant(){
-        return this.tenant;
+
+        try{
+            lock.readLock().lock();
+            return this.tenant;
+        }finally{
+            lock.readLock().unlock();
+        }
     }
 
     public Boolean isRegistered(){
-        return !(this.tenant || this.renter);
+
+        try{
+            lock.readLock().lock();
+            return !(this.tenant || this.renter);
+        }finally{
+            lock.readLock().unlock();
+        }
     }
 
     public void setRenter(){
-        this.renter = true;
+        try{
+            lock.writeLock().lock();
+            this.renter = true;
+        }finally{
+            lock.writeLock().unlock();
+        }
     }
 
     public void resetRenter(){
-        this.renter = false;
+
+        try{
+            lock.writeLock().lock();
+            this.renter = false;
+        }finally{
+            lock.writeLock().unlock();
+        }
     }
 
     public void setTenant(){
-        this.tenant = true;
+
+        try{
+            lock.writeLock().lock();
+            this.tenant = true;
+        }finally{
+            lock.writeLock().unlock();
+        }
     }
 
     public void resetTenant(){
-        this.tenant = false;
+
+        try{
+            lock.writeLock().lock();
+            this.tenant = false;
+        }finally{
+            lock.writeLock().unlock();
+        }
     }
 
     public String rlBIN(){

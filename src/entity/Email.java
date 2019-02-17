@@ -1,5 +1,6 @@
 package entity;
 
+
 public class Email extends ModifyDataString{
     private String email;
 
@@ -17,12 +18,23 @@ public class Email extends ModifyDataString{
 
     @Override
     public String get(){
-        return this.email;
+        try{
+            lock.readLock().lock();
+            return this.email;
+        }finally{
+            lock.readLock().unlock();
+        }
     }
 
     @Override
     public void set(String newEmail){
-        this.email = newEmail;
+
+        try{
+            lock.writeLock().lock();
+            this.email = newEmail.toLowerCase().replaceAll("\\s+", "");;
+        }finally{
+            lock.writeLock().unlock();
+        }
     }
 
     @Override

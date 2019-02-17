@@ -1,7 +1,11 @@
 package entity;
 
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 public class Nickname{
     private String nickname;
+    private ReadWriteLock lock = new ReentrantReadWriteLock();
 
     public Nickname(String nickname){
         this.nickname = nickname;
@@ -16,11 +20,22 @@ public class Nickname{
     }
 
     public String get(){
-        return this.nickname;
+        try{
+            lock.readLock().lock();
+            return this.nickname;
+        }finally{
+            lock.readLock().unlock();
+        }
     }
 
     public void set(String newNickname){
-        this.nickname = newNickname;
+
+        try{
+            lock.writeLock().lock();
+            this.nickname = newNickname;
+        }finally{
+            lock.writeLock().unlock();
+        }
     }
 
     @Override

@@ -1,7 +1,12 @@
 package entity;
 
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+
 public class Name{
     private String name;
+    private ReadWriteLock lock = new ReentrantReadWriteLock();
 
     public Name(String name){
         if(name.length() >= 2) this.name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
@@ -17,11 +22,23 @@ public class Name{
     }
 
     public String get(){
-        return this.name;
+        try{
+            lock.readLock().lock();
+            return this.name;
+        }finally{
+            lock.readLock().unlock();
+        }
     }
 
     public void set(String newName){
-        this.name = newName;
+
+        try{
+            lock.writeLock().lock();
+            if(name.length() >= 2) this.name = newName.substring(0, 1).toUpperCase() + newName.substring(1).toLowerCase();
+            else this.name = newName.toUpperCase();
+        }finally{
+            lock.writeLock().unlock();
+        }
     }
 
     @Override

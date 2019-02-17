@@ -15,14 +15,27 @@ public class SurfaceAddress extends ModifyDataString{
         this.address = address.get();
     }
 
+
     @Override
     public String get(){
-        return this.address;
+
+        try{
+            lock.readLock().lock();
+            return this.address;
+        }finally{
+            lock.readLock().unlock();
+        }
     }
 
     @Override
     public void set(String newAddress){
-        this.address = newAddress;
+
+        try{
+            lock.writeLock().lock();
+            this.address = newAddress;
+        }finally{
+            lock.writeLock().unlock();
+        }
     }
 
     @Override

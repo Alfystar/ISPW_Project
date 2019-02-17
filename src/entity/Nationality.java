@@ -16,12 +16,23 @@ public class Nationality extends ModifyDataString{
 
     @Override
     public String get(){
-        return this.nat;
+        try{
+            lock.readLock().lock();
+            return this.nat;
+        }finally{
+            lock.readLock().unlock();
+        }
     }
 
     @Override
     public void set(String newNat){
-        this.nat = newNat;
+        try{
+            lock.writeLock().lock();
+            if(nat.length() >= 2) this.nat = newNat.substring(0, 1).toUpperCase() + newNat.substring(1).toLowerCase();
+            else this.nat = newNat.toUpperCase();
+        }finally{
+            lock.writeLock().unlock();
+        }
     }
 
     @Override

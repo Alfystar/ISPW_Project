@@ -15,12 +15,24 @@ public class PhoneNumber extends ModifyDataString{
 
     @Override
     public String get(){
+
+        try{
+            lock.readLock().lock();
+        }finally{
+            lock.readLock().unlock();
+        }
         return this.phone;
     }
 
     @Override
     public void set(String newPhone){
-        this.phone = newPhone;
+
+        try{
+            lock.writeLock().lock();
+            this.phone = newPhone.replaceAll("\\s+", "");
+        }finally{
+            lock.writeLock().unlock();
+        }
     }
 
     @Override

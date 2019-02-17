@@ -1,5 +1,8 @@
 package entity;
 
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 public class Utente{
     private BasicUserInfo pubD;
     private RestrictUserInfo prD;
@@ -7,6 +10,9 @@ public class Utente{
     private UserStatus userStatus;
     private Roles roles;
     private Questionary questionary;
+
+    private ReadWriteLock lock = new ReentrantReadWriteLock();
+
 
     public Utente(BasicUserInfo pubD, RestrictUserInfo prD, PW pw, Roles roles, Questionary questionary){
         this.pubD = (BasicUserInfo) pubD.clone();

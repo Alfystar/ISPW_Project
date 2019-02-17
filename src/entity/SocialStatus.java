@@ -1,7 +1,9 @@
 package entity;
 
+
 public class SocialStatus extends ModifyDataString{
     private String socialStatus;
+
 
     public SocialStatus(String socialStatus){
         this.socialStatus = socialStatus;
@@ -17,12 +19,23 @@ public class SocialStatus extends ModifyDataString{
 
     @Override
     public String get(){
-        return this.socialStatus;
+
+        try{
+            lock.readLock().lock();
+            return this.socialStatus;
+        }finally{
+            lock.readLock().unlock();
+        }
     }
 
     @Override
     public void set(String newSocialStatus){
-        this.socialStatus = newSocialStatus;
+        try{
+            lock.writeLock().lock();
+            this.socialStatus = newSocialStatus;
+        }finally{
+            lock.writeLock().unlock();
+        }
     }
 
     @Override

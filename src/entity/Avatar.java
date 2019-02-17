@@ -3,12 +3,16 @@ package entity;
 import javafx.scene.image.Image;
 
 import java.util.Vector;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Avatar{
     private String[] nameAvatar = {"default-Avatar", "rocket-Avatar", "girl-Avatar", "man-Avatar", "girlStudent-Avatar", "manStudent-Avatar"};
     private Vector<Image> icons = new Vector<Image>();
     private Image myIcon;
     private int indexImage;
+
+    ReadWriteLock lock = new ReentrantReadWriteLock();
 
 
     public Avatar(){
@@ -31,32 +35,61 @@ public class Avatar{
     }
 
     public Image getMyIcon(){
-        return this.myIcon;
+        try{
+            lock.readLock().lock();
+            return this.myIcon;
+        }finally{
+            lock.readLock().unlock();
+        }
+
     }
 
     public void setMyIcon(int index){
-        this.myIcon = icons.get(index);
-        this.indexImage = index;
+        try{
+            lock.writeLock().lock();
+            this.myIcon = icons.get(index);
+            this.indexImage = index;
+        }finally{
+            lock.writeLock().unlock();
+
+        }
     }
 
     public void setMyIcon(String name){
-        for(int i = 0; i < nameAvatar.length; i++){
-            if(name.equals(nameAvatar[i])){
-                this.myIcon = icons.get(i);
-                this.indexImage = i;
-                return;
+        try{
+            lock.writeLock().lock();
+            for(int i = 0; i < nameAvatar.length; i++){
+                if(name.equals(nameAvatar[i])){
+                    this.myIcon = icons.get(i);
+                    this.indexImage = i;
+                    return;
+                }
             }
+            this.myIcon = icons.get(0);
+            this.indexImage = 0;
+        }finally{
+            lock.writeLock().unlock();
         }
-        this.myIcon = icons.get(0);
-        this.indexImage = 0;
     }
 
     public int getMyIconIndex(){
-        return this.indexImage;
+        try{
+            lock.readLock().lock();
+            return this.indexImage;
+        }finally{
+            lock.readLock().unlock();
+
+        }
     }
 
     public String getAvatarName(){
-        return nameAvatar[this.indexImage];
+        try{
+            lock.readLock().lock();
+            return nameAvatar[this.indexImage];
+        }finally{
+            lock.readLock().unlock();
+
+        }
     }
 
     @Override
