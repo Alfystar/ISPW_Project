@@ -65,24 +65,24 @@ public class DAOClass implements DAOInterface{
             e.printStackTrace();
             System.exit(-1);
         }
-        PublicData pubD = new PublicData(new Name("Marta"), new Name("Caggiano"), new TaxCode("cggmrt"), new Nickname("caggy"), new Email("marta.caggiano@hotmail"), new GregorianCalendar(1998, 2, 3), Gender.WOMAN);
-        PrivateData priD = new PrivateData(new SurfaceAddress("Alatri casa"), new SurfaceAddress("alatri"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
+        BasicUserInfo pubD = new BasicUserInfo(new Name("Marta"), new Name("Caggiano"), new TaxCode("cggmrt"), new Nickname("caggy"), new Email("marta.caggiano@hotmail"), new GregorianCalendar(1998, 2, 3), Gender.WOMAN);
+        RestrictUserInfo priD = new RestrictUserInfo(new SurfaceAddress("Alatri casa"), new SurfaceAddress("alatri"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
         Utente us1 = new Utente(pubD, priD, new PW("12345"), new Roles(false, true), new Questionary(new String[]{"abaco", "ballerina", "coniglio", "destra"}));
 
-        pubD = new PublicData(new Name("Filippo"), new Name("Badalamenti"), new TaxCode("bflflp"), new Nickname("bal"), new Email("filippo@gmail.com"), new GregorianCalendar(1997, 5, 25), Gender.MAN);
-        priD = new PrivateData(new SurfaceAddress("collegio"), new SurfaceAddress("Roma"), new Nationality("Italiano"), new PhoneNumber("064586325"));
+        pubD = new BasicUserInfo(new Name("Filippo"), new Name("Badalamenti"), new TaxCode("bflflp"), new Nickname("bal"), new Email("filippo@gmail.com"), new GregorianCalendar(1997, 5, 25), Gender.MAN);
+        priD = new RestrictUserInfo(new SurfaceAddress("collegio"), new SurfaceAddress("Roma"), new Nationality("Italiano"), new PhoneNumber("064586325"));
         Utente us2 = new Utente(pubD, priD, new PW("qwerty"), new Roles(true, false), new Questionary(new String[]{"aa", "bb", "cc", "dd"}));
 
-        pubD = new PublicData(new Name("Emanuele"), new Name("Alfano"), new TaxCode("lfnmnl"), new Nickname("alfy"), new Email("alfystar1701@gmail.com"), new GregorianCalendar(1997, 7, 31), Gender.MAN);
-        priD = new PrivateData(new SurfaceAddress("ciamarra"), new SurfaceAddress("roma"), new Nationality("Italiano"), new PhoneNumber("3333071117"));
+        pubD = new BasicUserInfo(new Name("Emanuele"), new Name("Alfano"), new TaxCode("lfnmnl"), new Nickname("alfy"), new Email("alfystar1701@gmail.com"), new GregorianCalendar(1997, 7, 31), Gender.MAN);
+        priD = new RestrictUserInfo(new SurfaceAddress("ciamarra"), new SurfaceAddress("roma"), new Nationality("Italiano"), new PhoneNumber("3333071117"));
         Utente us3 = new Utente(pubD, priD, new PW("lele"), new Roles(true, true), new Questionary(new String[]{"astro", "balocco", "cavolfiore", "dentista"}));
 
-        pubD = new PublicData(new Name("elisa"), new Name("alfano"), new TaxCode("lfnlsa"), new Nickname("sorreta"), new Email("elisa@gmail.com"), new GregorianCalendar(2000, 9, 12), Gender.WOMAN);
-        priD = new PrivateData(new SurfaceAddress("ciamarra"), new SurfaceAddress("Roma"), new Nationality("Italiana"), new PhoneNumber("45628731982"));
+        pubD = new BasicUserInfo(new Name("elisa"), new Name("alfano"), new TaxCode("lfnlsa"), new Nickname("sorreta"), new Email("elisa@gmail.com"), new GregorianCalendar(2000, 9, 12), Gender.WOMAN);
+        priD = new RestrictUserInfo(new SurfaceAddress("ciamarra"), new SurfaceAddress("Roma"), new Nationality("Italiana"), new PhoneNumber("45628731982"));
         Utente us4 = new Utente(pubD, priD, new PW("sissi"), new Roles(), new Questionary(new String[]{"aaaa", "bbbb", "ccccc", "ddddd"}));
 
-        pubD = new PublicData(new Name("Marco"), new Name("alfano"), new TaxCode("lfnmrc"), new Nickname("topo65"), new Email("marco@gmail.com"), new GregorianCalendar(1965, 7, 18), Gender.MAN);
-        priD = new PrivateData(new SurfaceAddress("ciamarra"), new SurfaceAddress("Roma"), new Nationality("Italiano"), new PhoneNumber("333222568748"));
+        pubD = new BasicUserInfo(new Name("Marco"), new Name("alfano"), new TaxCode("lfnmrc"), new Nickname("topo65"), new Email("marco@gmail.com"), new GregorianCalendar(1965, 7, 18), Gender.MAN);
+        priD = new RestrictUserInfo(new SurfaceAddress("ciamarra"), new SurfaceAddress("Roma"), new Nationality("Italiano"), new PhoneNumber("333222568748"));
         Utente us5 = new Utente(pubD, priD, new PW("12345"), new Roles(), new Questionary(new String[]{"gara", "cavoletti", "piangere", "dividere"}));
 
         Utente[] users = {us1, us2, us3, us4, us5};
@@ -162,8 +162,8 @@ public class DAOClass implements DAOInterface{
     public Utente createUser(UserInfoRegister infoReg) throws WrongParameters{
 
         //Prendo tutti i parametri di Utente da infoReg
-        PublicData pubD = new PublicData(infoReg.getName(), infoReg.getSurname(), infoReg.getCf(), infoReg.getNickname(), infoReg.getEmail(), infoReg.getBirthday(), infoReg.getGender());
-        PrivateData priD = new PrivateData();
+        BasicUserInfo pubD = new BasicUserInfo(infoReg.getName(), infoReg.getSurname(), infoReg.getCf(), infoReg.getNickname(), infoReg.getEmail(), infoReg.getBirthday(), infoReg.getGender());
+        RestrictUserInfo priD = new RestrictUserInfo();
         priD.getCityOfBirth().set(infoReg.getCityOfBirth().get());
         PW pw = new PW(infoReg.getPw());
         Roles roles = new Roles();
@@ -230,21 +230,21 @@ public class DAOClass implements DAOInterface{
         byte bR = (byte) bRoles.intValue();
         Roles r = new Roles((bR&1) == 1, (bR&2) == 2);
 
-        //eseguo la query per PublicData
+        //eseguo la query per BasicUserInfo
         String sqlPubD = "SELECT * FROM publicdata where taxCode =" +
                 "\"" + taxCode.get() + "\" " + " ;";
         System.out.println(sqlPubD);
         rs = this.stmt.executeQuery(sqlPubD);
         rs.first();
-        PublicData pubD = this.buildPubD(rs, taxCode, nickname);
+        BasicUserInfo pubD = this.buildPubD(rs, taxCode, nickname);
 
-        //eseguo la query per PrivateData
+        //eseguo la query per RestrictUserInfo
         String sqlPrD = "SELECT * FROM privatedata where idPrD = " +
                 "\"" + prD_id + "\" " + " ;";
 
         rs = this.stmt.executeQuery(sqlPrD);
         rs.first();
-        PrivateData prD = this.buildPrD(rs, prD_id, nickname);
+        RestrictUserInfo prD = this.buildPrD(rs, prD_id, nickname);
 
         //eseguo la query per Answers
         String sqlIdAnsw = "SELECT * FROM answers where idAnsw = " +
@@ -263,8 +263,8 @@ public class DAOClass implements DAOInterface{
     @Override
     public void updateUser(Utente user) throws SQLException, NickNotDBEx{
         this.openConn();
-        PublicData puB = user.getPublic();
-        PrivateData prD = user.getPrivate();
+        BasicUserInfo puB = user.getPublic();
+        RestrictUserInfo prD = user.getPrivate();
         UserStatus usStat = user.getStatus();
         PW pw = user.getPw();
         Roles roles = user.getRole();
@@ -278,7 +278,7 @@ public class DAOClass implements DAOInterface{
         }
         long prD_id = rs.getLong("prD_id");
 
-        //Faccio update nel DB di una tabella PublicData
+        //Faccio update nel DB di una tabella BasicUserInfo
         String sqlPubD = "UPDATE  publicdata SET " +
                 "socStat = " + "\"" + (puB.getSocialStatus().get()) + "\" " + " ," +
                 "usImg=" + "\"" + (puB.getAvatar().getAvatarName()) + "\" " + " ," +
@@ -288,7 +288,7 @@ public class DAOClass implements DAOInterface{
         this.stmt.executeQuery(sqlPubD);
         System.out.println("publicData update executed");
 
-        //Faccio update nel DB di una tabella di PrivateData
+        //Faccio update nel DB di una tabella di RestrictUserInfo
         String sqlPrD = "UPDATE privatedata SET " +
                 "phone =" + "\"" + (prD.getPhone().get()) + "\" " + " ," +
                 "address =" + "\"" + (prD.getLocalAddress().get()) + "\" " + " ," +
@@ -297,7 +297,7 @@ public class DAOClass implements DAOInterface{
                 "WHERE idPrD =" + "\"" + prD_id + "\" " + ";";
         System.out.println(sqlPrD);
         this.stmt.executeQuery(sqlPrD);
-        System.out.println("PrivateData update executed");
+        System.out.println("RestrictUserInfo update executed");
 
         //Faccio update dell'utente
         String sqlUpUs = "UPDATE user SET " +
@@ -312,7 +312,7 @@ public class DAOClass implements DAOInterface{
         return;
     }
 
-    private PublicData buildPubD(ResultSet rs, TaxCode taxCode, Nickname nickname) throws SQLException{
+    private BasicUserInfo buildPubD(ResultSet rs, TaxCode taxCode, Nickname nickname) throws SQLException{
         Name name = new Name(rs.getString(2));
         Name surname = new Name(rs.getString(3));
 
@@ -325,18 +325,18 @@ public class DAOClass implements DAOInterface{
         Email email = new Email(rs.getString(8));
 
         //creo un'istanza di PubD
-        PublicData pubD = new PublicData(name, surname, birthD, gender, taxCode, socStatus, avatar, email, nickname);
+        BasicUserInfo pubD = new BasicUserInfo(name, surname, birthD, gender, taxCode, socStatus, avatar, email, nickname);
         return pubD;
     }
 
-    private PrivateData buildPrD(ResultSet rs, Integer prD_id, Nickname nickname) throws SQLException{
+    private RestrictUserInfo buildPrD(ResultSet rs, Integer prD_id, Nickname nickname) throws SQLException{
         PhoneNumber phone = new PhoneNumber(rs.getString(2));
         SurfaceAddress address = new SurfaceAddress(rs.getString(3));
         SurfaceAddress cityOfBirth = new SurfaceAddress(rs.getString(4));
         Nationality nat = new Nationality(rs.getString(5));
 
         //creo un'istanza di PrD
-        PrivateData prD = new PrivateData(address, cityOfBirth, nat, phone);
+        RestrictUserInfo prD = new RestrictUserInfo(address, cityOfBirth, nat, phone);
         return prD;
     }
 
@@ -353,8 +353,8 @@ public class DAOClass implements DAOInterface{
     @Override
     public void saveUser(Utente user) throws SQLException{
         this.openConn();
-        PublicData puB = user.getPublic();
-        PrivateData prD = user.getPrivate();
+        BasicUserInfo puB = user.getPublic();
+        RestrictUserInfo prD = user.getPrivate();
         Questionary answ = user.getQuestionary();
         UserStatus usStat = user.getStatus();
         PW pw = user.getPw();
@@ -363,7 +363,7 @@ public class DAOClass implements DAOInterface{
         System.out.println("dentro saveUser " + gregCalToString(puB.getBirthday()));
 
 
-        //Inserisco nel DB una tabella PublicData
+        //Inserisco nel DB una tabella BasicUserInfo
         String sqlPubD = "INSERT INTO  publicdata(taxCode, name, surname, birthday, gender, socStat, usImg, email) " +
                 "VALUES (" +
                 "\"" + (puB.getTC().get()) + "\" " + " ," +
@@ -378,7 +378,7 @@ public class DAOClass implements DAOInterface{
         this.stmt.executeQuery(sqlPubD);
         System.out.println("publicData insert executed");
 
-        //Inserisco nel DB una tabella di PrivateData
+        //Inserisco nel DB una tabella di RestrictUserInfo
         String sqlPrD = "INSERT INTO privatedata(phone, address, cityOfBirth,nationality)" +
                 "VALUES (" +
                 "\"" + (prD.getPhone().get()) + "\" " + " ," +
@@ -387,7 +387,7 @@ public class DAOClass implements DAOInterface{
                 "\"" + (prD.getNationality().get()) + "\" " + ");";
         System.out.println(sqlPrD);
         this.stmt.executeQuery(sqlPrD);
-        System.out.println("PrivateData insert executed");
+        System.out.println("RestrictUserInfo insert executed");
         //Prendo l'id della tabella appena generata
         String sqlPrId = "SELECT LAST_INSERT_ID() FROM privatedata;";
         ResultSet rs = this.stmt.executeQuery(sqlPrId);
@@ -475,13 +475,13 @@ public class DAOClass implements DAOInterface{
                 "\"" + tc + "\" " + " ;";
         System.out.println(sqlPubD);
         this.stmt.executeQuery(sqlPubD);
-        System.out.println("PublicData deleted");
+        System.out.println("BasicUserInfo deleted");
 
         String sqlPrD = "DELETE FROM privatedata where idPrD = " +
                 "\"" + prD_id + "\" " + " ;";
         System.out.println(sqlPrD);
         this.stmt.executeQuery(sqlPrD);
-        System.out.println("PrivateData deleted");
+        System.out.println("RestrictUserInfo deleted");
 
         String sqlAnsw = "DELETE FROM answers where idAnsw = " +
                 "\"" + answ_id + "\" " + " ;";

@@ -1,9 +1,9 @@
 package interfaces;
 
-import bean.BasicUserInfo;
-import bean.RestrictUserInfo;
 import bean.UserInfoRegister;
 import entity.Nickname;
+import entity.RestrictUserInfo;
+import entity.BasicUserInfo;
 import entity.TaxCode;
 import exceptions.UserNotExistEx;
 import exceptions.WrongParameters;

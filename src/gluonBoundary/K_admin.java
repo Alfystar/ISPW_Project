@@ -1,12 +1,7 @@
 package gluonBoundary;
 
-import bean.BasicUserInfo;
-import bean.RestrictUserInfo;
 import control.FacadeSubSystem;
-import entity.Gender;
-import entity.Nickname;
-import entity.Roles;
-import entity.UserStatus;
+import entity.*;
 import exceptions.UserNotExistEx;
 import interfaces.RoleStatus;
 import interfaces.SystemInterface;
@@ -184,10 +179,10 @@ public class K_admin implements Initializable{
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
             return;
         }
-        nick.setText(basic.getNickname().get());
+        nick.setText(basic.getNick().get());
         email.setText(basic.getEmail().get());
-        tc.setText(basic.getTaxCode().get());
-        socStat.setText(basic.getsocialStatus().get());
+        tc.setText(basic.getTC().get());
+        socStat.setText(basic.getSocialStatus().get());
         name.setText(basic.getName().get());
         surname.setText(basic.getSurname().get());
         if(basic.getGender().equals(Gender.MAN)){
@@ -207,9 +202,9 @@ public class K_admin implements Initializable{
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
             return;
         }
-        cel.setText(restrict.getPhoneNumber().get());
+        cel.setText(restrict.getPhone().get());
         cityBirth.setText(restrict.getCityOfBirth().get());
-        address.setText(restrict.getAddress().get());
+        address.setText(restrict.getLocalAddress().get());
         nat.setText(restrict.getNationality().get());
     }
 

@@ -1,11 +1,7 @@
 package externalControl;
 
-import bean.BasicUserInfo;
-import bean.RestrictUserInfo;
 import control.FacadeSubSystem;
-import entity.Nickname;
-import entity.Roles;
-import entity.UserStatus;
+import entity.*;
 import interfaces.RoleStatus;
 import interfaces.UserProfileService;
 

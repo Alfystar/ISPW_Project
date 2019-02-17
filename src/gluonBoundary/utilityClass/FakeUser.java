@@ -59,8 +59,8 @@ public class FakeUser implements Runnable{
     /*
     private Utente randomUser()
     {
-        PublicData pubD = new PublicData(new Name(randomString()), new Name(randomString()), new TaxCode(randomString()), new Nickname(randomString()), new Email(randomString()), new GregorianCalendar(1998, 2, 3), Gender.WOMAN);
-        PrivateData priD = new PrivateData(new SurfaceAddress(randomString()), new SurfaceAddress("alatri"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
+        BasicUserInfo pubD = new BasicUserInfo(new Name(randomString()), new Name(randomString()), new TaxCode(randomString()), new Nickname(randomString()), new Email(randomString()), new GregorianCalendar(1998, 2, 3), Gender.WOMAN);
+        RestrictUserInfo priD = new RestrictUserInfo(new SurfaceAddress(randomString()), new SurfaceAddress("alatri"), new Nationality("Italiana"), new PhoneNumber("077152345678"));
         Utente us = new Utente(pubD, priD, new PW("12345"), new Roles(false, true), new Questionary(new String[]{randomString(),randomString(),randomString(),randomString()}));
         users.add(us);
         return us;

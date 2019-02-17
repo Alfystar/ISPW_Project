@@ -1,36 +1,36 @@
 package entity;
 
 public class Utente{
-    private PublicData pubD;
-    private PrivateData prD;
+    private BasicUserInfo pubD;
+    private RestrictUserInfo prD;
     private PW pw;
     private UserStatus userStatus;
     private Roles roles;
     private Questionary questionary;
 
-    public Utente(PublicData pubD, PrivateData prD, PW pw, Roles roles, Questionary questionary){
-        this.pubD = new PublicData(pubD);
-        this.prD = new PrivateData(prD);
+    public Utente(BasicUserInfo pubD, RestrictUserInfo prD, PW pw, Roles roles, Questionary questionary){
+        this.pubD = (BasicUserInfo) pubD.clone();
+        this.prD = (RestrictUserInfo) prD.clone();
         this.pw = new PW(pw);
         this.roles = new Roles(roles);
         this.questionary = new Questionary(questionary);
         this.userStatus = UserStatus.ACTIVE;
     }
 
-    public Utente(PublicData pubD, PrivateData prD, PW pw, Roles roles, UserStatus userStatus, Questionary questionary){
-        this.pubD = new PublicData(pubD);
-        this.prD = new PrivateData(prD);
+    public Utente(BasicUserInfo pubD, RestrictUserInfo prD, PW pw, Roles roles, UserStatus userStatus, Questionary questionary){
+        this.pubD = (BasicUserInfo) pubD.clone();
+        this.prD = (RestrictUserInfo) prD.clone();
         this.pw = new PW(pw);
         this.roles = new Roles(roles);
         this.questionary = new Questionary(questionary);
         this.userStatus = userStatus;
     }
 
-    public PublicData getPublic(){
+    public BasicUserInfo getPublic(){
         return this.pubD;
     }
 
-    public PrivateData getPrivate(){
+    public RestrictUserInfo getPrivate(){
         return this.prD;
     }
 
@@ -70,8 +70,8 @@ public class Utente{
     public String printUser(){
         String out;
         out = "Utente nick: " + this.pubD.getNick().get() + ", Email:" + this.pubD.getEmail().get() + ", CF:" + this.pubD.getTC().get() + "\n";
-        out += "\t##PublicData##\n" + this.pubD.toString();
-        out += "\t##PrivateData##\n" + this.prD.toString();
+        out += "\t##BasicUserInfo##\n" + this.pubD.toString();
+        out += "\t##RestrictUserInfo##\n" + this.prD.toString();
         out += "\t##Ruolo##\n" + this.roles;
         out += "UserStatus:" + this.userStatus.toString() + "; PW:" + this.pw.getPw() + "\n";
         out += "\t**Answare at Question is:\n" + this.questionary.getAnswersList();

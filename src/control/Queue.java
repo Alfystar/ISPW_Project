@@ -30,8 +30,8 @@ public class Queue{
         /*Crea la coda per il test e i parametri*/
         Queue list = Queue.getQueueSingletonInstance();
 
-        PublicData pubD = new PublicData(new Name("ema"), new Name("alf"), new TaxCode("lfm"), new Nickname("alfy"), new Email("ema@gmail.com"), new GregorianCalendar(97, 7, 31), Gender.MAN);
-        PrivateData priD = new PrivateData();
+        BasicUserInfo pubD = new BasicUserInfo(new Name("ema"), new Name("alf"), new TaxCode("lfm"), new Nickname("alfy"), new Email("ema@gmail.com"), new GregorianCalendar(97, 7, 31), Gender.MAN);
+        RestrictUserInfo priD = new RestrictUserInfo();
 
         /*TEST STATEMENT START*/
 

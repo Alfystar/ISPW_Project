@@ -1,11 +1,7 @@
 package externalControl;
 
-import bean.BasicUserInfo;
-import bean.RestrictUserInfo;
 import control.FacadeSubSystem;
-import entity.Avatar;
-import entity.Nickname;
-import entity.Roles;
+import entity.*;
 import interfaces.RoleStatus;
 import interfaces.SystemInterface;
 import interfaces.UserProfileService;
@@ -50,15 +46,15 @@ public class UserPageControl{
                     avatar.getAvatarName(),
                     basObj.getName().get(),
                     basObj.getSurname().get(),
-                    basObj.getTaxCode().get(),
-                    basObj.getNickname().get(),
+                    basObj.getTC().get(),
+                    basObj.getNick().get(),
                     basObj.getEmail().get(),
                     gregCalToString(basObj.getBirthday()),
                     basObj.getGender().name(),
-                    basObj.getsocialStatus().get(),
+                    basObj.getSocialStatus().get(),
                     tenant, renter,
-                    restObj.getPhoneNumber().get(),
-                    restObj.getAddress().get(),
+                    restObj.getPhone().get(),
+                    restObj.getLocalAddress().get(),
                     restObj.getCityOfBirth().get(),
                     restObj.getNationality().get()};
 

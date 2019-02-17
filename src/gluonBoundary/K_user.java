@@ -1,7 +1,5 @@
 package gluonBoundary;
 
-import bean.BasicUserInfo;
-import bean.RestrictUserInfo;
 import control.FacadeSubSystem;
 import entity.*;
 import exceptions.UserBannedEx;
@@ -268,10 +266,10 @@ public class K_user implements Initializable{
         }catch(UserNotExistEx e){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
         }
-        nick.setText(basic.getNickname().get());
+        nick.setText(basic.getNick().get());
         email.setText(basic.getEmail().get());
-        tc.setText(basic.getTaxCode().get());
-        socStat.setText(basic.getsocialStatus().get());
+        tc.setText(basic.getTC().get());
+        socStat.setText(basic.getSocialStatus().get());
         name.setText(basic.getName().get());
         surname.setText(basic.getSurname().get());
         if(basic.getGender().equals(Gender.MAN)){
@@ -295,9 +293,9 @@ public class K_user implements Initializable{
         }catch(UserNotExistEx e){
             outLabel.setText("PROBLEMI CON IL NICKNAME, non più trovato");
         }
-        cel.setText(restrict.getPhoneNumber().get());
+        cel.setText(restrict.getPhone().get());
         cityBirth.setText(restrict.getCityOfBirth().get());
-        address.setText(restrict.getAddress().get());
+        address.setText(restrict.getLocalAddress().get());
         nat.setText(restrict.getNationality().get());
     }
 

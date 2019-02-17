@@ -5,7 +5,7 @@ import bean.PrototypeData;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class PublicData implements PrototypeData{
+public class BasicUserInfo implements PrototypeData{
     private Name name;
     private Name surname;
     private GregorianCalendar birthday;
@@ -16,8 +16,8 @@ public class PublicData implements PrototypeData{
     private Email email;
     private Nickname nickname;
 
-    //Costruttore con i parametri di UserInfoRegister relativi a PublicData
-    public PublicData(Name name, Name surname, TaxCode fiscalCode, Nickname nickname, Email email, GregorianCalendar birthday, Gender gender){
+    //Costruttore con i parametri di UserInfoRegister relativi a BasicUserInfo
+    public BasicUserInfo(Name name, Name surname, TaxCode fiscalCode, Nickname nickname, Email email, GregorianCalendar birthday, Gender gender){
         /*passati*/
         this.name = new Name(name);
         this.surname = new Name(surname);
@@ -33,8 +33,8 @@ public class PublicData implements PrototypeData{
 
     }
 
-    //Costruttore con tutti i parametri possibili di PublicData
-    public PublicData(Name name, Name surname, GregorianCalendar birthday, Gender gender, TaxCode fiscalCode, SocialStatus socialStatus, Avatar avatar, Email email, Nickname nickname){
+    //Costruttore con tutti i parametri possibili di BasicUserInfo
+    public BasicUserInfo(Name name, Name surname, GregorianCalendar birthday, Gender gender, TaxCode fiscalCode, SocialStatus socialStatus, Avatar avatar, Email email, Nickname nickname){
         this.name = new Name(name);
         this.surname = new Name(surname);
         this.birthday = new GregorianCalendar(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DAY_OF_MONTH));
@@ -46,8 +46,8 @@ public class PublicData implements PrototypeData{
         this.nickname = new Nickname(nickname);
     }
 
-    //Costruttore che prende un PublicData e lo copia in un'altra istanza
-    private PublicData(PublicData pubD){
+    //Costruttore che prende un BasicUserInfo e lo copia in un'altra istanza
+    private BasicUserInfo(BasicUserInfo pubD){
         this.name = new Name(pubD.getName());
         this.surname = new Name(pubD.getSurname());
         this.birthday = new GregorianCalendar(pubD.getBirthday().get(Calendar.YEAR), pubD.getBirthday().get(Calendar.MONTH), pubD.getBirthday().get(Calendar.DAY_OF_MONTH));
@@ -131,7 +131,7 @@ public class PublicData implements PrototypeData{
     @Override
     public boolean equals(Object o){
         try{
-            PublicData p = (PublicData) o;
+            BasicUserInfo p = (BasicUserInfo) o;
             return (this.name.equals(p.name) && this.surname.equals(p.surname) &&
                     this.birthday.equals(p.birthday) && this.gender.equals(p.gender) &&
                     this.fiscalCode.equals(p.fiscalCode) && this.socialStatus.equals(p.socialStatus) &&
@@ -144,6 +144,6 @@ public class PublicData implements PrototypeData{
 
     @Override
     public Object clone(){
-        return new PublicData(this);
+        return new BasicUserInfo(this);
     }
 }

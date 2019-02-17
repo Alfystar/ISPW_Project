@@ -2,22 +2,22 @@ package entity;
 
 import bean.PrototypeData;
 
-public class PrivateData implements PrototypeData{
+public class RestrictUserInfo implements PrototypeData{
     private SurfaceAddress address;
     private SurfaceAddress cityOfBirth;
     private Nationality nat;
     private PhoneNumber phone;
 
-    //Costruttore con tutti i possibili attributi di PrivateData
-    public PrivateData(SurfaceAddress address, SurfaceAddress cityOfBirth, Nationality nat, PhoneNumber phone){
+    //Costruttore con tutti i possibili attributi di RestrictUserInfo
+    public RestrictUserInfo(SurfaceAddress address, SurfaceAddress cityOfBirth, Nationality nat, PhoneNumber phone){
         this.address = new SurfaceAddress(address);
         this.cityOfBirth = new SurfaceAddress(cityOfBirth);
         this.nat = new Nationality(nat);
         this.phone = new PhoneNumber(phone);
     }
 
-    //Costruttore senza parametri; non è richiesto nessun PrivateData per la registrazione(UserInfoRegister)
-    public PrivateData(){
+    //Costruttore senza parametri; non è richiesto nessun RestrictUserInfo per la registrazione(UserInfoRegister)
+    public RestrictUserInfo(){
         this.address = new SurfaceAddress();
         this.cityOfBirth = new SurfaceAddress();
         this.nat = new Nationality();
@@ -25,8 +25,8 @@ public class PrivateData implements PrototypeData{
 
     }
 
-    //Costruttore per copiare i dati di un PrivateData in un'altra istanza di PrivateData
-    private PrivateData(PrivateData prD){
+    //Costruttore per copiare i dati di un RestrictUserInfo in un'altra istanza di RestrictUserInfo
+    private RestrictUserInfo(RestrictUserInfo prD){
         this.address = new SurfaceAddress(prD.getLocalAddress());
         this.cityOfBirth = new SurfaceAddress(prD.getCityOfBirth());
         this.nat = new Nationality(prD.getNationality());
@@ -64,7 +64,7 @@ public class PrivateData implements PrototypeData{
     @Override
     public boolean equals(Object o){
         try{
-            PrivateData p = (PrivateData) o;
+            RestrictUserInfo p = (RestrictUserInfo) o;
             return (this.address.equals(p.address) && this.cityOfBirth.equals(p.cityOfBirth) &&
                     this.nat.equals(p.nat) && this.phone.equals(p.phone));
         }catch(ClassCastException e){
@@ -74,6 +74,6 @@ public class PrivateData implements PrototypeData{
 
     @Override
     public Object clone() {
-        return new PrivateData(this);
+        return new RestrictUserInfo(this);
     }
 }

@@ -21,15 +21,15 @@ public class DAOMock implements DAOInterface{
     public DAOMock(){
 
 
-        PublicData pubD1 = new PublicData(new Name("ema"), new Name("alf"), new TaxCode("lfm"), new Nickname("alfy"), new Email("ema@gmail.com"), new GregorianCalendar(97, 7, 31), Gender.MAN);
-        PrivateData priD1 = new PrivateData(new SurfaceAddress("Roma"), new SurfaceAddress("Termini"), new Nationality("IT"), new PhoneNumber("3334233142"));
+        BasicUserInfo pubD1 = new BasicUserInfo(new Name("ema"), new Name("alf"), new TaxCode("lfm"), new Nickname("alfy"), new Email("ema@gmail.com"), new GregorianCalendar(97, 7, 31), Gender.MAN);
+        RestrictUserInfo priD1 = new RestrictUserInfo(new SurfaceAddress("Roma"), new SurfaceAddress("Termini"), new Nationality("IT"), new PhoneNumber("3334233142"));
         this.utente1 = new Utente(pubD1, priD1, new PW("testPass1"), new Roles(TRUE, FALSE), new Questionary(new String[]{"a", "b", "c", "d"}));
     }
 
     @Override
     public Utente createUser(UserInfoRegister infoReg) throws WrongParameters{
-        PublicData pubD = new PublicData(infoReg.getName(), infoReg.getSurname(), infoReg.getCf(), infoReg.getNickname(), infoReg.getEmail(), infoReg.getBirthday(), infoReg.getGender());
-        PrivateData priD = new PrivateData();
+        BasicUserInfo pubD = new BasicUserInfo(infoReg.getName(), infoReg.getSurname(), infoReg.getCf(), infoReg.getNickname(), infoReg.getEmail(), infoReg.getBirthday(), infoReg.getGender());
+        RestrictUserInfo priD = new RestrictUserInfo();
         PW pw = new PW(infoReg.getPw());
         Roles roles = new Roles();
         Questionary answers = new Questionary(new String[]{"a", "b", "c", "d"});
