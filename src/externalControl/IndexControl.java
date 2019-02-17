@@ -7,14 +7,14 @@ import interfaces.SystemInterface;
 
 public class IndexControl{
 
-    private static IndexControl instance;
+    private static IndexControl instance = null;
 
     private SystemInterface sysInt = new FacadeSubSystem();
 
     private IndexControl(){
     }
 
-    public static IndexControl getInstance(){
+    public synchronized static IndexControl getInstance(){
         if(instance == null)
             instance = new IndexControl();
         return instance;

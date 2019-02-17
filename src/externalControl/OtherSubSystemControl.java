@@ -7,7 +7,7 @@ import interfaces.UserProfileService;
 
 public class OtherSubSystemControl{
 
-    private static OtherSubSystemControl instance;
+    private static OtherSubSystemControl instance = null;
 
     private UserProfileService usProfInt = new FacadeSubSystem();
     private RoleStatus rolInt = new FacadeSubSystem();
@@ -15,7 +15,7 @@ public class OtherSubSystemControl{
     private OtherSubSystemControl(){
     }
 
-    public static OtherSubSystemControl getInstance(){
+    public synchronized static OtherSubSystemControl getInstance(){
         if(instance == null)
             instance = new OtherSubSystemControl();
         return instance;
