@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Utente{
     private BasicUserInfo pubD;
