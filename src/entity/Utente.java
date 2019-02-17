@@ -11,8 +11,6 @@ public class Utente{
     private Roles roles;
     private Questionary questionary;
 
-    private ReadWriteLock lock = new ReentrantReadWriteLock();
-
 
     public Utente(BasicUserInfo pubD, RestrictUserInfo prD, PW pw, Roles roles, Questionary questionary){
         this.pubD = (BasicUserInfo) pubD.clone();
