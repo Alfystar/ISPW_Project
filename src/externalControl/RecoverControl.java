@@ -8,14 +8,14 @@ import interfaces.SystemInterface;
 
 public class RecoverControl{
 
-    private static RecoverControl instance;
+    private static RecoverControl instance = null;
 
     private SystemInterface sysInt = new FacadeSubSystem();
 
     private RecoverControl(){
     }
 
-    public static RecoverControl getInstance(){
+    public synchronized static RecoverControl getInstance(){
         if(instance == null)
             instance = new RecoverControl();
         return instance;

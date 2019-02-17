@@ -9,7 +9,7 @@ import interfaces.UserProfileService;
 import java.util.GregorianCalendar;
 
 public class RegisterControl{
-    private static RegisterControl instance;
+    private static RegisterControl instance = null;
 
     private UserProfileService usProfInt = new FacadeSubSystem();
     private RoleStatus rolInt = new FacadeSubSystem();
@@ -17,7 +17,7 @@ public class RegisterControl{
     private RegisterControl(){
     }
 
-    public static RegisterControl getInstance(){
+    public synchronized static RegisterControl getInstance(){
         if(instance == null)
             instance = new RegisterControl();
         return instance;

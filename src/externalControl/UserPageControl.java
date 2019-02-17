@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
 
 public class UserPageControl{
 
-    private static UserPageControl instance;
+    private static UserPageControl instance = null;
 
     private RoleStatus rolInt = new FacadeSubSystem();
     private SystemInterface sysInt = new FacadeSubSystem();
@@ -20,7 +20,7 @@ public class UserPageControl{
     private UserPageControl(){
     }
 
-    public static UserPageControl getInstance(){
+    public synchronized static UserPageControl getInstance(){
         if(instance == null)
             instance = new UserPageControl();
         return instance;

@@ -23,7 +23,7 @@ e con che dinamiche, request è per risolvere il form e poi morire  -->
             //e permette di fare delle impostazioni globali
             session.setAttribute("nkSaved", nkStr);
             //response invia dei comandi sotto il cofano del client, in questo caso di cambiare pagina
-            //ma in generale potrebbero essere comandi di pulizzia o simili dei quali non ci rendiamo conto
+            //ma in generale potrebbero essere comandi di pulizia o simili dei quali non ci rendiamo conto
             response.sendRedirect("/FERSA/userpage.jsp");
             //interrompe la codifica della pagina dovendo cambiare schermata, pure per evitare
             //inconsistenze nello sviluppo della pagina

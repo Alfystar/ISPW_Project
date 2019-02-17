@@ -7,14 +7,14 @@ import interfaces.SystemInterface;
 
 public class LoginControl{
 
-    private static LoginControl instance;
+    private static LoginControl instance = null;
 
     private SystemInterface sysInt = new FacadeSubSystem();
 
     private LoginControl(){
     }
 
-    public static LoginControl getInstance(){
+    public synchronized static LoginControl getInstance(){
         if(instance == null)
             instance = new LoginControl();
         return instance;

@@ -7,7 +7,7 @@ import interfaces.SystemInterface;
 
 public class ChangeDataControl{
 
-    private static ChangeDataControl instance;
+    private static ChangeDataControl instance = null;
 
     private SystemInterface sysInt = new FacadeSubSystem();
     private RoleStatus rolInt = new FacadeSubSystem();
@@ -15,7 +15,7 @@ public class ChangeDataControl{
     private ChangeDataControl(){
     }
 
-    public static ChangeDataControl getInstance(){
+    public synchronized static ChangeDataControl getInstance(){
         if(instance == null)
             instance = new ChangeDataControl();
         return instance;
