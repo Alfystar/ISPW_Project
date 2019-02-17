@@ -76,7 +76,7 @@ public class OtherSubSystemBean{
 
     public String[] ottieniPubDUtente(){
 
-        if(this.nickInput.equals("")) {
+        if(this.nickInput.equals("")){
 
             String[] response = {"Inserire Nickname non nullo", null};
             return response;

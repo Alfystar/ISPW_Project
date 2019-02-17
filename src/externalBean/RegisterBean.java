@@ -39,6 +39,7 @@ public class RegisterBean{
     public String getFirstname(){
         return this.firstname;
     }
+
     public void setFirstname(String fn){
         this.firstname = fn;
     }
@@ -46,6 +47,7 @@ public class RegisterBean{
     public String getLastname(){
         return this.lastname;
     }
+
     public void setLastname(String ln){
         this.lastname = ln;
     }
@@ -53,11 +55,13 @@ public class RegisterBean{
     public String getTaxcode(){
         return this.taxcode;
     }
+
     public void setTaxcode(String tc){ this.taxcode = tc; }
 
     public String getNickname(){
         return this.nickname;
     }
+
     public void setNickname(String nk){
         this.nickname = nk;
     }
@@ -65,6 +69,7 @@ public class RegisterBean{
     public String getEmail(){
         return this.email;
     }
+
     public void setEmail(String em){
         this.email = em;
     }
@@ -72,11 +77,13 @@ public class RegisterBean{
     public String getBday(){
         return this.bday;
     }
+
     public void setBday(String bd){
         this.bday = bd;
     }
 
     public String getBirthPlace(){ return this.birthPlace; }
+
     public void setBirthPlace(String birPl){
         this.birthPlace = birPl;
     }
@@ -84,6 +91,7 @@ public class RegisterBean{
     public String getGender(){
         return this.gender;
     }
+
     public void setGender(String gen){
         this.gender = gen;
     }
@@ -91,19 +99,23 @@ public class RegisterBean{
     public String getPassword(){
         return this.password;
     }
+
     public void setPassword(String pw){ this.password = pw;}
 
     public String getConfPW(){ return this.confPW; }
+
     public void setConfPW(String confPW){ this.confPW = confPW;}
 
     public String getQuestion1(){
         return this.question1;
     }
+
     public void setQuestion1(String q1){ this.question1 = q1; }
 
     public String getQuestion2(){
         return this.question2;
     }
+
     public void setQuestion2(String q2){
         this.question2 = q2;
     }
@@ -111,6 +123,7 @@ public class RegisterBean{
     public String getQuestion3(){
         return this.question3;
     }
+
     public void setQuestion3(String q3){
         this.question3 = q3;
     }
@@ -118,13 +131,14 @@ public class RegisterBean{
     public String getQuestion4(){
         return this.question4;
     }
+
     public void setQuestion4(String q4){
         this.question4 = q4;
     }
 
     public String validateRegister(){
 
-        if (this.firstname.equals("") || this.lastname.equals("") ||
+        if(this.firstname.equals("") || this.lastname.equals("") ||
                 this.taxcode.equals("") || this.nickname.equals("") ||
                 this.email.equals("") || this.bday.equals("") ||
                 this.gender.equals("") || this.password.equals("") ||
@@ -134,7 +148,7 @@ public class RegisterBean{
             return "Inserire tutti i campi (obbligatori)";
         }
 
-        if (!this.password.equals(this.confPW)) return "Password e Conferma Password diverse.";
+        if(!this.password.equals(this.confPW)) return "Password e Conferma Password diverse.";
 
         RegisterControl controller = RegisterControl.getInstance();
 

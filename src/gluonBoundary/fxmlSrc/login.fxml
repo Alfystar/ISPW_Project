@@ -3,41 +3,46 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<VBox alignment="CENTER_RIGHT" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gluonBoundary.K_login">
+<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER_RIGHT" xmlns="http://javafx.com/javafx/8.0.172-ea"
+      fx:controller="gluonBoundary.K_login">
     <children>
         <AnchorPane>
             <children>
-                <GridPane alignment="CENTER" layoutX="-35.0" layoutY="22.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <GridPane alignment="CENTER" layoutX="-35.0" layoutY="22.0" AnchorPane.bottomAnchor="0.0"
+                          AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
-                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
-                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="5.0" prefWidth="10.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0"/>
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="5.0"
+                                           prefWidth="10.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <children>
-                        <Label alignment="CENTER_RIGHT" text="User Name" textAlignment="RIGHT" />
-                        <Label text="Password" textAlignment="RIGHT" GridPane.rowIndex="1" />
-                        <TextField fx:id="nickField" promptText="Nickname" GridPane.columnIndex="2" />
-                        <PasswordField fx:id="pwField" onAction="#loginPush" promptText="Passwod" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER_RIGHT" text="User Name" textAlignment="RIGHT"/>
+                        <Label text="Password" textAlignment="RIGHT" GridPane.rowIndex="1"/>
+                        <TextField fx:id="nickField" promptText="Nickname" GridPane.columnIndex="2"/>
+                        <PasswordField fx:id="pwField" onAction="#loginPush" promptText="Passwod"
+                                       GridPane.columnIndex="2" GridPane.rowIndex="1"/>
                     </children>
                 </GridPane>
             </children>
         </AnchorPane>
-        <FlowPane alignment="TOP_RIGHT" columnHalignment="RIGHT" hgap="15.0" prefWrapLength="200.0" rowValignment="BOTTOM">
+        <FlowPane alignment="TOP_RIGHT" columnHalignment="RIGHT" hgap="15.0" prefWrapLength="200.0"
+                  rowValignment="BOTTOM">
             <children>
                 <Hyperlink fx:id="register" alignment="TOP_RIGHT" onAction="#registerPush" text="Register Here">
                     <font>
-                        <Font name="System Bold Italic" size="10.0" />
+                        <Font name="System Bold Italic" size="10.0"/>
                     </font>
                 </Hyperlink>
-                <Button mnemonicParsing="false" onAction="#loginPush" prefWidth="90.0" text="Login" />
-                <Label fx:id="outLabel" prefHeight="16.0" prefWidth="133.0" />
+                <Button mnemonicParsing="false" onAction="#loginPush" prefWidth="90.0" text="Login"/>
+                <Label fx:id="outLabel" prefHeight="16.0" prefWidth="133.0"/>
                 <Hyperlink fx:id="forgottenPw" onAction="#forgottenPush" text="Forgotten Password?">
                     <font>
-                        <Font name="System Bold Italic" size="10.0" />
+                        <Font name="System Bold Italic" size="10.0"/>
                     </font>
                 </Hyperlink>
             </children>

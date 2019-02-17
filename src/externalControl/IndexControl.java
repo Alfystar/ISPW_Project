@@ -21,24 +21,24 @@ public class IndexControl{
     }
 
     public String startDBAndIP(){
-        try {
+        try{
             DaemonDAO.getInstance();
 
             String IPtest = sysInt.getLastHost();
             //System.out.println("Controller: " + IPtest);
             return IPtest;
-        } catch (Exception e){
+        }catch(Exception e){
             return e.getMessage();
         }
     }
 
     public String changeIPDAO(String IP){
-        try {
+        try{
             DAOClass daoClass = new DAOClass();
             sysInt.changeHost(IP);
-            if (daoClass.testNet()) return "Successo";
+            if(daoClass.testNet()) return "Successo";
             else return "Fallito";
-        } catch(Exception e){
+        }catch(Exception e){
             return e.getMessage();
         }
     }

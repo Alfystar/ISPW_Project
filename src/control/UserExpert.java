@@ -118,9 +118,10 @@ public class UserExpert{
         coda.add(user);
     }
 
-    /**   Metodo a solo fine di TEST per junit   **/
-    public void createUserAll(Utente user)throws SQLException
-    {
+    /**
+     * Metodo a solo fine di TEST per junit
+     **/
+    public void createUserAll(Utente user) throws SQLException{
         this.daoFace.saveUser(user);
         coda.add(user);
     }

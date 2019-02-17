@@ -29,7 +29,6 @@ import java.util.ResourceBundle;
 public class K_admin implements Initializable{
 
 
-
     //=================================================================
     //Top object
     @FXML

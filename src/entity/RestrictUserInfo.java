@@ -73,7 +73,7 @@ public class RestrictUserInfo implements PrototypeData{
     }
 
     @Override
-    public Object clone() {
+    public Object clone(){
         return new RestrictUserInfo(this);
     }
 }

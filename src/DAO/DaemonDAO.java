@@ -41,20 +41,20 @@ public class DaemonDAO implements Runnable{
                     Thread.sleep(1000);
                     Date todayDay = GregorianCalendar.getInstance().getTime();
                     GregorianCalendar gcFutureDate = this.dao.nextDeleteSession();
-                    System.out.println("DaemonDAO next delete is: "+gregCalToString(gcFutureDate));
+                    System.out.println("DaemonDAO next delete is: " + gregCalToString(gcFutureDate));
 
                     GregorianCalendar gc = new GregorianCalendar(2000, 01, 01);    //serve solo a generare un oggetto
                     gc.setTime(GregorianCalendar.getInstance().getTime());
-                    System.out.println("DaemonDAO today is is: "+gregCalToString(gc));
+                    System.out.println("DaemonDAO today is is: " + gregCalToString(gc));
 
-                    long deltaTime = getDateDiff(gcFutureDate.getTime(),todayDay, TimeUnit.MILLISECONDS);
-                    System.out.println("DaemonDAO go to sleap for: "+deltaTime);
+                    long deltaTime = getDateDiff(gcFutureDate.getTime(), todayDay, TimeUnit.MILLISECONDS);
+                    System.out.println("DaemonDAO go to sleap for: " + deltaTime);
                     if(deltaTime <= 0) break restartSleep;
                     Thread.sleep(deltaTime);
                     break restartSleep;
                 }catch(InterruptedException e){
                     e.printStackTrace();
-                }catch (java.sql.SQLNonTransientConnectionException e) {
+                }catch(java.sql.SQLNonTransientConnectionException e){
                     System.err.println("Impossible connect to db, retry again");
                 }catch(SQLException se){
                     se.printStackTrace();
@@ -66,9 +66,9 @@ public class DaemonDAO implements Runnable{
             gc.setTime(GregorianCalendar.getInstance().getTime());
             try{
                 this.dao.deleteByDeamon(gc);
-                gc.add(Calendar.MONTH,1);
+                gc.add(Calendar.MONTH, 1);
                 this.dao.updateNextDelS(gc);
-            }catch (java.sql.SQLNonTransientConnectionException e) {
+            }catch(java.sql.SQLNonTransientConnectionException e){
                 System.err.println("Impossible connect to db, retry again");
             }catch(SQLException se){
                 se.printStackTrace();

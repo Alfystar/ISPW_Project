@@ -31,7 +31,7 @@ public class Email extends ModifyDataString{
 
         try{
             lock.writeLock().lock();
-            this.email = newEmail.toLowerCase().replaceAll("\\s+", "");;
+            this.email = newEmail.toLowerCase().replaceAll("\\s+", "");
         }finally{
             lock.writeLock().unlock();
         }

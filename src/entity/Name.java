@@ -34,7 +34,8 @@ public class Name{
 
         try{
             lock.writeLock().lock();
-            if(name.length() >= 2) this.name = newName.substring(0, 1).toUpperCase() + newName.substring(1).toLowerCase();
+            if(name.length() >= 2)
+                this.name = newName.substring(0, 1).toUpperCase() + newName.substring(1).toLowerCase();
             else this.name = newName.toUpperCase();
         }finally{
             lock.writeLock().unlock();

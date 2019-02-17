@@ -122,7 +122,7 @@ public class K_registration implements Initializable{
 
         FXMLLoader userLoader = new FXMLLoader(getClass().getResource("fxmlSrc/userPane.fxml"));
         try{
-            userParent = (Parent) userLoader.load();
+            userParent = userLoader.load();
         }catch(IOException ex){
             ex.printStackTrace();
         }
@@ -195,12 +195,10 @@ public class K_registration implements Initializable{
             Calendar tenYMore = GregorianCalendar.getInstance();
             tenYMore.add(Calendar.YEAR, -18);
 
-            if(bGc.get(Calendar.YEAR) > 1900 && bGc.get(Calendar.YEAR) < tenYMore.get(Calendar.YEAR))
-            {
+            if(bGc.get(Calendar.YEAR) > 1900 && bGc.get(Calendar.YEAR) < tenYMore.get(Calendar.YEAR)){
                 complete++;
                 only18.setVisible(false);
-            }
-            else if(bGc.getTime().getTime()!=0) only18.setVisible(true);;
+            }else if(bGc.getTime().getTime() != 0) only18.setVisible(true);
         }catch(Exception e){
             //e.printStackTrace();
         }
@@ -217,8 +215,7 @@ public class K_registration implements Initializable{
 
         //System.out.println("stepCheck "+percent+ " len = "+ len + " complete= "+complete);
 
-        if(percent == 1) return true;
-        else return false;
+        return percent == 1;
     }
 
 

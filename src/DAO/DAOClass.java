@@ -195,9 +195,7 @@ public class DAOClass implements DAOInterface{
             System.out.println("searchNickDB query executed");
 
             ResultSet rs = this.stmt.executeQuery(sql);
-            if(!rs.first())
-                return false;
-            else return true;
+            return rs.first();
 
         }catch(SQLException se){
             //Handle errors for JDBC
@@ -437,9 +435,7 @@ public class DAOClass implements DAOInterface{
             System.out.println(sql);
             ResultSet rs = this.stmt.executeQuery(sql);
             System.out.println("searchTC query executed");
-            if(!rs.first())
-                return false;
-            else return true;
+            return rs.first();
 
         }catch(SQLException se){
             //Handle errors for JDBC
@@ -530,7 +526,8 @@ public class DAOClass implements DAOInterface{
                 Nickname nick = new Nickname(rs.getString(1));
                 destroy(nick);
                 removeDataEvent(nick);
-            }while(rs.next());
+            }
+            while(rs.next());
         }catch(NickNotDBEx nickNotEx){
             System.out.println("Non dovresti essere qui!!");
         }finally{
@@ -544,11 +541,11 @@ public class DAOClass implements DAOInterface{
         this.stmt.executeQuery(sql);
         System.out.println("nextDeleteSession query executed");
         ResultSet rs = this.stmt.executeQuery(sql);
-        if(!rs.first()) {   //se la cella è vuota
+        if(!rs.first()){   //se la cella è vuota
             Calendar calendar = Calendar.getInstance();
-            calendar.add(calendar.MONTH, 1);
-            GregorianCalendar gc= new GregorianCalendar(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), 2, 0);
-            String nextMonth= gregCalToString(gc);
+            calendar.add(Calendar.MONTH, 1);
+            GregorianCalendar gc = new GregorianCalendar(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), 2, 0);
+            String nextMonth = gregCalToString(gc);
             String sql1 = "INSERT INTO deletesession(nextDelS) VALUES (" +
                     "\"" + nextMonth + "\" " + " );";
             System.out.println(sql1);
@@ -562,10 +559,10 @@ public class DAOClass implements DAOInterface{
         return stringToGregCal(nextDate);
     }
 
-    public void updateNextDelS(GregorianCalendar gc) throws SQLException {
+    public void updateNextDelS(GregorianCalendar gc) throws SQLException{
         this.openConn();
-        String date= gregCalToString(gc);
-        String sql= "UPDATE deletesession SET " +
+        String date = gregCalToString(gc);
+        String sql = "UPDATE deletesession SET " +
                 "nextDelS =" + "\"" + date + "\"" + ";";
         this.stmt.executeQuery(sql);
         this.closeConn();
@@ -601,7 +598,7 @@ public class DAOClass implements DAOInterface{
 
     @Override
     public void changeHost(String ip){
-        this.DB_URL = "jdbc:mysql://" + ip + "/fersa";
+        DB_URL = "jdbc:mysql://" + ip + "/fersa";
         conf.setProperty("dbHost", ip);
     }
 
@@ -615,8 +612,7 @@ public class DAOClass implements DAOInterface{
         String sql = "/* ping */ SELECT 1";
         ResultSet rs = this.stmt.executeQuery(sql);
         System.out.println("testNet query executed");
-        if(rs.first()) return true;
-        else return false;
+        return rs.first();
     }
 
     private void openConn() throws SQLException{

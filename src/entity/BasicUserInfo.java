@@ -76,21 +76,21 @@ public class BasicUserInfo implements PrototypeData{
         return this.birthday;
     }
 
-    public void setGender(Gender g){
-        try{
-            lockGender.writeLock().lock();
-            this.gender = g;
-        }finally{
-            lockGender.writeLock().unlock();
-        }
-    }
-
     public Gender getGender(){
         try{
             lockGender.readLock().lock();
             return this.gender;
         }finally{
             lockGender.readLock().unlock();
+        }
+    }
+
+    public void setGender(Gender g){
+        try{
+            lockGender.writeLock().lock();
+            this.gender = g;
+        }finally{
+            lockGender.writeLock().unlock();
         }
     }
 

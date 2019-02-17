@@ -1,29 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.TilePane?>
-<?import javafx.scene.layout.VBox?>
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gluonBoundary.K_registration">
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+      fx:controller="gluonBoundary.K_registration">
     <children>
         <TabPane prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -35,48 +19,61 @@
                                     <children>
                                         <GridPane>
                                             <columnConstraints>
-                                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="129.0" />
-                                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="151.0" minWidth="0.0" prefWidth="11.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="460.0" />
+                                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="166.0"
+                                                                   minWidth="10.0" prefWidth="129.0"/>
+                                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="151.0"
+                                                                   minWidth="0.0" prefWidth="11.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0"
+                                                                   prefWidth="460.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <children>
-                                                <Label text="Nickname" />
-                                                <TextField fx:id="nick" onKeyTyped="#stepCheck" GridPane.columnIndex="2" />
-                                                <Label text="Password" GridPane.rowIndex="1" />
-                                                <PasswordField fx:id="newPw" onKeyTyped="#stepCheck" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label text="Confirm Password" GridPane.rowIndex="2" />
-                                                <PasswordField fx:id="confPw" onKeyTyped="#stepCheck" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <Label text="Birthday" GridPane.rowIndex="4" />
-                                                <TextField fx:id="email" onKeyTyped="#stepCheck" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                    <HBox alignment="CENTER_LEFT" spacing="20.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
-                                       <children>
-                                                      <DatePicker fx:id="birthday" onAction="#stepCheck" prefWidth="300.0" />
-                                          <Label fx:id="only18" text="Solo Magiorenni" visible="false" />
-                                       </children>
-                                    </HBox>
-                                                <Label text="Gender" GridPane.rowIndex="5" />
-                                                <HBox alignment="CENTER_LEFT" spacing="20.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                                <Label text="Nickname"/>
+                                                <TextField fx:id="nick" onKeyTyped="#stepCheck"
+                                                           GridPane.columnIndex="2"/>
+                                                <Label text="Password" GridPane.rowIndex="1"/>
+                                                <PasswordField fx:id="newPw" onKeyTyped="#stepCheck"
+                                                               GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                                                <Label text="Confirm Password" GridPane.rowIndex="2"/>
+                                                <PasswordField fx:id="confPw" onKeyTyped="#stepCheck"
+                                                               GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                                                <Label text="Birthday" GridPane.rowIndex="4"/>
+                                                <TextField fx:id="email" onKeyTyped="#stepCheck"
+                                                           GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                                                <HBox alignment="CENTER_LEFT" spacing="20.0" GridPane.columnIndex="2"
+                                                      GridPane.halignment="LEFT" GridPane.rowIndex="4">
                                                     <children>
-                                                        <RadioButton fx:id="man" mnemonicParsing="false" onAction="#stepCheck" text="Man">
+                                                        <DatePicker fx:id="birthday" onAction="#stepCheck"
+                                                                    prefWidth="300.0"/>
+                                                        <Label fx:id="only18" text="Solo Magiorenni" visible="false"/>
+                                                    </children>
+                                                </HBox>
+                                                <Label text="Gender" GridPane.rowIndex="5"/>
+                                                <HBox alignment="CENTER_LEFT" spacing="20.0" GridPane.columnIndex="2"
+                                                      GridPane.rowIndex="5">
+                                                    <children>
+                                                        <RadioButton fx:id="man" mnemonicParsing="false"
+                                                                     onAction="#stepCheck" text="Man">
                                                             <toggleGroup>
-                                                                <ToggleGroup fx:id="gender" />
+                                                                <ToggleGroup fx:id="gender"/>
                                                             </toggleGroup>
                                                         </RadioButton>
-                                                        <RadioButton fx:id="woman" mnemonicParsing="false" onAction="#stepCheck" text="Woman" toggleGroup="$gender" />
+                                                        <RadioButton fx:id="woman" mnemonicParsing="false"
+                                                                     onAction="#stepCheck" text="Woman"
+                                                                     toggleGroup="$gender"/>
                                                     </children>
                                                     <padding>
-                                                        <Insets left="20.0" />
+                                                        <Insets left="20.0"/>
                                                     </padding>
                                                 </HBox>
-                                                <Label text="Email" GridPane.rowIndex="3" />
+                                                <Label text="Email" GridPane.rowIndex="3"/>
                                             </children>
                                         </GridPane>
                                     </children>
@@ -93,47 +90,63 @@
                                     <children>
                                         <GridPane>
                                             <columnConstraints>
-                                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="95.0" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="528.0" minWidth="7.0" prefWidth="19.0" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="559.0" minWidth="10.0" prefWidth="494.0" />
+                                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="294.0"
+                                                                   minWidth="10.0" prefWidth="95.0"/>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES"
+                                                                   maxWidth="528.0" minWidth="7.0" prefWidth="19.0"/>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES"
+                                                                   maxWidth="559.0" minWidth="10.0" prefWidth="494.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER"
+                                                                vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <children>
-                                                <Label text="Name:" />
-                                                <Label text="Surname:" GridPane.rowIndex="1" />
-                                                <Label text="taxCode:" GridPane.rowIndex="2" />
-                                                <TextField fx:id="name" onKeyTyped="#stepCheck" GridPane.columnIndex="2" />
-                                                <TextField fx:id="surname" onKeyTyped="#stepCheck" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <TextField fx:id="tc" onKeyTyped="#stepCheck" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <Label text="City of Birth" GridPane.rowIndex="3" />
-                                                <TextField fx:id="cityBirth" onKeyTyped="#stepCheck" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                <Label text="Name:"/>
+                                                <Label text="Surname:" GridPane.rowIndex="1"/>
+                                                <Label text="taxCode:" GridPane.rowIndex="2"/>
+                                                <TextField fx:id="name" onKeyTyped="#stepCheck"
+                                                           GridPane.columnIndex="2"/>
+                                                <TextField fx:id="surname" onKeyTyped="#stepCheck"
+                                                           GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                                                <TextField fx:id="tc" onKeyTyped="#stepCheck" GridPane.columnIndex="2"
+                                                           GridPane.rowIndex="2"/>
+                                                <Label text="City of Birth" GridPane.rowIndex="3"/>
+                                                <TextField fx:id="cityBirth" onKeyTyped="#stepCheck"
+                                                           GridPane.columnIndex="2" GridPane.rowIndex="3"/>
                                             </children>
                                         </GridPane>
                                     </children>
                                 </VBox>
-                                <Label layoutX="47.0" layoutY="142.0" text="Avatar" />
-                                <TilePane hgap="10.0" layoutX="109.0" layoutY="142.0" prefHeight="41.0" prefWidth="279.0" vgap="5.0">
+                                <Label layoutX="47.0" layoutY="142.0" text="Avatar"/>
+                                <TilePane hgap="10.0" layoutX="109.0" layoutY="142.0" prefHeight="41.0"
+                                          prefWidth="279.0" vgap="5.0">
                                     <children>
-                                        <RadioButton fx:id="av1" mnemonicParsing="false" onAction="#avatarChange" selected="true" text="Avatar 1">
+                                        <RadioButton fx:id="av1" mnemonicParsing="false" onAction="#avatarChange"
+                                                     selected="true" text="Avatar 1">
                                             <toggleGroup>
-                                                <ToggleGroup fx:id="avatarGroup" />
+                                                <ToggleGroup fx:id="avatarGroup"/>
                                             </toggleGroup>
                                         </RadioButton>
-                                        <RadioButton fx:id="av2" mnemonicParsing="false" onAction="#avatarChange" text="Avatar 2" toggleGroup="$avatarGroup" />
-                                        <RadioButton fx:id="av3" mnemonicParsing="false" onAction="#avatarChange" text="Avatar 3" toggleGroup="$avatarGroup" />
-                                        <RadioButton fx:id="av4" mnemonicParsing="false" onAction="#avatarChange" text="Avatar 4" toggleGroup="$avatarGroup" />
-                                        <RadioButton fx:id="av5" mnemonicParsing="false" onAction="#avatarChange" text="Avatar 5" toggleGroup="$avatarGroup" />
-                                        <RadioButton fx:id="av6" mnemonicParsing="false" onAction="#avatarChange" text="Avatar 6" toggleGroup="$avatarGroup" />
+                                        <RadioButton fx:id="av2" mnemonicParsing="false" onAction="#avatarChange"
+                                                     text="Avatar 2" toggleGroup="$avatarGroup"/>
+                                        <RadioButton fx:id="av3" mnemonicParsing="false" onAction="#avatarChange"
+                                                     text="Avatar 3" toggleGroup="$avatarGroup"/>
+                                        <RadioButton fx:id="av4" mnemonicParsing="false" onAction="#avatarChange"
+                                                     text="Avatar 4" toggleGroup="$avatarGroup"/>
+                                        <RadioButton fx:id="av5" mnemonicParsing="false" onAction="#avatarChange"
+                                                     text="Avatar 5" toggleGroup="$avatarGroup"/>
+                                        <RadioButton fx:id="av6" mnemonicParsing="false" onAction="#avatarChange"
+                                                     text="Avatar 6" toggleGroup="$avatarGroup"/>
                                     </children>
                                 </TilePane>
-                                <ImageView fx:id="avatar" fitHeight="75.0" fitWidth="75.0" layoutX="467.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fx:id="avatar" fitHeight="75.0" fitWidth="75.0" layoutX="467.0"
+                                           layoutY="131.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../ImageFile/Avatar/default-Avatar.png" />
+                                        <Image url="@../../ImageFile/Avatar/default-Avatar.png"/>
                                     </image>
                                 </ImageView>
                             </children>
@@ -146,14 +159,14 @@
                             <children>
                                 <VBox layoutX="14.0" layoutY="14.0" prefHeight="170.0" prefWidth="570.0">
                                     <children>
-                                        <Label text="What is the name of your favorite pet?" />
-                                        <TextField fx:id="answ1" onKeyTyped="#stepCheck" />
-                                        <Label text="Who is your favorite actor, musician, or artist?" />
-                                        <TextField fx:id="answ2" onKeyTyped="#stepCheck" />
-                                        <Label text="What is your favorite movie?" />
-                                        <TextField fx:id="answ3" onKeyTyped="#stepCheck" />
-                                        <Label text="What is the name of your first school?" />
-                                        <TextField fx:id="answ4" onKeyTyped="#stepCheck" />
+                                        <Label text="What is the name of your favorite pet?"/>
+                                        <TextField fx:id="answ1" onKeyTyped="#stepCheck"/>
+                                        <Label text="Who is your favorite actor, musician, or artist?"/>
+                                        <TextField fx:id="answ2" onKeyTyped="#stepCheck"/>
+                                        <Label text="What is your favorite movie?"/>
+                                        <TextField fx:id="answ3" onKeyTyped="#stepCheck"/>
+                                        <Label text="What is the name of your first school?"/>
+                                        <TextField fx:id="answ4" onKeyTyped="#stepCheck"/>
                                     </children>
                                 </VBox>
                             </children>
@@ -164,17 +177,17 @@
         </TabPane>
         <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefWidth="600.0">
             <items>
-                <Button fx:id="register" mnemonicParsing="false" onAction="#registerPush" text="Register" />
-                <Separator orientation="VERTICAL" />
+                <Button fx:id="register" mnemonicParsing="false" onAction="#registerPush" text="Register"/>
+                <Separator orientation="VERTICAL"/>
                 <ImageView fx:id="statusIco" fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../ImageFile/Icon/reject.png" />
+                        <Image url="@../../ImageFile/Icon/reject.png"/>
                     </image>
                 </ImageView>
-                <Separator orientation="VERTICAL" />
-                <Label text="\% Progress" />
-                <ProgressBar fx:id="progress" nodeOrientation="LEFT_TO_RIGHT" prefWidth="200.0" progress="0.0" />
-                <Label fx:id="outLabel" alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="166.0" text="no Op" />
+                <Separator orientation="VERTICAL"/>
+                <Label text="\% Progress"/>
+                <ProgressBar fx:id="progress" nodeOrientation="LEFT_TO_RIGHT" prefWidth="200.0" progress="0.0"/>
+                <Label fx:id="outLabel" alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="166.0" text="no Op"/>
             </items>
         </ToolBar>
     </children>

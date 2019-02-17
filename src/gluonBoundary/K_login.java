@@ -41,7 +41,7 @@ public class K_login implements Initializable{
     private Label outLabel;
 
     /*** Class Attribute ***/
-    private SystemInterface sysInt = new FacadeSubSystem();;
+    private SystemInterface sysInt = new FacadeSubSystem();
 
 
     @Override
@@ -74,7 +74,7 @@ public class K_login implements Initializable{
 
         FXMLLoader userLoader = new FXMLLoader(getClass().getResource("fxmlSrc/userPane.fxml"));
         try{
-            userParent = (Parent) userLoader.load();
+            userParent = userLoader.load();
         }catch(IOException ex){
             ex.printStackTrace();
         }

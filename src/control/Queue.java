@@ -12,15 +12,14 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Queue{
 
+    /*Variabile per il Singleton*/
+    private final static Queue queueSigletonInstance = new Queue();
     ReadWriteLock lock = new ReentrantReadWriteLock();
     private LinkedList<NodeQueue> users;
 
     private Queue(){
         this.users = new LinkedList<>();
     }
-
-    /*Variabile per il Singleton*/
-    private final static Queue queueSigletonInstance = new Queue();
 
     public static Queue getQueueSingletonInstance(){
         return queueSigletonInstance;
@@ -118,7 +117,7 @@ public class Queue{
     }
 
     private NodeQueue searchInQueue(Nickname nk){
-        try {
+        try{
             lock.readLock().lock();
             String nick = nk.get();
             NodeQueue node;
@@ -130,13 +129,13 @@ public class Queue{
                 }
             }
             return null;
-        }finally {
+        }finally{
             lock.readLock().unlock();
         }
     }
 
     private NodeQueue searchInQueue(TaxCode tc){
-        try {
+        try{
             lock.readLock().lock();
             String taxCode = tc.get();
             NodeQueue node;
@@ -148,7 +147,7 @@ public class Queue{
                 }
             }
             return null;
-        }finally {
+        }finally{
             lock.readLock().unlock();
         }
     }

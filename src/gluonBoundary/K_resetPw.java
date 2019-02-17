@@ -137,7 +137,7 @@ public class K_resetPw implements Initializable{
 
         FXMLLoader userLoader = new FXMLLoader(getClass().getResource("fxmlSrc/userPane.fxml"));
         try{
-            userParent = (Parent) userLoader.load();
+            userParent = userLoader.load();
         }catch(IOException ex){
             ex.printStackTrace();
         }

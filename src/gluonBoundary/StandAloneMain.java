@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class StandAloneMain extends Application{
 
     public static void main(String[] args) throws Exception{
-        if(args.length>0){
+        if(args.length > 0){
             int nThread = 10;
             Thread t;
             FakeUser f;
