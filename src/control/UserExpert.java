@@ -46,7 +46,6 @@ public class UserExpert{
     }
 
     public Boolean isNickExist(Nickname nk) throws UserNotExistEx{
-        //todo implementarla con due thread
         try{
             return isNickExistRam(nk);
         }catch(NickNotQEx qEx){
@@ -60,7 +59,6 @@ public class UserExpert{
     }
 
     public Boolean doesTaxCodeExist(TaxCode tc) throws UserNotExistEx{
-        //todo implementarla con due thread
         try{
             return isTCExistRam(tc);
         }catch(TCNotExistQEx qEx){
@@ -226,7 +224,4 @@ public class UserExpert{
         String s = anno + "-" + mese + "-" + giorno;
         return s;
     }
-
-
-    //todo: scrivere un metodo privato che verifichi che i parametri di infoRegister siano adatti
 }
