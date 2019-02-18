@@ -94,9 +94,9 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
         if(user.getStatus() == UserStatus.BANNED){
             throw new UserBannedEx("Utente Bannato");
         }
-        if(user.getStatus() == UserStatus.CANCELLED){
+       if(user.getStatus() == UserStatus.CANCELLED){
             this.usExp.reActiveProfile(user); //recupera le credenziali
-            return true;
+            return false;
         }
         return user.comparePw(pw);
     }
