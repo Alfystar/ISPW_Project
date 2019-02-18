@@ -96,7 +96,7 @@ public class FacadeSubSystem implements RoleStatus, SystemInterface, UserProfile
         }
        if(user.getStatus() == UserStatus.CANCELLED){
             this.usExp.reActiveProfile(user); //recupera le credenziali
-            return false;
+            return true;
         }
         return user.comparePw(pw);
     }
